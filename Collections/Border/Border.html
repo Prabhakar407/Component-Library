@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Border Collection Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .button-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Interactive Canvas */
+        .preview-canvas {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Grid Background Pattern */
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #0b0f19;
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: #a7f3d0;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #182032;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+
+        /* --- HELP MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .step-num {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .step-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0,0,0,0.15);
+        }
+        
+        .modal-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+        }
+
+        /* ==========================================================================
+           --- INDIVIDUAL BORDERS DESIGN STYLES ---
+           ========================================================================== */
+
+        /* Core Border Box Preview Base */
+        .border-box {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .border-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+
+        /* --- BORDER 1: NEON PULSE BORDER --- */
+        .border-effect-1 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-1:hover {
+            box-shadow: 0 0 0 3px #6366f1, 0 0 20px rgba(99, 102, 241, 0.6);
+            background: #111524;
+        }
+
+        .border-effect-1:hover .border-text {
+            color: #fff;
+        }
+
+        /* --- BORDER 2: ANIMATED SNAKE BORDER --- */
+        .border-effect-2 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .border-effect-2 .snake-border {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            padding: 2px;
+            background: linear-gradient(90deg, #6366f1, #ec4899, #00f0ff, #6366f1);
+            background-size: 300% 300%;
+            -webkit-mask: 
+               linear-gradient(#fff 0 0) content-box, 
+               linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.2;
+            transition: opacity 0.3s;
+        }
+
+        .border-effect-2:hover .snake-border {
+            opacity: 1;
+            animation: snake-flow 2s linear infinite;
+        }
+
+        @keyframes snake-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- BORDER 3: MARCHING DOTS BORDER --- */
+        .border-effect-3 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .border-effect-3 .svg-border {
+            position: absolute;
+            inset: 0;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.18);
+            stroke-width: 2;
+            stroke-dasharray: 6 4;
+            border-radius: 8px;
+            pointer-events: none;
+            transition: stroke 0.3s;
+        }
+
+        .border-effect-3:hover .svg-border {
+            stroke: #00f0ff;
+            animation: march 0.4s linear infinite;
+        }
+
+        @keyframes march {
+            to { stroke-dashoffset: -10; }
+        }
+
+        /* --- BORDER 4: CORNER BRACKET FOCUS FRAME --- */
+        .border-effect-4 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .border-effect-4 .bracket {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .border-effect-4 .top-left {
+            top: 6px;
+            left: 6px;
+            border-top-color: rgba(255,255,255,0.25);
+            border-left-color: rgba(255,255,255,0.25);
+        }
+
+        .border-effect-4 .top-right {
+            top: 6px;
+            right: 6px;
+            border-top-color: rgba(255,255,255,0.25);
+            border-right-color: rgba(255,255,255,0.25);
+        }
+
+        .border-effect-4 .bottom-left {
+            bottom: 6px;
+            left: 6px;
+            border-bottom-color: rgba(255,255,255,0.25);
+            border-left-color: rgba(255,255,255,0.25);
+        }
+
+        .border-effect-4 .bottom-right {
+            bottom: 6px;
+            right: 6px;
+            border-bottom-color: rgba(255,255,255,0.25);
+            border-right-color: rgba(255,255,255,0.25);
+        }
+
+        .border-effect-4:hover .bracket {
+            width: 20px;
+            height: 20px;
+            border-color: #ec4899;
+        }
+
+        .border-effect-4:hover .top-left { top: -2px; left: -2px; }
+        .border-effect-4:hover .top-right { top: -2px; right: -2px; }
+        .border-effect-4:hover .bottom-left { bottom: -2px; left: -2px; }
+        .border-effect-4:hover .bottom-right { bottom: -2px; right: -2px; }
+
+        /* --- BORDER 5: CONIC SHIMMER GLOW --- */
+        .border-effect-5 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            background: transparent;
+            padding: 2px;
+        }
+
+        .border-effect-5 .conic-glow {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 90deg, #ec4899 0%, #6366f1 50%, #00f0ff 100%);
+            animation: rotate-conic 4s linear infinite;
+            z-index: 1;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .border-effect-5:hover .conic-glow {
+            opacity: 1;
+        }
+
+        .border-effect-5 .conic-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #0b0f19;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .border-effect-5:hover .conic-inner {
+            background: #111524;
+        }
+
+        @keyframes rotate-conic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- BORDER 6: DOUBLE SLIDE BORDER --- */
+        .border-effect-6 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .border-effect-6::before,
+        .border-effect-6::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.35s ease;
+        }
+
+        .border-effect-6::before {
+            top: 0;
+            left: 0;
+        }
+
+        .border-effect-6::after {
+            bottom: 0;
+            right: 0;
+        }
+
+        .border-effect-6:hover::before {
+            width: 100%;
+            height: 100%;
+            border-top-color: #6366f1;
+            border-right-color: #6366f1;
+        }
+
+        .border-effect-6:hover::after {
+            width: 100%;
+            height: 100%;
+            border-bottom-color: #6366f1;
+            border-left-color: #6366f1;
+        }
+
+        .border-effect-6:hover {
+            background: #111524;
+        }
+
+        /* --- BORDER 7: RETRO CYBERPUNK GLITCH BORDER --- */
+        .border-effect-7 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .border-effect-7:hover {
+            animation: glitch-border 0.8s infinite;
+            background: #0d1222;
+        }
+
+        .border-effect-7:hover .border-text {
+            color: #fff;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes glitch-border {
+            0% {
+                border-color: #00f0ff;
+                box-shadow: -2px -2px 10px #ff007f, 2px 2px 10px #00f0ff;
+            }
+            20% {
+                border-color: #ff007f;
+                box-shadow: 2px -2px 12px #00f0ff, -2px 2px 12px #ff007f;
+            }
+            40% {
+                border-color: #00f0ff;
+                box-shadow: -1px 2px 8px #ff007f, 2px -1px 8px #00f0ff;
+            }
+            60% {
+                border-color: #9d4edd;
+                box-shadow: 2px 2px 14px #9d4edd, -2px -2px 14px #00f0ff;
+            }
+            80% {
+                border-color: #ff007f;
+                box-shadow: -2px 1px 10px #00f0ff, 2px -2px 10px #ff007f;
+            }
+            100% {
+                border-color: #00f0ff;
+                box-shadow: -2px -2px 10px #ff007f, 2px 2px 10px #00f0ff;
+            }
+        }
+
+        /* --- BORDER 8: GRADIENT DRAW LINES --- */
+        .border-effect-8 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .border-effect-8 span[class^="line-"] {
+            position: absolute;
+            background: linear-gradient(90deg, #6366f1, #00f0ff);
+            transition: all 0.25s ease;
+        }
+
+        .border-effect-8 .line-1 {
+            top: 0; left: 0;
+            width: 0; height: 2px;
+        }
+
+        .border-effect-8 .line-2 {
+            top: 0; right: 0;
+            width: 2px; height: 0;
+            background: linear-gradient(180deg, #6366f1, #00f0ff);
+        }
+
+        .border-effect-8 .line-3 {
+            bottom: 0; right: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(270deg, #6366f1, #00f0ff);
+        }
+
+        .border-effect-8 .line-4 {
+            bottom: 0; left: 0;
+            width: 2px; height: 0;
+            background: linear-gradient(360deg, #6366f1, #00f0ff);
+        }
+
+        .border-effect-8:hover .line-1 {
+            width: 100%;
+        }
+
+        .border-effect-8:hover .line-2 {
+            height: 100%;
+            transition-delay: 0.08s;
+        }
+
+        .border-effect-8:hover .line-3 {
+            width: 100%;
+            transition-delay: 0.16s;
+        }
+
+        .border-effect-8:hover .line-4 {
+            height: 100%;
+            transition-delay: 0.24s;
+        }
+
+        .border-effect-8:hover .border-text {
+            color: #fff;
+        }
+
+        /* --- BORDER 9: COSMIC AURORA PULSE --- */
+        .border-effect-9 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0a0e17;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-9 .aurora-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+            background-size: 400% 400%;
+            z-index: -1;
+            opacity: 0;
+            filter: blur(12px);
+            transition: opacity 0.4s ease;
+        }
+
+        .border-effect-9:hover {
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .border-effect-9:hover .aurora-glow {
+            opacity: 0.85;
+            animation: aurora-move 8s ease infinite;
+        }
+
+        .border-effect-9:hover .border-text {
+            color: #fff;
+        }
+
+        @keyframes aurora-move {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- BORDER 10: GLASSMORPHISM FROST HIGHLIGHT --- */
+        .border-effect-10 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-10 .glass-reflection {
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.25),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+
+        .border-effect-10:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+        }
+
+        .border-effect-10:hover .glass-reflection {
+            left: 150%;
+        }
+
+        .border-effect-10:hover .border-text {
+            color: #fff;
+        }
+
+        /* --- BORDER 11: PULSE WAVE ECHO --- */
+        .border-effect-11 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid #10b981;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-11 .pulse-ring {
+            position: absolute;
+            inset: -1px;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .border-effect-11:hover {
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .border-effect-11:hover .ring-1 {
+            animation: ring-pulse-wave 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+
+        .border-effect-11:hover .ring-2 {
+            animation: ring-pulse-wave 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+            animation-delay: 0.75s;
+        }
+
+        .border-effect-11:hover .border-text {
+            color: #fff;
+        }
+
+        @keyframes ring-pulse-wave {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.2, 1.35);
+                opacity: 0;
+            }
+        }
+
+
+
+        /* --- BORDER 12: ELECTRIC PLASMA FLOW --- */
+        .border-effect-12 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .border-effect-12 .plasma-layer {
+            position: absolute;
+            inset: 0;
+            mix-blend-mode: screen;
+            opacity: 0.15;
+            transition: opacity 0.3s;
+        }
+
+        .border-effect-12 .layer-1 {
+            background: radial-gradient(circle at 0% 0%, #ff007f, transparent 70%),
+                        radial-gradient(circle at 100% 100%, #7f00ff, transparent 70%);
+        }
+
+        .border-effect-12 .layer-2 {
+            background: radial-gradient(circle at 100% 0%, #00f0ff, transparent 70%),
+                        radial-gradient(circle at 0% 100%, #ffaa00, transparent 70%);
+        }
+
+        .border-effect-12::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: #0b0f19;
+            border-radius: 7px;
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        .border-effect-12:hover .plasma-layer {
+            opacity: 0.8;
+        }
+
+        .border-effect-12:hover .layer-1 {
+            animation: spin-plasma-1 4s linear infinite;
+        }
+
+        .border-effect-12:hover .layer-2 {
+            animation: spin-plasma-2 4s linear infinite;
+        }
+
+        .border-effect-12:hover::after {
+            background: #111524;
+        }
+
+        .border-effect-12:hover .border-text {
+            color: #fff;
+        }
+
+        @keyframes spin-plasma-1 {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes spin-plasma-2 {
+            0% { transform: rotate(360deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1); }
+            100% { transform: rotate(0deg) scale(1.2); }
+        }
+
+
+
+        /* --- BORDER 13: NEON RIPPLE FLOW --- */
+        .border-effect-13 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .border-effect-13 .pulse-bar {
+            position: absolute;
+            background: #6366f1;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-13 .pulse-bar.top {
+            top: -1px; left: 0; width: 100%; height: 2px;
+            transform: scaleX(0);
+        }
+
+        .border-effect-13 .pulse-bar.right {
+            top: 0; right: -1px; width: 2px; height: 100%;
+            transform: scaleY(0);
+        }
+
+        .border-effect-13 .pulse-bar.bottom {
+            bottom: -1px; left: 0; width: 100%; height: 2px;
+            transform: scaleX(0);
+        }
+
+        .border-effect-13 .pulse-bar.left {
+            top: 0; left: -1px; width: 2px; height: 100%;
+            transform: scaleY(0);
+        }
+
+        .border-effect-13:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .border-effect-13:hover .pulse-bar {
+            opacity: 1;
+        }
+
+        .border-effect-13:hover .pulse-bar.top,
+        .border-effect-13:hover .pulse-bar.bottom {
+            transform: scaleX(1);
+            animation: chroma-flash 1.2s infinite;
+        }
+
+        .border-effect-13:hover .pulse-bar.right,
+        .border-effect-13:hover .pulse-bar.left {
+            transform: scaleY(1);
+            animation: chroma-flash 1.2s infinite 0.6s;
+        }
+
+        .border-effect-13:hover .border-text {
+            color: #fff;
+        }
+
+        @keyframes chroma-flash {
+            0%, 100% { background: #6366f1; box-shadow: 0 0 4px #6366f1; }
+            50% { background: #ec4899; box-shadow: 0 0 10px #ec4899; }
+        }
+
+
+
+        /* --- BORDER 14: SHIMMERING STARLIGHT --- */
+        .border-effect-14 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0b0f19;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .border-effect-14 .star-sparkle {
+            position: absolute;
+            inset: -1px;
+            border-radius: 8px;
+            background: transparent;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 1px transparent;
+            transition: all 0.3s;
+        }
+
+        .border-effect-14:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .border-effect-14:hover .star-sparkle {
+            animation: sparkle-flicker 1s infinite alternate;
+        }
+
+        .border-effect-14:hover .border-text {
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        @keyframes sparkle-flicker {
+            0% {
+                box-shadow: inset 0 0 5px #ffd700, 0 0 4px #ffd700;
+                opacity: 0.5;
+            }
+            100% {
+                box-shadow: inset 0 0 15px #ffd700, 0 0 12px #ffd700;
+                opacity: 1;
+            }
+        }
+
+
+
+        /* --- BORDER 15: RETRO WAVE GRID SWEEP --- */
+        .border-effect-15 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #11001c;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid #ff007f;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+            overflow: hidden;
+        }
+
+        .border-effect-15 .retrowave-grid {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(rgba(255,0,127,0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,0,127,0.15) 1px, transparent 1px);
+            background-size: 10px 10px;
+            background-position: center;
+            transform: perspective(60px) rotateX(25deg);
+            transform-origin: bottom center;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-15:hover .retrowave-grid {
+            animation: grid-slide-down 1.5s linear infinite;
+            background-image: 
+                linear-gradient(rgba(0,240,255,0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,240,255,0.3) 1px, transparent 1px);
+        }
+
+        .border-effect-15:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+        }
+
+        .border-effect-15 .border-text {
+            color: #ff007f;
+            text-shadow: 0 0 4px #ff007f;
+        }
+
+        .border-effect-15:hover .border-text {
+            color: #00f0ff;
+            text-shadow: 0 0 6px #00f0ff;
+        }
+
+        @keyframes grid-slide-down {
+            0% { background-position-y: 0px; }
+            100% { background-position-y: 20px; }
+        }
+
+
+
+        /* --- BORDER 16: VOLUMETRIC SHADOW ECLIPSE --- */
+        .border-effect-16 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
+            transition: all 0.4s ease;
+        }
+
+        .border-effect-16:hover {
+            border-color: #fff;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 1), 0 0 20px #fff;
+            background: #020202;
+        }
+
+        .border-effect-16 .border-text {
+            color: #888;
+            transition: color 0.4s;
+        }
+
+        .border-effect-16:hover .border-text {
+            color: #fff;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- BORDER 17: MOUSE SPOTLIGHT GLOW --- */
+        .border-effect-17 {
+            position: relative;
+            width: 140px;
+            height: 80px;
+            background: #0c101b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background-color 0.3s;
+        }
+
+        .border-effect-17::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: radial-gradient(
+                75px circle at var(--x, 0px) var(--y, 0px),
+                rgba(99, 102, 241, 1),
+                transparent 100%
+            );
+            -webkit-mask: 
+               linear-gradient(#fff 0 0) content-box, 
+               linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .border-effect-17:hover::before {
+            opacity: 1;
+        }
+
+        .border-effect-17 .glow-inner-17 {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                100px circle at var(--x, 0px) var(--y, 0px),
+                rgba(99, 102, 241, 0.15),
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .border-effect-17:hover .glow-inner-17 {
+            opacity: 1;
+        }
+
+        .border-effect-17 .border-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .border-effect-17:hover .border-text {
+            color: #fff;
+        }
+    </style>
+    <!-- WebGL Requirements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- --- HEADER --- -->
+        <header>
+            <div class="logo-badge">Interactive Collection</div>
+            <h1>Premium Custom Borders</h1>
+            <p>A hand-crafted showcase of modern, beautifully animated CSS borders. Inspect, toggle, and export production-ready HTML/CSS snippets instantly.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to get code?
+            </button>
+        </header>
+
+        <!-- --- SHOWCASE GRID --- -->
+        <main class="showcase-grid" id="grid-container">
+            <!-- Grid cards will be populated by JavaScript -->
+        </main>
+    </div>
+
+    <!-- --- TOAST SYSTEM --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>How to get border codes</h2>
+                <button class="modal-close" onclick="toggleHelpModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Find your border:</strong> Scroll through the showcase and hover or click on the borders in the grid to see their live animations and states.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Expand code drawer:</strong> Click the <strong>"Get Code"</strong> button at the bottom of any border card. This will slide down a code viewer.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Choose HTML or CSS:</strong> Click the tabs inside the drawer to switch between the border's structured HTML markup and its corresponding CSS styling.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>Copy & Use:</strong> Click the <strong>"Copy"</strong> button in the top-right corner of the code panel to instantly copy it to your clipboard.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       --- DATABASE OF SNIPPETS & DATA DRIVER ---
+       ========================================================================== -->
+    <script>
+        const BORDER_DATABASE = [
+            {
+                id: 1,
+                dependencies: "No Dependency",
+                name: "Neon Pulse Border",
+                html: `<div class="border-box border-effect-1">
+    <span class="border-text">Neon Pulse</span>
+</div>`,
+                css: `.border-effect-1 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+    transition: all 0.3s ease;
+}
+
+.border-effect-1:hover {
+    box-shadow: 0 0 0 3px #6366f1, 0 0 20px rgba(99, 102, 241, 0.6);
+    background: #111524;
+}
+
+.border-effect-1:hover .border-text {
+    color: #fff;
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 2,
+                dependencies: "No Dependency",
+                name: "Animated Snake Border",
+                html: `<div class="border-box border-effect-2">
+    <div class="snake-border"></div>
+    <span class="border-text">Snake Line</span>
+</div>`,
+                css: `.border-effect-2 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.border-effect-2 .snake-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    padding: 2px;
+    background: linear-gradient(90deg, #6366f1, #ec4899, #00f0ff, #6366f1);
+    background-size: 300% 300%;
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+}
+
+.border-effect-2:hover .snake-border {
+    opacity: 1;
+    animation: snake-flow 2s linear infinite;
+}
+
+@keyframes snake-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 3,
+                dependencies: "No Dependency",
+                name: "Marching Dots Border",
+                html: `<div class="border-box border-effect-3">
+    <svg class="svg-border" width="100%" height="100%">
+        <rect x="0" y="0" width="100%" height="100%" rx="8" ry="8" />
+    </svg>
+    <span class="border-text">Marching Dots</span>
+</div>`,
+                css: `.border-effect-3 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.border-effect-3 .svg-border {
+    position: absolute;
+    inset: 0;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
+    border-radius: 8px;
+    pointer-events: none;
+    transition: stroke 0.3s;
+}
+
+.border-effect-3:hover .svg-border {
+    stroke: #00f0ff;
+    animation: march 0.4s linear infinite;
+}
+
+@keyframes march {
+    to { stroke-dashoffset: -10; }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 4,
+                dependencies: "No Dependency",
+                name: "Corner Bracket Focus Frame",
+                html: `<div class="border-box border-effect-4">
+    <div class="bracket top-left"></div>
+    <div class="bracket top-right"></div>
+    <div class="bracket bottom-left"></div>
+    <div class="bracket bottom-right"></div>
+    <span class="border-text">Focus Frame</span>
+</div>`,
+                css: `.border-effect-4 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.border-effect-4 .bracket {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.border-effect-4 .top-left {
+    top: 6px;
+    left: 6px;
+    border-top-color: rgba(255,255,255,0.25);
+    border-left-color: rgba(255,255,255,0.25);
+}
+
+.border-effect-4 .top-right {
+    top: 6px;
+    right: 6px;
+    border-top-color: rgba(255,255,255,0.25);
+    border-right-color: rgba(255,255,255,0.25);
+}
+
+.border-effect-4 .bottom-left {
+    bottom: 6px;
+    left: 6px;
+    border-bottom-color: rgba(255,255,255,0.25);
+    border-left-color: rgba(255,255,255,0.25);
+}
+
+.border-effect-4 .bottom-right {
+    bottom: 6px;
+    right: 6px;
+    border-bottom-color: rgba(255,255,255,0.25);
+    border-right-color: rgba(255,255,255,0.25);
+}
+
+.border-effect-4:hover .bracket {
+    width: 20px;
+    height: 20px;
+    border-color: #ec4899;
+}
+
+.border-effect-4:hover .top-left { top: -2px; left: -2px; }
+.border-effect-4:hover .top-right { top: -2px; right: -2px; }
+.border-effect-4:hover .bottom-left { bottom: -2px; left: -2px; }
+.border-effect-4:hover .bottom-right { bottom: -2px; right: -2px; }
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 5,
+                dependencies: "No Dependency",
+                name: "Conic Shimmer Glow",
+                html: `<div class="border-box border-effect-5">
+    <div class="conic-glow"></div>
+    <div class="conic-inner">
+        <span class="border-text">Conic Shimmer</span>
+    </div>
+</div>`,
+                css: `.border-effect-5 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    background: transparent;
+    padding: 2px;
+}
+
+.border-effect-5 .conic-glow {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 90deg, #ec4899 0%, #6366f1 50%, #00f0ff 100%);
+    animation: rotate-conic 4s linear infinite;
+    z-index: 1;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+}
+
+.border-effect-5:hover .conic-glow {
+    opacity: 1;
+}
+
+.border-effect-5 .conic-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #0b0f19;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background 0.3s;
+}
+
+.border-effect-5:hover .conic-inner {
+    background: #111524;
+}
+
+@keyframes rotate-conic {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 6,
+                dependencies: "No Dependency",
+                name: "Double Slide Border",
+                html: `<div class="border-box border-effect-6">
+    <span class="border-text">Double Slide</span>
+</div>`,
+                css: `.border-effect-6 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.border-effect-6::before,
+.border-effect-6::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.35s ease;
+}
+
+.border-effect-6::before {
+    top: 0;
+    left: 0;
+}
+
+.border-effect-6::after {
+    bottom: 0;
+    right: 0;
+}
+
+.border-effect-6:hover::before {
+    width: 100%;
+    height: 100%;
+    border-top-color: #6366f1;
+    border-right-color: #6366f1;
+}
+
+.border-effect-6:hover::after {
+    width: 100%;
+    height: 100%;
+    border-bottom-color: #6366f1;
+    border-left-color: #6366f1;
+}
+
+.border-effect-6:hover {
+    background: #111524;
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 7,
+                dependencies: "No Dependency",
+                name: "Cyberpunk Glitch Border",
+                html: `<div class="border-box border-effect-7">
+    <span class="border-text">Cyber Glitch</span>
+</div>`,
+                css: `.border-effect-7 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.border-effect-7:hover {
+    animation: glitch-border 0.8s infinite;
+    background: #0d1222;
+}
+
+.border-effect-7:hover .border-text {
+    color: #fff;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes glitch-border {
+    0% {
+        border-color: #00f0ff;
+        box-shadow: -2px -2px 10px #ff007f, 2px 2px 10px #00f0ff;
+    }
+    20% {
+        border-color: #ff007f;
+        box-shadow: 2px -2px 12px #00f0ff, -2px 2px 12px #ff007f;
+    }
+    40% {
+        border-color: #00f0ff;
+        box-shadow: -1px 2px 8px #ff007f, 2px -1px 8px #00f0ff;
+    }
+    60% {
+        border-color: #9d4edd;
+        box-shadow: 2px 2px 14px #9d4edd, -2px -2px 14px #00f0ff;
+    }
+    80% {
+        border-color: #ff007f;
+        box-shadow: -2px 1px 10px #00f0ff, 2px -2px 10px #ff007f;
+    }
+    100% {
+        border-color: #00f0ff;
+        box-shadow: -2px -2px 10px #ff007f, 2px 2px 10px #00f0ff;
+    }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 8,
+                dependencies: "No Dependency",
+                name: "Gradient Draw Lines",
+                html: `<div class="border-box border-effect-8">
+    <span class="line-1"></span>
+    <span class="line-2"></span>
+    <span class="line-3"></span>
+    <span class="line-4"></span>
+    <span class="border-text">Line Draw</span>
+</div>`,
+                css: `.border-effect-8 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.border-effect-8 span[class^="line-"] {
+    position: absolute;
+    background: linear-gradient(90deg, #6366f1, #00f0ff);
+    transition: all 0.25s ease;
+}
+
+.border-effect-8 .line-1 {
+    top: 0; left: 0;
+    width: 0; height: 2px;
+}
+
+.border-effect-8 .line-2 {
+    top: 0; right: 0;
+    width: 2px; height: 0;
+    background: linear-gradient(180deg, #6366f1, #00f0ff);
+}
+
+.border-effect-8 .line-3 {
+    bottom: 0; right: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(270deg, #6366f1, #00f0ff);
+}
+
+.border-effect-8 .line-4 {
+    bottom: 0; left: 0;
+    width: 2px; height: 0;
+    background: linear-gradient(360deg, #6366f1, #00f0ff);
+}
+
+.border-effect-8:hover .line-1 {
+    width: 100%;
+}
+
+.border-effect-8:hover .line-2 {
+    height: 100%;
+    transition-delay: 0.08s;
+}
+
+.border-effect-8:hover .line-3 {
+    width: 100%;
+    transition-delay: 0.16s;
+}
+
+.border-effect-8:hover .line-4 {
+    height: 100%;
+    transition-delay: 0.24s;
+}
+
+.border-effect-8:hover .border-text {
+    color: #fff;
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 9,
+                dependencies: "No Dependency",
+                name: "Cosmic Aurora Pulse",
+                html: `<div class="border-box border-effect-9">
+    <div class="aurora-glow"></div>
+    <span class="border-text">Cosmic Aura</span>
+</div>`,
+                css: `.border-effect-9 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0a0e17;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.border-effect-9 .aurora-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+    background-size: 400% 400%;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.4s ease;
+}
+
+.border-effect-9:hover {
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.border-effect-9:hover .aurora-glow {
+    opacity: 0.85;
+    animation: aurora-move 8s ease infinite;
+}
+
+.border-effect-9:hover .border-text {
+    color: #fff;
+}
+
+@keyframes aurora-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 10,
+                dependencies: "No Dependency",
+                name: "Glassmorphism Frost Highlight",
+                html: `<div class="border-box border-effect-10">
+    <div class="glass-reflection"></div>
+    <span class="border-text">Glass Frost</span>
+</div>`,
+                css: `.border-effect-10 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.border-effect-10 .glass-reflection {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.75s;
+}
+
+.border-effect-10:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+}
+
+.border-effect-10:hover .glass-reflection {
+    left: 150%;
+}
+
+.border-effect-10:hover .border-text {
+    color: #fff;
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 11,
+                dependencies: "No Dependency",
+                name: "Pulse Wave Echo",
+                html: `<div class="border-box border-effect-11">
+    <div class="pulse-ring ring-1"></div>
+    <div class="pulse-ring ring-2"></div>
+    <span class="border-text">Pulse Wave</span>
+</div>`,
+                css: `.border-effect-11 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #10b981;
+    transition: all 0.3s ease;
+}
+
+.border-effect-11 .pulse-ring {
+    position: absolute;
+    inset: -1px;
+    border: 1px solid #10b981;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.border-effect-11:hover {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.border-effect-11:hover .ring-1 {
+    animation: ring-pulse-wave 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+.border-effect-11:hover .ring-2 {
+    animation: ring-pulse-wave 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    animation-delay: 0.75s;
+}
+
+.border-effect-11:hover .border-text {
+    color: #fff;
+}
+
+@keyframes ring-pulse-wave {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.2, 1.35);
+        opacity: 0;
+    }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 12,
+                dependencies: "No Dependency",
+                name: "Electric Plasma Flow",
+                html: `<div class="border-box border-effect-12">
+    <div class="plasma-layer layer-1"></div>
+    <div class="plasma-layer layer-2"></div>
+    <span class="border-text">Plasma Flow</span>
+</div>`,
+                css: `.border-effect-12 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: transparent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.border-effect-12 .plasma-layer {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: screen;
+    opacity: 0.15;
+    transition: opacity 0.3s;
+}
+
+.border-effect-12 .layer-1 {
+    background: radial-gradient(circle at 0% 0%, #ff007f, transparent 70%),
+                radial-gradient(circle at 100% 100%, #7f00ff, transparent 70%);
+}
+
+.border-effect-12 .layer-2 {
+    background: radial-gradient(circle at 100% 0%, #00f0ff, transparent 70%),
+                radial-gradient(circle at 0% 100%, #ffaa00, transparent 70%);
+}
+
+.border-effect-12::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: #0b0f19;
+    border-radius: 7px;
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.border-effect-12:hover .plasma-layer {
+    opacity: 0.8;
+}
+
+.border-effect-12:hover .layer-1 {
+    animation: spin-plasma-1 4s linear infinite;
+}
+
+.border-effect-12:hover .layer-2 {
+    animation: spin-plasma-2 4s linear infinite;
+}
+
+.border-effect-12:hover::after {
+    background: #111524;
+}
+
+.border-effect-12:hover .border-text {
+    color: #fff;
+}
+
+@keyframes spin-plasma-1 {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes spin-plasma-2 {
+    0% { transform: rotate(360deg) scale(1.2); }
+    50% { transform: rotate(180deg) scale(1); }
+    100% { transform: rotate(0deg) scale(1.2); }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 13,
+                dependencies: "No Dependency",
+                name: "Neon Ripple Flow",
+                html: `<div class="border-box border-effect-13">
+    <span class="pulse-bar top"></span>
+    <span class="pulse-bar right"></span>
+    <span class="pulse-bar bottom"></span>
+    <span class="pulse-bar left"></span>
+    <span class="border-text">Ripple Flow</span>
+</div>`,
+                css: `.border-effect-13 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.border-effect-13 .pulse-bar {
+    position: absolute;
+    background: #6366f1;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.border-effect-13 .pulse-bar.top {
+    top: -1px; left: 0; width: 100%; height: 2px;
+    transform: scaleX(0);
+}
+
+.border-effect-13 .pulse-bar.right {
+    top: 0; right: -1px; width: 2px; height: 100%;
+    transform: scaleY(0);
+}
+
+.border-effect-13 .pulse-bar.bottom {
+    bottom: -1px; left: 0; width: 100%; height: 2px;
+    transform: scaleX(0);
+}
+
+.border-effect-13 .pulse-bar.left {
+    top: 0; left: -1px; width: 2px; height: 100%;
+    transform: scaleY(0);
+}
+
+.border-effect-13:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.border-effect-13:hover .pulse-bar {
+    opacity: 1;
+}
+
+.border-effect-13:hover .pulse-bar.top,
+.border-effect-13:hover .pulse-bar.bottom {
+    transform: scaleX(1);
+    animation: chroma-flash 1.2s infinite;
+}
+
+.border-effect-13:hover .pulse-bar.right,
+.border-effect-13:hover .pulse-bar.left {
+    transform: scaleY(1);
+    animation: chroma-flash 1.2s infinite 0.6s;
+}
+
+.border-effect-13:hover .border-text {
+    color: #fff;
+}
+
+@keyframes chroma-flash {
+    0%, 100% { background: #6366f1; box-shadow: 0 0 4px #6366f1; }
+    50% { background: #ec4899; box-shadow: 0 0 10px #ec4899; }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 14,
+                dependencies: "No Dependency",
+                name: "Shimmering Starlight",
+                html: `<div class="border-box border-effect-14">
+    <div class="star-sparkle"></div>
+    <span class="border-text">Starlight</span>
+</div>`,
+                css: `.border-effect-14 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0b0f19;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.border-effect-14 .star-sparkle {
+    position: absolute;
+    inset: -1px;
+    border-radius: 8px;
+    background: transparent;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: all 0.3s;
+}
+
+.border-effect-14:hover {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.border-effect-14:hover .star-sparkle {
+    animation: sparkle-flicker 1s infinite alternate;
+}
+
+.border-effect-14:hover .border-text {
+    color: #ffd700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes sparkle-flicker {
+    0% {
+        box-shadow: inset 0 0 5px #ffd700, 0 0 4px #ffd700;
+        opacity: 0.5;
+    }
+    100% {
+        box-shadow: inset 0 0 15px #ffd700, 0 0 12px #ffd700;
+        opacity: 1;
+    }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 15,
+                dependencies: "No Dependency",
+                name: "Retro Wave Grid Sweep",
+                html: `<div class="border-box border-effect-15">
+    <div class="retrowave-grid"></div>
+    <span class="border-text">Retro Wave</span>
+</div>`,
+                css: `.border-effect-15 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #11001c;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+    overflow: hidden;
+}
+
+.border-effect-15 .retrowave-grid {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(255,0,127,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,127,0.15) 1px, transparent 1px);
+    background-size: 10px 10px;
+    background-position: center;
+    transform: perspective(60px) rotateX(25deg);
+    transform-origin: bottom center;
+    transition: all 0.3s ease;
+}
+
+.border-effect-15:hover .retrowave-grid {
+    animation: grid-slide-down 1.5s linear infinite;
+    background-image: 
+        linear-gradient(rgba(0,240,255,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,240,255,0.3) 1px, transparent 1px);
+}
+
+.border-effect-15:hover {
+    border-color: #00f0ff;
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+}
+
+.border-effect-15 .border-text {
+    color: #ff007f;
+    text-shadow: 0 0 4px #ff007f;
+}
+
+.border-effect-15:hover .border-text {
+    color: #00f0ff;
+    text-shadow: 0 0 6px #00f0ff;
+}
+
+@keyframes grid-slide-down {
+    0% { background-position-y: 0px; }
+    100% { background-position-y: 20px; }
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 16,
+                dependencies: "No Dependency",
+                name: "Volumetric Shadow Eclipse",
+                html: `<div class="border-box border-effect-16">
+    <span class="border-text">Eclipse Flare</span>
+</div>`,
+                css: `.border-effect-16 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
+    transition: all 0.4s ease;
+}
+
+.border-effect-16:hover {
+    border-color: #fff;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 1), 0 0 20px #fff;
+    background: #020202;
+}
+
+.border-effect-16 .border-text {
+    color: #888;
+    transition: color 0.4s;
+}
+
+.border-effect-16:hover .border-text {
+    color: #fff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}`
+            },
+            {
+                id: 17,
+                dependencies: "No Dependency",
+                name: "Mouse Spotlight Glow",
+                html: `<div class="border-box border-effect-17" id="spotlight-card-17">
+    <div class="glow-inner-17"></div>
+    <span class="border-text">Spotlight Glow</span>
+</div>`,
+                css: `.border-effect-17 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #0c101b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.border-effect-17::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+        75px circle at var(--x, 0px) var(--y, 0px),
+        rgba(99, 102, 241, 1),
+        transparent 100%
+    );
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.border-effect-17:hover::before {
+    opacity: 1;
+}
+
+.border-effect-17 .glow-inner-17 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        100px circle at var(--x, 0px) var(--y, 0px),
+        rgba(99, 102, 241, 0.15),
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.border-effect-17:hover .glow-inner-17 {
+    opacity: 1;
+}
+
+.border-effect-17 .border-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+.border-effect-17:hover .border-text {
+    color: #fff;
+}`,
+                js: `const card = document.getElementById('spotlight-card-17');
+if (card) {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', \`\${x}px\`);
+        card.style.setProperty('--y', \`\${y}px\`);
+    });
+}`
+            }
+        ];
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        BORDER_DATABASE.forEach(btn => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${btn.id}`;
+            
+            // Build tabs HTML depending on JS presence
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${btn.id}" onclick="switchTab(${btn.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${btn.id}" onclick="switchTab(${btn.id}, 'css')">CSS</button>
+            `;
+            if (btn.js) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-js-${btn.id}" onclick="switchTab(${btn.id}, 'js')">JS</button>
+                `;
+            }
+
+            // Build panels HTML depending on JS presence
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${btn.id}">
+                    <pre><code class="language-html">${escapeHtml(btn.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${btn.id}">
+                    <pre><code class="language-css">${escapeHtml(btn.css)}</code></pre>
+                </div>
+            `;
+            if (btn.js) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-js-${btn.id}">
+                        <pre><code class="language-javascript">${escapeHtml(btn.js)}</code></pre>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="button-title">${btn.name}</span>
+                    <span class="button-badge">Border #${btn.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${btn.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${btn.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${btn.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${btn.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${btn.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        
+        // Active states tracks
+        const activeTabs = {}; // Tracks 'html', 'css', or 'js' selection per border ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            // Set default tab state tracking if not existing
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                // Close other drawers for cleanliness
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs inside Code Drawer
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const jsTab = document.getElementById(`tab-js-${id}`);
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+            const jsPanel = document.getElementById(`panel-js-${id}`);
+
+            if (htmlTab) htmlTab.classList.remove('active');
+            if (cssTab) cssTab.classList.remove('active');
+            if (jsTab) jsTab.classList.remove('active');
+            if (htmlPanel) htmlPanel.classList.remove('active');
+            if (cssPanel) cssPanel.classList.remove('active');
+            if (jsPanel) jsPanel.classList.remove('active');
+
+            if (tabType === 'html') {
+                if (htmlTab) htmlTab.classList.add('active');
+                if (htmlPanel) htmlPanel.classList.add('active');
+            } else if (tabType === 'css') {
+                if (cssTab) cssTab.classList.add('active');
+                if (cssPanel) cssPanel.classList.add('active');
+            } else if (tabType === 'js') {
+                if (jsTab) jsTab.classList.add('active');
+                if (jsPanel) jsPanel.classList.add('active');
+            }
+        };
+
+        // Clipboard copy system
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const btnData = BORDER_DATABASE.find(b => b.id === id);
+            if (!btnData) return;
+
+            let textToCopy = '';
+            if (selectedType === 'html') {
+                textToCopy = btnData.html;
+            } else if (selectedType === 'css') {
+                textToCopy = btnData.css;
+            } else if (selectedType === 'js') {
+                textToCopy = btnData.js;
+            }
+
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Temporarily style copy button as success
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast(`Copied Border #${id} ${selectedType.toUpperCase()} code!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                showToast("Failed to copy code. Please copy manually.");
+            });
+        };
+
+        // Global Toast Notification triggers
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            // Trigger animation frame layout flow
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Automatic removal
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize active components
+        setTimeout(() => {
+            initSpotlightCard();
+        }, 100);
+
+        function initSpotlightCard() {
+            const card = document.getElementById('spotlight-card-17');
+            if (card) {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+            }
+        }
+
+        // Help Modal Controls
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModal = function(e) {
+            const modal = document.getElementById('help-modal');
+            modal.classList.remove('open');
+        };
+    </script>
+</body>
+</html>

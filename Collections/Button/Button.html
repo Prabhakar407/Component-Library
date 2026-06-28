@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Button Collection Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- BUTTON CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .button-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Interactive Canvas */
+        .preview-canvas {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Grid Background Pattern */
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #0b0f19;
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: #a7f3d0;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #182032;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+
+        /* --- HELP MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .step-num {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .step-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0,0,0,0.15);
+        }
+        
+        .modal-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+        }
+
+        /* ==========================================================================
+           --- INDIVIDUAL BUTTONS DESIGN STYLES ---
+           ========================================================================== */
+
+        /* --- BUTTON 1: NEON GLOW --- */
+        .btn-1 {
+            background: #111;
+            color: #00f0ff;
+            border: 2px solid #00f0ff;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
+        }
+        .btn-1:hover {
+            background: #00f0ff;
+            color: #111;
+            box-shadow: 0 0 20px 5px rgba(0, 240, 255, 0.7);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* --- BUTTON 2: GLASSMORPHISM REFLECTOR --- */
+        .btn-2 {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .btn-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+        .btn-2:hover::before {
+            left: 150%;
+        }
+        .btn-2:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- BUTTON 3: BORDER TRACER --- */
+        .btn-3 {
+            background: transparent;
+            color: #ff3366;
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .btn-3::before,
+        .btn-3::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            box-sizing: border-box;
+            transition: width 0.2s ease, height 0.2s ease 0.2s;
+        }
+        .btn-3::before {
+            top: 0;
+            left: 0;
+            border-top: 2px solid #ff3366;
+            border-left: 2px solid #ff3366;
+        }
+        .btn-3::after {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid #ff3366;
+            border-right: 2px solid #ff3366;
+        }
+        .btn-3:hover::before,
+        .btn-3:hover::after {
+            width: 100%;
+            height: 100%;
+        }
+        .btn-3:hover {
+            color: #ff3366;
+            border-color: transparent;
+        }
+
+        /* --- BUTTON 4: LIQUID WAVE SLIDE --- */
+        .btn-4 {
+            background: transparent;
+            color: #00e676;
+            border: 2px solid #00e676;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            z-index: 1;
+            transition: color 0.4s;
+        }
+        .btn-4::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 150%;
+            height: 300%;
+            background: #00e676;
+            border-radius: 40%;
+            transform: translate(-50%, 0) rotate(0deg);
+            transition: transform 0.8s ease, top 0.8s ease;
+            z-index: -1;
+        }
+        .btn-4:hover::before {
+            top: -60%;
+            transform: translate(-50%, 0) rotate(360deg);
+        }
+        .btn-4:hover {
+            color: #111;
+        }
+        .btn-4 span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- BUTTON 5: DYNAMIC GRADIENT MESH --- */
+        .btn-5 {
+            background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+            background-size: 400% 400%;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px 0 rgba(127, 0, 255, 0.4);
+            transition: all 0.3s ease;
+            animation: gradient-shift 12s ease infinite;
+        }
+        .btn-5:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(127, 0, 255, 0.6);
+        }
+        .btn-5:active {
+            transform: translateY(-1px);
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- BUTTON 6: PULSING AURA --- */
+        .btn-6 {
+            background: #6200ea;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-6::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 8px;
+            background: #6200ea;
+            z-index: -1;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .btn-6:hover::before {
+            transform: scale(1.25, 1.45);
+            opacity: 0;
+        }
+
+        /* --- BUTTON 7: CORNER BRACKET FILL --- */
+        .btn-7 {
+            background: transparent;
+            color: #e040fb;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .btn-7::before,
+        .btn-7::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #e040fb;
+            transition: all 0.35s ease;
+        }
+        .btn-7::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+        .btn-7::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+        .btn-7:hover::before,
+        .btn-7:hover::after {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+        .btn-7:hover {
+            color: #f3e5f5;
+            text-shadow: 0 0 4px rgba(224, 64, 251, 0.4);
+        }
+
+        /* --- BUTTON 8: SHIMMER ROTATING BORDER --- */
+        .btn-8 {
+            position: relative;
+            overflow: hidden;
+            padding: 2px;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-8-shim {
+            position: absolute;
+            top: -150%;
+            left: -150%;
+            width: 400%;
+            height: 400%;
+            background: conic-gradient(
+                from 90deg at 50% 50%,
+                #e2cbff 0%,
+                #393bb2 50%,
+                #e2cbff 100%
+            );
+            animation: spin-shimmer 3s linear infinite;
+            z-index: 1;
+        }
+        .btn-8-content {
+            position: relative;
+            z-index: 2;
+            background: #0b0f19;
+            color: #fff;
+            padding: 10px 26px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: background 0.3s;
+        }
+        .btn-8:hover .btn-8-content {
+            background: rgba(11, 15, 25, 0.8);
+        }
+        @keyframes spin-shimmer {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* --- 9: COSMIC PORTAL LAUNCH --- */
+        .launch-portal-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            width: 100%;
+            height: 100%;
+        }
+        .launch-portal-container {
+            opacity: 0;
+            transform: scale(0.6);
+            filter: blur(10px);
+        }
+        .launch-portal-btn {
+            position: relative;
+            display: block;
+            width: 264px;
+            height: 78px;
+            border: 0;
+            padding: 7px;
+            border-radius: 24px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.4, 0.5, 1);
+            background: linear-gradient(180deg, #3c3f46 0%, #15171b 55%, #2a2d33 100%);
+            box-shadow: 
+                0 26px 52px rgba(15, 12, 10, 0.35),
+                0 3px 10px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+        .launch-portal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 32px 64px rgba(160, 60, 12, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        }
+        .launch-portal-btn:active {
+            transform: translateY(1px) scale(0.985);
+        }
+        .launch-portal-btn:focus-visible {
+            outline: 2px solid #d43d17;
+            outline-offset: 5px;
+        }
+        .launch-portal-inner {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 17px;
+            overflow: hidden;
+            background-color: #06050a;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+        .launch-portal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .launch-portal-text {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            letter-spacing: 0.34em;
+            text-indent: 0.34em;
+            color: #fdf6ee;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            text-shadow: 
+                0 0 14px rgba(255, 170, 100, 0.55),
+                0 1px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        /* --- BUTTON 10: SLIDE ARROW BUTTON --- */
+        .btn-10 {
+            position: relative;
+            width: 160px;
+            height: 52px;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.2s ease-in-out;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .btn-10 .slide-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 44px;
+            border-radius: 9999px;
+            background-color: #6f3cff;
+            transition: all 0.2s ease-in-out;
+            z-index: 1;
+        }
+
+        .btn-10:hover .slide-bg {
+            width: 100%;
+        }
+
+        .btn-10 .arrow-icon {
+            position: absolute;
+            left: 12px;
+            z-index: 2;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-10:hover .arrow-icon {
+            left: calc(100% - 32px);
+        }
+
+        .btn-10 .btn-text {
+            position: relative;
+            left: 48px;
+            z-index: 3;
+            font-weight: 600;
+            color: #000;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.9rem;
+        }
+
+        .btn-10:hover .btn-text {
+            left: 20px;
+            color: #fff;
+        }
+
+        /* --- BUTTON 11: SHIMMER BUTTON --- */
+        .btn-11 {
+            --spread: 90deg;
+            --shimmer-color: #ffffff;
+            --radius: 100px;
+            --speed: 3s;
+            --cut: 0.05em;
+            --bg: rgba(0, 0, 0, 1);
+            
+            position: relative;
+            z-index: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            white-space: nowrap;
+            color: #fff;
+            background: var(--bg);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .btn-11:active {
+            transform: translateY(1px);
+        }
+
+        .btn-11 .spark-container {
+            position: absolute;
+            inset: 0;
+            overflow: visible;
+            z-index: -30;
+            filter: blur(2px);
+            container-type: size;
+        }
+
+        .btn-11 .spark-slide {
+            position: absolute;
+            inset: 0;
+            aspect-ratio: 1 / 1;
+            height: 100cqh;
+            border-radius: 0;
+            mask: none;
+            -webkit-mask: none;
+            animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
+        }
+
+        .btn-11 .spark-rotate {
+            position: absolute;
+            inset: -100%;
+            width: auto;
+            transform: translate(0, 0) rotate(0deg);
+            background: conic-gradient(
+                from calc(270deg - (var(--spread) * 0.5)),
+                transparent 0%,
+                var(--shimmer-color) var(--spread),
+                transparent var(--spread)
+            );
+            animation: spin-around calc(var(--speed) * 2) infinite linear;
+        }
+
+        .btn-11 .highlight {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            box-shadow: inset 0 -8px 10px rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .btn-11:hover .highlight {
+            box-shadow: inset 0 -6px 10px rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-11:active .highlight {
+            box-shadow: inset 0 -10px 10px rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-11 .backdrop {
+            position: absolute;
+            inset: var(--cut);
+            z-index: -20;
+            border-radius: var(--radius);
+            background: var(--bg);
+        }
+
+        @keyframes shimmer-slide {
+            to {
+                transform: translate(calc(100cqw - 100%), 0);
+            }
+        }
+
+        @keyframes spin-around {
+            0% {
+                transform: translateZ(0) rotate(0deg);
+            }
+            15%, 35% {
+                transform: translateZ(0) rotate(90deg);
+            }
+            65%, 85% {
+                transform: translateZ(0) rotate(270deg);
+            }
+            100% {
+                transform: translateZ(0) rotate(360deg);
+            }
+        }
+
+
+    </style>
+    <!-- WebGL Button Requirements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- --- HEADER --- -->
+        <header>
+            <div class="logo-badge">Interactive Collection</div>
+            <h1>Premium Custom Buttons</h1>
+            <p>A hand-crafted showcase of modern, beautifully animated CSS buttons. Inspect, toggle, and export production-ready HTML/CSS snippets instantly.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to get code?
+            </button>
+        </header>
+
+        <!-- --- SHOWCASE GRID --- -->
+        <main class="showcase-grid" id="grid-container">
+            <!-- Grid cards will be populated by JavaScript -->
+        </main>
+    </div>
+
+    <!-- --- TOAST SYSTEM --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>How to get button codes</h2>
+                <button class="modal-close" onclick="toggleHelpModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Find your button:</strong> Scroll through the showcase and hover or click on the buttons in the grid to see their live animations and states.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Expand code drawer:</strong> Click the <strong>"Get Code"</strong> button at the bottom of any button card. This will slide down a code viewer.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Choose HTML or CSS:</strong> Click the tabs inside the drawer to switch between the button's structured HTML markup and its corresponding CSS styling.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>Copy & Use:</strong> Click the <strong>"Copy"</strong> button in the top-right corner of the code panel to instantly copy it to your clipboard.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       --- DATABASE OF SNIPPETS & DATA DRIVER ---
+       ========================================================================== -->
+    <script>
+        const BUTTON_DATABASE = [
+            {
+                id: 1,
+                dependencies: "No Dependency",
+                name: "Neon Glowing Border",
+                html: `<button class="btn-1">Button 1</button>`,
+                css: `.btn-1 {
+    background: #111;
+    color: #00f0ff;
+    border: 2px solid #00f0ff;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
+}
+
+.btn-1:hover {
+    background: #00f0ff;
+    color: #111;
+    box-shadow: 0 0 20px 5px rgba(0, 240, 255, 0.7);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}`
+            },
+            {
+                id: 2,
+                dependencies: "No Dependency",
+                name: "Glassmorphism Reflector",
+                html: `<button class="btn-2">Button 2</button>`,
+                css: `.btn-2 {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.btn-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.75s;
+}
+
+.btn-2:hover::before {
+    left: 150%;
+}
+
+.btn-2:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}`
+            },
+            {
+                id: 3,
+                dependencies: "No Dependency",
+                name: "Perimeter Border Tracer",
+                html: `<button class="btn-3">Button 3</button>`,
+                css: `.btn-3 {
+    background: transparent;
+    color: #ff3366;
+    border: 1px solid rgba(255, 51, 102, 0.2);
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.btn-3::before,
+.btn-3::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    transition: width 0.2s ease, height 0.2s ease 0.2s;
+}
+
+.btn-3::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid #ff3366;
+    border-left: 2px solid #ff3366;
+}
+
+.btn-3::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid #ff3366;
+    border-right: 2px solid #ff3366;
+}
+
+.btn-3:hover::before,
+.btn-3:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-3:hover {
+    color: #ff3366;
+    border-color: transparent;
+}`
+            },
+            {
+                id: 4,
+                dependencies: "No Dependency",
+                name: "Liquid Blob Waves",
+                html: `<button class="btn-4"><span>Button 4</span></button>`,
+                css: `.btn-4 {
+    background: transparent;
+    color: #00e676;
+    border: 2px solid #00e676;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    z-index: 1;
+    transition: color 0.4s;
+}
+
+.btn-4::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 150%;
+    height: 300%;
+    background: #00e676;
+    border-radius: 40%;
+    transform: translate(-50%, 0) rotate(0deg);
+    transition: transform 0.8s ease, top 0.8s ease;
+    z-index: -1;
+}
+
+.btn-4:hover::before {
+    top: -60%;
+    transform: translate(-50%, 0) rotate(360deg);
+}
+
+.btn-4:hover {
+    color: #111;
+}
+
+.btn-4 span {
+    position: relative;
+    z-index: 2;
+}`
+            },
+            {
+                id: 5,
+                dependencies: "No Dependency",
+                name: "Dynamic Gradient Mesh",
+                html: `<button class="btn-5">Button 5</button>`,
+                css: `.btn-5 {
+    background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+    background-size: 400% 400%;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px 0 rgba(127, 0, 255, 0.45);
+    transition: all 0.3s ease;
+    animation: gradient-shift 12s ease infinite;
+}
+
+.btn-5:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px 0 rgba(127, 0, 255, 0.6);
+}
+
+.btn-5:active {
+    transform: translateY(-1px);
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}`
+            },
+            {
+                id: 6,
+                dependencies: "No Dependency",
+                name: "Magnetic Aura Expander",
+                html: `<button class="btn-6">Button 6</button>`,
+                css: `.btn-6 {
+    background: #6200ea;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-6::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    background: #6200ea;
+    z-index: -1;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.btn-6:hover::before {
+    transform: scale(1.25, 1.45);
+    opacity: 0;
+}`
+            },
+            {
+                id: 7,
+                dependencies: "No Dependency",
+                name: "Corner Bracket Draw",
+                html: `<button class="btn-7">Button 7</button>`,
+                css: `.btn-7 {
+    background: transparent;
+    color: #e040fb;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.btn-7::before,
+.btn-7::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #e040fb;
+    transition: all 0.35s ease;
+}
+
+.btn-7::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.btn-7::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.btn-7:hover::before,
+.btn-7:hover::after {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.btn-7:hover {
+    color: #f3e5f5;
+    text-shadow: 0 0 4px rgba(224, 64, 251, 0.4);
+}`
+            },
+            {
+                id: 8,
+                dependencies: "No Dependency",
+                name: "Shimmer Rotating Border",
+                html: `<button class="btn-8">
+    <span class="btn-8-shim"></span>
+    <span class="btn-8-content">Button 8</span>
+</button>`,
+                css: `.btn-8 {
+    position: relative;
+    overflow: hidden;
+    padding: 2px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-8-shim {
+    position: absolute;
+    top: -150%;
+    left: -150%;
+    width: 400%;
+    height: 400%;
+    background: conic-gradient(
+        from 90deg at 50% 50%,
+        #e2cbff 0%,
+        #393bb2 50%,
+        #e2cbff 100%
+    );
+    animation: spin-shimmer 3s linear infinite;
+    z-index: 1;
+}
+.btn-8-content {
+    position: relative;
+    z-index: 2;
+    background: #0b0f19;
+    color: #fff;
+    padding: 10px 26px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: background 0.3s;
+}
+.btn-8:hover .btn-8-content {
+    background: rgba(11, 15, 25, 0.8);
+}
+@keyframes spin-shimmer {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}`
+            },
+            {
+                id: 9,
+                dependencies: "GSAP",
+                name: "Cosmic Portal Launch",
+                html: `<div class="launch-portal-wrap">
+    <div id="launch-container" class="launch-portal-container">
+        <button id="ignition-btn" type="button" class="launch-portal-btn">
+            <span class="launch-portal-inner">
+                <canvas id="portal-canvas" class="launch-portal-canvas" aria-hidden="true"></canvas>
+                <span class="launch-portal-text">LAUNCH</span>
+            </span>
+        </button>
+    </div>
+</div>`,
+                css: `.launch-portal-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: 100%;
+    height: 100%;
+}
+.launch-portal-container {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(10px);
+}
+.launch-portal-btn {
+    position: relative;
+    display: block;
+    width: 264px;
+    height: 78px;
+    border: 0;
+    padding: 7px;
+    border-radius: 24px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.4, 0.5, 1);
+    background: linear-gradient(180deg, #3c3f46 0%, #15171b 55%, #2a2d33 100%);
+    box-shadow: 
+        0 26px 52px rgba(15, 12, 10, 0.35),
+        0 3px 10px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.launch-portal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 32px 64px rgba(160, 60, 12, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+.launch-portal-btn:active {
+    transform: translateY(1px) scale(0.985);
+}
+.launch-portal-btn:focus-visible {
+    outline: 2px solid #d43d17;
+    outline-offset: 5px;
+}
+.launch-portal-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 17px;
+    overflow: hidden;
+    background-color: #06050a;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+.launch-portal-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.launch-portal-text {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    color: #fdf6ee;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 
+        0 0 14px rgba(255, 170, 100, 0.55),
+        0 1px 6px rgba(0, 0, 0, 0.9);
+}`,
+                js: `const container = document.getElementById('launch-container');
+const btn = document.getElementById('ignition-btn');
+const canvas = document.getElementById('portal-canvas');
+if (!container || !btn || !canvas) return;
+
+const gl = canvas.getContext('webgl');
+
+// Initial Animation
+gsap.to(container, {
+    scale: 1,
+    opacity: 1,
+    duration: 1.2,
+    ease: "back.out(1.7)",
+    onUpdate: function() {
+        let progress = this.progress();
+        let blurAmount = Math.max(0, 10 * (1 - progress * 1.2));
+        container.style.filter = \`blur(\${blurAmount}px)\`;
+    }
+});
+
+// Mouse Parallax
+const onMouseMove = (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y = (e.clientY / window.innerHeight - 0.5) * 15;
+    gsap.to(container, { x, y, duration: 2, ease: "power2.out" });
+};
+document.addEventListener("mousemove", onMouseMove);
+
+if (!gl) return;
+
+const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+const FS = \`
+precision highp float;
+uniform vec2 u_res;
+uniform float u_time;
+uniform float u_warp;
+uniform float u_flash;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}
+float noise(vec2 p){
+vec2 i=floor(p), f=fract(p);
+vec2 u=f*f*(3.0-2.0*f);
+return mix(mix(hash(i),hash(i+vec2(1.,0.)),u.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),u.x),u.y);
+}
+float fbm(vec2 p){
+float v=0.0; float a=0.5;
+for(int i=0;i<4;i++){ v+=a*noise(p); p=p*2.07+vec2(13.1,5.7); a*=0.5; }
+return v;
+}
+void main(){
+vec2 sc = gl_FragCoord.xy / u_res;
+vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+float r = length(uv), rr = max(r, 0.08), a = atan(uv.y, uv.x), t = u_time;
+vec3 col = vec3(0.012, 0.011, 0.014);
+float hz = fbm(uv * 2.6 + vec2(t * 0.35, 1.7));
+col += vec3(0.13, 0.06, 0.032) * hz * (0.7 + 0.6 * u_warp);
+for (int i = 0; i < 3; i++) {
+float fi = float(i), ringN = 26.0 + fi * 9.0;
+vec2 sp = vec2((a / 6.28318 + 0.5) * ringN, (0.3 + fi * 0.22) / rr + t * (2.0 + fi * 1.2));
+vec2 cell = floor(sp), f = fract(sp);
+float h = hash(cell + vec2(fi * 17.31)), on = step(0.68, h);
+vec2 c = vec2(0.2 + 0.6 * hash(cell + vec2(4.7)), 0.5), dlt = f - c;
+float sy = mix(130.0, 8.0, u_warp), star = on * exp(-(dlt.x * dlt.x * 150.0 + dlt.y * dlt.y * sy));
+float tw = (0.7 + 0.3 * sin(h * 81.0 + t * 9.0));
+vec3 sCol = mix(vec3(1.0, 0.94, 0.85), vec3(1.0, 0.6, 0.33), step(0.9, h));
+col += sCol * star * mix(tw, 1.0, u_warp) * smoothstep(0.02, 0.25, r) * (1.1 + 0.7 * u_warp);
+}
+col += vec3(1.0, 0.8, 0.58) * u_warp * 0.32 * exp(-r * 4.0);
+col = mix(col, vec3(1.0, 0.97, 0.92), clamp(u_flash, 0.0, 1.0));
+gl_FragColor = vec4(col, 1.0);
+}\`;
+
+function compile(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.error("Shader compile error:", gl.getShaderInfoLog(s));
+    }
+    return s;
+}
+const prog = gl.createProgram();
+gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+gl.linkProgram(prog);
+if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.error("Shader link error:", gl.getProgramInfoLog(prog));
+}
+gl.useProgram(prog);
+
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+const locP = gl.getAttribLocation(prog, 'p');
+gl.enableVertexAttribArray(locP);
+gl.vertexAttribPointer(locP, 2, gl.FLOAT, false, 0, 0);
+
+const uRes = gl.getUniformLocation(prog, 'u_res'), uTime = gl.getUniformLocation(prog, 'u_time'),
+uWarp = gl.getUniformLocation(prog, 'u_warp'), uFlash = gl.getUniformLocation(prog, 'u_flash');
+
+let warp = 0, warpTarget = 0, flash = 0, z = 0, last = performance.now();
+
+const onMouseEnter = () => warpTarget = 1;
+const onMouseLeave = () => warpTarget = 0;
+const onClick = () => { flash = 1; warp = 0; z = 0; };
+
+btn.addEventListener('mouseenter', onMouseEnter);
+btn.addEventListener('mouseleave', onMouseLeave);
+btn.addEventListener('click', onClick);
+
+let animId;
+function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    warp += (warpTarget - warp) * Math.min(1, dt * 2.6);
+    flash *= Math.exp(-4.5 * dt);
+    z += dt * (0.05 + warp * 1.35);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth * dpr, h = canvas.clientHeight * dpr;
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, z);
+    gl.uniform1f(uWarp, warp);
+    gl.uniform1f(uFlash, flash);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    animId = requestAnimationFrame(frame);
+}
+animId = requestAnimationFrame(frame);`
+            },
+            {
+                id: 10,
+                dependencies: "No Dependency",
+                name: "Slide Arrow Button",
+                html: `<button class="btn-10">
+    <div class="slide-bg"></div>
+    <span class="arrow-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </span>
+    <span class="btn-text">Get Started</span>
+</button>`,
+                css: `.btn-10 {
+    position: relative;
+    width: 160px;
+    height: 52px;
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+    padding: 0;
+    font-family: inherit;
+}
+.btn-10 .slide-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 44px;
+    border-radius: 9999px;
+    background-color: #6f3cff;
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+}
+.btn-10:hover .slide-bg {
+    width: 100%;
+}
+.btn-10 .arrow-icon {
+    position: absolute;
+    left: 12px;
+    z-index: 2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+}
+.btn-10:hover .arrow-icon {
+    left: calc(100% - 32px);
+}
+.btn-10 .btn-text {
+    position: relative;
+    left: 48px;
+    z-index: 3;
+    font-weight: 600;
+    color: #000;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.9rem;
+}
+.btn-10:hover .btn-text {
+    left: 20px;
+    color: #fff;
+}`
+            },
+            {
+                id: 11,
+                dependencies: "No Dependency",
+                name: "Shimmer Button",
+                html: `<button class="btn-11">
+    <div class="spark-container">
+        <div class="spark-slide">
+            <div class="spark-rotate"></div>
+        </div>
+    </div>
+    <span class="btn-text">Shimmer Button</span>
+    <div class="highlight"></div>
+    <div class="backdrop"></div>
+</button>`,
+                css: `.btn-11 {
+    --spread: 90deg;
+    --shimmer-color: #ffffff;
+    --radius: 100px;
+    --speed: 3s;
+    --cut: 0.05em;
+    --bg: rgba(0, 0, 0, 1);
+    
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    white-space: nowrap;
+    color: #fff;
+    background: var(--bg);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+}
+.btn-11:active {
+    transform: translateY(1px);
+}
+.btn-11 .spark-container {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    z-index: -30;
+    filter: blur(2px);
+    container-type: size;
+}
+.btn-11 .spark-slide {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: 1 / 1;
+    height: 100cqh;
+    border-radius: 0;
+    mask: none;
+    -webkit-mask: none;
+    animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
+}
+.btn-11 .spark-rotate {
+    position: absolute;
+    inset: -100%;
+    width: auto;
+    transform: translate(0, 0) rotate(0deg);
+    background: conic-gradient(
+        from calc(270deg - (var(--spread) * 0.5)),
+        transparent 0%,
+        var(--shimmer-color) var(--spread),
+        transparent var(--spread)
+    );
+    animation: spin-around calc(var(--speed) * 2) infinite linear;
+}
+.btn-11 .highlight {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    box-shadow: inset 0 -8px 10px rgba(255, 255, 255, 0.12);
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+}
+.btn-11:hover .highlight {
+    box-shadow: inset 0 -6px 10px rgba(255, 255, 255, 0.25);
+}
+.btn-11:active .highlight {
+    box-shadow: inset 0 -10px 10px rgba(255, 255, 255, 0.25);
+}
+.btn-11 .backdrop {
+    position: absolute;
+    inset: var(--cut);
+    z-index: -20;
+    border-radius: var(--radius);
+    background: var(--bg);
+}
+@keyframes shimmer-slide {
+    to {
+        transform: translate(calc(100cqw - 100%), 0);
+    }
+}
+@keyframes spin-around {
+    0% {
+        transform: translateZ(0) rotate(0deg);
+    }
+    15%, 35% {
+        transform: translateZ(0) rotate(90deg);
+    }
+    65%, 85% {
+        transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+        transform: translateZ(0) rotate(360deg);
+    }
+}`
+            }
+        ];
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        BUTTON_DATABASE.forEach(btn => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${btn.id}`;
+            
+            // Build tabs HTML depending on JS presence
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${btn.id}" onclick="switchTab(${btn.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${btn.id}" onclick="switchTab(${btn.id}, 'css')">CSS</button>
+            `;
+            if (btn.js) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-js-${btn.id}" onclick="switchTab(${btn.id}, 'js')">JS</button>
+                `;
+            }
+
+            // Build panels HTML depending on JS presence
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${btn.id}">
+                    <pre><code class="language-html">${escapeHtml(btn.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${btn.id}">
+                    <pre><code class="language-css">${escapeHtml(btn.css)}</code></pre>
+                </div>
+            `;
+            if (btn.js) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-js-${btn.id}">
+                        <pre><code class="language-javascript">${escapeHtml(btn.js)}</code></pre>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="button-title">${btn.name}</span>
+                    <span class="button-badge">Button #${btn.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${btn.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${btn.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${btn.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${btn.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${btn.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        // Initialize dynamic widgets
+        setTimeout(() => {
+            initLaunchPortal();
+        }, 100);
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        
+        // Active states tracks
+        const activeTabs = {}; // Tracks 'html', 'css', or 'js' selection per button ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            // Set default tab state tracking if not existing
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                // Close other drawers for cleanliness
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs inside Code Drawer
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const jsTab = document.getElementById(`tab-js-${id}`);
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+            const jsPanel = document.getElementById(`panel-js-${id}`);
+
+            if (htmlTab) htmlTab.classList.remove('active');
+            if (cssTab) cssTab.classList.remove('active');
+            if (jsTab) jsTab.classList.remove('active');
+            if (htmlPanel) htmlPanel.classList.remove('active');
+            if (cssPanel) cssPanel.classList.remove('active');
+            if (jsPanel) jsPanel.classList.remove('active');
+
+            if (tabType === 'html') {
+                if (htmlTab) htmlTab.classList.add('active');
+                if (htmlPanel) htmlPanel.classList.add('active');
+            } else if (tabType === 'css') {
+                if (cssTab) cssTab.classList.add('active');
+                if (cssPanel) cssPanel.classList.add('active');
+            } else if (tabType === 'js') {
+                if (jsTab) jsTab.classList.add('active');
+                if (jsPanel) jsPanel.classList.add('active');
+            }
+        };
+
+        // Clipboard copy system
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const btnData = BUTTON_DATABASE.find(b => b.id === id);
+            if (!btnData) return;
+
+            let textToCopy = '';
+            if (selectedType === 'html') {
+                textToCopy = btnData.html;
+            } else if (selectedType === 'css') {
+                textToCopy = btnData.css;
+            } else if (selectedType === 'js') {
+                textToCopy = btnData.js;
+            }
+
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Temporarily style copy button as success
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast(`Copied Button #${id} ${selectedType.toUpperCase()} code!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                showToast("Failed to copy code. Please copy manually.");
+            });
+        };
+
+        // Global Toast Notification triggers
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            // Trigger animation frame layout flow
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Automatic removal
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- 9: COSMIC PORTAL LAUNCH INITIALIZATION ---
+        function initLaunchPortal() {
+            const container = document.getElementById('launch-container');
+            const btn = document.getElementById('ignition-btn');
+            const canvas = document.getElementById('portal-canvas');
+            if (!container || !btn || !canvas) return;
+            
+            const gl = canvas.getContext('webgl');
+
+            // Initial Animation
+            window.gsap.to(container, {
+                scale: 1,
+                opacity: 1,
+                duration: 1.2,
+                ease: "back.out(1.7)",
+                onUpdate: function() {
+                    let progress = this.progress();
+                    let blurAmount = Math.max(0, 10 * (1 - progress * 1.2));
+                    container.style.filter = `blur(${blurAmount}px)`;
+                }
+            });
+
+            // Mouse Parallax
+            const onMouseMove = (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 15;
+                const y = (e.clientY / window.innerHeight - 0.5) * 15;
+                window.gsap.to(container, { x, y, duration: 2, ease: "power2.out" });
+            };
+            document.addEventListener("mousemove", onMouseMove);
+
+            if (!gl) return;
+
+            const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+            const FS = `
+            precision highp float;
+            uniform vec2 u_res;
+            uniform float u_time;
+            uniform float u_warp;
+            uniform float u_flash;
+            float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}
+            float noise(vec2 p){
+            vec2 i=floor(p), f=fract(p);
+            vec2 u=f*f*(3.0-2.0*f);
+            return mix(mix(hash(i),hash(i+vec2(1.,0.)),u.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),u.x),u.y);
+            }
+            float fbm(vec2 p){
+            float v=0.0; float a=0.5;
+            for(int i=0;i<4;i++){ v+=a*noise(p); p=p*2.07+vec2(13.1,5.7); a*=0.5; }
+            return v;
+            }
+            void main(){
+            vec2 sc = gl_FragCoord.xy / u_res;
+            vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+            float r = length(uv), rr = max(r, 0.08), a = atan(uv.y, uv.x), t = u_time;
+            vec3 col = vec3(0.012, 0.011, 0.014);
+            float hz = fbm(uv * 2.6 + vec2(t * 0.35, 1.7));
+            col += vec3(0.13, 0.06, 0.032) * hz * (0.7 + 0.6 * u_warp);
+            for (int i = 0; i < 3; i++) {
+            float fi = float(i), ringN = 26.0 + fi * 9.0;
+            vec2 sp = vec2((a / 6.28318 + 0.5) * ringN, (0.3 + fi * 0.22) / rr + t * (2.0 + fi * 1.2));
+            vec2 cell = floor(sp), f = fract(sp);
+            float h = hash(cell + vec2(fi * 17.31)), on = step(0.68, h);
+            vec2 c = vec2(0.2 + 0.6 * hash(cell + vec2(4.7)), 0.5), dlt = f - c;
+            float sy = mix(130.0, 8.0, u_warp), star = on * exp(-(dlt.x * dlt.x * 150.0 + dlt.y * dlt.y * sy));
+            float tw = (0.7 + 0.3 * sin(h * 81.0 + t * 9.0));
+            vec3 sCol = mix(vec3(1.0, 0.94, 0.85), vec3(1.0, 0.6, 0.33), step(0.9, h));
+            col += sCol * star * mix(tw, 1.0, u_warp) * smoothstep(0.02, 0.25, r) * (1.1 + 0.7 * u_warp);
+            }
+            col += vec3(1.0, 0.8, 0.58) * u_warp * 0.32 * exp(-r * 4.0);
+            col = mix(col, vec3(1.0, 0.97, 0.92), clamp(u_flash, 0.0, 1.0));
+            gl_FragColor = vec4(col, 1.0);
+            }`;
+
+            function compile(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+                    console.error("Shader compile error:", gl.getShaderInfoLog(s));
+                }
+                return s;
+            }
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+            gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+            gl.linkProgram(prog);
+            if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+                console.error("Shader link error:", gl.getProgramInfoLog(prog));
+            }
+            gl.useProgram(prog);
+
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+            const locP = gl.getAttribLocation(prog, 'p');
+            gl.enableVertexAttribArray(locP);
+            gl.vertexAttribPointer(locP, 2, gl.FLOAT, false, 0, 0);
+
+            const uRes = gl.getUniformLocation(prog, 'u_res'), uTime = gl.getUniformLocation(prog, 'u_time'),
+            uWarp = gl.getUniformLocation(prog, 'u_warp'), uFlash = gl.getUniformLocation(prog, 'u_flash');
+
+            let warp = 0, warpTarget = 0, flash = 0, z = 0, last = performance.now();
+            
+            const onMouseEnter = () => warpTarget = 1;
+            const onMouseLeave = () => warpTarget = 0;
+            const onClick = () => { flash = 1; warp = 0; z = 0; };
+
+            btn.addEventListener('mouseenter', onMouseEnter);
+            btn.addEventListener('mouseleave', onMouseLeave);
+            btn.addEventListener('click', onClick);
+
+            let animId;
+            function frame(now) {
+                const dt = Math.min(0.05, (now - last) / 1000);
+                last = now;
+                warp += (warpTarget - warp) * Math.min(1, dt * 2.6);
+                flash *= Math.exp(-4.5 * dt);
+                z += dt * (0.05 + warp * 1.35);
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const w = canvas.clientWidth * dpr, h = canvas.clientHeight * dpr;
+                if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+                gl.uniform2f(uRes, canvas.width, canvas.height);
+                gl.uniform1f(uTime, z);
+                gl.uniform1f(uWarp, warp);
+                gl.uniform1f(uFlash, flash);
+                gl.drawArrays(gl.TRIANGLES, 0, 3);
+                animId = requestAnimationFrame(frame);
+            }
+            animId = requestAnimationFrame(frame);
+
+            // Cleanup handle
+            container._btn9Cleanup = () => {
+                cancelAnimationFrame(animId);
+                document.removeEventListener("mousemove", onMouseMove);
+                btn.removeEventListener('mouseenter', onMouseEnter);
+                btn.removeEventListener('mouseleave', onMouseLeave);
+                btn.removeEventListener('click', onClick);
+            };
+        }
+
+
+
+        // Help Modal Controls
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModal = function(e) {
+            const modal = document.getElementById('help-modal');
+            modal.classList.remove('open');
+        };
+    </script>
+</body>
+</html>

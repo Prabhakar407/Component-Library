@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Navbar Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #080b11;
+            --bg-secondary: #0e131f;
+            --bg-card: #141b2a;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- DISPLAY CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            background: var(--bg-secondary);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Canvas Preview Container */
+        .preview-canvas {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0b0d16;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #060911;
+            border-top: 0px solid var(--border-color);
+            z-index: 10;
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: #a7f3d0;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #141b2a;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+
+        /* --- HELP MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 11, 17, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.open .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .modal-content ul {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-btn {
+            background-color: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+        
+        .modal-btn:hover {
+            background-color: #5053eb;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        /* ==========================================================================
+           --- INDIVIDUAL COMPONENT CLASSES (Live Previews) ---
+           ========================================================================== */
+        
+        /* General mock canvas styling */
+        .navbar-preview-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #090c15;
+            user-select: none;
+        }
+
+
+
+        /* 1: Neon Underline Sliding Tab */
+        .sliding-tab-nav {
+            background: rgba(20, 27, 42, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 6px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .nav-links-wrap {
+            display: flex;
+            position: relative;
+            gap: 4px;
+        }
+        .tab-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 8px;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .tab-link:hover {
+            color: #fff;
+        }
+        .tab-link.active {
+            color: #fff;
+        }
+        .sliding-indicator {
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            width: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            z-index: 1;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            pointer-events: none;
+        }
+
+        /* 2: Aurora Glow Border Topbar */
+        .aurora-navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(8, 11, 17, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        .aurora-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+        }
+        .brand-logo {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+        .aurora-links {
+            display: flex;
+            gap: 20px;
+        }
+        .aurora-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+        .aurora-link:hover {
+            color: #fff;
+        }
+        .aurora-link.active {
+            color: #fff;
+        }
+        .aurora-glow-line {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6366f1, transparent);
+            box-shadow: 0 0 10px #6366f1;
+            width: 0;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+        }
+
+
+
+        /* 3: Liquid Indicator Pill Navigation */
+        .pill-nav {
+            position: relative;
+            background: #0d0f17;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 4px;
+            display: flex;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        .pill-link {
+            position: relative;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 10px 24px;
+            border-radius: 26px;
+            transition: color 0.3s ease;
+            z-index: 2;
+        }
+        .pill-link:hover {
+            color: #fff;
+        }
+        .pill-link.active {
+            color: #000;
+            font-weight: 600;
+            transition-delay: 0.05s;
+        }
+        .pill-indicator {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: 0;
+            background: #fff;
+            border-radius: 26px;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+        }
+
+
+
+        /* 4: Responsive Glow Lamp Topbar/Dock */
+        .lamp-nav-container {
+            background: rgba(20, 27, 42, 0.45);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 4px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .lamp-link {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lamp-link:hover {
+            color: #fff;
+        }
+        .lamp-link.active {
+            color: var(--text-primary);
+        }
+        .lamp-indicator {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: 0;
+            background: rgba(99, 102, 241, 0.05); /* bg-primary/5 */
+            border-radius: 9999px;
+            z-index: 1;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+        }
+        .lamp-glow-bar {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 2px;
+            background: var(--accent-primary);
+            border-radius: 4px 4px 0 0;
+        }
+        .lamp-glow-bar::before {
+            content: '';
+            position: absolute;
+            width: 48px;
+            height: 24px;
+            background: var(--accent-primary-glow);
+            border-radius: 50%;
+            filter: blur(8px);
+            top: -8px;
+            left: -8px;
+        }
+        .lamp-glow-bar::after {
+            content: '';
+            position: absolute;
+            width: 32px;
+            height: 24px;
+            background: var(--accent-primary-glow);
+            border-radius: 50%;
+            filter: blur(8px);
+            top: -4px;
+            left: 0;
+        }
+        .lamp-glow-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-primary-glow);
+            border-radius: 50%;
+            filter: blur(4px);
+            top: 0;
+            left: 8px;
+        }
+        .lamp-link .link-text {
+            display: inline;
+        }
+        .lamp-link .link-icon {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .lamp-link .link-text {
+                display: none;
+            }
+            .lamp-link .link-icon {
+                display: inline-flex;
+            }
+            .lamp-link {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- --- HEADER --- -->
+        <header>
+            <div class="logo-badge">Navbar Showcase</div>
+            <h1>Interactive Premium Navigation</h1>
+            <p>A collection of beautiful, ultra-premium navigation bar components designed with glassmorphism, responsive triggers, and sliding physics indicators.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Usage Guide</span>
+            </button>
+        </header>
+
+        <!-- --- SHOWCASE GRID --- -->
+        <div class="showcase-grid" id="grid-container">
+            <!-- Dynamic Cards Injected Here -->
+        </div>
+    </div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModalOutside(event)">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="toggleHelpModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 class="modal-title">Navbar Showcase Guide</h3>
+            <div class="modal-content">
+                <p>Welcome to the premium Navigation Showcase! Here is how to make use of these components:</p>
+                <ul>
+                    <li><strong>Preview</strong>: Interact directly with each navbar design inside the cards. Click on navigation items to see transitions and layout indicators.</li>
+                    <li><strong>Code copy</strong>: Click the <strong>Get Code</strong> button to reveal self-contained code snippets.</li>
+                    <li><strong>Integration</strong>: Copy the HTML, CSS, and JS (where applicable) directly into your workspace.</li>
+                </ul>
+            </div>
+            <button class="modal-btn" onclick="toggleHelpModal()">Got it, thanks!</button>
+        </div>
+    </div>
+
+    <!-- --- TOAST CONTAINER --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        // --- DATABASE Snippets Definitions ---
+        const NAVBAR_DATABASE = [
+            {
+                id: 1,
+                name: "Neon Underline Sliding Tab",
+                html: `<div class="navbar-preview-wrap np-sliding" id="sliding-wrap-1">
+    <nav class="sliding-tab-nav">
+        <div class="nav-links-wrap">
+            <a href="#" class="tab-link active" data-index="0">Home</a>
+            <a href="#" class="tab-link" data-index="1">Products</a>
+            <a href="#" class="tab-link" data-index="2">Services</a>
+            <a href="#" class="tab-link" data-index="3">About</a>
+            <div class="sliding-indicator"></div>
+        </div>
+    </nav>
+</div>`,
+                css: `.sliding-tab-nav {
+    background: rgba(20, 27, 42, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 6px;
+    display: inline-block;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.nav-links-wrap {
+    display: flex;
+    position: relative;
+    gap: 4px;
+}
+.tab-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+.tab-link:hover {
+    color: #fff;
+}
+.tab-link.active {
+    color: #fff;
+}
+.sliding-indicator {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+    z-index: 1;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    pointer-events: none;
+}`,
+                js: `const wrap = document.getElementById('sliding-wrap-1');
+const links = wrap.querySelectorAll('.tab-link');
+const indicator = wrap.querySelector('.sliding-indicator');
+
+const updateIndicator = (el) => {
+    indicator.style.left = el.offsetLeft + 'px';
+    indicator.style.width = el.offsetWidth + 'px';
+};
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        updateIndicator(link);
+    });
+});
+
+// Run once to set initial alignment
+updateIndicator(wrap.querySelector('.tab-link.active'));`,
+                dependencies: "No Dependency"
+            },
+            {
+                id: 2,
+                name: "Aurora Glow Border Topbar",
+                html: `<div class="navbar-preview-wrap np-aurora" id="aurora-wrap-2">
+    <div class="aurora-navbar">
+        <div class="aurora-brand">
+            <div class="brand-logo"></div>
+            <span>AURA</span>
+        </div>
+        <div class="aurora-links">
+            <a href="#" class="aurora-link active" data-color="indigo">Home</a>
+            <a href="#" class="aurora-link" data-color="pink">Gallery</a>
+            <a href="#" class="aurora-link" data-color="cyan">Pricing</a>
+            <a href="#" class="aurora-link" data-color="purple">Contact</a>
+        </div>
+        <div class="aurora-glow-line"></div>
+    </div>
+</div>`,
+                css: `.aurora-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(8, 11, 17, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+.aurora-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.95rem;
+}
+.brand-logo {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+.aurora-links {
+    display: flex;
+    gap: 20px;
+}
+.aurora-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+}
+.aurora-link:hover {
+    color: #fff;
+}
+.aurora-link.active {
+    color: #fff;
+}
+.aurora-glow-line {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6366f1, transparent);
+    box-shadow: 0 0 10px #6366f1;
+    width: 0;
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}`,
+                js: `const wrap = document.getElementById('aurora-wrap-2');
+const links = wrap.querySelectorAll('.aurora-link');
+const glow = wrap.querySelector('.aurora-glow-line');
+
+const updateGlow = (el) => {
+    glow.style.opacity = '1';
+    glow.style.left = el.offsetLeft + 'px';
+    glow.style.width = el.offsetWidth + 'px';
+    
+    const color = el.getAttribute('data-color');
+    let colorHex = '#6366f1';
+    if (color === 'pink') colorHex = '#ec4899';
+    else if (color === 'cyan') colorHex = '#06b6d4';
+    else if (color === 'purple') colorHex = '#8b5cf6';
+    
+    glow.style.background = \`linear-gradient(90deg, transparent, \${colorHex}, transparent)\`;
+    glow.style.boxShadow = \`0 0 10px \${colorHex}\`;
+};
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        updateGlow(link);
+    });
+});
+
+// Run once to set initial alignment
+updateGlow(wrap.querySelector('.aurora-link.active'));`,
+                dependencies: "No Dependency"
+            },
+            {
+                id: 3,
+                name: "Liquid Indicator Pill Navigation",
+                html: `<div class="navbar-preview-wrap np-pills" id="pills-wrap-3">
+    <div class="pill-nav">
+        <a href="#" class="pill-link active">Overview</a>
+        <a href="#" class="pill-link">Analytics</a>
+        <a href="#" class="pill-link">Campaigns</a>
+        <a href="#" class="pill-link">Reports</a>
+        <div class="pill-indicator"></div>
+    </div>
+</div>`,
+                css: `.pill-nav {
+    position: relative;
+    background: #0d0f17;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 4px;
+    display: flex;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+.pill-link {
+    position: relative;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 24px;
+    border-radius: 26px;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+.pill-link:hover {
+    color: #fff;
+}
+.pill-link.active {
+    color: #000;
+    font-weight: 600;
+}
+.pill-indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: 0;
+    background: #fff;
+    border-radius: 26px;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+}`,
+                js: `const wrap = document.getElementById('pills-wrap-3');
+const links = wrap.querySelectorAll('.pill-link');
+const indicator = wrap.querySelector('.pill-indicator');
+
+const updatePill = (el) => {
+    indicator.style.left = el.offsetLeft + 'px';
+    indicator.style.width = el.offsetWidth + 'px';
+};
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        updatePill(link);
+    });
+});
+
+// Run once to set initial alignment
+updatePill(wrap.querySelector('.pill-link.active'));`,
+                dependencies: "No Dependency"
+            },
+            {
+                id: 4,
+                name: "Responsive Glow Lamp Topbar/Dock",
+                html: `<div class="navbar-preview-wrap np-lamp" id="lamp-wrap-4">
+    <div class="lamp-nav-container">
+        <a href="#" class="lamp-link active">
+            <span class="link-text">Home</span>
+            <span class="link-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+        </a>
+        <a href="#" class="lamp-link">
+            <span class="link-text">Projects</span>
+            <span class="link-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            </span>
+        </a>
+        <a href="#" class="lamp-link">
+            <span class="link-text">Analytics</span>
+            <span class="link-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+        </a>
+        <a href="#" class="lamp-link">
+            <span class="link-text">Messages</span>
+            <span class="link-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+        </a>
+        <a href="#" class="lamp-link">
+            <span class="link-text">Settings</span>
+            <span class="link-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </span>
+        </a>
+        <div class="lamp-indicator">
+            <div class="lamp-glow-bar">
+                <div class="lamp-glow-dot"></div>
+            </div>
+        </div>
+    </div>
+</div>`,
+                css: `.lamp-nav-container {
+    background: rgba(20, 27, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 4px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+.lamp-link {
+    position: relative;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lamp-link:hover {
+    color: #fff;
+}
+.lamp-link.active {
+    color: #fff;
+}
+.lamp-indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: 0;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 9999px;
+    z-index: 1;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+.lamp-glow-bar {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 2px;
+    background: #6366f1;
+    border-radius: 4px 4px 0 0;
+}
+.lamp-glow-bar::before {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 24px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 50%;
+    filter: blur(8px);
+    top: -8px;
+    left: -8px;
+}
+.lamp-glow-bar::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 24px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 50%;
+    filter: blur(8px);
+    top: -4px;
+    left: 0;
+}
+.lamp-glow-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 50%;
+    filter: blur(4px);
+    top: 0;
+    left: 8px;
+}
+.lamp-link .link-text {
+    display: inline;
+}
+.lamp-link .link-icon {
+    display: none;
+}
+@media (max-width: 767px) {
+    .lamp-link .link-text {
+        display: none;
+    }
+    .lamp-link .link-icon {
+        display: inline-flex;
+    }
+    .lamp-link {
+        padding: 8px 16px;
+    }
+}`,
+                js: `const wrap = document.getElementById('lamp-wrap-4');
+const links = wrap.querySelectorAll('.lamp-link');
+const indicator = wrap.querySelector('.lamp-indicator');
+
+const updateLamp = (el) => {
+    indicator.style.left = el.offsetLeft + 'px';
+    indicator.style.width = el.offsetWidth + 'px';
+};
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        updateLamp(link);
+    });
+});
+
+// Run once to set initial alignment
+updateLamp(wrap.querySelector('.lamp-link.active'));
+
+// Align indicator on resize
+window.addEventListener('resize', () => {
+    const active = wrap.querySelector('.lamp-link.active');
+    if (active) updateLamp(active);
+});`,
+                dependencies: "framer-motion, lucide-react, tailwind-merge, clsx",
+                react: `"use client"
+
+import React, { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { LucideIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+interface NavItem {
+  name: string
+  url: string
+  icon: LucideIcon
+}
+
+interface NavBarProps {
+  items: NavItem[]
+  className?: string
+}
+
+export function NavBar({ items, className }: NavBarProps) {
+  const [activeTab, setActiveTab] = useState(items[0].name)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return (
+    <div
+      className={cn(
+        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        className,
+      )}
+    >
+      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        {items.map((item) => {
+          const Icon = item.icon
+          const isActive = activeTab === item.name
+
+          return (
+            <Link
+              key={item.name}
+              href={item.url}
+              onClick={() => setActiveTab(item.name)}
+              className={cn(
+                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "text-foreground/80 hover:text-primary",
+                isActive && "bg-muted text-primary",
+              )}
+            >
+              <span className="hidden md:inline">{item.name}</span>
+              <span className="md:hidden">
+                <Icon size={18} strokeWidth={2.5} />
+              </span>
+              {isActive && (
+                <motion.div
+                  layoutId="lamp"
+                  className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                >
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
+                    <div className="absolute w-12 h-6 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
+                    <div className="absolute w-8 h-6 bg-primary/20 rounded-full blur-md -top-1" />
+                    <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
+                  </div>
+                </motion.div>
+              )}
+            </Link>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+`
+            }
+        ];
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        NAVBAR_DATABASE.forEach(bg => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${bg.id}`;
+            
+            const hasJs = bg.js ? true : false;
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="card-title">${bg.name}</span>
+                    <span class="card-badge">Navbar #${bg.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${bg.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${bg.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${bg.id}">
+                    <div class="drawer-tabs">
+                        <button class="tab-btn active" id="tab-html-${bg.id}" onclick="switchTab(${bg.id}, 'html')">HTML</button>
+                        <button class="tab-btn" id="tab-css-${bg.id}" onclick="switchTab(${bg.id}, 'css')">CSS</button>
+                        ${hasJs ? `<button class="tab-btn" id="tab-js-${bg.id}" onclick="switchTab(${bg.id}, 'js')">JS</button>` : ''}
+                        ${bg.react ? `<button class="tab-btn" id="tab-react-${bg.id}" onclick="switchTab(${bg.id}, 'react')">React</button>` : ''}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${bg.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${bg.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        <div class="code-panel active" id="panel-html-${bg.id}">
+                            <pre><code class="language-html">${escapeHtml(bg.html)}</code></pre>
+                        </div>
+                        <div class="code-panel" id="panel-css-${bg.id}">
+                            <pre><code class="language-css">${escapeHtml(bg.css)}</code></pre>
+                        </div>
+                        ${hasJs ? `
+                        <div class="code-panel" id="panel-js-${bg.id}">
+                            <pre><code class="language-javascript">${escapeHtml(bg.js)}</code></pre>
+                        </div>` : ''}
+                        ${bg.react ? `
+                        <div class="code-panel" id="panel-react-${bg.id}">
+                            <pre><code class="language-tsx">${escapeHtml(bg.react)}</code></pre>
+                        </div>` : ''}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        
+        // Active states tracks
+        const activeTabs = {}; // Tracks 'html', 'css', or 'js' selection per card ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs (HTML/CSS/JS)
+        window.switchTab = function(id, tabName) {
+            activeTabs[id] = tabName;
+            
+            // Toggle active tabs buttons
+            const drawer = document.getElementById(`drawer-${id}`);
+            drawer.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const selectedBtn = document.getElementById(`tab-${tabName}-${id}`);
+            if (selectedBtn) selectedBtn.classList.add('active');
+
+            // Toggle active panels
+            drawer.querySelectorAll('.code-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            const selectedPanel = drawer.querySelector(`#panel-${tabName}-${id}`);
+            if (selectedPanel) selectedPanel.classList.add('active');
+        };
+
+        // Copy Code Snippet to Clipboard
+        window.copyCodeSnippet = function(id) {
+            const activeTab = activeTabs[id] || 'html';
+            const drawer = document.getElementById(`drawer-${id}`);
+            const codePanel = drawer.querySelector(`#panel-${activeTab}-${id} pre code`);
+            
+            if (!codePanel) return;
+
+            navigator.clipboard.writeText(codePanel.textContent).then(() => {
+                const copyBtn = drawer.querySelector('.copy-btn');
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast("Code copied to clipboard successfully!");
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy text: ", err);
+                showToast("Failed to copy code snippet.");
+            });
+        };
+
+        // Toast Trigger
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 8 12 12 16 14"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            // Stagger animation entry
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+
+            // Exit and remove
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // --- HELP MODAL FUNCTIONS ---
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModalOutside = function(e) {
+            const modal = document.getElementById('help-modal');
+            if (e.target === modal) {
+                modal.classList.remove('open');
+            }
+        };
+
+
+        // ==========================================================================
+        // --- PREVIEW COMPONENT INTERACTIONS (Javascript execution) ---
+        // ==========================================================================
+
+        // --- 1: Neon Underline Sliding Tab ---
+        function initSlidingNav() {
+            const wrap = document.getElementById('sliding-wrap-1');
+            if (!wrap) return;
+            const links = wrap.querySelectorAll('.tab-link');
+            const indicator = wrap.querySelector('.sliding-indicator');
+
+            const updateIndicator = (el) => {
+                indicator.style.left = el.offsetLeft + 'px';
+                indicator.style.width = el.offsetWidth + 'px';
+            };
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    updateIndicator(link);
+                });
+            });
+
+            // Initial position
+            const active = wrap.querySelector('.tab-link.active');
+            if (active) {
+                // Wait slightly for layout rendering
+                setTimeout(() => updateIndicator(active), 150);
+            }
+        }
+
+        // --- 2: Aurora Glow Border Topbar ---
+        function initAuroraNav() {
+            const wrap = document.getElementById('aurora-wrap-2');
+            if (!wrap) return;
+            const links = wrap.querySelectorAll('.aurora-link');
+            const glow = wrap.querySelector('.aurora-glow-line');
+
+            const updateGlow = (el) => {
+                glow.style.opacity = '1';
+                glow.style.left = el.offsetLeft + 'px';
+                glow.style.width = el.offsetWidth + 'px';
+                
+                const color = el.getAttribute('data-color');
+                let colorHex = '#6366f1';
+                if (color === 'pink') colorHex = '#ec4899';
+                else if (color === 'cyan') colorHex = '#06b6d4';
+                else if (color === 'purple') colorHex = '#8b5cf6';
+                
+                glow.style.background = `linear-gradient(90deg, transparent, ${colorHex}, transparent)`;
+                glow.style.boxShadow = `0 0 10px ${colorHex}`;
+            };
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    updateGlow(link);
+                });
+            });
+
+            // Initial position
+            const active = wrap.querySelector('.aurora-link.active');
+            if (active) {
+                setTimeout(() => updateGlow(active), 150);
+            }
+        }
+
+        // --- 3: Liquid Indicator Pill Navigation ---
+        function initPillsNav() {
+            const wrap = document.getElementById('pills-wrap-3');
+            if (!wrap) return;
+            const links = wrap.querySelectorAll('.pill-link');
+            const indicator = wrap.querySelector('.pill-indicator');
+
+            const updatePill = (el) => {
+                indicator.style.left = el.offsetLeft + 'px';
+                indicator.style.width = el.offsetWidth + 'px';
+            };
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    updatePill(link);
+                });
+            });
+
+            // Initial position
+            const active = wrap.querySelector('.pill-link.active');
+            if (active) {
+                setTimeout(() => updatePill(active), 150);
+            }
+        }
+
+        // --- 4: Responsive Glow Lamp Topbar/Dock ---
+        function initLampNav() {
+            const wrap = document.getElementById('lamp-wrap-4');
+            if (!wrap) return;
+            const links = wrap.querySelectorAll('.lamp-link');
+            const indicator = wrap.querySelector('.lamp-indicator');
+
+            const updateLamp = (el) => {
+                indicator.style.left = el.offsetLeft + 'px';
+                indicator.style.width = el.offsetWidth + 'px';
+            };
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    updateLamp(link);
+                    showToast(`Navigated to ${link.querySelector('.link-text').textContent}!`);
+                });
+            });
+
+            // Initial position
+            const active = wrap.querySelector('.lamp-link.active');
+            if (active) {
+                setTimeout(() => updateLamp(active), 150);
+            }
+
+            // Align indicator on resize
+            window.addEventListener('resize', () => {
+                const active = wrap.querySelector('.lamp-link.active');
+                if (active) updateLamp(active);
+            });
+        }
+
+        // --- INITIALIZER INVOCATION ---
+        setTimeout(() => {
+            initSlidingNav();
+            initAuroraNav();
+            initPillsNav();
+            initLampNav();
+        }, 300);
+
+    </script>
+</body>
+</html>

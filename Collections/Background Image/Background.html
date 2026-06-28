@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Background Image Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #080b11;
+            --bg-secondary: #0e131f;
+            --bg-card: #141b2a;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- DISPLAY CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            background: var(--bg-secondary);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Canvas Preview Container */
+        .preview-canvas {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0b0d16;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #060911;
+            border-top: 0px solid var(--border-color);
+            z-index: 10;
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: #a7f3d0;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #141b2a;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+
+        /* --- HELP MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 11, 17, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .step-num {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .step-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-btn {
+            background-color: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+        
+        .modal-btn:hover {
+            background-color: #5053eb;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        /* ==========================================================================
+           --- INDIVIDUAL COMPONENT CLASSES (Live Previews) ---
+           ========================================================================== */
+        
+        /* 1: Ken Burns Slider */
+        .bg-effect-1 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        .bg-effect-1 .kb-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            z-index: 1;
+            transform: scale(1.0);
+            transition: opacity 1.5s ease-in-out;
+        }
+        .bg-effect-1 .kb-slide.active {
+            opacity: 1;
+            z-index: 2;
+            animation: kenburns-anim 9s linear forwards;
+        }
+        @keyframes kenburns-anim {
+            0% { transform: scale(1.0) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-1.5%, -1%); }
+        }
+
+        
+/* 2: Floating Mesh Overlay */
+        .bg-effect-2 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #06070a;
+        }
+        .bg-effect-2 .mesh-bg-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(35%) contrast(110%);
+            opacity: 0.65;
+        }
+        .bg-effect-2 .mesh-overlay {
+            position: absolute;
+            inset: 0;
+            mix-blend-mode: color-dodge;
+            filter: blur(40px);
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .bg-effect-2 .mesh-blob {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform;
+        }
+        .bg-effect-2 .blob-1 {
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            top: -20px;
+            left: -20px;
+            animation: mesh-blob-move-1 12s infinite alternate ease-in-out;
+        }
+        .bg-effect-2 .blob-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            bottom: -40px;
+            right: -20px;
+            animation: mesh-blob-move-2 15s infinite alternate ease-in-out;
+        }
+        .bg-effect-2 .blob-3 {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            top: 30%;
+            left: 35%;
+            animation: mesh-blob-move-3 10s infinite alternate ease-in-out;
+        }
+        @keyframes mesh-blob-move-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.2); }
+        }
+        @keyframes mesh-blob-move-2 {
+            0% { transform: translate(0, 0) scale(1.1); }
+            100% { transform: translate(-40px, -50px) scale(0.9); }
+        }
+        @keyframes mesh-blob-move-3 {
+            0% { transform: translate(0, 0) scale(0.95); }
+            100% { transform: translate(30px, -30px) scale(1.15); }
+        }
+
+        
+/* 3: Depth Focus */
+        .bg-effect-3 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+        .bg-effect-3 .focus-image {
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.35) saturate(0.5);
+            transform: scale(1.06);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .bg-effect-3:hover .focus-image {
+            filter: blur(0px) brightness(0.85) saturate(1.1);
+            transform: scale(1.0);
+        }
+        .bg-effect-3 .focus-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.8;
+            transition: opacity 0.8s ease;
+        }
+        .bg-effect-3:hover .focus-overlay {
+            opacity: 0.3;
+        }
+
+        
+/* 4: Neural Aurora WebGL Shader */
+        .bg-effect-4 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #020205;
+        }
+        .bg-effect-4 .aurora-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+/* 5: 3D Stellar Starfield */
+        .bg-effect-5 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #020205;
+        }
+        .bg-effect-5 .stellar-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .bg-effect-5 .card-galaxy-container {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            perspective: 800px;
+        }
+        .bg-effect-5 .stellar-card {
+            position: absolute;
+            width: 70px;
+            height: 90px;
+            background: #1F2121;
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease, border 0.3s ease, transform 0.1s ease;
+            cursor: pointer;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transform-origin: center center;
+        }
+        .bg-effect-5 .stellar-card:hover {
+            box-shadow: 0 10px 20px rgba(49, 184, 198, 0.6), 0 0 12px rgba(49, 184, 198, 0.3);
+            border: 1.5px solid rgba(49, 184, 198, 0.6);
+        }
+        .bg-effect-5 .stellar-card img {
+            width: 100%;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        .bg-effect-5 .stellar-card p {
+            color: #fff;
+            font-size: 7px;
+            font-weight: 500;
+            margin-top: 3px;
+            text-align: center;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            pointer-events: none;
+            font-family: var(--font-main);
+        }
+        .bg-effect-5 .cosmic-text-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            pointer-events: none;
+            font-family: var(--font-main);
+        }
+        .bg-effect-5 .cosmic-text-overlay h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+            letter-spacing: 1px;
+        }
+        .bg-effect-5 .cosmic-text-overlay p {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        
+/* 6: 3D Neon GLSL Hills */
+        .bg-effect-6 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #030307;
+        }
+        .bg-effect-6 .hills-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+/* 7: Dark Linear Gradient Streaks */
+        .bg-effect-7 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        .bg-effect-7 .gradient-base {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(100% 100% at 0% 0%, rgb(46, 46, 46) 0%, rgb(0, 0, 0) 100%);
+            mask-image: radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%);
+        }
+        .bg-effect-7 .streak {
+            position: absolute;
+            inset: 0;
+            opacity: 0.2;
+            background: linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%);
+            transform: skewX(45deg);
+        }
+        .bg-effect-7 .streak-1 {
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0) 36%, rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0) 36%, rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%);
+        }
+        .bg-effect-7 .streak-2 {
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 11%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.55) 41%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 11%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.55) 41%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%);
+        }
+        .bg-effect-7 .streak-3 {
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 9%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 28%, rgba(0, 0, 0, 0.424) 40%, rgb(0, 0, 0) 48%, rgba(0, 0, 0, 0.267) 54%, rgba(0, 0, 0, 0.13) 78%, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0) 97%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 9%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 28%, rgba(0, 0, 0, 0.424) 40%, rgb(0, 0, 0) 48%, rgba(0, 0, 0, 0.267) 54%, rgba(0, 0, 0, 0.13) 78%, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0) 97%);
+        }
+        .bg-effect-7 .streak-4 {
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 17%, rgba(0, 0, 0, 0.55) 26%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.13) 69%, rgb(0, 0, 0) 79%, rgba(0, 0, 0, 0) 97%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 17%, rgba(0, 0, 0, 0.55) 26%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.13) 69%, rgb(0, 0, 0) 79%, rgba(0, 0, 0, 0) 97%);
+        }
+        .bg-effect-7 .streak-5 {
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 27%, rgb(0, 0, 0) 42%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 74%, rgb(0, 0, 0) 82%, rgba(0, 0, 0, 0.47) 88%, rgba(0, 0, 0, 0) 97%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 27%, rgb(0, 0, 0) 42%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 74%, rgb(0, 0, 0) 82%, rgba(0, 0, 0, 0.47) 88%, rgba(0, 0, 0, 0) 97%);
+        }
+        .bg-effect-7 .grain-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png");
+            background-size: 149.76px;
+        }
+        .bg-effect-7 .dot-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.2;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        
+/* 8: Interactive Neural Vortex */
+        .bg-effect-8 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #020108;
+        }
+        .bg-effect-8 .vortex-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .bg-effect-8 .hero-overlay-8 {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            pointer-events: none;
+            padding: 1.5rem;
+        }
+        .bg-effect-8 .hero-content-8 {
+            max-width: 90%;
+            text-align: center;
+            pointer-events: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(8, 11, 17, 0.45);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        .bg-effect-8 .hero-h1-8 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            font-family: var(--font-main);
+        }
+        .bg-effect-8 .hero-h2-8 {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            font-family: var(--font-main);
+        }
+        .bg-effect-8 .hero-btn-8 {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: var(--font-main);
+        }
+        .bg-effect-8 .hero-btn-8:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        
+/* 9: Animated Digital Streams */
+        .bg-effect-9 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #020204;
+        }
+        .bg-effect-9 .floor {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            background-image: 
+                linear-gradient(rgba(49, 184, 198, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(49, 184, 198, 0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: center;
+            transform: perspective(150px) rotateX(60deg);
+            transform-origin: bottom center;
+            z-index: 1;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        .bg-effect-9 .main-column {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            transform: translateX(-50%);
+            background: linear-gradient(to bottom, transparent, rgba(49, 184, 198, 0.3) 20%, rgba(49, 184, 198, 0.6) 50%, rgba(49, 184, 198, 0.3) 80%, transparent);
+            box-shadow: 0 0 15px rgba(49, 184, 198, 0.4);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .bg-effect-9 .light-stream-container {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+        }
+        .bg-effect-9 .light-beam {
+            position: absolute;
+            top: -100px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #31b8c6);
+            opacity: 0;
+            animation-name: stream-drop-9, stream-fade-9;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        @keyframes stream-drop-9 {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(450px); }
+        }
+        @keyframes stream-fade-9 {
+            0% { opacity: 0; }
+            30% { opacity: 0.65; }
+            70% { opacity: 0.65; }
+            100% { opacity: 0; }
+        }
+
+        /* Shared Title Overlay */
+        .bg-title-overlay {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            z-index: 5;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-main);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            background: rgba(14, 19, 31, 0.55);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.06);
+        
+        /* Stellar Card Detail Modal */
+        .stellar-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .stellar-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .stellar-modal-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            perspective: 1000px;
+        }
+        .stellar-modal-card {
+            background: #1F2121;
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-out;
+            cursor: pointer;
+        }
+        .stellar-modal-img-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 133.33%; /* 3:4 aspect ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 1.25rem;
+        }
+        .stellar-modal-img-wrap img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: 0 5px 6px rgba(0, 0, 0, 0.05);
+        }
+        .stellar-modal-title {
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1.25rem;
+            font-family: var(--font-main);
+        }
+        .stellar-modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .stellar-modal-btn {
+            flex: 1;
+            height: 38px;
+            border-radius: 8px;
+            border: none;
+            background: #31b8c6;
+            color: #000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            font-family: var(--font-main);
+        }
+        .stellar-modal-btn:hover {
+            opacity: 0.9;
+        }
+        .stellar-modal-btn:active {
+            transform: scale(0.97);
+        }
+        .stellar-modal-btn.favorite-btn {
+            flex: 0 0 38px;
+            background: #31b8c6;
+            color: #000;
+        }
+        .stellar-modal-close {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .stellar-modal-close:hover {
+            color: #ccc;
+        }
+    </style>
+    <!-- Live Preview Requirements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- --- HEADER --- -->
+        <header>
+            <div class="logo-badge">Interactive Showcase</div>
+            <h1>Premium Background Effects</h1>
+            <p>A high-end catalog of beautifully animated background displays. Designed with custom shaders, dynamic canvases, and interactive scroll/hover parallax states.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to copy code?
+            </button>
+        </header>
+
+        <!-- --- SHOWCASE GRID --- -->
+        <main class="showcase-grid" id="grid-container">
+            <!-- Dynamically Rendered by JS -->
+        </main>
+    </div>
+
+    <!-- --- TOAST SYSTEM --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Copying Showcase Snippets</h2>
+                <button class="modal-close" onclick="toggleHelpModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Preview backgrounds:</strong> Hover or move your cursor inside the grid containers to trigger interactive depth, focus offsets, and distortion coordinates.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Get code panels:</strong> Click the <strong>"Get Code"</strong> drawer tab on any display card to toggle its source snippet container.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Inspect snippets:</strong> Click between the **HTML** and **CSS** tab buttons to view either the structural element markup or the synchronized style configurations.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>One-click copying:</strong> Click the **"Copy"** button on the panel to copy the selection directly to your clipboard.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       --- DATABASE OF SNIPPETS & DATA DRIVER ---
+       ========================================================================== -->
+    <script>
+        const BACKGROUND_DATABASE = [
+{
+                id: 1,
+                dependencies: "No Dependency",
+                name: "Cinematic Ken Burns Slider",
+                html: `<div class="bg-effect-1" id="kb-slider-1">
+    <div class="kb-slide active" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="kb-slide" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="kb-slide" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="bg-title-overlay">Ken Burns Slide</div>
+</div>`,
+                css: `.bg-effect-1 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.bg-effect-1 .kb-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    z-index: 1;
+    transform: scale(1.0);
+    transition: opacity 1.5s ease-in-out;
+}
+.bg-effect-1 .kb-slide.active {
+    opacity: 1;
+    z-index: 2;
+    animation: kenburns-anim 9s linear forwards;
+}
+@keyframes kenburns-anim {
+    0% { transform: scale(1.0) translate(0, 0); }
+    100% { transform: scale(1.15) translate(-1.5%, -1%); }
+}
+.bg-title-overlay {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    z-index: 5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    background: rgba(14, 19, 31, 0.55);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+}`
+            },
+{
+                id: 2,
+                dependencies: "No Dependency",
+                name: "Floating Mesh Gradient Overlay",
+                html: `<div class="bg-effect-2">
+    <div class="mesh-bg-image" style="background-image: url('https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="mesh-overlay">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
+    <div class="bg-title-overlay">Mesh Gradients</div>
+</div>`,
+                css: `.bg-effect-2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #06070a;
+}
+.bg-effect-2 .mesh-bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(35%) contrast(110%);
+    opacity: 0.65;
+}
+.bg-effect-2 .mesh-overlay {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: color-dodge;
+    filter: blur(40px);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 2;
+}
+.bg-effect-2 .mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+}
+.bg-effect-2 .blob-1 {
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    top: -20px;
+    left: -20px;
+    animation: mesh-blob-move-1 12s infinite alternate ease-in-out;
+}
+.bg-effect-2 .blob-2 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+    bottom: -40px;
+    right: -20px;
+    animation: mesh-blob-move-2 15s infinite alternate ease-in-out;
+}
+.bg-effect-2 .blob-3 {
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+    top: 30%;
+    left: 35%;
+    animation: mesh-blob-move-3 10s infinite alternate ease-in-out;
+}
+@keyframes mesh-blob-move-1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 30px) scale(1.2); }
+}
+@keyframes mesh-blob-move-2 {
+    0% { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-40px, -50px) scale(0.9); }
+}
+@keyframes mesh-blob-move-3 {
+    0% { transform: translate(0, 0) scale(0.95); }
+    100% { transform: translate(30px, -30px) scale(1.15); }
+}`
+            },
+{
+                id: 3,
+                dependencies: "No Dependency",
+                name: "Interactive Depth Focus",
+                html: `<div class="bg-effect-3">
+    <div class="focus-image" style="background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="focus-overlay"></div>
+    <div class="bg-title-overlay">Focus Blur</div>
+</div>`,
+                css: `.bg-effect-3 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+}
+.bg-effect-3 .focus-image {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.35) saturate(0.5);
+    transform: scale(1.06);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.bg-effect-3:hover .focus-image {
+    filter: blur(0px) brightness(0.85) saturate(1.1);
+    transform: scale(1.0);
+}
+.bg-effect-3 .focus-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.8;
+    transition: opacity 0.8s ease;
+}
+.bg-effect-3:hover .focus-overlay {
+    opacity: 0.3;
+}`
+            },
+{
+                id: 4,
+                dependencies: "No Dependency",
+                name: "Neural Aurora WebGL Shader",
+                html: `<div class="bg-effect-4" id="aurora-wrap-4">
+    <canvas class="aurora-canvas" id="aurora-canvas-4"></canvas>
+    <div class="bg-title-overlay">Neural Aurora</div>
+</div>`,
+                css: `.bg-effect-4 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020205;
+}
+.bg-effect-4 .aurora-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}`
+            },
+{
+                id: 5,
+                dependencies: "Three.js, OrbitControls.js",
+                name: "3D Stellar Starfield",
+                html: `<div class="bg-effect-5" id="stellar-wrap-5">
+    <canvas class="stellar-canvas" id="stellar-canvas-5"></canvas>
+    <div class="card-galaxy-container" id="card-galaxy-container-5"></div>
+    <div class="cosmic-text-overlay">
+        <h2>3D Stellar Card Galaxy</h2>
+        <p>Drag to rotate • Scroll to zoom</p>
+    </div>
+    <div class="bg-title-overlay">Stellar Galaxy</div>
+</div>`,
+                css: `.bg-effect-5 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020205;
+}
+.bg-effect-5 .stellar-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.bg-effect-5 .card-galaxy-container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    perspective: 800px;
+}
+.bg-effect-5 .stellar-card {
+    position: absolute;
+    width: 70px;
+    height: 90px;
+    background: #1F2121;
+    border-radius: 8px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease, border 0.3s ease, transform 0.1s ease;
+    cursor: pointer;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform-origin: center center;
+}
+.bg-effect-5 .stellar-card:hover {
+    box-shadow: 0 10px 20px rgba(49, 184, 198, 0.6), 0 0 12px rgba(49, 184, 198, 0.3);
+    border: 1.5px solid rgba(49, 184, 198, 0.6);
+}
+.bg-effect-5 .stellar-card img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    pointer-events: none;
+}
+.bg-effect-5 .stellar-card p {
+    color: #fff;
+    font-size: 7px;
+    font-weight: 500;
+    margin-top: 3px;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+}
+.bg-effect-5 .cosmic-text-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+    pointer-events: none;
+}
+.bg-effect-5 .cosmic-text-overlay h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+.bg-effect-5 .cosmic-text-overlay p {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+}`
+            },
+{
+                id: 6,
+                dependencies: "Three.js",
+                name: "3D Neon GLSL Hills",
+                html: `<div class="bg-effect-6" id="hills-wrap-6">
+    <canvas class="hills-canvas" id="hills-canvas-6"></canvas>
+    <div class="bg-title-overlay">GLSL Hills</div>
+</div>`,
+                css: `.bg-effect-6 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #030307;
+}
+.bg-effect-6 .hills-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}`
+            },
+{
+                id: 7,
+                dependencies: "No Dependency",
+                name: "Dark Linear Gradient Streaks",
+                html: `<div class="bg-effect-7">
+    <div class="gradient-base">
+        <div class="streak streak-1"></div>
+        <div class="streak streak-2"></div>
+        <div class="streak streak-3"></div>
+        <div class="streak streak-4"></div>
+        <div class="streak streak-5"></div>
+    </div>
+    <div class="grain-overlay"></div>
+    <div class="dot-grid"></div>
+    <div class="bg-title-overlay">Gradient Streaks</div>
+</div>`,
+                css: `.bg-effect-7 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.bg-effect-7 .gradient-base {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(100% 100% at 0% 0%, #2e2e2e 0%, #000 100%);
+    mask-image: radial-gradient(125% 100% at 0% 0%, #000 0%, rgba(0,0,0,0.22) 88%, transparent 100%);
+    -webkit-mask-image: radial-gradient(125% 100% at 0% 0%, #000 0%, rgba(0,0,0,0.22) 88%, transparent 100%);
+}
+.bg-effect-7 .streak {
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+    background: linear-gradient(180deg, #00cfff 0%, rgba(0,207,255,0) 100%);
+    transform: skewX(45deg);
+}
+.bg-effect-7 .streak-1 {
+    mask-image: linear-gradient(90deg, transparent 0%, #000 20%, transparent 36%, #000 55%, rgba(0,0,0,0.13) 67%, #000 78%, transparent 97%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, transparent 36%, #000 55%, rgba(0,0,0,0.13) 67%, #000 78%, transparent 97%);
+}
+.bg-effect-7 .streak-2 {
+    mask-image: linear-gradient(90deg, transparent 11%, #000 25%, rgba(0,0,0,0.55) 41%, rgba(0,0,0,0.13) 67%, #000 78%, transparent 97%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 11%, #000 25%, rgba(0,0,0,0.55) 41%, rgba(0,0,0,0.13) 67%, #000 78%, transparent 97%);
+}
+.bg-effect-7 .streak-3 {
+    mask-image: linear-gradient(90deg, transparent 9%, #000 20%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.42) 40%, #000 48%, rgba(0,0,0,0.26) 54%, rgba(0,0,0,0.13) 78%, #000 88%, transparent 97%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 9%, #000 20%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.42) 40%, #000 48%, rgba(0,0,0,0.26) 54%, rgba(0,0,0,0.13) 78%, #000 88%, transparent 97%);
+}
+.bg-effect-7 .streak-4 {
+    mask-image: linear-gradient(90deg, transparent 0%, #000 17%, rgba(0,0,0,0.55) 26%, #000 35%, transparent 47%, rgba(0,0,0,0.13) 69%, #000 79%, transparent 97%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 17%, rgba(0,0,0,0.55) 26%, #000 35%, transparent 47%, rgba(0,0,0,0.13) 69%, #000 79%, transparent 97%);
+}
+.bg-effect-7 .streak-5 {
+    mask-image: linear-gradient(90deg, transparent 0%, #000 20%, rgba(0,0,0,0.55) 27%, #000 42%, transparent 48%, rgba(0,0,0,0.13) 67%, #000 74%, #000 82%, rgba(0,0,0,0.47) 88%, transparent 97%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, rgba(0,0,0,0.55) 27%, #000 42%, transparent 48%, rgba(0,0,0,0.13) 67%, #000 74%, #000 82%, rgba(0,0,0,0.47) 88%, transparent 97%);
+}
+.bg-effect-7 .grain-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png");
+    background-size: 150px;
+}
+.bg-effect-7 .dot-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0);
+    background-size: 20px 20px;
+}`
+            },
+{
+                id: 8,
+                dependencies: "No Dependency",
+                name: "Interactive Neural Vortex",
+                html: `<div class="bg-effect-8" id="vortex-wrap-8">
+    <canvas class="vortex-canvas" id="vortex-canvas-8"></canvas>
+    <div class="hero-overlay-8">
+        <div class="hero-content-8">
+            <h2 class="hero-h1-8">Step Into the Future of VR</h2>
+            <p class="hero-h2-8">ImmersiaVR delivers breathtaking realism, seamless interaction, and endless possibilities.</p>
+            <a href="#" class="hero-btn-8">Get Started</a>
+        </div>
+    </div>
+    <div class="bg-title-overlay">Neural Vortex</div>
+</div>`,
+                css: `.bg-effect-8 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020108;
+}
+.bg-effect-8 .vortex-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.bg-effect-8 .hero-overlay-8 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+    padding: 1.5rem;
+}
+.bg-effect-8 .hero-content-8 {
+    max-width: 90%;
+    text-align: center;
+    pointer-events: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(8, 11, 17, 0.45);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+.bg-effect-8 .hero-h1-8 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+.bg-effect-8 .hero-h2-8 {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+.bg-effect-8 .hero-btn-8 {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.bg-effect-8 .hero-btn-8:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}`
+            },
+{
+                id: 9,
+                dependencies: "No Dependency",
+                name: "Animated Digital Streams",
+                html: `<div class="bg-effect-9" id="streams-wrap-9">
+    <div class="floor"></div>
+    <div class="main-column"></div>
+    <div class="light-stream-container"></div>
+    <div class="bg-title-overlay">Digital Streams</div>
+</div>`,
+                css: `.bg-effect-9 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020204;
+}
+.bg-effect-9 .floor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background-image: 
+        linear-gradient(rgba(49, 184, 198, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(49, 184, 198, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center;
+    transform: perspective(150px) rotateX(60deg);
+    transform-origin: bottom center;
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: none;
+}
+.bg-effect-9 .main-column {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, rgba(49, 184, 198, 0.3) 20%, rgba(49, 184, 198, 0.6) 50%, rgba(49, 184, 198, 0.3) 80%, transparent);
+    box-shadow: 0 0 15px rgba(49, 184, 198, 0.4);
+    z-index: 2;
+    pointer-events: none;
+}
+.bg-effect-9 .light-stream-container {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+.bg-effect-9 .light-beam {
+    position: absolute;
+    top: -100px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, #31b8c6);
+    opacity: 0;
+    animation-name: stream-drop-9, stream-fade-9;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes stream-drop-9 {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(450px); }
+}
+@keyframes stream-fade-9 {
+    0% { opacity: 0; }
+    30% { opacity: 0.65; }
+    70% { opacity: 0.65; }
+    100% { opacity: 0; }
+}`
+            }
+        ];;
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        BACKGROUND_DATABASE.forEach(bg => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${bg.id}`;
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="card-title">${bg.name}</span>
+                    <span class="card-badge">Background #${bg.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${bg.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${bg.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${bg.id}">
+                    <div class="drawer-tabs">
+                        <button class="tab-btn active" id="tab-html-${bg.id}" onclick="switchTab(${bg.id}, 'html')">HTML</button>
+                        <button class="tab-btn" id="tab-css-${bg.id}" onclick="switchTab(${bg.id}, 'css')">CSS</button>
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${bg.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${bg.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        <div class="code-panel active" id="panel-html-${bg.id}">
+                            <pre><code class="language-html">${escapeHtml(bg.html)}</code></pre>
+                        </div>
+                        <div class="code-panel" id="panel-css-${bg.id}">
+                            <pre><code class="language-css">${escapeHtml(bg.css)}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        // Initialize active components
+        setTimeout(() => {
+            initKenBurnsSlider();
+            initNeuralAurora();
+            initStellarStarfield();
+            initGLSLHills();
+            initNeuralVortex();
+            initDigitalStreams();
+        }, 100);
+
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        
+        // Active states tracks
+        const activeTabs = {}; // Tracks 'html' or 'css' selection per card ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs inside Code Drawer
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+
+            if (tabType === 'html') {
+                htmlTab.classList.add('active');
+                cssTab.classList.remove('active');
+                htmlPanel.classList.add('active');
+                cssPanel.classList.remove('active');
+            } else {
+                htmlTab.classList.remove('active');
+                cssTab.classList.add('active');
+                htmlPanel.classList.remove('active');
+                cssPanel.classList.add('active');
+            }
+        };
+
+        // Clipboard copy system
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const bgData = BACKGROUND_DATABASE.find(b => b.id === id);
+            if (!bgData) return;
+
+            const textToCopy = selectedType === 'html' ? bgData.html : bgData.css;
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast(`Copied Background #${id} ${selectedType.toUpperCase()} code!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                showToast("Failed to copy code. Please copy manually.");
+            });
+        };
+
+        // Global Toast Notification triggers
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Help Modal Controls
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModal = function(e) {
+            const modal = document.getElementById('help-modal');
+            modal.classList.remove('open');
+        };
+
+
+        // ==========================================================================
+        // --- COMPONENT LOGIC & ANIMATIONS ---
+        // ==========================================================================
+
+        // --- 1: NEBULA PARALLAX CONSTELLATION ---
+        function initKenBurnsSlider() {
+            const slider = document.getElementById('kb-slider-1');
+            if (!slider) return;
+
+            const slides = Array.from(slider.querySelectorAll('.kb-slide'));
+            let current = 0;
+
+            const interval = setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 6000);
+
+            slider._cleanup = () => {
+                clearInterval(interval);
+            };
+        }
+
+        function initNeuralAurora() {
+            const wrap = document.getElementById('aurora-wrap-4');
+            if (!wrap) return;
+
+            const canvas = document.getElementById('aurora-canvas-4');
+            if (!canvas) return;
+
+            const gl = canvas.getContext('webgl');
+            if (!gl) return;
+
+            const VS = `
+                attribute vec2 p;
+                void main() {
+                    gl_Position = vec4(p, 0.0, 1.0);
+                }
+            `;
+            
+            const FS = `
+                precision highp float;
+                uniform float iTime;
+                uniform vec2 iResolution;
+
+                #define NUM_OCTAVES 3
+
+                float rand(vec2 n) {
+                    return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+                }
+
+                float noise(vec2 p) {
+                    vec2 ip = floor(p);
+                    vec2 u = fract(p);
+                    u = u*u*(3.0-2.0*u);
+
+                    float res = mix(
+                        mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
+                        mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y);
+                    return res * res;
+                }
+
+                float fbm(vec2 x) {
+                    float v = 0.0;
+                    float a = 0.3;
+                    vec2 shift = vec2(100.0);
+                    mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+                    for (int i = 0; i < NUM_OCTAVES; ++i) {
+                        v += a * noise(x);
+                        x = rot * x * 2.0 + shift;
+                        a *= 0.4;
+                    }
+                    return v;
+                }
+
+                vec4 my_tanh(vec4 x) {
+                    vec4 ex = exp(x);
+                    vec4 emx = exp(-x);
+                    return (ex - emx) / (ex + emx);
+                }
+
+                void main() {
+                    vec2 shake = vec2(sin(iTime * 1.2) * 0.005, cos(iTime * 2.1) * 0.005);
+                    vec2 p = ((gl_FragCoord.xy + shake * iResolution) - iResolution * 0.5) / iResolution.y * mat2(6.0, -4.0, 4.0, 6.0);
+                    vec2 v;
+                    vec4 o = vec4(0.0);
+
+                    float f = 2.0 + fbm(p + vec2(iTime * 5.0, 0.0)) * 0.5;
+
+                    for (int i = 0; i < 35; i++) {
+                        float i_f = float(i);
+                        v = p + cos(vec2(i_f * i_f + (iTime + p.x * 0.08) * 0.025) + i_f * vec2(13.0, 11.0)) * 3.5 + vec2(sin(iTime * 3.0 + i_f) * 0.003, cos(iTime * 3.5 - i_f) * 0.003);
+                        float tailNoise = fbm(v + vec2(iTime * 0.5, i_f)) * 0.3 * (1.0 - (i_f / 35.0));
+                        vec4 auroraColors = vec4(
+                            0.1 + 0.3 * sin(i_f * 0.2 + iTime * 0.4),
+                            0.3 + 0.5 * cos(i_f * 0.3 + iTime * 0.5),
+                            0.7 + 0.3 * sin(i_f * 0.4 + iTime * 0.3),
+                            1.0
+                        );
+                        vec4 currentContribution = auroraColors * exp(sin(i_f * i_f + iTime * 0.8)) / length(max(v, vec2(v.x * f * 0.015, v.y * 1.5)));
+                        float thinnessFactor = smoothstep(0.0, 1.0, i_f / 35.0) * 0.6;
+                        o += currentContribution * (1.0 + tailNoise * 0.8) * thinnessFactor;
+                    }
+
+                    o = my_tanh(pow(o / 100.0, vec4(1.6)));
+                    gl_FragColor = o * 1.5;
+                }
+            `;
+
+            function compile(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+                    console.error("Shader Compile Status Error: ", gl.getShaderInfoLog(s));
+                }
+                return s;
+            }
+
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+            gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+            gl.linkProgram(prog);
+            if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+                console.error("Shader Link Program Status Error: ", gl.getProgramInfoLog(prog));
+            }
+            gl.useProgram(prog);
+
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+            
+            const locP = gl.getAttribLocation(prog, 'p');
+            gl.enableVertexAttribArray(locP);
+            gl.vertexAttribPointer(locP, 2, gl.FLOAT, false, 0, 0);
+
+            const locTime = gl.getUniformLocation(prog, 'iTime');
+            const locRes = gl.getUniformLocation(prog, 'iResolution');
+
+            let time = 0;
+            let last = performance.now();
+            let animId;
+
+            function frame(now) {
+                const dt = Math.min(0.05, (now - last) / 1000);
+                last = now;
+                time += dt;
+
+                const w = canvas.clientWidth, h = canvas.clientHeight;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width = w;
+                    canvas.height = h;
+                    gl.viewport(0, 0, w, h);
+                }
+
+                gl.uniform1f(locTime, time);
+                gl.uniform2f(locRes, canvas.width, canvas.height);
+                gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+                animId = requestAnimationFrame(frame);
+            }
+            animId = requestAnimationFrame(frame);
+
+            wrap._cleanup = () => {
+                cancelAnimationFrame(animId);
+            };
+        }
+
+        function initStellarStarfield() {
+            const wrap = document.getElementById('stellar-wrap-5');
+            if (!wrap) return;
+            const canvas = document.getElementById('stellar-canvas-5');
+            if (!canvas) return;
+            const galaxyContainer = document.getElementById('card-galaxy-container-5');
+            if (!galaxyContainer) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, wrap.clientWidth / wrap.clientHeight, 0.1, 2000);
+            camera.position.set(0, 0, 15);
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x000000, 1);
+
+            // OrbitControls
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enablePan = true;
+            controls.enableZoom = true;
+            controls.enableRotate = true;
+            controls.minDistance = 5;
+            controls.maxDistance = 40;
+            controls.rotateSpeed = 0.5;
+            controls.zoomSpeed = 1.2;
+            controls.panSpeed = 0.8;
+
+            // Starfield background
+            const starsGeometry = new THREE.BufferGeometry();
+            const starsCount = 10000;
+            const positions = new Float32Array(starsCount * 3);
+            for (let i = 0; i < starsCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 2000;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
+            }
+            starsGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7, sizeAttenuation: true });
+            const stars = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(stars);
+
+            // Card Galaxy group
+            const cardGalaxyGroup = new THREE.Group();
+            scene.add(cardGalaxyGroup);
+
+            // Concentric wireframe spheres
+            const sphereMat = (opacity) => new THREE.MeshBasicMaterial({ color: 0x31b8c6, wireframe: true, transparent: true, opacity });
+            
+            const sp1 = new THREE.Mesh(new THREE.SphereGeometry(2, 24, 24), new THREE.MeshBasicMaterial({ color: 0x1a1a2e, wireframe: true, transparent: true, opacity: 0.15 }));
+            const sp2 = new THREE.Mesh(new THREE.SphereGeometry(12, 32, 32), sphereMat(0.05));
+            const sp3 = new THREE.Mesh(new THREE.SphereGeometry(16, 32, 32), sphereMat(0.03));
+            const sp4 = new THREE.Mesh(new THREE.SphereGeometry(20, 32, 32), sphereMat(0.02));
+            cardGalaxyGroup.add(sp1, sp2, sp3, sp4);
+
+            // 20 Cards Array
+            const cards = [
+                { id: "1", imageUrl: "https://i.ibb.co/4ZWcP129/1.png", alt: "Elegant Invitation", title: "Elegant Invitation" },
+                { id: "2", imageUrl: "https://i.ibb.co/TMbhBRcL/2.png", alt: "Modern Design", title: "Modern Design" },
+                { id: "3", imageUrl: "https://i.ibb.co/spXBFdSm/3.png", alt: "Vintage Style", title: "Vintage Style" },
+                { id: "4", imageUrl: "https://i.ibb.co/N2TCN0bC/4.png", alt: "Minimalist", title: "Minimalist" },
+                { id: "5", imageUrl: "https://i.ibb.co/jZkh6q1M/5.png", alt: "Floral Design", title: "Floral Design" },
+                { id: "6", imageUrl: "https://i.ibb.co/6cc7mksr/6.png", alt: "Geometric", title: "Geometric" },
+                { id: "7", imageUrl: "https://i.ibb.co/bjV35jNQ/7.png", alt: "Luxury Gold", title: "Luxury Gold" },
+                { id: "8", imageUrl: "https://i.ibb.co/PZ7WLs7g/8.png", alt: "Rustic Style", title: "Rustic Style" },
+                { id: "9", imageUrl: "https://i.ibb.co/qLR5bQRM/9.png", alt: "Dark Modern", title: "Dark Modern" },
+                { id: "10", imageUrl: "https://i.ibb.co/PdNhw3K/10.png", alt: "Colorful Party", title: "Colorful Party" },
+                { id: "11", imageUrl: "https://i.ibb.co/zWpN1nqJ/11.png", alt: "Geometric", title: "Geometric" },
+                { id: "12", imageUrl: "https://i.ibb.co/fVYnCXgR/12.png", alt: "Luxury Gold", title: "Luxury Gold" },
+                { id: "13", imageUrl: "https://i.ibb.co/1G6jZWcZ/13.png", alt: "Rustic Style", title: "Rustic Style" },
+                { id: "14", imageUrl: "https://i.ibb.co/xKG7m905/14.png", alt: "Dark Modern", title: "Dark Modern" },
+                { id: "15", imageUrl: "https://i.ibb.co/7dJzR3xK/15.png", alt: "Colorful Party", title: "Colorful Party" },
+                { id: "16", imageUrl: "https://i.ibb.co/NdJ1csXB/16.png", alt: "Elegant Script", title: "Elegant Script" },
+                { id: "17", imageUrl: "https://i.ibb.co/8L2Sdt5Q/17.png", alt: "Watercolor Art", title: "Watercolor Art" },
+                { id: "18", imageUrl: "https://i.ibb.co/mC1zxJYq/18.png", alt: "Botanical", title: "Botanical" },
+                { id: "19", imageUrl: "https://i.ibb.co/wryzsKs4/20.png", alt: "Art Deco", title: "Art Deco" },
+                { id: "20", imageUrl: "https://i.ibb.co/1fvnxL3L/19.png", alt: "Marble Luxury", title: "Marble Luxury" }
+            ];
+
+            const dummyObjects = [];
+            const cardDivs = [];
+            const numCards = cards.length;
+            const goldenRatio = (1 + Math.sqrt(5)) / 2;
+
+            for (let i = 0; i < numCards; i++) {
+                const y = 1 - (i / (numCards - 1)) * 2;
+                const radiusAtY = Math.sqrt(1 - y * y);
+                const theta = (2 * Math.PI * i) / goldenRatio;
+                const x = Math.cos(theta) * radiusAtY;
+                const z = Math.sin(theta) * radiusAtY;
+                const layerRadius = 12 + (i % 3) * 4;
+
+                const dummy = new THREE.Object3D();
+                dummy.position.set(x * layerRadius, y * layerRadius, z * layerRadius);
+                cardGalaxyGroup.add(dummy);
+                dummyObjects.push(dummy);
+
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'stellar-card';
+                cardDiv.innerHTML = `
+                    <img src="${cards[i].imageUrl}" alt="${cards[i].alt}">
+                    <p>${cards[i].title}</p>
+                `;
+                cardDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openStellarModal(cards[i]);
+                });
+                galaxyContainer.appendChild(cardDiv);
+                cardDivs.push(cardDiv);
+            }
+
+            // Setup Details Modal Elements
+            let modalOverlay = document.getElementById('stellar-modal');
+            if (!modalOverlay) {
+                modalOverlay = document.createElement('div');
+                modalOverlay.id = 'stellar-modal';
+                modalOverlay.className = 'stellar-modal-overlay';
+                document.body.appendChild(modalOverlay);
+                
+                modalOverlay.addEventListener('click', (e) => {
+                    if (e.target === modalOverlay) {
+                        closeStellarModal();
+                    }
+                });
+            }
+
+            window.openStellarModal = function(card) {
+                modalOverlay.innerHTML = `
+                    <div class="stellar-modal-container">
+                        <button class="stellar-modal-close" onclick="closeStellarModal()">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <div class="stellar-modal-card" id="stellar-modal-card">
+                            <div class="stellar-modal-img-wrap">
+                                <img src="${card.imageUrl}" alt="${card.alt}">
+                            </div>
+                            <h3 class="stellar-modal-title">${card.title}</h3>
+                            <div class="stellar-modal-actions">
+                                <button class="stellar-modal-btn" onclick="alert('Downloading card...')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <span>Download</span>
+                                </button>
+                                <button class="stellar-modal-btn favorite-btn" onclick="toggleStellarFavorite(this)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                modalOverlay.classList.add('open');
+                
+                const cardEl = document.getElementById('stellar-modal-card');
+                cardEl.addEventListener('mousemove', (e) => {
+                    const rect = cardEl.getBoundingClientRect();
+                    const cx = e.clientX - rect.left;
+                    const cy = e.clientY - rect.top;
+                    const rx = (cy - rect.height / 2) / 10;
+                    const ry = (rect.width / 2 - cx) / 10;
+                    cardEl.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                });
+                cardEl.addEventListener('mouseleave', () => {
+                    cardEl.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                });
+            };
+
+            window.closeStellarModal = function() {
+                modalOverlay.classList.remove('open');
+            };
+
+            window.toggleStellarFavorite = function(btn) {
+                const svg = btn.querySelector('svg');
+                if (btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                    svg.setAttribute('fill', 'none');
+                } else {
+                    btn.classList.add('active');
+                    svg.setAttribute('fill', 'currentColor');
+                }
+            };
+
+            const resize = () => {
+                const w = wrap.clientWidth, h = wrap.clientHeight;
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+                renderer.setSize(w, h);
+            };
+            resize();
+            window.addEventListener('resize', resize);
+
+            const THREE_TEMP_VEC = new THREE.Vector3();
+            let animId;
+            const animate = () => {
+                animId = requestAnimationFrame(animate);
+                
+                stars.rotation.y += 0.0001;
+                stars.rotation.x += 0.00005;
+                
+                // Slow galaxy spin
+                cardGalaxyGroup.rotation.y += 0.002;
+                
+                controls.update();
+                renderer.render(scene, camera);
+
+                // Project cards 3D coordinates to 2D CSS screen coordinates
+                dummyObjects.forEach((dummy, i) => {
+                    dummy.getWorldPosition(THREE_TEMP_VEC);
+                    THREE_TEMP_VEC.project(camera);
+                    
+                    // Behind camera?
+                    if (THREE_TEMP_VEC.z > 1 || THREE_TEMP_VEC.z < -1) {
+                        cardDivs[i].style.display = 'none';
+                    } else {
+                        cardDivs[i].style.display = 'flex';
+                        const px = (THREE_TEMP_VEC.x * 0.5 + 0.5) * wrap.clientWidth;
+                        const py = (-(THREE_TEMP_VEC.y * 0.5) + 0.5) * wrap.clientHeight;
+                        
+                        dummy.getWorldPosition(THREE_TEMP_VEC);
+                        const dist = camera.position.distanceTo(THREE_TEMP_VEC);
+                        const scale = 15 / dist;
+                        
+                        cardDivs[i].style.left = `${px}px`;
+                        cardDivs[i].style.top = `${py}px`;
+                        cardDivs[i].style.transform = `translate(-50%, -50%) scale(${scale * 0.75})`;
+                        cardDivs[i].style.zIndex = Math.floor(1000 - dist * 10);
+                        cardDivs[i].style.opacity = Math.max(0.15, Math.min(1.0, (30 - dist) / 20));
+                    }
+                });
+            };
+            animate();
+
+            wrap._cleanup = () => {
+                cancelAnimationFrame(animId);
+                window.removeEventListener('resize', resize);
+                controls.dispose();
+                starsGeometry.dispose();
+                starsMaterial.dispose();
+                renderer.dispose();
+            };
+        }
+
+        function initGLSLHills() {
+            const wrap = document.getElementById('hills-wrap-6');
+            if (!wrap) return;
+            const canvas = document.getElementById('hills-canvas-6');
+            if (!canvas) return;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false });
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 1, 1000);
+            
+            const uniforms = {
+                time: { type: 'f', value: 0 }
+            };
+
+            const vertexShader = `
+                attribute vec3 position;
+                uniform mat4 projectionMatrix;
+                uniform mat4 modelViewMatrix;
+                uniform float time;
+                varying vec3 vPosition;
+
+                mat4 rotateMatrixX(float radian) {
+                    return mat4(
+                        1.0, 0.0, 0.0, 0.0,
+                        0.0, cos(radian), -sin(radian), 0.0,
+                        0.0, sin(radian), cos(radian), 0.0,
+                        0.0, 0.0, 0.0, 1.0
+                    );
+                }
+
+                vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+                vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+                vec3 fade(vec3 t) { return t*t*t*(t*(t*6.0-15.0)+10.0); }
+
+                float cnoise(vec3 P) {
+                    vec3 Pi0 = floor(P);
+                    vec3 Pi1 = Pi0 + vec3(1.0);
+                    Pi0 = mod289(Pi0);
+                    Pi1 = mod289(Pi1);
+                    vec3 Pf0 = fract(P);
+                    vec3 Pf1 = Pf0 - vec3(1.0);
+                    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+                    vec4 iy = vec4(Pi0.yy, Pi1.yy);
+                    vec4 iz0 = Pi0.zzzz;
+                    vec4 iz1 = Pi1.zzzz;
+
+                    vec4 ixy = permute(permute(ix) + iy);
+                    vec4 ixy0 = permute(ixy + iz0);
+                    vec4 ixy1 = permute(ixy + iz1);
+
+                    vec4 gx0 = ixy0 * (1.0 / 7.0);
+                    vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;
+                    gx0 = fract(gx0);
+                    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+                    vec4 sz0 = step(gz0, vec4(0.0));
+                    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+                    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+                    vec4 gx1 = ixy1 * (1.0 / 7.0);
+                    vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;
+                    gx1 = fract(gx1);
+                    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+                    vec4 sz1 = step(gz1, vec4(0.0));
+                    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+                    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+                    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+                    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+                    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+                    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+                    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+                    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+                    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+                    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+                    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+                    g000 *= norm0.x;
+                    g010 *= norm0.y;
+                    g100 *= norm0.z;
+                    g110 *= norm0.w;
+                    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+                    g001 *= norm1.x;
+                    g011 *= norm1.y;
+                    g101 *= norm1.z;
+                    g111 *= norm1.w;
+
+                    float n000 = dot(g000, Pf0);
+                    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+                    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+                    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+                    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+                    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+                    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+                    float n111 = dot(g111, Pf1);
+
+                    vec3 fade_xyz = fade(Pf0);
+                    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+                    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+                    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
+                    return 2.2 * n_xyz;
+                }
+
+                void main(void) {
+                    vec3 updatePosition = (rotateMatrixX(radians(90.0)) * vec4(position, 1.0)).xyz;
+                    float sin1 = sin(radians(updatePosition.x / 128.0 * 90.0));
+                    vec3 noisePosition = updatePosition + vec3(0.0, 0.0, time * -30.0);
+                    float noise1 = cnoise(noisePosition * 0.08);
+                    float noise2 = cnoise(noisePosition * 0.06);
+                    float noise3 = cnoise(noisePosition * 0.4);
+                    vec3 lastPosition = updatePosition + vec3(0.0,
+                        noise1 * sin1 * 8.0
+                        + noise2 * sin1 * 8.0
+                        + noise3 * (abs(sin1) * 2.0 + 0.5)
+                        + pow(sin1, 2.0) * 40.0, 0.0);
+
+                    vPosition = lastPosition;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(lastPosition, 1.0);
+                }
+            `;
+
+            const fragmentShader = `
+                precision highp float;
+                varying vec3 vPosition;
+
+                void main(void) {
+                    float opacity = (96.0 - length(vPosition)) / 256.0 * 0.6;
+                    vec3 color = vec3(0.6);
+                    gl_FragColor = vec4(color, opacity);
+                }
+            `;
+
+            const geometry = new THREE.PlaneGeometry(256, 256, 256, 256);
+            const material = new THREE.RawShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                transparent: true,
+                wireframe: true
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setClearColor(0x030307, 1);
+
+            camera.position.set(0, 16, 125);
+            camera.lookAt(new THREE.Vector3(0, 28, 0));
+
+            const resize = () => {
+                const w = wrap.clientWidth, h = wrap.clientHeight;
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+                renderer.setSize(w, h);
+            };
+            resize();
+            window.addEventListener('resize', resize);
+
+            let animId;
+            let lastTime = performance.now();
+            function loop() {
+                const now = performance.now();
+                const dt = (now - lastTime) / 1000;
+                lastTime = now;
+
+                uniforms.time.value += dt * 0.5;
+                renderer.render(scene, camera);
+                animId = requestAnimationFrame(loop);
+            }
+            loop();
+
+            wrap._cleanup = () => {
+                cancelAnimationFrame(animId);
+                window.removeEventListener('resize', resize);
+                geometry.dispose();
+                material.dispose();
+                renderer.dispose();
+            };
+        }
+
+        function initNeuralVortex() {
+            const wrap = document.getElementById('vortex-wrap-8');
+            if (!wrap) return;
+            const canvas = document.getElementById('vortex-canvas-8');
+            if (!canvas) return;
+
+            const gl = canvas.getContext('webgl');
+            if (!gl) return;
+
+            const VS = `
+                precision mediump float;
+                attribute vec2 a_position;
+                varying vec2 vUv;
+                void main() {
+                    vUv = .5 * (a_position + 1.);
+                    gl_Position = vec4(a_position, 0.0, 1.0);
+                }
+            `;
+
+            const FS = `
+                precision mediump float;
+                varying vec2 vUv;
+                uniform float u_time;
+                uniform float u_ratio;
+                uniform vec2 u_pointer_position;
+                uniform float u_scroll_progress;
+                
+                vec2 rotate(vec2 uv, float th) {
+                    return mat2(cos(th), sin(th), -sin(th), cos(th)) * uv;
+                }
+                
+                float neuro_shape(vec2 uv, float t, float p) {
+                    vec2 sine_acc = vec2(0.);
+                    vec2 res = vec2(0.);
+                    float scale = 8.;
+                    for (int j = 0; j < 15; j++) {
+                        uv = rotate(uv, 1.);
+                        sine_acc = rotate(sine_acc, 1.);
+                        vec2 layer = uv * scale + float(j) + sine_acc - t;
+                        sine_acc += sin(layer) + 2.4 * p;
+                        res += (.5 + .5 * cos(layer)) / scale;
+                        scale *= (1.2);
+                    }
+                    return res.x + res.y;
+                }
+                
+                void main() {
+                    vec2 uv = .5 * vUv;
+                    uv.x *= u_ratio;
+                    vec2 pointer = vUv - u_pointer_position;
+                    pointer.x *= u_ratio;
+                    float p = clamp(length(pointer), 0., 1.);
+                    p = .5 * pow(1. - p, 2.);
+                    float t = .001 * u_time;
+                    vec3 color = vec3(0.);
+                    float noise = neuro_shape(uv, t, p);
+                    noise = 1.2 * pow(noise, 3.);
+                    noise += pow(noise, 10.);
+                    noise = max(.0, noise - .5);
+                    noise *= (1. - length(vUv - .5));
+                    color = vec3(0.5, 0.15, 0.65);
+                    color = mix(color, vec3(0.02, 0.7, 0.9), 0.32 + 0.16 * sin(2.0 * u_scroll_progress + 1.2));
+                    color += vec3(0.15, 0.0, 0.6) * sin(2.0 * u_scroll_progress + 1.5);
+                    color = color * noise;
+                    gl_FragColor = vec4(color, noise);
+                }
+            `;
+
+            function compile(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+            gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+
+            const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+            const locP = gl.getAttribLocation(prog, 'a_position');
+            gl.enableVertexAttribArray(locP);
+            gl.vertexAttribPointer(locP, 2, gl.FLOAT, false, 0, 0);
+
+            const uTime = gl.getUniformLocation(prog, 'u_time');
+            const uRatio = gl.getUniformLocation(prog, 'u_ratio');
+            const uPointerPosition = gl.getUniformLocation(prog, 'u_pointer_position');
+            const uScrollProgress = gl.getUniformLocation(prog, 'u_scroll_progress');
+
+            let pointerX = wrap.clientWidth / 2, pointerY = wrap.clientHeight / 2;
+            let targetX = pointerX, targetY = pointerY;
+
+            const resize = () => {
+                canvas.width = wrap.clientWidth;
+                canvas.height = wrap.clientHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                gl.uniform1f(uRatio, canvas.width / canvas.height);
+            };
+            resize();
+            window.addEventListener('resize', resize);
+
+            const mousemove = (e) => {
+                const rect = wrap.getBoundingClientRect();
+                targetX = e.clientX - rect.left;
+                targetY = e.clientY - rect.top;
+            };
+            wrap.addEventListener('mousemove', mousemove);
+
+            let animId;
+            function loop() {
+                const currentTime = performance.now();
+                pointerX += (targetX - pointerX) * 0.1;
+                pointerY += (targetY - pointerY) * 0.1;
+
+                gl.uniform1f(uTime, currentTime);
+                gl.uniform2f(uPointerPosition, pointerX / wrap.clientWidth, 1.0 - (pointerY / wrap.clientHeight));
+                gl.uniform1f(uScrollProgress, window.pageYOffset / (2 * window.innerHeight));
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+                animId = requestAnimationFrame(loop);
+            }
+            loop();
+
+            wrap._cleanup = () => {
+                cancelAnimationFrame(animId);
+                window.removeEventListener('resize', resize);
+                wrap.removeEventListener('mousemove', mousemove);
+                gl.deleteProgram(prog);
+            };
+        }
+
+        function initDigitalStreams() {
+            const wrap = document.getElementById('streams-wrap-9');
+            if (!wrap) return;
+            const container = wrap.querySelector('.light-stream-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+            const count = 60;
+            for (let i = 0; i < count; i++) {
+                const beam = document.createElement('div');
+                beam.className = 'light-beam';
+                beam.style.left = `${Math.random() * 100}%`;
+                beam.style.width = `${Math.floor(Math.random() * 3) + 1}px`;
+                
+                const riseDur = Math.random() * 2 + 4;
+                const fadeDur = riseDur;
+                const dropDur = Math.random() * 3 + 3;
+                
+                beam.style.animationDuration = `${dropDur}s, ${fadeDur}s`;
+                beam.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(beam);
+            }
+        }
+    </script>
+</body>
+</html>
