@@ -1460,6 +1460,398 @@
         .border-effect-17:hover .border-text {
             color: #fff;
         }
+
+        /* 18: Glow Card (React Component equivalent) */
+        .border-effect-18[data-glow] {
+            --border-size: calc(var(--border, 2) * 1px);
+            --spotlight-size: calc(var(--size, 150) * 1px);
+            --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+            --backdrop: rgba(255, 255, 255, 0.05);
+            --backup-border: var(--backdrop);
+            
+            background-image: radial-gradient(
+                var(--spotlight-size) var(--spotlight-size) at
+                calc(var(--x, 0) * 1px)
+                calc(var(--y, 0) * 1px),
+                hsl(var(--hue, 210) 100% 70% / 0.1), transparent
+            );
+            background-color: var(--backdrop);
+            background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+            background-position: 50% 50%;
+            background-attachment: fixed;
+            border: var(--border-size) solid var(--backup-border);
+            position: relative;
+            touch-action: none;
+        }
+
+        .border-effect-18[data-glow]::before,
+        .border-effect-18[data-glow]::after {
+            pointer-events: none;
+            content: "";
+            position: absolute;
+            inset: calc(var(--border-size) * -1);
+            border: var(--border-size) solid transparent;
+            border-radius: calc(var(--radius, 14) * 1px);
+            background-attachment: fixed;
+            background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .border-effect-18[data-glow]::before {
+            background-image: radial-gradient(
+                calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+                calc(var(--x, 0) * 1px)
+                calc(var(--y, 0) * 1px),
+                hsl(var(--hue, 210) 100% 50% / 1), transparent 100%
+            );
+            filter: brightness(2);
+        }
+
+        .border-effect-18[data-glow]::after {
+            background-image: radial-gradient(
+                calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+                calc(var(--x, 0) * 1px)
+                calc(var(--y, 0) * 1px),
+                hsl(0 100% 100% / 1), transparent 100%
+            );
+        }
+
+        .border-effect-18 {
+            --base: 280;
+            --spread: 240;
+            --radius: 12;
+            --border: 2;
+            width: 130px;
+            height: 150px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 12px;
+            cursor: pointer;
+            box-shadow: 0 1rem 2rem -1rem black;
+        }
+        
+        .border-effect-18 .glow-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .border-effect-18 .glow-badge {
+            font-size: 0.6rem;
+            color: #a855f7;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .border-effect-18 .glow-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+        }
+
+        .border-effect-18 .glow-desc {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* 19: Sparkles Border */
+        .border-effect-19 {
+            position: relative;
+            width: 240px;
+            height: 120px;
+            background: #03000a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .border-effect-19 canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            -webkit-mask-image: radial-gradient(circle, white 40%, transparent 80%);
+            mask-image: radial-gradient(circle, white 40%, transparent 80%);
+        }
+
+        .border-effect-19 .sparkles-content-19 {
+            z-index: 2;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .border-effect-19 .sparkles-title-19 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 4px;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .border-effect-19 .sparkles-divider-19 {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #818cf8, transparent);
+            margin: 6px auto 0;
+            box-shadow: 0 0 8px #818cf8;
+        }
+
+        /* 20: CTA Section Glow */
+        .border-effect-20 {
+            position: relative;
+            width: 240px;
+            height: 140px;
+            background: #09090b;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 12px;
+        }
+
+        .border-effect-20 .cta-glow-20 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            width: 160px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+            pointer-events: none;
+            filter: blur(10px);
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .border-effect-20:hover .cta-glow-20 {
+            transform: translate(-50%, -20%) scale(1.2);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+        }
+
+        .border-effect-20 .cta-content-20 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .border-effect-20 .cta-badge-20 {
+            font-size: 0.55rem;
+            color: #818cf8;
+            background: rgba(129, 140, 248, 0.1);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            padding: 1px 6px;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .border-effect-20 .cta-title-20 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+        }
+
+        .border-effect-20 .cta-desc-20 {
+            font-size: 0.65rem;
+            color: #a1a1aa;
+            margin: 0 0 2px;
+            max-width: 180px;
+            line-height: 1.2;
+        }
+
+        .border-effect-20 .cta-button-20 {
+            font-size: 0.65rem;
+            color: #000;
+            background: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 21: CTA Section Glow v2 Preview CSS */
+        .border-effect-21 {
+            position: relative;
+            width: 240px;
+            height: 140px;
+            background: #0d0e12;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-21:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .border-effect-21 .cta-glow-21 {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: 0 0 40px 8px rgba(99, 102, 241, 0.12);
+            opacity: 0.4;
+            transition: opacity 0.3s, box-shadow 0.3s;
+        }
+
+        .border-effect-21:hover .cta-glow-21 {
+            opacity: 0.9;
+            box-shadow: 0 0 50px 12px rgba(99, 102, 241, 0.35);
+        }
+
+        .border-effect-21 .cta-content-21 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .border-effect-21 .cta-badge-21 {
+            font-size: 0.52rem;
+            color: #a5b4fc;
+            background: rgba(165, 180, 252, 0.08);
+            border: 1px solid rgba(165, 180, 252, 0.15);
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .border-effect-21 .cta-title-21 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin: 0;
+        }
+
+        .border-effect-21 .cta-desc-21 {
+            font-size: 0.6rem;
+            color: #9ca3af;
+            margin: 0 0 2px;
+            max-width: 200px;
+            line-height: 1.25;
+        }
+
+        .border-effect-21 .cta-button-21 {
+            font-size: 0.6rem;
+            color: #ffffff;
+            background: #4f46e5;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+            transition: background-color 0.2s;
+        }
+
+        /* 22: Shine Border Preview CSS */
+        .border-effect-22 {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            background: #09090b;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .border-effect-22:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .border-effect-22 .shine-overlay-22 {
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: radial-gradient(circle at center, transparent, transparent, #A07CFE, #FE8FB5, #FFBE7B, transparent, transparent);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: shine-border-anim 4s infinite linear;
+        }
+
+        .border-effect-22 .card-content-22 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .border-effect-22 .card-title-22 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+        }
+
+        .border-effect-22 .card-desc-22 {
+            font-size: 0.55rem;
+            color: #a1a1aa;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        @keyframes shine-border-anim {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
     </style>
     <!-- WebGL Requirements -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -2691,6 +3083,1237 @@ if (card) {
         card.style.setProperty('--y', \`\${y}px\`);
     });
 }`
+            },
+            {
+                id: 18,
+                dependencies: "React / CSS / Tailwind",
+                name: "Interactive Glow Card (React)",
+                html: `import React, { useEffect, useRef, ReactNode } from 'react';
+
+interface GlowCardProps {
+  children: ReactNode;
+  className?: string;
+  glowColor?: 'blue' | 'purple' | 'green' | 'red' | 'orange';
+  size?: 'sm' | 'md' | 'lg';
+  width?: string | number;
+  height?: string | number;
+  customSize?: boolean; // When true, ignores size prop and uses width/height or className
+}
+
+const glowColorMap = {
+  blue: { base: 220, spread: 200 },
+  purple: { base: 280, spread: 300 },
+  green: { base: 120, spread: 200 },
+  red: { base: 0, spread: 200 },
+  orange: { base: 30, spread: 200 }
+};
+
+const sizeMap = {
+  sm: 'w-48 h-64',
+  md: 'w-64 h-80',
+  lg: 'w-80 h-96'
+};
+
+const GlowCard: React.FC<GlowCardProps> = ({ 
+  children, 
+  className = '', 
+  glowColor = 'blue',
+  size = 'md',
+  width,
+  height,
+  customSize = false
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const syncPointer = (e: PointerEvent) => {
+      const { clientX: x, clientY: y } = e;
+      
+      if (cardRef.current) {
+        cardRef.current.style.setProperty('--x', x.toFixed(2));
+        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+        cardRef.current.style.setProperty('--y', y.toFixed(2));
+        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+      }
+    };
+
+    document.addEventListener('pointermove', syncPointer);
+    return () => document.removeEventListener('pointermove', syncPointer);
+  }, []);
+
+  const { base, spread } = glowColorMap[glowColor];
+
+  // Determine sizing
+  const getSizeClasses = () => {
+    if (customSize) {
+      return ''; // Let className or inline styles handle sizing
+    }
+    return sizeMap[size];
+  };
+
+  const getInlineStyles = () => {
+    const baseStyles = {
+      '--base': base,
+      '--spread': spread,
+      '--radius': '14',
+      '--border': '3',
+      '--backdrop': 'hsl(0 0% 60% / 0.12)',
+      '--backup-border': 'var(--backdrop)',
+      '--size': '200',
+      '--outer': '1',
+      '--border-size': 'calc(var(--border, 2) * 1px)',
+      '--spotlight-size': 'calc(var(--size, 150) * 1px)',
+      '--hue': 'calc(var(--base) + (var(--xp, 0) * var(--spread, 0)))',
+      backgroundImage: \`radial-gradient(
+        var(--spotlight-size) var(--spotlight-size) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
+      )\`,
+      backgroundColor: 'var(--backdrop, transparent)',
+      backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
+      backgroundPosition: '50% 50%',
+      backgroundAttachment: 'fixed',
+      border: 'var(--border-size) solid var(--backup-border)',
+      position: 'relative' as const,
+      touchAction: 'none' as const,
+    };
+
+    // Add width and height if provided
+    if (width !== undefined) {
+      baseStyles.width = typeof width === 'number' ? \`\${width}px\` : width;
+    }
+    if (height !== undefined) {
+      baseStyles.height = typeof height === 'number' ? \`\${height}px\` : height;
+    }
+
+    return baseStyles;
+  };
+
+  const beforeAfterStyles = \`
+    [data-glow]::before,
+    [data-glow]::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      inset: calc(var(--border-size) * -1);
+      border: var(--border-size) solid transparent;
+      border-radius: calc(var(--radius) * 1px);
+      background-attachment: fixed;
+      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+      mask-clip: padding-box, border-box;
+      mask-composite: intersect;
+    }
+    
+    [data-glow]::before {
+      background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+      );
+      filter: brightness(2);
+    }
+    
+    [data-glow]::after {
+      background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+      );
+    }
+    
+    [data-glow] [data-glow] {
+      position: absolute;
+      inset: 0;
+      will-change: filter;
+      opacity: var(--outer, 1);
+      border-radius: calc(var(--radius) * 1px);
+      border-width: calc(var(--border-size) * 20);
+      filter: blur(calc(var(--border-size) * 10));
+      background: none;
+      pointer-events: none;
+      border: none;
+    }
+    
+    [data-glow] > [data-glow]::before {
+      inset: -10px;
+      border-width: 10px;
+    }
+  \`;
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
+      <div
+        ref={cardRef}
+        data-glow
+        style={getInlineStyles()}
+        className={\`
+          \${getSizeClasses()}
+          \${!customSize ? 'aspect-[3/4]' : ''}
+          rounded-2xl 
+          relative 
+          grid 
+          grid-rows-[1fr_auto] 
+          shadow-[0_1rem_2rem_-1rem_black] 
+          p-4 
+          gap-4 
+          backdrop-blur-[5px]
+          \${className}
+        \`}
+      >
+        <div ref={innerRef} data-glow></div>
+        {children}
+      </div>
+    </>
+  );
+};
+
+export { GlowCard }`,
+                previewHtml: `<div class="border-box border-effect-18" data-glow id="glow-card-18">
+    <div class="glow-inner" data-glow></div>
+    <div class="glow-content">
+        <span class="glow-badge">Featured</span>
+        <h3 class="glow-title">Glow Card</h3>
+        <p class="glow-desc">Interactive border & background</p>
+    </div>
+</div>`,
+                css: `[data-glow] {
+  --border-size: calc(var(--border, 2) * 1px);
+  --spotlight-size: calc(var(--size, 150) * 1px);
+  --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+  --backdrop: hsl(0 0% 60% / 0.12);
+  --backup-border: var(--backdrop);
+  
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
+  );
+  background-color: var(--backdrop);
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  border: var(--border-size) solid var(--backup-border);
+  position: relative;
+  touch-action: none;
+}
+
+[data-glow]::before,
+[data-glow]::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: calc(var(--radius, 14) * 1px);
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  /* Vendor prefixed equivalents for optimal compatibility */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+[data-glow]::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+  );
+  filter: brightness(2);
+}
+
+[data-glow]::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+  );
+}
+
+[data-glow] [data-glow] {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+  opacity: var(--outer, 1);
+  border-radius: calc(var(--radius, 14) * 1px);
+  border-width: calc(var(--border-size) * 20);
+  filter: blur(calc(var(--border-size) * 10));
+  background: none;
+  pointer-events: none;
+  border: none;
+}
+
+[data-glow] > [data-glow]::before {
+  inset: -10px;
+  border-width: 10px;
+}
+`,
+                js: `// Pointer sync for Glow Cards
+const syncPointer = ({ x, y }) => {
+  document.documentElement.style.setProperty('--x', x.toFixed(2));
+  document.documentElement.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+  document.documentElement.style.setProperty('--y', y.toFixed(2));
+  document.documentElement.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+};
+document.body.addEventListener('pointermove', syncPointer);`
+            },
+            {
+                id: 19,
+                dependencies: "React / tsparticles / Framer Motion",
+                name: "Sparkles Core (React)",
+                html: `"use client";
+import React, { useId, useMemo } from "react";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { Container, SingleOrMultiple } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import { cn } from "@/lib/utils";
+import { motion, useAnimation } from "framer-motion";
+
+type ParticlesProps = {
+  id?: string;
+  className?: string;
+  background?: string;
+  particleSize?: number;
+  minSize?: number;
+  maxSize?: number;
+  speed?: number;
+  particleColor?: string;
+  particleDensity?: number;
+};
+export const SparklesCore = (props: ParticlesProps) => {
+  const {
+    id,
+    className,
+    background,
+    minSize,
+    maxSize,
+    speed,
+    particleColor,
+    particleDensity,
+  } = props;
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+  const controls = useAnimation();
+
+  const particlesLoaded = async (container?: Container) => {
+    if (container) {
+      controls.start({
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+  };
+
+  const generatedId = useId();
+  return (
+    <motion.div animate={controls} className={cn("opacity-0", className)}>
+      {init && (
+        <Particles
+          id={id || generatedId}
+          className={cn("h-full w-full")}
+          particlesLoaded={particlesLoaded}
+          options={{
+            background: {
+              color: {
+                value: background || "#0d47a1",
+              },
+            },
+            fullScreen: {
+              enable: false,
+              zIndex: 1,
+            },
+
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: false,
+                  mode: "repulse",
+                },
+                resize: true as any,
+              },
+              modes: {
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              bounce: {
+                horizontal: {
+                  value: 1,
+                },
+                vertical: {
+                  value: 1,
+                },
+              },
+              collisions: {
+                absorb: {
+                  speed: 2,
+                },
+                bounce: {
+                  horizontal: {
+                    value: 1,
+                  },
+                  vertical: {
+                    value: 1,
+                  },
+                },
+                enable: false,
+                maxSpeed: 50,
+                mode: "bounce",
+                overlap: {
+                  enable: true,
+                  retries: 0,
+                },
+              },
+              color: {
+                value: particleColor || "#ffffff",
+                animation: {
+                  h: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                  s: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                  l: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                },
+              },
+              effect: {
+                close: true,
+                fill: true,
+                options: {},
+                type: {} as SingleOrMultiple<string> | undefined,
+              },
+              groups: {},
+              move: {
+                angle: {
+                  offset: 0,
+                  value: 90,
+                },
+                attract: {
+                  distance: 200,
+                  enable: false,
+                  rotate: {
+                    x: 3000,
+                    y: 3000,
+                  },
+                },
+                center: {
+                  x: 50,
+                  y: 50,
+                  mode: "percent",
+                  radius: 0,
+                },
+                decay: 0,
+                distance: {},
+                direction: "none",
+                drift: 0,
+                enable: true,
+                gravity: {
+                  acceleration: 9.81,
+                  enable: false,
+                  inverse: false,
+                  maxSpeed: 50,
+                },
+                path: {
+                  clamp: true,
+                  delay: {
+                    value: 0,
+                  },
+                  enable: false,
+                  options: {},
+                },
+                outModes: {
+                  default: "out",
+                },
+                random: false,
+                size: false,
+                speed: {
+                  min: 0.1,
+                  max: 1,
+                },
+                spin: {
+                  acceleration: 0,
+                  enable: false,
+                },
+                straight: false,
+                trail: {
+                  enable: false,
+                  length: 10,
+                  fill: {},
+                },
+                vibrate: false,
+                warp: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  width: 400,
+                  height: 400,
+                },
+                limit: {
+                  mode: "delete",
+                  value: 0,
+                },
+                value: particleDensity || 120,
+              },
+              opacity: {
+                value: {
+                  min: 0.1,
+                  max: 1,
+                },
+                animation: {
+                  count: 0,
+                  enable: true,
+                  speed: speed || 4,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                  mode: "auto",
+                  startValue: "random",
+                  destroy: "none",
+                },
+              },
+              reduceDuplicates: false,
+              shadow: {
+                blur: 0,
+                color: {
+                  value: "#000",
+                },
+                enable: false,
+                offset: {
+                  x: 0,
+                  y: 0,
+                },
+              },
+              shape: {
+                close: true,
+                fill: true,
+                options: {},
+                type: "circle",
+              },
+              size: {
+                value: {
+                  min: minSize || 1,
+                  max: maxSize || 3,
+                },
+                animation: {
+                  count: 0,
+                  enable: false,
+                  speed: 5,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                  mode: "auto",
+                  startValue: "random",
+                  destroy: "none",
+                },
+              },
+              stroke: {
+                width: 0,
+              },
+              zIndex: {
+                value: 0,
+                opacityRate: 1,
+                sizeRate: 1,
+                velocityRate: 1,
+              },
+              destroy: {
+                bounds: {},
+                mode: "none",
+                split: {
+                  count: 1,
+                  factor: {
+                    value: 3,
+                  },
+                  rate: {
+                    value: {
+                      min: 4,
+                      max: 9,
+                    },
+                  },
+                  sizeOffset: true,
+                },
+              },
+              roll: {
+                darken: {
+                  enable: false,
+                  value: 0,
+                },
+                enable: false,
+                enlighten: {
+                  enable: false,
+                  value: 0,
+                },
+                mode: "vertical",
+                speed: 25,
+              },
+              tilt: {
+                value: 0,
+                animation: {
+                  enable: false,
+                  speed: 0,
+                  decay: 0,
+                  sync: false,
+                },
+                direction: "clockwise",
+                enable: false,
+              },
+              twinkle: {
+                lines: {
+                  enable: false,
+                  frequency: 0.05,
+                  opacity: 1,
+                },
+                particles: {
+                  enable: false,
+                  frequency: 0.05,
+                  opacity: 1,
+                },
+              },
+              wobble: {
+                distance: 5,
+                enable: false,
+                speed: {
+                  angle: 50,
+                  move: 10,
+                },
+              },
+              life: {
+                count: 0,
+                delay: {
+                  value: 0,
+                  sync: false,
+                },
+                duration: {
+                  value: 0,
+                  sync: false,
+                },
+              },
+              rotate: {
+                value: 0,
+                animation: {
+                  enable: false,
+                  speed: 0,
+                  decay: 0,
+                  sync: false,
+                },
+                direction: "clockwise",
+                path: false,
+              },
+              orbit: {
+                animation: {
+                  count: 0,
+                  enable: false,
+                  speed: 1,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                },
+                enable: false,
+                opacity: 1,
+                rotation: {
+                  value: 45,
+                },
+                width: 1,
+              },
+              links: {
+                blink: false,
+                color: {
+                  value: "#fff",
+                },
+                consent: false,
+                distance: 100,
+                enable: false,
+                frequency: 1,
+                opacity: 1,
+                shadow: {
+                  blur: 5,
+                  color: {
+                    value: "#000",
+                  },
+                  enable: false,
+                },
+                triangles: {
+                  enable: false,
+                  frequency: 1,
+                },
+                width: 1,
+                warp: false,
+              },
+              repulse: {
+                value: 0,
+                enabled: false,
+                distance: 1,
+                duration: 1,
+                factor: 1,
+                speed: 1,
+              },
+            },
+            detectRetina: true,
+          }}
+        />
+      )}
+    </motion.div>
+  );
+};`,
+                previewHtml: `<div class="border-box border-effect-19" id="sparkles-card-19">
+    <canvas class="sparkles-canvas-19"></canvas>
+    <div class="sparkles-content-19">
+        <h3 class="sparkles-title-19">SPARKLES</h3>
+        <div class="sparkles-divider-19"></div>
+    </div>
+</div>`,
+                css: `.border-effect-19 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #080710;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.border-effect-19:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.border-effect-19 canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.border-effect-19 .border-text {
+    z-index: 2;
+}`
+            },
+            {
+                id: 20,
+                dependencies: "React / Tailwind / shadcn Button",
+                name: "CTA Section Glow (React)",
+                html: `"use client"
+
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
+
+interface CTAProps {
+  badge?: {
+    text: string
+  }
+  title: string
+  description?: string
+  action: {
+    text: string
+    href: string
+    variant?: "default" | "glow"
+  }
+  withGlow?: boolean
+  className?: string
+}
+
+export function CTASection({
+  badge,
+  title,
+  description,
+  action,
+  withGlow = true,
+  className,
+}: CTAProps) {
+  return (
+    <section className={cn("overflow-hidden pt-0 md:pt-0", className)}>
+      <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 px-8 py-12 text-center sm:gap-8 md:py-24">
+        {/* Badge */}
+        {badge && (
+          <Badge
+            variant="outline"
+            className="opacity-0 animate-fade-in-up delay-100"
+          >
+            <span className="text-muted-foreground">{badge.text}</span>
+          </Badge>
+        )}
+
+        {/* Title */}
+        <h2 className="text-3xl font-semibold sm:text-5xl opacity-0 animate-fade-in-up delay-200">
+          {title}
+        </h2>
+
+        {/* Description */}
+        {description && (
+          <p className="text-muted-foreground opacity-0 animate-fade-in-up delay-300">
+            {description}
+          </p>
+        )}
+
+        {/* Action Button */}
+        <Button
+          variant={action.variant || "default"}
+          size="lg"
+          className="opacity-0 animate-fade-in-up delay-500"
+          asChild
+        >
+          <a href={action.href}>{action.text}</a>
+        </Button>
+
+        {/* Glow Effect */}
+        {withGlow && (
+          <div className="fade-top-lg pointer-events-none absolute inset-0 rounded-2xl shadow-glow opacity-0 animate-scale-in delay-700" />
+        )}
+      </div>
+    </section>
+  )
+}`,
+                previewHtml: `<div class="border-box border-effect-20" id="cta-card-20">
+    <div class="cta-glow-20"></div>
+    <div class="cta-content-20">
+        <span class="cta-badge-20">New Release</span>
+        <h4 class="cta-title-20">CTA Section</h4>
+        <p class="cta-desc-20">Unleash your full focus power.</p>
+        <button class="cta-button-20">Get Started</button>
+    </div>
+</div>`,
+                css: `.border-effect-20 {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background: #09090b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.border-effect-20 .cta-glow-20 {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 20px 2px rgba(99, 102, 241, 0.15);
+    opacity: 0.5;
+    transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+.border-effect-20:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+}
+
+.border-effect-20:hover .cta-glow-20 {
+    opacity: 1;
+    box-shadow: 0 0 30px 4px rgba(99, 102, 241, 0.45);
+}
+
+/* Extra Tailwind configuration for CTA Glow animation */
+@keyframes scale-in {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+.shadow-glow {
+  box-shadow: 0 0 50px 10px rgba(99, 102, 241, 0.15);
+}`
+            },
+            {
+                id: 21,
+                dependencies: "React / Tailwind / cn utility",
+                name: "CTA Section Glow v2 (React)",
+                html: `"use client";
+
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
+
+interface CTAProps {
+  badge?: {
+    text: string
+  }
+  title: string
+  description?: string
+  action: {
+    text: string
+    href: string
+    variant?: "default" | "glow"
+  }
+  withGlow?: boolean
+  className?: string
+}
+
+export function CTASection({
+  badge,
+  title,
+  description,
+  action,
+  withGlow = true,
+  className,
+}: CTAProps) {
+  return (
+    <section className={cn("overflow-hidden pt-0 md:pt-0", className)}>
+      <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 px-8 py-12 text-center sm:gap-8 md:py-24">
+        {/* Badge */}
+        {badge && (
+          <Badge
+            variant="outline"
+            className="opacity-0 animate-fade-in-up delay-100"
+          >
+            <span className="text-muted-foreground">{badge.text}</span>
+          </Badge>
+        )}
+
+        {/* Title */}
+        <h2 className="text-3xl font-semibold sm:text-5xl opacity-0 animate-fade-in-up delay-200">
+          {title}
+        </h2>
+
+        {/* Description */}
+        {description && (
+          <p className="text-muted-foreground opacity-0 animate-fade-in-up delay-300">
+            {description}
+          </p>
+        )}
+
+        {/* Action Button */}
+        <Button
+          variant={action.variant || "default"}
+          size="lg"
+          className="opacity-0 animate-fade-in-up delay-500"
+          asChild
+        >
+          <a href={action.href}>{action.text}</a>
+        </Button>
+
+        {/* Glow Effect */}
+        {withGlow && (
+          <div className="fade-top-lg pointer-events-none absolute inset-0 rounded-2xl shadow-glow opacity-0 animate-scale-in delay-700" />
+        )}
+      </div>
+    </section>
+  )
+}`,
+                previewHtml: `<div class="border-box border-effect-21" id="cta-card-21">
+    <div class="cta-glow-21"></div>
+    <div class="cta-content-21">
+        <span class="cta-badge-21">Enterprise</span>
+        <h4 class="cta-title-21">Custom CTA Section</h4>
+        <p class="cta-desc-21">Supercharge your product design process.</p>
+        <button class="cta-button-21">Contact Sales</button>
+    </div>
+</div>`,
+                css: `.border-effect-21 {
+    position: relative;
+    width: 240px;
+    height: 140px;
+    background: #0d0e12;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.border-effect-21:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
+    transform: translateY(-2px);
+}
+
+.border-effect-21 .cta-glow-21 {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 40px 8px rgba(99, 102, 241, 0.12);
+    opacity: 0.4;
+    transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+.border-effect-21:hover .cta-glow-21 {
+    opacity: 0.9;
+    box-shadow: 0 0 50px 12px rgba(99, 102, 241, 0.35);
+}
+
+.border-effect-21 .cta-content-21 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.border-effect-21 .cta-badge-21 {
+    font-size: 0.52rem;
+    color: #a5b4fc;
+    background: rgba(165, 180, 252, 0.08);
+    border: 1px solid rgba(165, 180, 252, 0.15);
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-weight: 500;
+}
+
+.border-effect-21 .cta-title-21 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin: 0;
+}
+
+.border-effect-21 .cta-desc-21 {
+    font-size: 0.6rem;
+    color: #9ca3af;
+    margin: 0 0 2px;
+    max-width: 200px;
+    line-height: 1.25;
+}
+
+.border-effect-21 .cta-button-21 {
+    font-size: 0.6rem;
+    color: #ffffff;
+    background: #4f46e5;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+    transition: background-color 0.2s;
+}`
+            },
+            {
+                id: 22,
+                dependencies: "React / Magic UI / Tailwind",
+                name: "Shine Border (React)",
+                html: `"use client"
+
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { ShineBorder } from "./shine-border"
+
+export function ShineBorderDemo() {
+  return (
+    <Card className="relative w-full max-w-[350px] overflow-hidden">
+      <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+      <CardHeader>
+        <CardTitle>Login</CardTitle>
+        <CardDescription>
+          Enter your credentials to access your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="name@example.com" />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" />
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">Sign In</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
+// --- shine-border.tsx ---
+"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+
+export function ShineBorder({
+  borderWidth = 1,
+  duration = 14,
+  shineColor = "#000000",
+  className,
+  style,
+  ...props
+}) {
+  return (
+    <div
+      style={{
+        "--border-width": \`\${borderWidth}px\`,
+        "--duration": \`\${duration}s\`,
+        backgroundImage: \`radial-gradient(transparent,transparent, \${
+          Array.isArray(shineColor) ? shineColor.join(",") : shineColor
+        },transparent,transparent)\`,
+        backgroundSize: "300% 300%",
+        mask: \`linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)\`,
+        WebkitMask: \`linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)\`,
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+        padding: "var(--border-width)",
+        ...style,
+      }}
+      className={cn(
+        "motion-safe:animate-shine pointer-events-none absolute inset-0 size-full rounded-[inherit] will-change-[background-position]",
+        className
+      )}
+      {...props}
+    />
+  )
+}`,
+                previewHtml: `<div class="border-box border-effect-22" id="shine-card-22">
+    <div class="shine-overlay-22"></div>
+    <div class="card-content-22">
+        <h4 class="card-title-22">Shine Login</h4>
+        <p class="card-desc-22">Multi-color cycling gradient shine border.</p>
+    </div>
+</div>`,
+                css: `.border-effect-22 {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: #09090b;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.border-effect-22:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.border-effect-22 .shine-overlay-22 {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(circle at center, transparent, transparent, #A07CFE, #FE8FB5, #FFBE7B, transparent, transparent);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine-border-anim 4s infinite linear;
+}
+
+.border-effect-22 .card-content-22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    z-index: 2;
+}
+
+.border-effect-22 .card-title-22 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.border-effect-22 .card-desc-22 {
+    font-size: 0.55rem;
+    color: #a1a1aa;
+    margin: 0;
+    line-height: 1.2;
+}
+
+@keyframes shine-border-anim {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}`
             }
         ];
 
@@ -2748,7 +4371,7 @@ if (card) {
                     <span class="button-badge">Border #${btn.id}</span>
                 </div>
                 <div class="preview-canvas">
-                    ${btn.html}
+                    ${btn.previewHtml || btn.html}
                 </div>
                 <div class="card-actions">
                     <button class="action-btn" onclick="toggleCodeDrawer(${btn.id})">
@@ -2912,6 +4535,8 @@ if (card) {
         // Initialize active components
         setTimeout(() => {
             initSpotlightCard();
+            initGlowCard();
+            initSparklesBorder19();
         }, 100);
 
         function initSpotlightCard() {
@@ -2925,6 +4550,85 @@ if (card) {
                     card.style.setProperty('--y', `${y}px`);
                 });
             }
+        }
+
+        function initGlowCard() {
+            const card = document.getElementById('glow-card-18');
+            if (card) {
+                const syncPointer = (e) => {
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    card.style.setProperty('--x', x.toFixed(2));
+                    card.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+                    card.style.setProperty('--y', y.toFixed(2));
+                    card.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+                };
+                document.addEventListener('pointermove', syncPointer);
+            }
+        }
+
+        function initSparklesBorder19() {
+            const card = document.getElementById('sparkles-card-19');
+            if (!card) return;
+            const canvas = card.querySelector('.sparkles-canvas-19');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            let width = canvas.width = card.clientWidth;
+            let height = canvas.height = card.clientHeight;
+
+            const particles = [];
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 2 + 0.5,
+                    speedY: -(Math.random() * 0.4 + 0.1),
+                    opacity: Math.random(),
+                    fadeSpeed: Math.random() * 0.02 + 0.005
+                });
+            }
+
+            let animationId;
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.opacity += p.fadeSpeed;
+
+                    if (p.opacity > 1 || p.opacity < 0) {
+                        p.fadeSpeed = -p.fadeSpeed;
+                    }
+
+                    if (p.y < 0) {
+                        p.y = height;
+                        p.x = Math.random() * width;
+                    }
+
+                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, Math.min(1, p.opacity))})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                animationId = requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            const handleResize = () => {
+                width = canvas.width = card.clientWidth;
+                height = canvas.height = card.clientHeight;
+            };
+            window.addEventListener('resize', handleResize);
+
+            card._cleanup = () => {
+                cancelAnimationFrame(animationId);
+                window.removeEventListener('resize', handleResize);
+            };
         }
 
         // Help Modal Controls

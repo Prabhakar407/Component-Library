@@ -1,6 +1,6 @@
 # Premium Custom Image Display Code Database
 
-This file contains the complete, self-contained HTML and CSS code snippets for all **14 Premium Image Displays** featured in the interactive showcase. Each display is numbered to match the UI labels in the application.
+This file contains the complete, self-contained HTML and CSS code snippets for all **18 Premium Image Displays** featured in the interactive showcase. Each display is numbered to match the UI labels in the application.
 
 ---
 
@@ -18,7 +18,11 @@ This file contains the complete, self-contained HTML and CSS code snippets for a
 11. [Effect #11: Pixel Image](#effect-11-pixel-image)
 12. [Effect #12: 3D Sneaker Rotator](#effect-12-3d-sneaker-rotator)
 13. [Effect #13: 3D Rotating Carousel](#effect-13-3d-rotating-carousel)
-14. [Effect #14: Sticky Grid Scroll](#effect-14-sticky-grid-scroll)
+14. [Effect #14: Get Started Button](#effect-14-get-started-button)
+15. [Effect #15: Interactive Hover Button](#effect-15-interactive-hover-button)
+16. [Effect #16: Blur Fade Gallery](#effect-16-blur-fade-gallery)
+17. [Effect #17: Magnifying Lens Card](#effect-17-magnifying-lens-card)
+18. [Effect #18: 3D Interactive Icon Cloud](#effect-18-3d-interactive-icon-cloud)
 
 ---
 
@@ -1569,38 +1573,228 @@ export function SneakerRotator() {
 
 ---
 
-## Effect #14: Sticky Grid Scroll
-*A structured scroll-driven image grid where movement unfolds progressively within a sticky layout. Utilizes GSAP ScrollTrigger inside a self-contained micro-scroller.*
+## Effect #14: Get Started Button
+*A premium micro-interaction button designed for call-to-actions. Features a warm color transition, custom sliding inline arrow container, and twin opposite opacity arrow indicator translates. Cleanly compatible with Next.js SSR / React client runtimes.*
 
 ### HTML
 ```html
-<div class="sticky-grid-wrap-14">
-    <div class="scroll-container-14" id="scroll-container-14">
-        <div class="scroll-content-14">
-            <div class="sticky-element-14">
-                <div class="content-14">
-                    <h4 class="content-title-14">Sticky Grid</h4>
-                    <p class="content-desc-14">Unfolding progressive movement.</p>
-                </div>
-                <div class="gallery-14">
-                    <div class="grid-14">
-                        <div class="col-14 col-left-14">
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1540968221243-29f5d70540bf?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1596135187959-562c650d98bc?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1628944682084-831f35256163?w=150" alt=""/></div>
-                        </div>
-                        <div class="col-14 col-center-14">
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1590013330451-3946e83e0392?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1590421959604-741d0eec0a2e?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1572613000712-eadc57acbecd?w=150" alt=""/></div>
-                        </div>
-                        <div class="col-14 col-right-14">
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1570097192570-4b49a6736f9f?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1620789550663-2b10e0080354?w=150" alt=""/></div>
-                            <div class="grid-item-14"><img src="https://images.unsplash.com/photo-1617775623669-20bff4ffaa5c?w=150" alt=""/></div>
-                        </div>
-                    </div>
-                </div>
+<div class="get-started-wrap-14">
+  <button class="btn-start-14">
+    <span class="btn-text-14">Get started</span>
+    <div class="btn-arrow-bg-14">
+      <div class="btn-arrow-slide-14">
+        <!-- First ArrowRight (orange, opacity 0, shifts in on hover) -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon-14 arrow-orange-14">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+        <!-- Second ArrowRight (amber, opacity 1, shifts out on hover) -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon-14 arrow-amber-14">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </button>
+</div>
+```
+
+### CSS
+```css
+.get-started-wrap-14 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b0f19;
+    border-radius: 12px;
+}
+
+.btn-start-14 {
+    display: flex;
+    height: 48px;
+    width: 160px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 8px;
+    background-color: #fef3c7;
+    padding: 8px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 100ms ease-in-out;
+    outline: none;
+}
+
+.btn-start-14:hover {
+    background-color: #ea580c;
+}
+
+.btn-text-14 {
+    color: #ea580c;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: color 100ms ease-in-out;
+}
+
+.btn-start-14:hover .btn-text-14 {
+    color: #fef3c7;
+}
+
+.btn-arrow-bg-14 {
+    position: relative;
+    display: flex;
+    height: 28px;
+    width: 28px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    background-color: #ea580c;
+    transition: background-color 100ms ease-in-out;
+}
+
+.btn-start-14:hover .btn-arrow-bg-14 {
+    background-color: #fef3c7;
+}
+
+.btn-arrow-slide-14 {
+    position: absolute;
+    left: 0;
+    display: flex;
+    height: 28px;
+    width: 56px;
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: center;
+    transition: transform 200ms ease-in-out;
+}
+
+.btn-start-14:hover .btn-arrow-slide-14 {
+    transform: translateX(0);
+}
+
+.arrow-icon-14 {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.arrow-orange-14 {
+    color: #ea580c;
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+}
+
+.btn-start-14:hover .arrow-orange-14 {
+    opacity: 1;
+}
+
+.arrow-amber-14 {
+    color: #fef3c7;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+.btn-start-14:hover .arrow-amber-14 {
+    opacity: 0;
+}
+```
+
+### JavaScript
+```javascript
+// Pure CSS interactive states - no JavaScript required.
+```
+
+### React/Next.js (Source Component)
+```tsx
+import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface IGetStartedButtonProps {
+  text: string;
+  className?: string;
+}
+
+export default function GetStartedButton({
+  text = "Get started",
+  className,
+}: IGetStartedButtonProps) {
+  return (
+    <div className="min-h-12 w-48">
+      <button
+        className={cn(
+          "group/start flex h-12 w-40 items-center justify-center gap-3 rounded-lg bg-amber-100 p-2 font-bold transition-colors duration-100 ease-in-out hover:bg-orange-600",
+          className,
+        )}
+      >
+        <span
+          className={cn(
+            "text-orange-600 transition-colors duration-100 ease-in-out group-hover/start:text-amber-100",
+          )}
+        >
+          {text}
+        </span>
+        <div
+          className={cn(
+            "relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full transition-transform duration-100",
+            "bg-orange-600 group-hover/start:bg-amber-100",
+          )}
+        >
+          <div className="absolute left-0 flex h-7 w-14 -translate-x-1/2 items-center justify-center transition-transform duration-200 ease-in-out group-hover/start:translate-x-0">
+            <ArrowRight
+              size={16}
+              className={cn(
+                "size-7 transform p-1 text-orange-600 opacity-0 group-hover/start:opacity-100",
+              )}
+            />
+            <ArrowRight
+              size={16}
+              className={cn(
+                "size-7 transform p-1 text-amber-100 opacity-100 transition-transform duration-300 ease-in-out group-hover/start:opacity-0",
+              )}
+            />
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}
+```
+
+---
+
+## Effect #15: Interactive Bento Gallery
+*A modern, dynamic image grid layout showing photos in a bento-style template. Supports dragging cards to swap their positions, hover effects that overlay captions, and clicking to open a media modal featuring a draggable dock panel for quick navigation.*
+
+### HTML
+```html
+<div class="bento-gallery-wrap-15" id="bento-gallery-wrap-15">
+    <!-- Bento Grid -->
+    <div class="bento-grid-15" id="bento-grid-15">
+        <!-- Rendered dynamically by JavaScript -->
+    </div>
+    
+    <!-- Gallery Modal (hidden by default) -->
+    <div class="bento-modal-15" id="bento-modal-15">
+        <!-- Close Button -->
+        <button class="bento-close-btn-15" id="bento-close-btn-15">&times;</button>
+        
+        <!-- Active Media Wrapper -->
+        <div class="bento-active-media-wrap-15">
+            <div class="bento-active-media-container-15" id="bento-active-media-container-15">
+                <!-- Active Image/Video -->
+            </div>
+        </div>
+
+        <!-- Draggable/Scrollable Dock -->
+        <div class="bento-dock-container-15">
+            <div class="bento-dock-15" id="bento-dock-15">
+                <!-- Mini thumbnails -->
             </div>
         </div>
     </div>
@@ -1609,7 +1803,7 @@ export function SneakerRotator() {
 
 ### CSS
 ```css
-.sticky-grid-wrap-14 {
+.bento-gallery-wrap-15 {
     width: 100%;
     height: 100%;
     position: relative;
@@ -1617,164 +1811,1005 @@ export function SneakerRotator() {
     border-radius: 12px;
     background-color: #0b0f19;
 }
-.scroll-container-14 {
-    width: 100%;
-    height: 220px;
-    overflow-y: auto;
-    position: relative;
-}
-.scroll-content-14 {
-    height: 600px;
-    position: relative;
-}
-.sticky-element-14 {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-.content-14 {
-    position: absolute;
-    z-index: 10;
-    text-align: center;
-    pointer-events: none;
-}
-.content-title-14 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
-    margin: 0;
-}
-.content-desc-14 {
-    font-size: 0.68rem;
-    color: #94a3b8;
-    margin-top: 4px;
-}
-.gallery-14 {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-}
-.grid-14 {
+
+.bento-grid-15 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    width: 180px;
-    height: 180px;
-}
-.col-14 {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.grid-item-14 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 6px;
     width: 100%;
-    aspect-ratio: 1;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    height: 100%;
+    padding: 6px;
 }
-.grid-item-14 img {
+
+.bento-item-15 {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bento-item-15:hover {
+    transform: scale(1.02);
+}
+
+.bento-item-15 img, .bento-item-15 video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
+}
+
+.bento-info-15 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.bento-item-15:hover .bento-info-15 {
+    opacity: 1;
+}
+
+.bento-title-15 {
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bento-desc-15 {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.6rem;
+    margin: 2px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Span classes for bento layout */
+.span-w2-h2 { grid-column: span 2; grid-row: span 2; }
+.span-w1-h1 { grid-column: span 1; grid-row: span 1; }
+.span-w1-h2 { grid-column: span 1; grid-row: span 2; }
+.span-w2-h1 { grid-column: span 2; grid-row: span 1; }
+
+/* Modal styling */
+.bento-modal-15 {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bento-modal-15.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bento-close-btn-15 {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 110;
+    transition: background 0.2s;
+}
+
+.bento-close-btn-15:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.bento-active-media-wrap-15 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px 45px 10px;
+    overflow: hidden;
+}
+
+.bento-active-media-container-15 {
+    position: relative;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    aspect-ratio: 16/9;
+}
+
+.bento-active-media-container-15 img, .bento-active-media-container-15 video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #000;
+}
+
+.bento-active-info-15 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    padding: 8px;
+    color: #fff;
+}
+
+.bento-active-title-15 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bento-active-desc-15 {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 2px 0 0 0;
+}
+
+/* Dock styling */
+.bento-dock-container-15 {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 105;
+    touch-action: none;
+}
+
+.bento-dock-15 {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    gap: 4px;
+}
+
+.bento-dock-item-15 {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.bento-dock-item-15 img, .bento-dock-item-15 video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bento-dock-item-15.active {
+    border-color: #fff;
+    transform: translateY(-4px) scale(1.15);
 }
 ```
 
 ### JavaScript
 ```javascript
 (function() {
-    const scroller = document.getElementById('scroll-container-14');
-    if (!scroller) return;
+    const wrap = document.getElementById('bento-gallery-wrap-15');
+    if (!wrap) return;
 
-    const title = scroller.querySelector('.content-title-14');
-    const desc = scroller.querySelector('.content-desc-14');
-    const grid = scroller.querySelector('.grid-14');
-    const colLeft = scroller.querySelector('.col-left-14');
-    const colCenter = scroller.querySelector('.col-center-14');
-    const colRight = scroller.querySelector('.col-right-14');
-    
-    if (!title || !desc || !grid) return;
+    const grid = document.getElementById('bento-grid-15');
+    const modal = document.getElementById('bento-modal-15');
+    const closeBtn = document.getElementById('bento-close-btn-15');
+    const mediaContainer = document.getElementById('bento-active-media-container-15');
+    const dock = document.getElementById('bento-dock-15');
 
-    // Ensure ScrollTrigger is registered
-    if (typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
+    const mediaItems = [
+        { id: 1, type: 'image', title: 'Mountain Peak', desc: 'Alpine elevations', url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600', span: 'span-w2-h2' },
+        { id: 2, type: 'image', title: 'Mist Forest', desc: 'Pinus sylvestris', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600', span: 'span-w1-h1' },
+        { id: 3, type: 'image', title: 'Sunbeams', desc: 'Fagus sylvatica', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600', span: 'span-w1-h2' },
+        { id: 4, type: 'image', title: 'Green Meadow', desc: 'Poaceae pratensis', url: 'https://images.unsplash.com/photo-1472214222541-d510753a4907?w=600', span: 'span-w1-h1' },
+        { id: 5, type: 'image', title: 'Alpine Valley', desc: 'Ranunculus acris', url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600', span: 'span-w2-h1' }
+    ];
+
+    let items = [...mediaItems];
+
+    function renderGrid() {
+        grid.innerHTML = '';
+        items.forEach((item, index) => {
+            const el = document.createElement('div');
+            el.className = `bento-item-15 ${item.span}`;
+            el.dataset.index = index;
+            el.draggable = false;
+            
+            let mediaHtml = '';
+            if (item.type === 'video') {
+                mediaHtml = `<video src="${item.url}" muted loop playsinline></video>`;
+            } else {
+                mediaHtml = `<img src="${item.url}" alt="${item.title}" loading="lazy"/>`;
+            }
+
+            el.innerHTML = `
+                ${mediaHtml}
+                <div class="bento-info-15">
+                    <h3 class="bento-title-15">${item.title}</h3>
+                    <p class="bento-desc-15">${item.desc}</p>
+                </div>
+            `;
+
+            // Simple Drag & Swap Simulation
+            let startX = 0, startY = 0;
+            let isDragging = false;
+
+            el.addEventListener('pointerdown', (e) => {
+                startX = e.clientX;
+                startY = e.clientY;
+                isDragging = false;
+                el.setPointerCapture(e.pointerId);
+            });
+
+            el.addEventListener('pointerup', (e) => {
+                el.releasePointerCapture(e.pointerId);
+                if (!isDragging) {
+                    openModal(item);
+                }
+            });
+
+            el.addEventListener('pointermove', (e) => {
+                if (e.buttons !== 1) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                if (Math.abs(dx) > 30 || Math.abs(dy) > 30) {
+                    isDragging = true;
+                    const targetIndex = dx > 0 ? Math.min(index + 1, items.length - 1) : Math.max(index - 1, 0);
+                    if (targetIndex !== index) {
+                        const dragged = items[index];
+                        items.splice(index, 1);
+                        items.splice(targetIndex, 0, dragged);
+                        renderGrid();
+                    }
+                }
+            });
+
+            grid.appendChild(el);
+        });
     }
 
-    // Create GSAP timeline
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: scroller.querySelector('.scroll-content-14'),
-            scroller: scroller,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1, // Smooth scrub
+    function openModal(selectedItem) {
+        modal.classList.add('open');
+        updateActiveMedia(selectedItem);
+        renderDock(selectedItem);
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        mediaContainer.innerHTML = '';
+    }
+
+    function updateActiveMedia(item) {
+        mediaContainer.innerHTML = '';
+        let mediaHtml = '';
+        if (item.type === 'video') {
+            mediaHtml = `<video src="${item.url}" autoplay muted loop playsinline></video>`;
+        } else {
+            mediaHtml = `<img src="${item.url}" alt="${item.title}"/>`;
         }
-    });
 
-    // Initial state: hide description
-    gsap.set(desc, { opacity: 0, y: 8 });
+        mediaContainer.innerHTML = `
+            ${mediaHtml}
+            <div class="bento-active-info-15">
+                <h3 class="bento-active-title-15">${item.title}</h3>
+                <p class="bento-active-desc-15">${item.desc}</p>
+            </div>
+        `;
+    }
 
-    // Animate:
-    // 1. Reveal columns (left and right translate from top/bottom, center from opposite)
-    tl.from(colLeft.children, {
-        y: -60,
-        opacity: 0,
-        stagger: 0.08,
-        ease: "power2.out"
-    }, 0)
-    .from(colRight.children, {
-        y: 60,
-        opacity: 0,
-        stagger: 0.08,
-        ease: "power2.out"
-    }, 0)
-    .from(colCenter.children, {
-        y: -60,
-        opacity: 0,
-        stagger: 0.08,
-        ease: "power2.out"
-    }, 0.04);
+    function renderDock(selectedItem) {
+        dock.innerHTML = '';
+        items.forEach(item => {
+            const el = document.createElement('div');
+            el.className = `bento-dock-item-15 ${item.id === selectedItem.id ? 'active' : ''}`;
+            
+            let mediaHtml = '';
+            if (item.type === 'video') {
+                mediaHtml = `<video src="${item.url}" muted></video>`;
+            } else {
+                mediaHtml = `<img src="${item.url}" alt="${item.title}"/>`;
+            }
 
-    // 2. Zoom the grid and push lateral columns
-    tl.to(grid, {
-        scale: 1.6,
-        ease: "power1.inOut"
-    }, 0.25)
-    .to(colLeft, {
-        xPercent: -30,
-        ease: "power1.inOut"
-    }, 0.25)
-    .to(colRight, {
-        xPercent: 30,
-        ease: "power1.inOut"
-    }, 0.25)
-    .to(colCenter, {
-        yPercent: -10,
-        ease: "power1.inOut"
-    }, 0.25);
+            el.innerHTML = mediaHtml;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                updateActiveMedia(item);
+                renderDock(item);
+            };
+            dock.appendChild(el);
+        });
+    }
 
-    // 3. Show desc and button/title styling
-    tl.to(title, {
-        scale: 1.08,
-        color: '#6366f1',
-        ease: "power1.out"
-    }, 0.35)
-    .to(desc, {
-        opacity: 1,
-        y: 0,
-        ease: "power1.out"
-    }, 0.45);
+    closeBtn.onclick = closeModal;
+    renderGrid();
 })();
 ```
+
+### React/Next.js (Source Component)
+```tsx
+"use client"
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+
+// MediaItemType defines the structure of a media item
+interface MediaItemType {
+    id: number;
+    type: string;
+    title: string;
+    desc: string;
+    url: string;
+    span: string;
+}
+
+// MediaItem component renders either a video or image based on item.type
+const MediaItem = ({ 
+    item, 
+    className, 
+    onClick, 
+    autoplay = true 
+}: { 
+    item: MediaItemType; 
+    className?: string; 
+    onClick?: () => void; 
+    autoplay?: boolean; 
+}) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isInView, setIsInView] = useState(false);
+    const [isBuffering, setIsBuffering] = useState(true);
+
+    // Intersection Observer to detect if video is in view and play/pause accordingly
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                setIsInView(entry.isIntersecting);
+            });
+        }, options);
+
+        if (videoRef.current) {
+            observer.observe(videoRef.current);
+        }
+
+        return () => {
+            if (videoRef.current) {
+                observer.unobserve(videoRef.current);
+            }
+        };
+    }, []);
+
+    // Handle video play/pause based on visibility and autoplay setting
+    useEffect(() => {
+        let mounted = true;
+
+        const handleVideoPlay = async () => {
+            if (!videoRef.current || !isInView || !mounted || !autoplay) return;
+
+            try {
+                if (videoRef.current.readyState >= 3) {
+                    setIsBuffering(false);
+                    await videoRef.current.play();
+                } else {
+                    setIsBuffering(true);
+                    const handleCanPlay = () => {
+                        setIsBuffering(false);
+                        if (videoRef.current && mounted && isInView) {
+                            videoRef.current.play().catch(err => console.warn("Deferred video play failed:", err));
+                        }
+                    };
+                    videoRef.current.addEventListener('canplay', handleCanPlay, { once: true });
+                }
+            } catch (error) {
+                console.warn("Video playback failed:", error);
+            }
+        };
+
+        if (isInView) {
+            handleVideoPlay();
+        } else if (videoRef.current) {
+            videoRef.current.pause();
+        }
+
+        return () => {
+            mounted = false;
+        };
+    }, [isInView, autoplay]);
+
+    // Clean up video resources when components unmount
+    useEffect(() => {
+        return () => {
+            if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.removeAttribute('src');
+                videoRef.current.load();
+            }
+        };
+    }, []);
+
+    if (item.type === 'video') {
+        return (
+            <div className={`${className} relative overflow-hidden`}>
+                <video
+                    ref={videoRef}
+                    src={item.url}
+                    className="w-full h-full object-cover"
+                    onClick={onClick}
+                    playsInline
+                    muted
+                    loop
+                    preload="auto"
+                    style={{
+                        opacity: isBuffering ? 0.8 : 1,
+                        transition: 'opacity 0.2s',
+                        transform: 'translateZ(0)',
+                        willChange: 'transform',
+                    }}
+                />
+                {isBuffering && autoplay && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    return (
+        <img
+            src={item.url}
+            alt={item.title}
+            className={`${className} object-cover cursor-pointer`}
+            onClick={onClick}
+            loading="lazy"
+            decoding="async"
+        />
+    );
+};
+
+// GalleryModal component displays the selected media item in a modal
+interface GalleryModalProps {
+    selectedItem: MediaItemType;
+    isOpen: boolean;
+    onClose: () => void;
+    setSelectedItem: (item: MediaItemType | null) => void;
+    mediaItems: MediaItemType[];
+}
+
+const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
+    const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });
+
+    if (!isOpen) return null;
+
+    return (
+        <>
+            {/* Main Modal */}
+            <motion.div
+                initial={{ scale: 0.98 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.98 }}
+                transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30
+                }}
+                className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg 
+                          rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-10"
+            >
+                {/* Main Content */}
+                <div className="h-full flex flex-col">
+                    <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-50/50">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={selectedItem.id}
+                                className="relative w-full aspect-[16/9] max-w-[95%] sm:max-w-[85%] md:max-w-3xl 
+                                         h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md"
+                                initial={{ y: 20, scale: 0.97 }}
+                                animate={{
+                                    y: 0,
+                                    scale: 1,
+                                    transition: {
+                                        type: "spring",
+                                        stiffness: 500,
+                                        damping: 30,
+                                        mass: 0.5
+                                    }
+                                }}
+                                exit={{
+                                    y: 20,
+                                    scale: 0.97,
+                                    transition: { duration: 0.15 }
+                                }}
+                                onClick={onClose}
+                            >
+                                <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" onClick={onClose} />
+                                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 
+                                              bg-gradient-to-t from-black/50 to-transparent">
+                                    <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold">
+                                        {selectedItem.title}
+                                    </h3>
+                                    <p className="text-white/80 text-xs sm:text-sm mt-1">
+                                        {selectedItem.desc}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                </div>
+
+                {/* Close Button */}
+                <motion.button
+                    className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 
+                              p-2 rounded-full bg-gray-200/80 text-gray-700 hover:bg-gray-300/80 
+                              text-xs sm:text-sm backdrop-blur-sm"
+                    onClick={onClose}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <X className="w-3 h-3" />
+                </motion.button>
+            </motion.div>
+
+            {/* Draggable Dock Centering Wrapper */}
+            <div className="fixed inset-x-0 bottom-4 z-50 pointer-events-none flex justify-center">
+                <motion.div
+                    drag
+                    dragMomentum={false}
+                    dragElastic={0.1}
+                    initial={false}
+                    animate={{ x: dockPosition.x, y: dockPosition.y }}
+                    onDragEnd={(_, info) => {
+                        setDockPosition(prev => ({
+                            x: prev.x + info.offset.x,
+                            y: prev.y + info.offset.y
+                        }));
+                    }}
+                    className="pointer-events-auto touch-none relative rounded-xl bg-sky-400/20 backdrop-blur-xl 
+                             border border-blue-400/30 shadow-lg cursor-grab active:cursor-grabbing"
+                >
+                    <div className="flex items-center -space-x-2 px-3 py-2">
+                        {mediaItems.map((item, index) => (
+                            <motion.div
+                                key={item.id}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedItem(item);
+                                }}
+                                style={{
+                                    zIndex: selectedItem.id === item.id ? 30 : mediaItems.length - index,
+                                }}
+                                className={`
+                                    relative group
+                                    w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex-shrink-0 
+                                    rounded-lg overflow-hidden 
+                                    cursor-pointer hover:z-20
+                                    ${selectedItem.id === item.id
+                                        ? 'ring-2 ring-white/70 shadow-lg'
+                                        : 'hover:ring-2 hover:ring-white/30'}
+                                `}
+                                initial={{ rotate: index % 2 === 0 ? -15 : 15 }}
+                                animate={{
+                                    scale: selectedItem.id === item.id ? 1.2 : 1,
+                                    rotate: selectedItem.id === item.id ? 0 : index % 2 === 0 ? -15 : 15,
+                                    y: selectedItem.id === item.id ? -8 : 0,
+                                }}
+                                whileHover={{
+                                    scale: 1.3,
+                                    rotate: 0,
+                                    y: -10,
+                                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                                }}
+                            >
+                                <MediaItem item={item} className="w-full h-full" onClick={() => setSelectedItem(item)} autoplay={false} />
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-white/20" />
+                                {selectedItem.id === item.id && (
+                                    <motion.div
+                                        layoutId="activeGlow"
+                                        className="absolute -inset-2 bg-white/20 blur-xl"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.2 }}
+                                    />
+                                )}
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
+        </>
+    );
+};
+
+interface InteractiveBentoGalleryProps {
+    mediaItems: MediaItemType[];
+    title: string;
+    description: string;
+}
+
+const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
+    const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
+    const [items, setItems] = useState(mediaItems);
+    const [isDragging, setIsDragging] = useState(false);
+
+    return (
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+            <div className="mb-8 text-center">
+                <motion.h1
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent 
+                             bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
+                             dark:from-white dark:via-gray-200 dark:to-white"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {title}
+                </motion.h1>
+                <motion.p
+                    className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                    {description}
+                </motion.p>
+            </div>
+            <AnimatePresence mode="wait">
+                {selectedItem ? (
+                    <GalleryModal
+                        selectedItem={selectedItem}
+                        isOpen={true}
+                        onClose={() => setSelectedItem(null)}
+                        setSelectedItem={setSelectedItem}
+                        mediaItems={items}
+                    />
+                ) : (
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px]"
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: { staggerChildren: 0.1 }
+                            }
+                        }}
+                    >
+                        {items.map((item, index) => (
+                            <motion.div
+                                key={item.id}
+                                layoutId={`media-${item.id}`}
+                                className={`relative overflow-hidden rounded-xl cursor-move ${item.span}`}
+                                onClick={() => !isDragging && setSelectedItem(item)}
+                                variants={{
+                                    hidden: { y: 50, scale: 0.9, opacity: 0 },
+                                    visible: {
+                                        y: 0,
+                                        scale: 1,
+                                        opacity: 1,
+                                        transition: {
+                                            type: "spring",
+                                            stiffness: 350,
+                                            damping: 25,
+                                            delay: index * 0.05
+                                        }
+                                    }
+                                }}
+                                whileHover={{ scale: 1.02 }}
+                                drag
+                                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                                dragElastic={1}
+                                onDragStart={() => setIsDragging(true)}
+                                onDragEnd={(e, info) => {
+                                    setIsDragging(false);
+                                    const moveDistance = info.offset.x + info.offset.y;
+                                    if (Math.abs(moveDistance) > 50) {
+                                        const newItems = [...items];
+                                        const draggedItem = newItems[index];
+                                        const targetIndex = moveDistance > 0 ?
+                                            Math.min(index + 1, items.length - 1) :
+                                            Math.max(index - 1, 0);
+                                        newItems.splice(index, 1);
+                                        newItems.splice(targetIndex, 0, draggedItem);
+                                        setItems(newItems);
+                                    }
+                                }}
+                            >
+                                <MediaItem
+                                    item={item}
+                                    className="absolute inset-0 w-full h-full"
+                                    onClick={() => !isDragging && setSelectedItem(item)}
+                                />
+                                <motion.div
+                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4"
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <div className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                                        <h3 className="relative text-white text-xs sm:text-sm md:text-base font-medium line-clamp-1">
+                                            {item.title}
+                                        </h3>
+                                        <p className="relative text-white/70 text-[10px] sm:text-xs md:text-sm mt-0.5 line-clamp-2">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
+export default InteractiveBentoGallery;
+```
+
+---
+
+## Effect #16: Blur Fade Gallery
+*A grid gallery featuring images that smoothly fade and de-blur into view as they scroll or mount, using staggered viewport animations. Implemented in CSS and vanilla JS for static showcases, and via Framer Motion for React/Next.js.*
+
+### HTML
+```html
+<div class="blur-fade-gallery-wrap-16">
+    <div class="blur-fade-grid-16" id="blur-fade-container-16">
+        <!-- Rendered dynamically by JavaScript -->
+    </div>
+</div>
+```
+
+### CSS
+```css
+.blur-fade-gallery-wrap-16 {
+    width: 100%;
+    height: 100%;
+    background-color: #0a0e17;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blur-fade-grid-16 {
+    column-count: 2;
+    column-gap: 8px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
+}
+
+.blur-fade-grid-16::-webkit-scrollbar {
+    width: 4px;
+}
+
+.blur-fade-grid-16::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.blur-fade-grid-16::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 2px;
+}
+
+@media (min-width: 640px) {
+    .blur-fade-grid-16 {
+        column-count: 3;
+    }
+}
+
+.blur-fade-item-16 {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    will-change: transform, filter, opacity;
+}
+
+.blur-fade-item-16.visible {
+    animation: blurFadeIn16 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.blur-fade-item-16 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blur-fade-item-16:hover img {
+    transform: scale(1.03);
+}
+
+@keyframes blurFadeIn16 {
+    from {
+        filter: blur(6px);
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        filter: blur(0px);
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+### JavaScript
+```javascript
+(function() {
+    const container = document.getElementById('blur-fade-container-16');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const imagesCount = 9;
+
+    for (let i = 0; i < imagesCount; i++) {
+        const isLandscape = i % 2 === 0;
+        const width = isLandscape ? 400 : 300;
+        const height = isLandscape ? 300 : 400;
+        const url = `https://picsum.photos/seed/${i + 1}/${width}/${height}`;
+
+        const item = document.createElement('div');
+        item.className = 'blur-fade-item-16';
+        item.style.animationDelay = `${0.25 + i * 0.05}s`;
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Random stock image ${i + 1}`;
+        img.loading = 'lazy';
+
+        item.appendChild(img);
+        container.appendChild(item);
+    }
+
+    const items = container.querySelectorAll('.blur-fade-item-16');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05 });
+
+    items.forEach(item => observer.observe(item));
+})();
+```
+
+### React/Next.js (Source Component)
+```tsx
+"use client"
+import React, { useRef } from 'react';
+import { motion, useInView, Variants } from 'framer-motion';
+
+// --- MagicUI BlurFade Component ---
+// Note: If using shadcn/MagicUI directly, install via: npx magicui-cli add blur-fade
+// and import from "@/components/magicui/blur-fade" instead of the registry template path.
+interface BlurFadeProps {
+  children: React.ReactNode;
+  className?: string;
+  variant?: {
+    hidden: { y: number };
+    visible: { y: number };
+  };
+  duration?: number;
+  delay?: number;
+  yOffset?: number;
+  inView?: boolean;
+  inViewMargin?: string;
+  blur?: string;
+}
+
+export function BlurFade({
+  children,
+  className,
+  variant,
+  duration = 0.4,
+  delay = 0,
+  yOffset = 6,
+  inView = false,
+  inViewMargin = "-50px",
+  blur = "6px",
+}: BlurFadeProps) {
+  const ref = useRef(null);
+  const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any });
+  const isInView = !inView || inViewResult;
+  const defaultVariants: Variants = {
+    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
+    visible: { y: 0, opacity: 1, filter: "blur(0px)" },
+  };
+  const combinedVariants = variant || defaultVariants;
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={combinedVariants}
+      transition={{
+        delay: 0.04 + delay,
+        duration,
+        ease: "easeOut",
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// --- Demo Component Using BlurFade ---
+const images = Array.from({ length: 9 }, (_, i) => {
+  const isLandscape = i % 2 === 0;
+  const width = isLandscape ? 800 : 600;
+  const height = isLandscape ? 600 : 800;
+  return `https://picsum.photos/seed/${i + 1}/${width}/${height}`;
+});
+
+export function BlurFadeDemo() {
+  return (
+    <section id="photos">
+      <div className="columns-2 gap-4 sm:columns-3">
+        {images.map((imageUrl, idx) => (
+          <BlurFade key={imageUrl} delay={0.25 + idx * 0.05} inView>
+            <img
+              className="mb-4 size-full rounded-lg object-contain"
+              src={imageUrl}
+              alt={`Random stock image ${idx + 1}`}
+            />
+          </BlurFade>
+        ))}
+      </div>
+    </section>
+  );
+}
+```
+
+
 
 
