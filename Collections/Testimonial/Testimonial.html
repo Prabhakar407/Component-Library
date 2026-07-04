@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Testimonial Collection Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false
+            }
+        }
+    </script>
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .button-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Interactive Canvas */
+        .preview-canvas {
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--accent-primary);
+            color: #a5b4fc;
+        }
+
+        /* Code Drawer */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #0b0f17;
+            border-top: 0 solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 480px;
+            border-top-width: 1px;
+            overflow-y: auto;
+        }
+
+        .drawer-tabs {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 1rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 12px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary-glow);
+        }
+
+        .drawer-meta {
+            padding: 8px 1.5rem;
+            background-color: rgba(255, 255, 255, 0.01);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            display: flex;
+            gap: 8px;
+        }
+
+        .drawer-meta-title {
+            color: var(--text-secondary);
+        }
+
+        .drawer-meta-value {
+            color: #a5b4fc;
+            font-weight: 500;
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1.5rem;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        pre {
+            margin: 0;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            background: transparent !important;
+            display: block;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 550;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: var(--success-color);
+        }
+
+        /* --- TOAST SYSTEM --- */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 1000;
+        }
+
+        .toast {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-badge">Premium Collection</div>
+            <h1>Testimonial Showcases</h1>
+            <p>An interactive, premium, fully responsive set of custom modern testimonial structures and designs built with Tailwind CSS & React.</p>
+        </header>
+
+        <!-- SHOWCASE GRID -->
+        <div class="showcase-grid" id="grid-container"></div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script>
+        const TESTIMONIAL_DATABASE = [
+    {
+        id: 1,
+        dependencies: "No Dependency",
+        name: "Bento Grid Testimonials",
+        html: `<div class="testimonial-preview-wrapper">
+<div class="bento-testimonials">
+  <div class="bento-card card-large">
+    <div class="rating">★★★★★</div>
+    <p class="quote">"This component library completely transformed our workflow. Our development velocity increased by 300%."</p>
+    <div class="user">
+      <img src="https://polo-pecan-73837341.figma.site/_assets/v11/ca8093996e970200cbcf8bde8744175e52da5a79.png" alt="User">
+      <div>
+        <h4>Alex Rivera</h4>
+        <span>CTO, TechFlow</span>
+      </div>
+    </div>
+  </div>
+  <div class="bento-card">
+    <p class="quote">"Extremely clean code and outstanding design aesthetics."</p>
+    <div class="user">
+      <div class="avatar-placeholder">SK</div>
+      <div>
+        <h4>Sarah K.</h4>
+        <span>Lead Designer</span>
+      </div>
+    </div>
+  </div>
+  <div class="bento-card">
+    <p class="quote">"Highly recommended for modern SaaS products."</p>
+    <div class="user">
+      <div class="avatar-placeholder">MD</div>
+      <div>
+        <h4>Marcus D.</h4>
+        <span>Product Owner</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>`,
+        css: `#card-1 .testimonial-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #090e17;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-1 .bento-testimonials {
+  transform: scale(0.68);
+  transform-origin: center center;
+  width: 850px;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  box-sizing: border-box;
+}
+#card-1 .bento-card {
+  background: #121826;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+#card-1 .bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+#card-1 .card-large {
+  grid-row: span 2;
+}
+#card-1 .rating {
+  color: #fbbf24;
+  font-size: 16px;
+}
+#card-1 .quote {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+#card-1 .user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#card-1 .user img {
+  width: 40px;
+  height: 40px;
+  rounded-full: 9999px;
+  border-radius: 50%;
+  object-cover: cover;
+}
+#card-1 .user h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+#card-1 .user span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+#card-1 .avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}`,
+        js: null,
+        react: `import React from 'react';
+
+export default function BentoTestimonials() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-[2fr_1.2fr] gap-4 p-6 bg-[#090e17] rounded-2xl text-white">
+      <div className="bg-[#121826] border border-white/10 rounded-2xl p-6 flex flex-col justify-between gap-4">
+        <span className="text-[#fbbf24]">★★★★★</span>
+        <p className="text-lg">"This component library completely transformed our workflow. Our velocity increased by 300%."</p>
+        <div className="flex items-center gap-3">
+          <img src="/avatar.png" className="w-10 h-10 rounded-full" alt="Alex" />
+          <div>
+            <h4 className="font-semibold text-sm">Alex Rivera</h4>
+            <span className="text-xs text-white/50">CTO, TechFlow</span>
+          </div>
+        </div>
+      </div>
+      {/* Additional small cards */}
+    </div>
+  );
+}`
+    },
+    {
+        id: 2,
+        dependencies: "No Dependency",
+        name: "Interactive Slider Testimonial",
+        html: `<div class="testimonial-preview-wrapper">
+<div class="slider-testimonial-card">
+  <button class="arrow-btn left" onclick="(function(el){
+    const container = el.closest('.slider-testimonial-card');
+    const slides = container.querySelectorAll('.testimonial-slide');
+    let idx = parseInt(container.getAttribute('data-index') || '0');
+    slides[idx].classList.remove('active');
+    idx = (idx - 1 + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    container.setAttribute('data-index', idx);
+  })(this)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+  </button>
+  
+  <div class="slides-container">
+    <!-- Slide 1 -->
+    <div class="testimonial-slide active">
+      <div class="quote-icon">“</div>
+      <p class="quote-text">The level of craftsmanship in this product is rare. Every single micro-interaction is perfectly polished.</p>
+      <h4 class="author">- Helena Martinez, Design Lead at Vibe</h4>
+    </div>
+    <!-- Slide 2 -->
+    <div class="testimonial-slide">
+      <div class="quote-icon">“</div>
+      <p class="quote-text">An absolute game-changer. Saving hours of development time daily, and our users love the visuals.</p>
+      <h4 class="author">- Liam O'Connor, Senior Engineer</h4>
+    </div>
+  </div>
+
+  <button class="arrow-btn right" onclick="(function(el){
+    const container = el.closest('.slider-testimonial-card');
+    const slides = container.querySelectorAll('.testimonial-slide');
+    let idx = parseInt(container.getAttribute('data-index') || '0');
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+    container.setAttribute('data-index', idx);
+  })(this)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </button>
+</div>
+</div>`,
+        css: `#card-2 .testimonial-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #0c111d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-2 .slider-testimonial-card {
+  transform: scale(0.8);
+  transform-origin: center center;
+  width: 480px;
+  background: #182235;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+}
+#card-2 .slides-container {
+  flex-1: 1;
+  position: relative;
+  height: 160px;
+  display: flex;
+  align-items: center;
+}
+#card-2 .testimonial-slide {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.4s ease-out;
+}
+#card-2 .testimonial-slide.active {
+  display: flex;
+}
+#card-2 .quote-icon {
+  font-size: 48px;
+  font-family: serif;
+  color: #6366f1;
+  line-height: 1;
+  height: 24px;
+}
+#card-2 .quote-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+#card-2 .author {
+  font-size: 13px;
+  color: #a5b4fc;
+  font-weight: 500;
+  margin: 0;
+}
+#card-2 .arrow-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  shrink: 0;
+}
+#card-2 .arrow-btn:hover {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}`,
+        js: null,
+        react: `import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+export default function TestimonialSlider() {
+  const [active, setActive] = useState(0);
+  const quotes = [
+    { text: "The level of craftsmanship in this product is rare. Every single micro-interaction is perfectly polished.", author: "Helena Martinez" },
+    { text: "An absolute game-changer. Saving hours of development time daily.", author: "Liam O'Connor" }
+  ];
+
+  return (
+    <div className="flex items-center gap-4 bg-slate-900 border border-white/10 p-8 rounded-2xl max-w-md text-white">
+      <button onClick={() => setActive(prev => (prev - 1 + quotes.length) % quotes.length)}>
+        <ChevronLeft />
+      </button>
+      <div className="flex-1 min-h-[120px]">
+        <p className="text-lg">"{quotes[active].text}"</p>
+        <span className="text-indigo-400 text-sm">{quotes[active].author}</span>
+      </div>
+      <button onClick={() => setActive(prev => (prev + 1) % quotes.length)}>
+        <ChevronRight />
+      </button>
+    </div>
+  );
+}`
+    },
+    {
+        id: 3,
+        dependencies: "No Dependency",
+        name: "Glowing Card Testimonial",
+        html: `<div class="testimonial-preview-wrapper">
+<div class="glow-testimonial-card" style="--mouse-x: 50%; --mouse-y: 50%;" onmousemove="(function(e, el){
+  const rect = el.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  el.style.setProperty('--mouse-x', x + 'px');
+  el.style.setProperty('--mouse-y', y + 'px');
+})(event, this)">
+  <div class="card-glow-bg"></div>
+  <div class="card-content">
+    <div class="user-badge">
+      <img src="https://polo-pecan-73837341.figma.site/_assets/v11/ca8093996e970200cbcf8bde8744175e52da5a79.png" alt="Avatar">
+      <div>
+        <h4>Sophia Laurent</h4>
+        <span>Director of Creative, Neon Studio</span>
+      </div>
+    </div>
+    <p class="quote">"Stunning interactive glow effects, clean code, and premium UI assets. The best design system workspace I have used."</p>
+  </div>
+</div>
+</div>`,
+        css: `#card-3 .testimonial-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #07090e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-3 .glow-testimonial-card {
+  transform: scale(0.8);
+  transform-origin: center center;
+  width: 440px;
+  background: rgba(24, 32, 50, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  box-sizing: border-box;
+}
+#card-3 .card-glow-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(99, 102, 241, 0.15),
+    transparent 80%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+#card-3 .card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#card-3 .user-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#card-3 .user-badge img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+#card-3 .user-badge h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+#card-3 .user-badge span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+#card-3 .quote {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+}`,
+        js: null,
+        react: `import React, { useRef } from 'react';
+
+export default function GlowTestimonial() {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', \`\${e.clientX - rect.left}px\`);
+    card.style.setProperty('--mouse-y', \`\${e.clientY - rect.top}px\`);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      className="relative w-full max-w-sm bg-slate-900 border border-white/10 p-6 rounded-2xl overflow-hidden text-white"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(400px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(99,102,241,0.15),transparent_80%)] pointer-events-none" />
+      <div className="relative z-10 flex flex-col gap-4">
+        {/* Profile and quote */}
+      </div>
+    </div>
+  );
+}`
+    },
+            {
+                id: 4,
+                dependencies: "motion, react-icons",
+                name: "Circular Testimonials",
+                html: `<div class="testimonial-preview-wrapper select-none">
+<div class="circular-testimonial-card" id="circular-stage-4">
+  <div class="circular-testimonial-grid">
+    <div class="circular-image-container" id="circular-images-4">
+    </div>
+    <div class="circular-content-container">
+      <div class="circular-text-panel" id="circular-text-panel-4">
+      </div>
+      <div class="circular-nav-buttons">
+        <button class="circ-nav-btn prev-btn" id="circ-prev-4" aria-label="Previous">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <button class="circ-nav-btn next-btn" id="circ-next-4" aria-label="Next">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute;" onload="(function(el){
+  setTimeout(function(){
+    const container = el.closest('.testimonial-preview-wrapper');
+    if (!container) return;
+    const imageContainer = container.querySelector('#circular-images-4');
+    const textPanel = container.querySelector('#circular-text-panel-4');
+    if (!imageContainer || !textPanel) return;
+    
+    const testimonials = [
+      {
+        name: "Alex Rivera",
+        designation: "CTO, TechFlow",
+        quote: "This component library completely transformed our workflow. Our development velocity increased by 300%.",
+        src: "https://polo-pecan-73837341.figma.site/_assets/v11/ca8093996e970200cbcf8bde8744175e52da5a79.png"
+      },
+      {
+        name: "Sarah K.",
+        designation: "Lead Designer",
+        quote: "Extremely clean code and outstanding design aesthetics. The customizability is truly top tier.",
+        src: "https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_2.png"
+      },
+      {
+        name: "Michael Chen",
+        designation: "Software Architect",
+        quote: "Framer Motion integration is stellar. Performance is smooth even on mobile devices.",
+        src: "https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_3.png"
+      }
+    ];
+    let activeIndex = 0;
+    let isActive = true;
+    
+    function updateUI() {
+      if (!isActive) return;
+      imageContainer.innerHTML = '';
+      testimonials.forEach((t, i) => {
+        const img = document.createElement('img');
+        img.src = t.src;
+        img.className = 'circular-img';
+        
+        const len = testimonials.length;
+        const offset = (i - activeIndex + len) % len;
+        const active = i === activeIndex;
+        const isLeft = (activeIndex - 1 + len) % len === i;
+        const isRight = (activeIndex + 1) % len === i;
+        
+        if (active) {
+          img.style.zIndex = '3';
+          img.style.opacity = '1';
+          img.style.transform = 'translateX(0px) translateY(0px) scale(1.1) rotateY(0deg)';
+        } else if (isLeft) {
+          img.style.zIndex = '2';
+          img.style.opacity = '0.6';
+          img.style.transform = 'translateX(-40px) translateY(-8px) scale(0.85) rotateY(25deg)';
+        } else if (isRight) {
+          img.style.zIndex = '2';
+          img.style.opacity = '0.6';
+          img.style.transform = 'translateX(40px) translateY(-8px) scale(0.85) rotateY(-25deg)';
+        } else {
+          img.style.zIndex = '1';
+          img.style.opacity = '0';
+          img.style.transform = 'scale(0.5)';
+        }
+        img.style.transition = 'all 0.6s cubic-bezier(0.4, 1.4, 0.3, 1)';
+        imageContainer.appendChild(img);
+      });
+      
+      const active = testimonials[activeIndex];
+      textPanel.innerHTML = '';
+      
+      const name = document.createElement('h3');
+      name.className = 'circ-name';
+      name.textContent = active.name;
+      textPanel.appendChild(name);
+      
+      const title = document.createElement('p');
+      title.className = 'circ-title';
+      title.textContent = active.designation;
+      textPanel.appendChild(title);
+      
+      const quote = document.createElement('p');
+      quote.className = 'circ-quote';
+      textPanel.appendChild(quote);
+      
+      const words = active.quote.split(' ');
+      words.forEach((word, idx) => {
+        const span = document.createElement('span');
+        span.textContent = word + ' ';
+        span.style.animationDelay = (idx * 25) + 'ms';
+        quote.appendChild(span);
+      });
+    }
+    
+    updateUI();
+    
+    container.querySelector('#circ-prev-4').onclick = () => {
+      activeIndex = (activeIndex - 1 + testimonials.length) % testimonials.length;
+      updateUI();
+    };
+    container.querySelector('#circ-next-4').onclick = () => {
+      activeIndex = (activeIndex + 1) % testimonials.length;
+      updateUI();
+    };
+    
+    container._btn4Cleanup = () => {
+      isActive = false;
+    };
+  }, 500);
+})(this)"></svg>
+</div>`,
+                css: `#card-4 .testimonial-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #090e17;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-4 .circular-testimonial-card {
+  width: 100%;
+  max-width: 620px;
+  padding: 14px 18px;
+  background: #111827;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+#card-4 .circular-testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+@media (min-width: 640px) {
+  #card-4 .circular-testimonial-grid {
+    grid-template-columns: 1fr 1.6fr;
+  }
+}
+#card-4 .circular-image-container {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  perspective: 1000px;
+}
+#card-4 .circular-img {
+  position: absolute;
+  width: 70px;
+  height: 95px;
+  top: 10px;
+  left: 50%;
+  margin-left: -35px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+#card-4 .circular-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#card-4 .circ-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+#card-4 .circ-title {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+#card-4 .circ-quote {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #d1d5db;
+  min-height: 50px;
+}
+#card-4 .circ-quote span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(6px);
+  animation: circWordReveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes circWordReveal {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+#card-4 .circular-nav-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+#card-4 .circ-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1f2937;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+#card-4 .circ-nav-btn:hover {
+  background: #6366f1;
+  border-color: #6366f1;
+}`,
+                js: null,
+                react: `\`// CircularTestimonials.tsx
+import React, { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
+}
+
+export const CircularTestimonials = ({ testimonials }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(600);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (imageContainerRef.current) {
+      setContainerWidth(imageContainerRef.current.offsetWidth);
+    }
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  }, [testimonials.length]);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, [testimonials.length]);
+
+  const getImageStyle = (index: number): React.CSSProperties => {
+    const len = testimonials.length;
+    const offset = (index - activeIndex + len) % len;
+    if (index === activeIndex) {
+      return { zIndex: 3, opacity: 1, transform: "scale(1) translateY(0)" };
+    }
+    if ((activeIndex - 1 + len) % len === index) {
+      return { zIndex: 2, opacity: 0.7, transform: "scale(0.85) translateX(-70px)" };
+    }
+    if ((activeIndex + 1) % len === index) {
+      return { zIndex: 2, opacity: 0.7, transform: "scale(0.85) translateX(70px)" };
+    }
+    return { zIndex: 1, opacity: 0, transform: "scale(0.5)" };
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-8 bg-zinc-950 p-8 rounded-2xl border border-zinc-800">
+      <div className="relative w-full md:w-1/3 h-56" ref={imageContainerRef}>
+        {testimonials.map((t, idx) => (
+          <img
+            key={t.src}
+            src={t.src}
+            className="absolute left-1/2 -ml-16 w-32 h-44 object-cover rounded-xl transition-all duration-500 ease-out"
+            style={getImageStyle(idx)}
+          />
+        ))}
+      </div>
+      <div className="flex-1 text-left">
+        <h3 className="text-xl font-bold text-white">{testimonials[activeIndex].name}</h3>
+        <p className="text-sm text-zinc-400">{testimonials[activeIndex].designation}</p>
+        <p className="text-zinc-300 mt-4 leading-relaxed">{testimonials[activeIndex].quote}</p>
+        <div className="flex gap-4 mt-6">
+          <button onClick={handlePrev} className="p-3 bg-zinc-800 rounded-full hover:bg-indigo-600 transition-colors">
+            <FaArrowLeft size={16} className="text-white" />
+          </button>
+          <button onClick={handleNext} className="p-3 bg-zinc-800 rounded-full hover:bg-indigo-600 transition-colors">
+            <FaArrowRight size={16} className="text-white" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};\``
+            },
+            {
+                id: 5,
+                dependencies: "react-pageflip, @react-hook/media-query",
+                name: "PageFlip Testimonial",
+                html: `<div class="testimonial-preview-wrapper select-none">
+<div class="flipbook-container" id="flipbook-5">
+  <div class="book" id="book-element-5">
+    <!-- Cover -->
+    <div class="page cover" id="page-cover-5">
+      <div class="cover-content">
+        <div class="logo-wrapper">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <h2>Serenity UI</h2>
+        <div class="line"></div>
+        <p>Read what virtual people are saying about us</p>
+        <span class="tap-hint">Click Cover to Open</span>
+      </div>
+    </div>
+    
+    <!-- Index / Left Page -->
+    <div class="page inside left" id="page-index-5">
+      <div class="page-content">
+        <h3 class="page-heading">Virtual Voices</h3>
+        <ul class="index-list">
+          <li class="index-item active" data-idx="0">
+            <img src="https://polo-pecan-73837341.figma.site/_assets/v11/ca8093996e970200cbcf8bde8744175e52da5a79.png" alt="Avatar">
+            <span>Alex Rivera</span>
+          </li>
+          <li class="index-item" data-idx="1">
+            <img src="https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_2.png" alt="Avatar">
+            <span>Sarah K.</span>
+          </li>
+          <li class="index-item" data-idx="2">
+            <img src="https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_3.png" alt="Avatar">
+            <span>Michael Chen</span>
+          </li>
+        </ul>
+        <button class="close-book-btn">Close Book</button>
+      </div>
+    </div>
+    
+    <!-- Right Page (Details) -->
+    <div class="page inside right" id="page-details-5">
+      <div class="page-content" id="details-target-5">
+      </div>
+    </div>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute;" onload="(function(el){
+  setTimeout(function(){
+    const container = el.closest('.testimonial-preview-wrapper');
+    if (!container) return;
+    const cover = container.querySelector('#page-cover-5');
+    const book = container.querySelector('#book-element-5');
+    const detailsTarget = container.querySelector('#details-target-5');
+    const indexItems = container.querySelectorAll('.index-item');
+    const closeBtn = container.querySelector('.close-book-btn');
+    
+    const testimonials = [
+      {
+        name: "Alex Rivera",
+        jobtitle: "CTO, TechFlow",
+        text: "This component library completely transformed our workflow. Our development velocity increased by 300%.",
+        rating: 5,
+        image: "https://polo-pecan-73837341.figma.site/_assets/v11/ca8093996e970200cbcf8bde8744175e52da5a79.png"
+      },
+      {
+        name: "Sarah K.",
+        jobtitle: "Lead Designer",
+        text: "Extremely clean code and outstanding design aesthetics. The customizability is truly top tier.",
+        rating: 5,
+        image: "https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_2.png"
+      },
+      {
+        name: "Michael Chen",
+        jobtitle: "Software Architect",
+        text: "Framer Motion integration is stellar. Performance is smooth even on mobile devices.",
+        rating: 4,
+        image: "https://polo-pecan-73837341.figma.site/_assets/v11/d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/avatar_3.png"
+      }
+    ];
+    
+    function showTestimonial(idx) {
+      const t = testimonials[idx];
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        stars += \`<span class="star \${i < t.rating ? 'fill' : ''}">★</span>\`;
+      }
+      
+      detailsTarget.style.opacity = '0';
+      detailsTarget.style.transform = 'translateY(10px)';
+      
+      setTimeout(() => {
+        detailsTarget.innerHTML = \`
+          <div class="details-avatar">
+            <img src="\${t.image}" alt="\${t.name}">
+          </div>
+          <h4 class="details-name">\${t.name}</h4>
+          <span class="details-job">\${t.jobtitle}</span>
+          <div class="details-rating">\${stars}</div>
+          <p class="details-quote">"\${t.text}"</p>
+        \`;
+        detailsTarget.style.opacity = '1';
+        detailsTarget.style.transform = 'translateY(0)';
+      }, 150);
+    }
+    
+    // Initial load
+    showTestimonial(0);
+    
+    cover.onclick = (e) => {
+      cover.classList.add('flipped');
+      book.style.transform = 'translateX(140px)';
+    };
+    
+    closeBtn.onclick = (e) => {
+      e.stopPropagation();
+      cover.classList.remove('flipped');
+      book.style.transform = 'translateX(0)';
+    };
+    
+    indexItems.forEach((item) => {
+      item.onclick = (e) => {
+        e.stopPropagation();
+        indexItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        showTestimonial(parseInt(item.getAttribute('data-idx')));
+      };
+    });
+    
+  }, 500);
+})(this)"></svg>
+</div>`,
+                css: `#card-5 .testimonial-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #090b11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-5 .flipbook-container {
+  transform: scale(0.68);
+  -webkit-transform: scale(0.68);
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 280px;
+}
+#card-5 .book {
+  position: relative;
+  width: 260px;
+  height: 320px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#card-5 .page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-origin: left center;
+  -webkit-transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+#card-5 .page.cover {
+  background: #020617;
+  z-index: 5;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-5 .page.cover.flipped {
+  transform: rotateY(-180deg);
+  z-index: 1;
+}
+#card-5 .page.inside.left {
+  z-index: 3;
+  transform: rotateY(-180deg);
+  background: #1f2937;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: default;
+}
+#card-5 .page.inside.right {
+  z-index: 2;
+  background: #111827;
+  cursor: default;
+}
+#card-5 .cover-content {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#card-5 .logo-wrapper {
+  color: #6366f1;
+  margin-bottom: 12px;
+}
+#card-5 .cover-content h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+#card-5 .cover-content .line {
+  width: 40px;
+  height: 2px;
+  background: #6366f1;
+  margin: 12px 0;
+}
+#card-5 .cover-content p {
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+#card-5 .tap-hint {
+  font-size: 11px;
+  color: #6366f1;
+  margin-top: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+#card-5 .page-content {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#card-5 .page-heading {
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  color: #a5b4fc;
+}
+#card-5 .index-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#card-5 .index-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+#card-5 .index-item:hover, #card-5 .index-item.active {
+  background: rgba(255,255,255,0.08);
+}
+#card-5 .index-item img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#card-5 .index-item span {
+  font-size: 12px;
+  font-weight: 500;
+}
+#card-5 .close-book-btn {
+  margin-top: auto;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#card-5 .close-book-btn:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+#card-5 #details-target-5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+#card-5 .details-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #6366f1;
+  margin-bottom: 12px;
+}
+#card-5 .details-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+#card-5 .details-job {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+#card-5 .details-rating {
+  margin-bottom: 12px;
+}
+#card-5 .star {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+#card-5 .star.fill {
+  color: #f59e0b;
+}
+#card-5 .details-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #d1d5db;
+  font-style: italic;
+}`,
+                js: null,
+                react: `\`// PageFlipTestimonial.tsx
+import React, { useRef } from 'react';
+import HTMLFlipBook from 'react-pageflip';
+import { useMediaQuery } from '@react-hook/media-query';
+
+export const Component = ({ testimonials }) => {
+  const book = useRef<any>(null);
+  const isSmallScreen = useMediaQuery('(min-width: 640px)');
+  const smallerDevice = !isSmallScreen;
+
+  const handleFlip = (pageNum: number) => {
+    book.current?.pageFlip()?.flip(pageNum);
+  };
+
+  return (
+    <div className="w-full text-black h-[500px] flex justify-center items-center py-10 bg-zinc-950">
+      <HTMLFlipBook
+        ref={book}
+        width={300}
+        height={450}
+        showCover={true}
+        usePortrait={smallerDevice}
+        className="shadow-2xl"
+        style={{}}
+        startPage={0}
+        size="fixed"
+        minWidth={0}
+        maxWidth={0}
+        minHeight={0}
+        maxHeight={0}
+        drawShadow={true}
+        flippingTime={1000}
+        startZIndex={0}
+        autoSize={false}
+        maxShadowOpacity={0.3}
+        mobileScrollSupport={true}
+        clickEventForward={true}
+        useMouseEvents={true}
+        swipeDistance={30}
+        showPageCorners={true}
+        disableFlipByClick={false}
+      >
+        {/* Cover */}
+        <div className="relative bg-black border border-zinc-800 rounded-lg p-8 text-white flex flex-col items-center justify-center cursor-grab">
+          <h1 className="text-4xl font-bold mb-4">Serenity UI</h1>
+          <p className="text-center text-zinc-400">Read what virtual people are saying about us</p>
+        </div>
+
+        {/* Index */}
+        <div className="w-full h-full p-8 bg-zinc-900 border border-zinc-800 text-white flex flex-col">
+          <h3 className="text-xl font-bold mb-4">Index</h3>
+          <ul className="space-y-2">
+            {testimonials.map((t, idx) => (
+              <li
+                key={idx}
+                onClick={() => handleFlip(idx + 2)}
+                className="cursor-pointer hover:text-indigo-400 transition-colors text-sm"
+              >
+                {t.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Detail Pages */}
+        {testimonials.map((t, idx) => (
+          <div key={idx} className="w-full h-full p-8 bg-zinc-900 border border-zinc-800 text-white flex flex-col items-center text-center justify-center">
+            <img src={t.image} alt={t.name} className="w-20 h-20 rounded-full object-cover mb-4 border-2 border-indigo-500" />
+            <h4 className="font-bold text-lg">{t.name}</h4>
+            <p className="text-xs text-zinc-400 mb-2">{t.jobtitle}</p>
+            <p className="italic text-sm text-zinc-300">"{t.text}"</p>
+          </div>
+        ))}
+      </HTMLFlipBook>
+    </div>
+  );
+};\``
+            }
+        ];
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        TESTIMONIAL_DATABASE.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${item.id}`;
+            
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${item.id}" onclick="switchTab(${item.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${item.id}" onclick="switchTab(${item.id}, 'css')">CSS</button>
+            `;
+            if (item.js) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-js-${item.id}" onclick="switchTab(${item.id}, 'js')">JS</button>
+                `;
+            }
+
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${item.id}">
+                    <pre><code class="language-html">${escapeHtml(item.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${item.id}">
+                    <pre><code class="language-css">${escapeHtml(item.css)}</code></pre>
+                </div>
+            `;
+            if (item.js) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-js-${item.id}">
+                        <pre><code class="language-javascript">${escapeHtml(item.js)}</code></pre>
+                    </div>
+                `;
+            }
+
+            // Append custom CSS rules dynamically to DOM
+            if (item.css) {
+                const styleEl = document.createElement('style');
+                styleEl.innerHTML = item.css;
+                document.head.appendChild(styleEl);
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="button-title">${item.name}</span>
+                    <span class="button-badge">Testimonial #${item.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${item.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${item.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${item.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${item.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${item.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        const activeTabs = {};
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => d.classList.remove('open'));
+                document.querySelectorAll('.action-btn.active').forEach(b => b.classList.remove('active'));
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const jsTab = document.getElementById(`tab-js-${id}`);
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+            const jsPanel = document.getElementById(`panel-js-${id}`);
+
+            if (htmlTab) htmlTab.classList.remove('active');
+            if (cssTab) cssTab.classList.remove('active');
+            if (jsTab) jsTab.classList.remove('active');
+            if (htmlPanel) htmlPanel.classList.remove('active');
+            if (cssPanel) cssPanel.classList.remove('active');
+            if (jsPanel) jsPanel.classList.remove('active');
+
+            if (tabType === 'html') {
+                if (htmlTab) htmlTab.classList.add('active');
+                if (htmlPanel) htmlPanel.classList.add('active');
+            } else if (tabType === 'css') {
+                if (cssTab) cssTab.classList.add('active');
+                if (cssPanel) cssPanel.classList.add('active');
+            } else if (tabType === 'js') {
+                if (jsTab) jsTab.classList.add('active');
+                if (jsPanel) jsPanel.classList.add('active');
+            }
+        };
+
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const itemData = TESTIMONIAL_DATABASE.find(b => b.id === id);
+            if (!itemData) return;
+            let textToCopy = '';
+            if (selectedType === 'html') textToCopy = itemData.html;
+            else if (selectedType === 'css') textToCopy = itemData.css;
+            else if (selectedType === 'js') textToCopy = itemData.js;
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                showToast(`Copied Testimonial #${id} ${selectedType.toUpperCase()} code!`);
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            });
+        };
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
