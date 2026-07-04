@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS CDN (scoped via preflight false configuration to prevent page resets) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false
+            }
+        }
+    </script>
+    
     <style>
         /* --- CORE DESIGN SYSTEM --- */
         :root {
@@ -775,6 +785,160 @@
                 padding: 8px 16px;
             }
         }
+
+        /* --- 5: STICKY ANNOUNCEMENT RIBBON STYLE RULES --- */
+        .announcement-ribbon-container {
+            position: relative;
+            display: flex;
+            height: 44px;
+            width: 100%;
+            max-width: 480px;
+            align-items: center;
+            overflow: hidden;
+            background-color: #ffcc00;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-family: var(--font-main);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .announcement-badge {
+            position: relative;
+            z-index: 30;
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            align-self: stretch;
+            background-color: #ffcc00;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0 16px;
+        }
+        .announcement-badge span {
+            border-radius: 9999px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 2px 10px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #171717;
+        }
+        .announcement-marquee-track {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .marquee-container {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            gap: 12px;
+            --duration: 10s;
+            --gap: 12px;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex;
+            flex-shrink: 0;
+            gap: var(--gap);
+            align-items: center;
+            animation: marquee-x-announcement 10s infinite linear;
+        }
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        .marquee-text {
+            white-space: nowrap;
+            font-family: var(--font-main);
+            font-weight: 300;
+            color: #171717;
+            font-size: 13px;
+        }
+        .marquee-dot {
+            font-family: var(--font-main);
+            color: #171717;
+            font-size: 14px;
+        }
+        @keyframes marquee-x-announcement {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-100% - var(--gap)));
+            }
+        }
+        .announcement-cta {
+            position: relative;
+            z-index: 30;
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            gap: 6px;
+            align-self: stretch;
+            background-color: #ffcc00;
+            border-left: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0 16px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(23, 23, 23, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .announcement-cta:hover {
+            color: #171717;
+        }
+        .cta-arrow {
+            height: 12px;
+            width: 12px;
+            transition: transform 0.2s;
+        }
+        .announcement-cta:hover .cta-arrow {
+            transform: translateX(2px);
+        }
+
+        /* --- 6: Glassmorphism Floating Nav overrides --- */
+        #card-6 .preview-canvas {
+            padding: 1rem;
+            box-sizing: border-box;
+            background: #060913;
+        }
+        #card-6 .preview-canvas > div {
+            transform: scale(0.72);
+            transform-origin: center center;
+            width: 135% !important;
+            max-width: none !important;
+        }
+        #card-6 a, #card-7 a {
+            color: currentColor !important;
+            text-decoration: none !important;
+        }
+
+        /* --- 7: Aura Floating Pill Nav overrides --- */
+        #card-7 .preview-canvas {
+            background: #05070c;
+        }
+        #card-7 .preview-canvas nav {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) scale(0.72) !important;
+            width: 135% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+        #card-7 .preview-canvas .grid-bg {
+            position: absolute !important;
+            inset: 0 !important;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
     </style>
 </head>
 <body>
@@ -1357,6 +1521,512 @@ export function NavBar({ items, className }: NavBarProps) {
   )
 }
 `
+            },
+            {
+                id: 5,
+                name: "Sticky Announcement Ribbon",
+                html: `<div class="navbar-preview-wrap np-announcement" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box;">
+    <div class="announcement-ribbon-container">
+        <!-- Badge -->
+        <div class="announcement-badge">
+            <span>NEW</span>
+        </div>
+        
+        <!-- Marquee Container -->
+        <div class="announcement-marquee-track">
+            <div class="marquee-container">
+                <!-- Repeat track 5 times for a seamless loop -->
+                <div class="marquee-track">
+                    <span class="marquee-text">New components and live demos</span>
+                    <span class="marquee-dot">&middot;</span>
+                </div>
+                <div class="marquee-track">
+                    <span class="marquee-text">New components and live demos</span>
+                    <span class="marquee-dot">&middot;</span>
+                </div>
+                <div class="marquee-track">
+                    <span class="marquee-text">New components and live demos</span>
+                    <span class="marquee-dot">&middot;</span>
+                </div>
+                <div class="marquee-track">
+                    <span class="marquee-text">New components and live demos</span>
+                    <span class="marquee-dot">&middot;</span>
+                </div>
+                <div class="marquee-track">
+                    <span class="marquee-text">New components and live demos</span>
+                    <span class="marquee-dot">&middot;</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA -->
+        <a href="#" class="announcement-cta">
+            Learn more
+            <svg class="cta-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </a>
+    </div>
+</div>`,
+                css: `.announcement-ribbon-container {
+    position: relative;
+    display: flex;
+    height: 44px;
+    width: 100%;
+    max-width: 480px;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffcc00;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-family: 'Outfit', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.announcement-badge {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    align-self: stretch;
+    background-color: #ffcc00;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 16px;
+}
+.announcement-badge span {
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #171717;
+}
+.announcement-marquee-track {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.marquee-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 12px;
+    --duration: 10s;
+    --gap: 12px;
+    overflow: hidden;
+}
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--gap);
+    align-items: center;
+    animation: marquee-x-announcement 10s infinite linear;
+}
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+.marquee-text {
+    white-space: nowrap;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: #171717;
+    font-size: 13px;
+}
+.marquee-dot {
+    font-family: 'Outfit', sans-serif;
+    color: #171717;
+    font-size: 14px;
+}
+@keyframes marquee-x-announcement {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
+}
+.announcement-cta {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    align-self: stretch;
+    background-color: #ffcc00;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(23, 23, 23, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.announcement-cta:hover {
+    color: #171717;
+}
+.cta-arrow {
+    height: 12px;
+    width: 12px;
+    transition: transform 0.2s;
+}
+.announcement-cta:hover .cta-arrow {
+    transform: translateX(2px);
+}`,
+                js: null,
+                react: `"use client";
+
+import React from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+// --- Custom Marquee Sub-Component ---
+interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
+  vertical?: boolean;
+  repeat?: number;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+  applyMask?: boolean;
+}
+
+export function Marquee({
+  children,
+  vertical = false,
+  repeat = 5,
+  pauseOnHover = false,
+  reverse = false,
+  className,
+  applyMask = true,
+  ...props
+}: MarqueeProps) {
+  return (
+    <div
+      {...props}
+      className={cn(
+        "group/marquee relative flex h-full w-full p-2 [--duration:10s] [--gap:12px] [gap:var(--gap)] overflow-hidden",
+        {
+          "flex-col": vertical,
+          "flex-row": !vertical,
+        },
+        className,
+      )}
+    >
+      <style>{\`
+        @keyframes marquee-x {
+          from { transform: translateX(0); }
+          to { transform: translateX(calc(-100% - var(--gap))); }
+        }
+        @keyframes marquee-y {
+          from { transform: translateY(0); }
+          to { transform: translateY(calc(-100% - var(--gap))); }
+        }
+        .marquee-horizontal {
+          animation: marquee-x var(--duration) infinite linear;
+        }
+        .marquee-vertical {
+          animation: marquee-y var(--duration) infinite linear;
+        }
+        .group\\\\/marquee:hover .marquee-pause-on-hover {
+          animation-play-state: paused;
+        }
+      \`}</style>
+      {Array.from({ length: repeat }).map((_, index) => (
+        <div
+          key={\`item-\\\${index}\`}
+          className={cn("flex shrink-0 [gap:var(--gap)]", {
+            "marquee-pause-on-hover": pauseOnHover,
+            "marquee-horizontal flex-row": !vertical,
+            "marquee-vertical flex-col": vertical,
+          })}
+          style={reverse ? { animationDirection: "reverse" } : undefined}
+        >
+          {children}
+        </div>
+      ))}
+      {applyMask && (
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 z-10 h-full w-full from-white/50 from-5% via-transparent via-50% to-white/50 to-95% dark:from-gray-800/50 dark:via-transparent dark:to-gray-800/50",
+            {
+              "bg-gradient-to-b": vertical,
+              "bg-gradient-to-r": !vertical,
+            },
+          )}
+        />
+      )}
+    </div>
+  );
+}
+
+// --- Main Announcement Ribbon Component ---
+interface AnnouncementRibbonProps extends React.HTMLAttributes<HTMLDivElement> {
+  message?: React.ReactNode;
+  badge?: string | null;
+  ctaText?: string | null;
+  ctaHref?: string;
+  repeat?: number;
+  pauseOnHover?: boolean;
+}
+
+function DefaultMessage() {
+  return (
+    <span>
+      <span className="whitespace-nowrap px-12 font-sans font-light text-neutral-900">
+        New components and live demos
+      </span>
+      <span className="text-neutral-900">&middot;</span>
+    </span>
+  );
+}
+
+export default function AnnouncementRibbon({
+  message,
+  badge = "NEW",
+  ctaText = "Learn more",
+  ctaHref = "/docs/changelog/2026-05",
+  repeat = 5,
+  pauseOnHover = true,
+  className,
+  ...props
+}: AnnouncementRibbonProps) {
+  const content = message ?? <DefaultMessage />;
+
+  return (
+    <div
+      className={cn(
+        "relative flex h-11 w-full items-center overflow-hidden",
+        "bg-[#ffcc00]",
+        "border-b border-black/8",
+        className,
+      )}
+      {...props}
+    >
+      {/* Badge */}
+      {badge && (
+        <div className="relative z-30 flex bg-[#ffcc00] shrink-0 items-center self-stretch border-r border-black/8 px-4">
+          <span className="rounded-full bg-black/10 px-2.5 py-px font-mono text-[10px] font-semibold uppercase tracking-widest text-neutral-900">
+            {badge}
+          </span>
+        </div>
+      )}
+
+      <div className="flex-1 overflow-hidden">
+        <Marquee repeat={repeat} pauseOnHover={pauseOnHover} applyMask={false}>
+          {content}
+        </Marquee>
+      </div>
+
+      {/* CTA */}
+      {ctaText && ctaHref && (
+        <Link
+          href={ctaHref}
+          className="group/cta relative bg-[#ffcc00] z-30 flex shrink-0 items-center gap-1.5 self-stretch border-l border-black/8 px-4 font-mono text-[10px] font-semibold uppercase tracking-widest text-neutral-800/60 transition-colors hover:text-neutral-900 no-underline"
+        >
+          {ctaText}
+          <svg
+            className="h-3 w-3 transition-transform group-hover/cta:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      )}
+    </div>
+  );
+}`,
+                dependencies: "tailwind-merge, clsx"
+            },
+            {
+                id: 6,
+                name: "Glassmorphism Floating Nav",
+                html: `<div class="max-w-4xl border rounded-full mr-auto ml-auto pt-3 pr-6 pb-3 pl-6 border-white/10"
+  style="background: linear-gradient(180deg, rgba(14,16,26,0.55), rgba(14,16,26,0.35)) padding-box, linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)) border-box; border: 1px solid transparent; backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%); box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04); width: 100%;">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <span class="text-lg font-semibold tracking-tight text-white/90">Rulz&amp;Co.</span>
+    </div>
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Home</a>
+      </li>
+      <li class="">
+        <a href="/services"
+          class="transition-colors duration-300 hover:text-white hover:bg-white/5 rounded-full pt-2 pr-4 pb-2 pl-4">Services</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Works</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Contact</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">FAQ</a>
+      </li>
+    </ul>
+    <div class="flex items-center gap-1.5 md:gap-2">
+      <button class="inline-flex md:hidden p-2 rounded-full transition-all duration-300 border hover:bg-white/5 border-white/5" style="background: rgba(255, 255, 255, 0.02);" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 stroke-[1.5] text-white/70">
+          <line x1="4" y1="6" x2="20" y2="6" class=""></line>
+          <line x1="4" y1="12" x2="20" y2="12" class=""></line>
+          <line x1="4" y1="18" x2="20" y2="18" class=""></line>
+        </svg>
+      </button>
+      <button class="hidden md:inline-flex p-2 rounded-full transition-all duration-300 border hover:bg-white/5 border-white/5" style="background: rgba(255, 255, 255, 0.02);" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 stroke-[1.5] text-white/60">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" class=""></path>
+          <circle cx="12" cy="7" r="4" class=""></circle>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>`,
+                css: `/* Tailwind CSS classes used for layout and typography */`,
+                dependencies: "No Dependency",
+                react: `import React from "react"
+import { Menu, User } from "lucide-react"
+
+export function GlassFloatingNav() {
+  return (
+    <div 
+      className="max-w-4xl border rounded-full mx-auto py-3 px-6 border-white/10 text-white"
+      style={{
+        background: "linear-gradient(180deg, rgba(14,16,26,0.55), rgba(14,16,26,0.35)) padding-box, linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)) border-box",
+        border: "1px solid transparent",
+        backdropFilter: "blur(16px) saturate(120%)",
+        WebkitBackdropFilter: "blur(16px) saturate(120%)",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)"
+      }}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <span className="text-lg font-semibold tracking-tight text-white/90">Rulz&Co.</span>
+        </div>
+        <ul className="hidden md:flex items-center gap-1 text-sm font-medium text-white/60 list-none m-0 p-0">
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Home</a></li>
+          <li><a href="/services" className="transition-colors duration-300 hover:text-white hover:bg-white/5 rounded-full py-2 px-4 no-underline text-white/60">Services</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Works</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Contact</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">FAQ</a></li>
+        </ul>
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <button className="inline-flex md:hidden p-2 rounded-full transition-all duration-300 border border-white/5 hover:bg-white/5 bg-white/[0.02] cursor-pointer text-white/70">
+            <Menu size={20} strokeWidth={1.5} />
+          </button>
+          <button className="hidden md:inline-flex p-2 rounded-full transition-all duration-300 border border-white/5 hover:bg-white/5 bg-white/[0.02] cursor-pointer text-white/60">
+            <User size={16} strokeWidth={1.5} />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}`
+            },
+            {
+                id: 7,
+                name: "Aura Floating Pill Nav",
+                html: `<!-- Background Effects -->
+<div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+
+<!-- Navigation: Pill Shaped & Floating -->
+<nav
+  class="fixed -translate-x-1/2 flex shadow-black/50 transition-all duration-300 hover:border-white/20 hover:shadow-brand-sky/5 lg:w-fit bg-gradient-to-br from-white/10 to-white/0 w-full max-w-[90vw] z-50 rounded-full ring-white/10 ring-1 pt-1.5 pr-1.5 pb-1.5 pl-4 top-6 left-1/2 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] backdrop-blur-xl items-center justify-between">
+
+  <!-- Logo Area -->
+  <div class="flex mr-8 gap-x-2.5 gap-y-2.5 items-center" onclick="window.location.href='/home'" role="button">
+    <div class="relative flex items-center justify-center">
+
+      <!-- Subtle glow behind logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        style="width: 24px; height: 24px; color: rgb(56, 189, 248);" class="iconify iconify--solar w-[24px] h-[24px]"
+        aria-hidden="true" role="img" data-icon="solar:layers-minimalistic-bold-duotone"
+        data-solar="forbidden-circle-bold-duotone" data-icon-set="solar" data-icon-replaced="true" stroke-width="2">
+        <path fill="#38bdf8"
+          d="M4.929 4.929c-3.905 3.905-3.905 10.237 0 14.142s10.237 3.905 14.142 0s3.905-10.237 0-14.142s-10.237-3.905-14.142 0"
+          opacity=".5" class=""></path>
+        <path fill="#38bdf8" d="M18.521 4.418L4.418 18.521a10 10 0 0 0 1.06 1.061L19.583 5.479a10 10 0 0 0-1.06-1.06"
+          class="">
+        </path>
+      </svg>
+    </div>
+    <span class="font-sans font-medium text-base tracking-tight text-white">Aura</span>
+  </div>
+
+  <!-- Links (Hidden on small screens) -->
+  <div class="hidden md:flex items-center gap-6 mr-8">
+    <a href="/features" class="hover:text-white transition-colors text-xs font-medium text-white/50">Features</a>
+    <a href="/about" class="hover:text-white transition-colors text-xs font-medium text-white/50">About</a>
+    <a href="/pricing" class="hover:text-white transition-colors text-xs font-medium text-white/50">Pricing</a>
+  </div>
+
+  <!-- Action Button -->
+  <button class="flex hover:bg-brand-sky transition-colors group flex-none text-xs font-semibold text-black bg-white rounded-full pt-2 pr-4 pb-2 pl-4 gap-x-2 gap-y-2 items-center" onclick="window.location.href='/login'" role="button">
+            Start Engine
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="solar:arrow-right-bold-duotone" class="iconify group-hover:translate-x-0.5 transition-transform"><path fill="currentColor" d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z" class=""></path></svg>
+        </button>
+</nav>`,
+                css: `/* Requires Tailwind CSS classes and brand-sky color configurations */`,
+                dependencies: "No Dependency",
+                react: `import React from "react"
+import Link from "next/link"
+
+export function AuraFloatingNav() {
+  return (
+    <nav
+      className="flex shadow-black/50 transition-all duration-300 hover:border-white/20 hover:shadow-sky-400/5 lg:w-fit bg-gradient-to-br from-white/10 to-white/0 w-full max-w-md rounded-full ring-white/10 ring-1 p-1.5 pl-4 items-center justify-between backdrop-blur-xl border border-transparent"
+      style={{
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25)"
+      }}
+    >
+      {/* Logo Area */}
+      <div className="flex mr-8 gap-2.5 items-center cursor-pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          className="text-sky-400"
+        >
+          <path fill="currentColor" d="M4.929 4.929c-3.905 3.905-3.905 10.237 0 14.142s10.237 3.905 14.142 0s3.905-10.237 0-14.142s-10.237-3.905-14.142 0" opacity=".5" />
+          <path fill="currentColor" d="M18.521 4.418L4.418 18.521a10 10 0 0 0 1.06 1.061L19.583 5.479a10 10 0 0 0-1.06-1.06" />
+        </svg>
+        <span className="font-sans font-medium text-base tracking-tight text-white">Aura</span>
+      </div>
+
+      {/* Links */}
+      <div className="hidden md:flex items-center gap-6 mr-8">
+        <Link href="/features" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">Features</Link>
+        <Link href="/about" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">About</Link>
+        <Link href="/pricing" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">Pricing</Link>
+      </div>
+
+      {/* Action Button */}
+      <button className="flex hover:bg-sky-400 transition-colors group flex-none text-xs font-semibold text-black bg-white rounded-full py-2 px-4 gap-2 items-center border-none cursor-pointer">
+        Start Engine
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" className="group-hover:translate-x-0.5 transition-transform">
+          <path fill="currentColor" d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z" />
+        </svg>
+      </button>
+    </nav>
+  )
+}`
             }
         ];
 

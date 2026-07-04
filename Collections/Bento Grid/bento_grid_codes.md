@@ -1,6 +1,6 @@
 # Premium Custom Bento Grid Code Database
 
-This file contains the complete, self-contained HTML, CSS, and React code snippets for all **5 Premium Bento Grid Layouts** featured in the interactive showcase. Each bento grid is numbered to match the UI labels in the application.
+This file contains the complete, self-contained HTML, CSS, and React code snippets for all **6 Premium Bento Grid Layouts** featured in the interactive showcase. Each bento grid is numbered to match the UI labels in the application.
 
 ---
 
@@ -10,6 +10,7 @@ This file contains the complete, self-contained HTML, CSS, and React code snippe
 3. [Layout #3: Advanced Analytics & Charts Grid](#layout-3-advanced-analytics--charts-grid)
 4. [Layout #4: SaaS Dashboard Hub Bento](#layout-4-saas-dashboard-hub-bento)
 5. [Layout #5: MagicUI Retro Grid Bento](#layout-5-magicui-retro-grid-bento)
+6. [Layout #6: Animata Educational Bento Grid](#layout-6-animata-educational-bento-grid)
 
 ---
 
@@ -1270,5 +1271,425 @@ export function BentoGridRetro() {
       </div>
     </div>
   )
+}
+```
+
+---
+
+## Layout #6: Animata Educational Bento Grid
+*A dashboard grid optimized for educational features containing tickers, typing simulators, animated counters, custom badges, avatar rows, report structures, and responsive layouts.*
+
+### HTML
+```html
+<div class="bento-grid-6">
+  <div class="grid w-full grid-cols-1 sm:grid-cols-4 gap-3">
+    <!-- FeatureOne: Highly Rated -->
+    <div class="bento-card flex flex-col bg-yellow-300 p-4 rounded-2xl justify-between h-36">
+      <div class="font-bold text-yellow-800 text-xs">Highly rated</div>
+      <div class="mt-auto flex justify-end items-baseline gap-0.5">
+        <div class="text-5xl font-black text-black/75 leading-none bento-ticker" data-target="4.8">0.0</div>
+        <span class="text-xl text-yellow-800 font-bold">★</span>
+      </div>
+    </div>
+
+    <!-- FeatureTwo: Students Counter + AvatarList -->
+    <div class="bento-card flex flex-col bg-violet-500 p-4 rounded-2xl justify-between h-36 text-white col-span-2">
+      <strong class="text-2xl font-bold leading-none bento-counter" data-target="179">0k+ students</strong>
+      <div class="flex -space-x-1.5 overflow-hidden mt-auto">
+        <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-rose-400 text-white flex items-center justify-center font-bold text-[10px]">SV</div>
+        <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-indigo-400 text-white flex items-center justify-center font-bold text-[10px]">JD</div>
+        <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-emerald-400 text-white flex items-center justify-center font-bold text-[10px]">AM</div>
+        <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-amber-400 text-white flex items-center justify-center font-bold text-[10px]">+9k</div>
+      </div>
+    </div>
+
+    <!-- FeatureThree: Integrated AI -->
+    <div class="bento-card flex flex-col bg-orange-300 p-4 rounded-2xl justify-between h-36">
+      <svg class="h-8 w-8 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 8V4H8"></path>
+        <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+        <path d="M2 14h2"></path>
+        <path d="M20 14h2"></path>
+        <path d="M15 13v2"></path>
+        <path d="M9 13v2"></path>
+      </svg>
+      <strong class="mt-1 block text-xs font-bold text-orange-950">Integrated AI</strong>
+      <div class="mt-auto">
+        <div class="text-[10px] text-orange-950/80 font-medium">What is 4 times 4?</div>
+        <div class="font-bold text-xs min-h-[16px] bento-typing" data-text="4 times 4 is 16"></div>
+      </div>
+    </div>
+
+    <!-- FeatureFour: Progress Report -->
+    <div class="bento-card flex items-center gap-4 bg-lime-300 p-4 rounded-2xl justify-between h-36 col-span-2">
+      <div class="text-lg font-black text-lime-900 leading-snug">Generate progress report</div>
+      <div class="w-32 bg-white rounded-xl p-3 border border-lime-400/30 shadow-sm shrink-0 overflow-hidden flex flex-col gap-1.5">
+        <div class="h-2.5 bg-slate-200 rounded w-3/4 animate-pulse"></div>
+        <div class="h-2 bg-slate-100 rounded w-5/6 animate-pulse"></div>
+        <div class="h-2 bg-slate-100 rounded w-1/2 animate-pulse"></div>
+        <div class="flex items-center gap-1 mt-1">
+          <div class="h-3.5 w-3.5 rounded-full bg-lime-400 shrink-0"></div>
+          <div class="h-1.5 bg-slate-100 rounded w-10"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FeatureFive: EDU Copy -->
+    <div class="bento-card flex flex-col items-center justify-center bg-zinc-300 p-4 rounded-2xl h-36 col-span-2 group/bento relative overflow-hidden cursor-pointer">
+      <div class="text-7xl font-black uppercase text-zinc-400/25 transition-all duration-300 group-hover/bento:opacity-50 select-none">
+        EDU
+      </div>
+      <div class="text-2xl absolute font-black uppercase text-zinc-800 transition-all duration-300 group-hover/bento:text-6xl select-none">
+        EDU
+      </div>
+    </div>
+
+    <!-- FeatureSix: Weekly Review / BarChart -->
+    <div class="bento-card bg-green-200 p-4 rounded-2xl flex flex-col justify-between h-36">
+      <div class="flex items-end justify-between gap-1 h-16 px-1">
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 20px;"></div>
+          <span class="text-[8px] font-bold text-green-800">Jan</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 48px;"></div>
+          <span class="text-[8px] font-bold text-green-800">S</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 40px;"></div>
+          <span class="text-[8px] font-bold text-green-800">M</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 60px;"></div>
+          <span class="text-[8px] font-bold text-green-800">T</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 8px;"></div>
+          <span class="text-[8px] font-bold text-green-800">W</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 15px;"></div>
+          <span class="text-[8px] font-bold text-green-800">Th</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 20px;"></div>
+          <span class="text-[8px] font-bold text-green-800">F</span>
+        </div>
+        <div class="flex flex-col items-center flex-1 gap-1">
+          <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 60px;"></div>
+          <span class="text-[8px] font-bold text-green-800">Sa</span>
+        </div>
+      </div>
+      <div class="mt-1 text-center font-bold text-[10px] text-green-800">Weekly review</div>
+    </div>
+
+    <!-- FeatureSeven: Skills -->
+    <div class="bento-card bg-rose-300 p-4 rounded-2xl flex flex-col justify-center gap-1.5 h-36">
+      <div class="w-full -rotate-1 rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+        Javascript
+      </div>
+      <div class="w-full rotate-1 rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+        ReactJS
+      </div>
+      <div class="w-full rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+        NextJS
+      </div>
+    </div>
+
+    <!-- FeatureEight: Daily Reminders -->
+    <div class="bento-card bg-blue-200 p-4 rounded-2xl flex flex-col justify-between h-36 col-span-2 relative overflow-hidden">
+      <div class="w-full bg-white rounded-xl p-2.5 border border-blue-300 shadow-xs flex items-center gap-2">
+        <div class="h-7 w-7 rounded bg-blue-400 flex items-center justify-center text-sm shrink-0">⏰</div>
+        <div class="flex-1 flex flex-col gap-1">
+          <div class="h-2.5 bg-slate-200 rounded w-1/3"></div>
+          <div class="h-1.5 bg-slate-100 rounded w-2/3"></div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <div class="text-xs font-bold text-blue-900 leading-none">Daily reminders</div>
+        <p class="text-[10px] text-blue-800 mt-0.5 leading-tight">Our daily reminder helps you keep focused on your goals.</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### CSS
+```css
+/* Core bento card hover & animation resets */
+.bento-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+```
+
+### JavaScript
+```javascript
+// Initializer for Bento Grid 6 animations
+const bento6Container = document.getElementById('card-6');
+if (bento6Container) {
+    // Ticker Animation
+    const tickers = bento6Container.querySelectorAll('.bento-ticker');
+    tickers.forEach(ticker => {
+        const target = parseFloat(ticker.getAttribute('data-target'));
+        let current = 0.0;
+        const duration = 1200; 
+        const stepTime = 30;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                ticker.textContent = target.toFixed(1);
+                clearInterval(timer);
+            } else {
+                ticker.textContent = current.toFixed(1);
+            }
+        }, stepTime);
+    });
+
+    // Counter Animation
+    const counters = bento6Container.querySelectorAll('.bento-counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let current = 0;
+        const duration = 1500;
+        const stepTime = 30;
+        const steps = duration / stepTime;
+        const increment = Math.ceil(target / steps);
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                counter.textContent = `${target}k+ students`;
+                clearInterval(timer);
+            } else {
+                counter.textContent = `${current}k+ students`;
+            }
+        }, stepTime);
+    });
+
+    // Typing Animation
+    const typings = bento6Container.querySelectorAll('.bento-typing');
+    typings.forEach(el => {
+        const text = el.getAttribute('data-text');
+        let index = 0;
+        el.textContent = '';
+        function type() {
+            if (index < text.length) {
+                el.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(() => {
+                    index = 0;
+                    el.textContent = '';
+                    setTimeout(type, 1000);
+                }, 2000);
+            }
+        }
+        type();
+    });
+}
+```
+
+### React
+```tsx
+import { Bot } from "lucide-react";
+
+import BarChart from "@/animata/graphs/bar-chart";
+import AvatarList from "@/animata/list/avatar-list";
+import Report from "@/animata/skeleton/report";
+import WideCard from "@/animata/skeleton/wide-card";
+import Counter from "@/animata/text/counter";
+import Ticker from "@/animata/text/ticker";
+import TypingText from "@/animata/text/typing-text";
+import { cn } from "@/lib/utils";
+
+// #region placeholder
+function BoldCopy({
+  text = "animata",
+  className,
+  textClassName,
+  backgroundTextClassName,
+}: {
+  text: string;
+  className?: string;
+  textClassName?: string;
+  backgroundTextClassName?: string;
+}) {
+  if (!text?.length) {
+    return null;
+  }
+
+  return (
+    <div
+      className={cn(
+        "group/bento relative flex items-center justify-center bg-background px-2 py-2 md:px-6 md:py-4",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "text-4xl font-black uppercase text-foreground/15 transition-all group-hover/bento:opacity-50 md:text-8xl",
+          backgroundTextClassName,
+        )}
+      >
+        {text}
+      </div>
+      <div
+        className={cn(
+          "text-md absolute font-black uppercase text-foreground transition-all group-hover/bento:text-4xl md:text-3xl group-hover/bento:md:text-8xl",
+          textClassName,
+        )}
+      >
+        {text}
+      </div>
+    </div>
+  );
+}
+
+function BentoCard({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn("relative h-full w-full overflow-hidden rounded-2xl p-4", className)}>
+      {children}
+    </div>
+  );
+}
+
+function FeatureOne() {
+  return (
+    <BentoCard className="flex flex-col bg-yellow-300">
+      <div className="font-bold text-yellow-700">Highly rated</div>
+      <div className="mt-auto flex justify-end">
+        <div className="text-4xl font-black text-black/60 md:text-7xl">
+          <Ticker value="4.8" />
+        </div>{" "}
+        <sup className="text-xl text-yellow-700">★</sup>
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureTwo() {
+  return (
+    <BentoCard className="relative flex flex-col overflow-visible bg-violet-500 sm:col-span-2">
+      <strong className="text-2xl font-semibold text-white">
+        <Counter targetValue={179} format={(v) => `${+Math.ceil(v)}k+ students`} />
+      </strong>
+      <div className="ml-4 mt-auto">
+        <AvatarList size="sm" className="py-0" />
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureThree() {
+  return (
+    <BentoCard className="flex flex-col bg-orange-300">
+      <Bot className="size-8 md:size-12" />
+      <strong className="mt-1 inline-block text-sm">Integrated AI</strong>
+
+      <div className="mt-auto">
+        <div className="text-sm font-medium">What is 4 times 4?</div>
+        <div className="font-semibold">
+          <TypingText text="4 times 4 is 16" waitTime={2000} alwaysVisibleCount={0} />
+        </div>
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureFour() {
+  return (
+    <BentoCard className="flex items-center gap-4 bg-lime-300 sm:col-span-2 md:flex-row-reverse">
+      <div className="text-2xl font-black text-lime-800">Generate progress report</div>
+      <div className="relative max-h-32 shrink-0 overflow-hidden">
+        <Report className="w-40 overflow-hidden border-none shadow-none hover:shadow-none" />
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureFive() {
+  return (
+    <BentoCard className="flex flex-col items-center justify-center bg-zinc-300 sm:col-span-2">
+      <BoldCopy text="EDU" className="bg-transparent" textClassName="text-zinc-800" />
+    </BentoCard>
+  );
+}
+
+function FeatureSix() {
+  return (
+    <BentoCard className="bg-green-200">
+      <BarChart
+        items={[
+          {
+            progress: 30,
+            label: "Jan",
+            className: "rounded-xl bg-green-400",
+          },
+          { progress: 70, label: "S", className: "rounded-xl bg-green-400" },
+          { progress: 60, label: "M", className: "rounded-xl bg-green-400" },
+          { progress: 90, label: "T", className: "rounded-xl bg-green-400" },
+          { progress: 10, label: "W", className: "rounded-xl bg-green-400" },
+          { progress: 20, label: "Th", className: "rounded-xl bg-green-400" },
+          { progress: 30, label: "F", className: "rounded-xl bg-green-400" },
+          { progress: 90, label: "Sa", className: "rounded-xl bg-green-400" },
+        ]}
+        height={100}
+      />
+      <div className="mt-2 text-center font-bold">Weekly review</div>
+    </BentoCard>
+  );
+}
+
+function FeatureSeven() {
+  return (
+    <BentoCard className="flex flex-col gap-2 bg-rose-300">
+      <div className="w-full -rotate-1 rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white md:-rotate-3">
+        Javascript
+      </div>
+      <div className="w-full rotate-1 rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white md:rotate-3">
+        ReactJS
+      </div>
+      <div className="w-full rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white">
+        NextJS
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureEight() {
+  return (
+    <BentoCard className="relative flex flex-col bg-blue-200 sm:col-span-2">
+      <WideCard />
+      <div className="mt-4">
+        <div className="text-lg font-black text-blue-800">Daily reminders</div>
+        <p className="text-sm">Our daily reminder helps you keep focused on your goals.</p>
+      </div>
+    </BentoCard>
+  );
+}
+
+// #endregion
+
+export default function Eight() {
+  return (
+    <div className="full-content w-full min-w-0">
+      <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-4 sm:grid-rows-3">
+        <FeatureOne />
+        <FeatureTwo />
+        <FeatureThree />
+        <FeatureFour />
+        <FeatureFive />
+        <FeatureSix />
+        <FeatureSeven />
+        <FeatureEight />
+      </div>
+    </div>
+  );
 }
 ```

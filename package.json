@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "iconify-icon": "^3.0.2",
+    "lucide-react": "^1.23.0"
+  }
+}

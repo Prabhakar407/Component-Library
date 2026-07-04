@@ -1,6 +1,6 @@
 # Premium Custom Navbar Code Database
 
-This file contains the complete, self-contained HTML, CSS, and JavaScript code snippets for all **4 Premium Navbars** featured in the interactive showcase. Each navbar is numbered to match the UI labels in the application.
+This file contains the complete, self-contained HTML, CSS, and React code snippets for all **7 Premium Navbars** featured in the interactive showcase. Each navbar is numbered to match the UI labels in the application.
 
 ---
 
@@ -9,6 +9,9 @@ This file contains the complete, self-contained HTML, CSS, and JavaScript code s
 2. [Effect #2: Aurora Glow Border Topbar](#effect-2-aurora-glow-border-topbar)
 3. [Effect #3: Liquid Indicator Pill Navigation](#effect-3-liquid-indicator-pill-navigation)
 4. [Effect #4: Responsive Glow Lamp Topbar/Dock](#effect-4-responsive-glow-lamp-topbardock)
+5. [Effect #5: Sticky Announcement Ribbon](#effect-5-sticky-announcement-ribbon)
+6. [Effect #6: Glassmorphism Floating Nav](#effect-6-glassmorphism-floating-nav)
+7. [Effect #7: Aura Floating Pill Nav](#effect-7-aura-floating-pill-nav)
 
 ---
 
@@ -100,83 +103,48 @@ links.forEach(link => {
     });
 });
 
-// Run once to set initial alignment
+// Run once to set initial position
 updateIndicator(wrap.querySelector('.tab-link.active'));
 ```
 
 ---
 
 ## Effect #2: Aurora Glow Border Topbar
-*A top navigation bar with branding, whose hover states slide a glowing aurora color-accent indicator dynamically under the selected tab.*
+*A topbar layout featuring a thin bottom border that tracks the active link and transitions colors using aurora style gradients.*
 
 ### HTML
 ```html
 <div class="navbar-preview-wrap np-aurora" id="aurora-wrap-2">
-    <div class="aurora-navbar">
-        <div class="aurora-brand">
-            <div class="brand-logo"></div>
-            <span>AURA</span>
-        </div>
-        <div class="aurora-links">
-            <a href="#" class="aurora-link active" data-color="indigo">Home</a>
-            <a href="#" class="aurora-link" data-color="pink">Gallery</a>
-            <a href="#" class="aurora-link" data-color="cyan">Pricing</a>
-            <a href="#" class="aurora-link" data-color="purple">Contact</a>
-        </div>
+    <nav class="aurora-nav">
+        <a href="#" class="aurora-link active" data-color="indigo">Home</a>
+        <a href="#" class="aurora-link" data-color="pink">Campaigns</a>
+        <a href="#" class="aurora-link" data-color="cyan">Analytics</a>
+        <a href="#" class="aurora-link" data-color="purple">Settings</a>
         <div class="aurora-glow-line"></div>
-    </div>
+    </nav>
 </div>
 ```
 
 ### CSS
 ```css
-.aurora-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: rgba(8, 11, 17, 0.85);
-    backdrop-filter: blur(8px);
+.aurora-nav {
+    display: flex;
+    position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 10;
-}
-.aurora-brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 2px;
-    font-size: 0.95rem;
-}
-.brand-logo {
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, #6366f1, #ec4899);
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-}
-.aurora-links {
-    display: flex;
-    gap: 20px;
+    padding: 0 10px;
+    gap: 16px;
 }
 .aurora-link {
-    color: #94a3b8;
+    color: #64748b;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+    padding: 14px 8px;
+    transition: color 0.3s;
     position: relative;
-    padding: 8px 0;
 }
 .aurora-link:hover {
-    color: #fff;
+    color: #cbd5e1;
 }
 .aurora-link.active {
     color: #fff;
@@ -185,19 +153,17 @@ updateIndicator(wrap.querySelector('.tab-link.active'));
     position: absolute;
     bottom: -1px;
     left: 0;
+    width: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #6366f1, transparent);
-    box-shadow: 0 0 10px #6366f1;
-    width: 0;
-    opacity: 0;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    pointer-events: none;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
 }
 ```
 
 ### JavaScript
 ```javascript
-const wrap = document.getElementById('aurora-wrap-3');
+const wrap = document.getElementById('aurora-wrap-2');
 const links = wrap.querySelectorAll('.aurora-link');
 const glow = wrap.querySelector('.aurora-glow-line');
 
@@ -225,69 +191,65 @@ links.forEach(link => {
     });
 });
 
-// Run once to set initial alignment
+// Run once to set initial position
 updateGlow(wrap.querySelector('.aurora-link.active'));
 ```
 
 ---
 
 ## Effect #3: Liquid Indicator Pill Navigation
-*An elegant pill-shaped inline navbar featuring a liquid white indicator that slides dynamically behind the active text pill with elastic physics.*
+*An indicator capsule navigation that stretches and morphs fluidly between states when navigated.*
 
 ### HTML
 ```html
 <div class="navbar-preview-wrap np-pills" id="pills-wrap-3">
-    <div class="pill-nav">
-        <a href="#" class="pill-link active">Overview</a>
-        <a href="#" class="pill-link">Analytics</a>
-        <a href="#" class="pill-link">Campaigns</a>
-        <a href="#" class="pill-link">Reports</a>
+    <nav class="pills-nav">
+        <a href="#" class="pill-link active">Home</a>
+        <a href="#" class="pill-link">Profile</a>
+        <a href="#" class="pill-link">Projects</a>
+        <a href="#" class="pill-link">Team</a>
         <div class="pill-indicator"></div>
-    </div>
+    </nav>
 </div>
 ```
 
 ### CSS
 ```css
-.pill-nav {
-    position: relative;
-    background: #0d0f17;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 30px;
-    padding: 4px;
+.pills-nav {
     display: flex;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+    padding: 6px;
+    position: relative;
 }
 .pill-link {
-    position: relative;
-    color: #94a3b8;
+    color: #64748b;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    padding: 10px 24px;
-    border-radius: 26px;
-    transition: color 0.3s ease;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    position: relative;
     z-index: 2;
+    transition: color 0.3s;
 }
 .pill-link:hover {
-    color: #fff;
+    color: #e2e8f0;
 }
 .pill-link.active {
-    color: #000;
-    font-weight: 600;
+    color: #fff;
 }
 .pill-indicator {
     position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
     width: 0;
-    background: #fff;
-    border-radius: 26px;
+    background: #1e293b;
+    border-radius: 9999px;
     z-index: 1;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
-    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 ```
 
@@ -311,14 +273,14 @@ links.forEach(link => {
     });
 });
 
-// Run once to set initial alignment
+// Run once to set initial position
 updatePill(wrap.querySelector('.pill-link.active'));
 ```
 
 ---
 
 ## Effect #4: Responsive Glow Lamp Topbar/Dock
-*A client-side reactive topbar/dock featuring responsive viewport layouts (full text on desktop, compact icons on mobile) and a sliding background indicator container carrying a custom top-docked neon glow-lamp spotlight effect.*
+*A docked menu that projects a volumetric lamp/glow onto active icons, featuring elastic transitions.*
 
 ### HTML
 ```html
@@ -342,18 +304,6 @@ updatePill(wrap.querySelector('.pill-link.active'));
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             </span>
         </a>
-        <a href="#" class="lamp-link">
-            <span class="link-text">Messages</span>
-            <span class="link-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </span>
-        </a>
-        <a href="#" class="lamp-link">
-            <span class="link-text">Settings</span>
-            <span class="link-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            </span>
-        </a>
         <div class="lamp-indicator">
             <div class="lamp-glow-bar">
                 <div class="lamp-glow-dot"></div>
@@ -374,220 +324,622 @@ updatePill(wrap.querySelector('.pill-link.active'));
     border-radius: 9999px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 .lamp-link {
     position: relative;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 9999px;
-    transition: color 0.3s ease;
-    cursor: pointer;
-    z-index: 2;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.lamp-link:hover {
-    color: #fff;
+    padding: 10px 24px;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.85rem;
 }
 .lamp-link.active {
-    color: #fff;
+    color: #6366f1;
 }
 .lamp-indicator {
     position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
-    width: 0;
-    background: rgba(99, 102, 241, 0.05);
-    border-radius: 9999px;
-    z-index: 1;
+    top: 0;
+    height: 100%;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    pointer-events: none;
 }
 .lamp-glow-bar {
     position: absolute;
-    top: -6px;
+    top: -1px;
     left: 50%;
     transform: translateX(-50%);
     width: 32px;
     height: 2px;
     background: #6366f1;
-    border-radius: 4px 4px 0 0;
-}
-.lamp-glow-bar::before {
-    content: '';
-    position: absolute;
-    width: 48px;
-    height: 24px;
-    background: rgba(99, 102, 241, 0.2);
-    border-radius: 50%;
-    filter: blur(8px);
-    top: -8px;
-    left: -8px;
-}
-.lamp-glow-bar::after {
-    content: '';
-    position: absolute;
-    width: 32px;
-    height: 24px;
-    background: rgba(99, 102, 241, 0.2);
-    border-radius: 50%;
-    filter: blur(8px);
-    top: -4px;
-    left: 0;
+    border-radius: 9999px;
+    box-shadow: 0 0 10px #6366f1;
 }
 .lamp-glow-dot {
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background: rgba(99, 102, 241, 0.2);
-    border-radius: 50%;
-    filter: blur(4px);
+    left: 50%;
     top: 0;
-    left: 8px;
-}
-.lamp-link .link-text {
-    display: inline;
-}
-.lamp-link .link-icon {
-    display: none;
-}
-@media (max-width: 767px) {
-    .lamp-link .link-text {
-        display: none;
-    }
-    .lamp-link .link-icon {
-        display: inline-flex;
-    }
-    .lamp-link {
-        padding: 8px 16px;
-    }
+    transform: translate(-50%, -100%);
+    width: 24px;
+    height: 12px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(2px);
 }
 ```
 
-### JavaScript
-```javascript
-const wrap = document.getElementById('lamp-wrap-4');
-const links = wrap.querySelectorAll('.lamp-link');
-const indicator = wrap.querySelector('.lamp-indicator');
-
-const updateLamp = (el) => {
-    indicator.style.left = el.offsetLeft + 'px';
-    indicator.style.width = el.offsetWidth + 'px';
-};
-
-links.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        updateLamp(link);
-    });
-});
-
-// Run once to set initial alignment
-updateLamp(wrap.querySelector('.lamp-link.active'));
-
-// Align indicator on resize
-window.addEventListener('resize', () => {
-    const active = wrap.querySelector('.lamp-link.active');
-    if (active) updateLamp(active);
-});
-```
-
-### React/Next.js (Source Component)
+### React
 ```tsx
-"use client"
-
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { LucideIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
 
-interface NavItem {
-  name: string
-  url: string
-  icon: LucideIcon
+export function GlowLampNavbar() {
+  const [active, setActive] = useState("Home")
+  const tabs = ["Home", "Projects", "Analytics"]
+
+  return (
+    <div className="relative flex bg-slate-900/50 backdrop-blur-md border border-white/10 rounded-full p-1">
+      {tabs.map((tab) => {
+        const isActive = active === tab
+        return (
+          <button
+            key={tab}
+            onClick={() => setActive(tab)}
+            className={`relative px-6 py-2.5 text-sm font-semibold transition-colors duration-300 ${isActive ? "text-indigo-400" : "text-slate-400"}`}
+          >
+            <span className="relative z-10">{tab}</span>
+            {isActive && (
+              <motion.div
+                layoutId="lamp"
+                className="absolute inset-x-0 top-0 h-0.5 bg-indigo-500 shadow-[0_0_8px_#6366f1]"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
+          </button>
+        )
+      })}
+    </div>
+  )
 }
+```
 
-interface NavBarProps {
-  items: NavItem[]
-  className?: string
+---
+
+## Effect #5: Sticky Announcement Ribbon
+*A sticky marquee-based announcement ribbon bar featured in the top of navigation wrappers, ideal for sliding news updates, promotions, and status changes.*
+
+### HTML
+```html
+<div class="announcement-ribbon-container">
+    <!-- Badge -->
+    <div class="announcement-badge">
+        <span>NEW</span>
+    </div>
+    
+    <!-- Marquee Container -->
+    <div class="announcement-marquee-track">
+        <div class="marquee-container">
+            <!-- Repeat track 5 times for a seamless loop -->
+            <div class="marquee-track">
+                <span class="marquee-text">New components and live demos</span>
+                <span class="marquee-dot">&middot;</span>
+            </div>
+            <div class="marquee-track">
+                <span class="marquee-text">New components and live demos</span>
+                <span class="marquee-dot">&middot;</span>
+            </div>
+            <div class="marquee-track">
+                <span class="marquee-text">New components and live demos</span>
+                <span class="marquee-dot">&middot;</span>
+            </div>
+            <div class="marquee-track">
+                <span class="marquee-text">New components and live demos</span>
+                <span class="marquee-dot">&middot;</span>
+            </div>
+            <div class="marquee-track">
+                <span class="marquee-text">New components and live demos</span>
+                <span class="marquee-dot">&middot;</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CTA -->
+    <a href="#" class="announcement-cta">
+        Learn more
+        <svg class="cta-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+    </a>
+</div>
+```
+
+### CSS
+```css
+.announcement-ribbon-container {
+    position: relative;
+    display: flex;
+    height: 44px;
+    width: 100%;
+    max-width: 480px;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffcc00;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-family: 'Outfit', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
+.announcement-badge {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    align-self: stretch;
+    background-color: #ffcc00;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 16px;
+}
+.announcement-badge span {
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #171717;
+}
+.announcement-marquee-track {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.marquee-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 12px;
+    --duration: 10s;
+    --gap: 12px;
+    overflow: hidden;
+}
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--gap);
+    align-items: center;
+    animation: marquee-x-announcement 10s infinite linear;
+}
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+.marquee-text {
+    white-space: nowrap;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: #171717;
+    font-size: 13px;
+}
+.marquee-dot {
+    font-family: 'Outfit', sans-serif;
+    color: #171717;
+    font-size: 14px;
+}
+@keyframes marquee-x-announcement {
+    from {
+        transform: translateX(0);
     }
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
+}
+.announcement-cta {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    align-self: stretch;
+    background-color: #ffcc00;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(23, 23, 23, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.announcement-cta:hover {
+    color: #171717;
+}
+.cta-arrow {
+    height: 12px;
+    width: 12px;
+    transition: transform 0.2s;
+}
+.announcement-cta:hover .cta-arrow {
+    transform: translateX(2px);
+}
+```
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+### React
+```tsx
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+// --- Custom Marquee Sub-Component ---
+interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
+  vertical?: boolean;
+  repeat?: number;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+  applyMask?: boolean;
+}
+
+export function Marquee({
+  children,
+  vertical = false,
+  repeat = 5,
+  pauseOnHover = false,
+  reverse = false,
+  className,
+  applyMask = true,
+  ...props
+}: MarqueeProps) {
+  return (
+    <div
+      {...props}
+      className={cn(
+        "group/marquee relative flex h-full w-full p-2 [--duration:10s] [--gap:12px] [gap:var(--gap)] overflow-hidden",
+        {
+          "flex-col": vertical,
+          "flex-row": !vertical,
+        },
+        className,
+      )}
+    >
+      <style>{`
+        @keyframes marquee-x {
+          from { transform: translateX(0); }
+          to { transform: translateX(calc(-100% - var(--gap))); }
+        }
+        @keyframes marquee-y {
+          from { transform: translateY(0); }
+          to { transform: translateY(calc(-100% - var(--gap))); }
+        }
+        .marquee-horizontal {
+          animation: marquee-x var(--duration) infinite linear;
+        }
+        .marquee-vertical {
+          animation: marquee-y var(--duration) infinite linear;
+        }
+        .group\\/marquee:hover .marquee-pause-on-hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+      {Array.from({ length: repeat }).map((_, index) => (
+        <div
+          key={`item-${index}`}
+          className={cn("flex shrink-0 [gap:var(--gap)]", {
+            "marquee-pause-on-hover": pauseOnHover,
+            "marquee-horizontal flex-row": !vertical,
+            "marquee-vertical flex-col": vertical,
+          })}
+          style={reverse ? { animationDirection: "reverse" } : undefined}
+        >
+          {children}
+        </div>
+      ))}
+      {applyMask && (
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 z-10 h-full w-full from-white/50 from-5% via-transparent via-50% to-white/50 to-95% dark:from-gray-800/50 dark:via-transparent dark:to-gray-800/50",
+            {
+              "bg-gradient-to-b": vertical,
+              "bg-gradient-to-r": !vertical,
+            },
+          )}
+        />
+      )}
+    </div>
+  );
+}
+
+// --- Main Announcement Ribbon Component ---
+interface AnnouncementRibbonProps extends React.HTMLAttributes<HTMLDivElement> {
+  message?: React.ReactNode;
+  badge?: string | null;
+  ctaText?: string | null;
+  ctaHref?: string;
+  repeat?: number;
+  pauseOnHover?: boolean;
+}
+
+function DefaultMessage() {
+  return (
+    <span>
+      <span className="whitespace-nowrap px-12 font-sans font-light text-neutral-900">
+        New components and live demos
+      </span>
+      <span className="text-neutral-900">&middot;</span>
+    </span>
+  );
+}
+
+export default function AnnouncementRibbon({
+  message,
+  badge = "NEW",
+  ctaText = "Learn more",
+  ctaHref = "/docs/changelog/2026-05",
+  repeat = 5,
+  pauseOnHover = true,
+  className,
+  ...props
+}: AnnouncementRibbonProps) {
+  const content = message ?? <DefaultMessage />;
 
   return (
     <div
       className={cn(
-        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "relative flex h-11 w-full items-center overflow-hidden",
+        "bg-[#ffcc00]",
+        "border-b border-black/8",
         className,
       )}
+      {...props}
     >
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
-        {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.name
+      {/* Badge */}
+      {badge && (
+        <div className="relative z-30 flex bg-[#ffcc00] shrink-0 items-center self-stretch border-r border-black/8 px-4">
+          <span className="rounded-full bg-black/10 px-2.5 py-px font-mono text-[10px] font-semibold uppercase tracking-widest text-neutral-900">
+            {badge}
+          </span>
+        </div>
+      )}
 
-          return (
-            <Link
-              key={item.name}
-              href={item.url}
-              onClick={() => setActiveTab(item.name)}
-              className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                "text-foreground/80 hover:text-primary",
-                isActive && "bg-muted text-primary",
-              )}
-            >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
-                <Icon size={18} strokeWidth={2.5} />
-              </span>
-              {isActive && (
-                <motion.div
-                  layoutId="lamp"
-                  className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                  }}
-                >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-primary/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
-                  </div>
-                </motion.div>
-              )}
-            </Link>
-          )
-        })}
+      <div className="flex-1 overflow-hidden">
+        <Marquee repeat={repeat} pauseOnHover={pauseOnHover} applyMask={false}>
+          {content}
+        </Marquee>
+      </div>
+
+      {/* CTA */}
+      {ctaText && ctaHref && (
+        <Link
+          href={ctaHref}
+          className="group/cta relative bg-[#ffcc00] z-30 flex shrink-0 items-center gap-1.5 self-stretch border-l border-black/8 px-4 font-mono text-[10px] font-semibold uppercase tracking-widest text-neutral-800/60 transition-colors hover:text-neutral-900 no-underline"
+        >
+          {ctaText}
+          <svg
+            className="h-3 w-3 transition-transform group-hover/cta:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      )}
+    </div>
+  );
+}
+```
+
+---
+
+## Effect #6: Glassmorphism Floating Nav
+*A glassmorphic floating nav container with responsive item anchors, a subtle frosted overlay, and high contrast border highlights.*
+
+### HTML
+```html
+<div class="max-w-4xl border rounded-full mr-auto ml-auto pt-3 pr-6 pb-3 pl-6 border-white/10"
+  style="background: linear-gradient(180deg, rgba(14,16,26,0.55), rgba(14,16,26,0.35)) padding-box, linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)) border-box; border: 1px solid transparent; backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%); box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04); width: 100%;">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <span class="text-lg font-semibold tracking-tight text-white/90">Rulz&amp;Co.</span>
+    </div>
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Home</a>
+      </li>
+      <li class="">
+        <a href="/services"
+          class="transition-colors duration-300 hover:text-white hover:bg-white/5 rounded-full pt-2 pr-4 pb-2 pl-4">Services</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Works</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">Contact</a>
+      </li>
+      <li class="">
+        <a href="#"
+          class="transition-colors duration-300 rounded-full pt-2 pr-4 pb-2 pl-4 hover:text-white hover:bg-white/5">FAQ</a>
+      </li>
+    </ul>
+    <div class="flex items-center gap-1.5 md:gap-2">
+      <button class="inline-flex md:hidden p-2 rounded-full transition-all duration-300 border hover:bg-white/5 border-white/5" style="background: rgba(255, 255, 255, 0.02);" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 stroke-[1.5] text-white/70">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
+      <button class="hidden md:inline-flex p-2 rounded-full transition-all duration-300 border hover:bg-white/5 border-white/5" style="background: rgba(255, 255, 255, 0.02);" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 stroke-[1.5] text-white/60">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+### CSS
+```css
+/* Requires Tailwind CSS configuration */
+```
+
+### React
+```tsx
+import React from "react"
+import { Menu, User } from "lucide-react"
+
+export function GlassFloatingNav() {
+  return (
+    <div 
+      className="max-w-4xl border rounded-full mx-auto py-3 px-6 border-white/10 text-white"
+      style={{
+        background: "linear-gradient(180deg, rgba(14,16,26,0.55), rgba(14,16,26,0.35)) padding-box, linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)) border-box",
+        border: "1px solid transparent",
+        backdropFilter: "blur(16px) saturate(120%)",
+        WebkitBackdropFilter: "blur(16px) saturate(120%)",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)"
+      }}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <span className="text-lg font-semibold tracking-tight text-white/90">Rulz&Co.</span>
+        </div>
+        <ul className="hidden md:flex items-center gap-1 text-sm font-medium text-white/60 list-none m-0 p-0">
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Home</a></li>
+          <li><a href="/services" className="transition-colors duration-300 hover:text-white hover:bg-white/5 rounded-full py-2 px-4 no-underline text-white/60">Services</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Works</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">Contact</a></li>
+          <li><a href="#" className="transition-colors duration-300 rounded-full py-2 px-4 hover:text-white hover:bg-white/5 no-underline text-white/60">FAQ</a></li>
+        </ul>
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <button className="inline-flex md:hidden p-2 rounded-full transition-all duration-300 border border-white/5 hover:bg-white/5 bg-white/[0.02] cursor-pointer text-white/70">
+            <Menu size={20} strokeWidth={1.5} />
+          </button>
+          <button className="hidden md:inline-flex p-2 rounded-full transition-all duration-300 border border-white/5 hover:bg-white/5 bg-white/[0.02] cursor-pointer text-white/60">
+            <User size={16} strokeWidth={1.5} />
+          </button>
+        </div>
       </div>
     </div>
   )
 }
 ```
+
+---
+
+## Effect #7: Aura Floating Pill Nav
+*A floating pill shaped top navigation bar with a subtle layers icon glow, hover scaling parameters, and a prominent call-to-action button.*
+
+### HTML
+```html
+<!-- Background Effects -->
+<div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+
+<!-- Navigation: Pill Shaped & Floating -->
+<nav
+  class="fixed -translate-x-1/2 flex shadow-black/50 transition-all duration-300 hover:border-white/20 hover:shadow-brand-sky/5 lg:w-fit bg-gradient-to-br from-white/10 to-white/0 w-full max-w-[90vw] z-50 rounded-full ring-white/10 ring-1 pt-1.5 pr-1.5 pb-1.5 pl-4 top-6 left-1/2 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] backdrop-blur-xl items-center justify-between">
+
+  <!-- Logo Area -->
+  <div class="flex mr-8 gap-x-2.5 gap-y-2.5 items-center" onclick="window.location.href='/home'" role="button">
+    <div class="relative flex items-center justify-center">
+
+      <!-- Subtle glow behind logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        style="width: 24px; height: 24px; color: rgb(56, 189, 248);" class="iconify iconify--solar w-[24px] h-[24px]"
+        aria-hidden="true" role="img" data-icon="solar:layers-minimalistic-bold-duotone"
+        data-solar="forbidden-circle-bold-duotone" data-icon-set="solar" data-icon-replaced="true" stroke-width="2">
+        <path fill="#38bdf8"
+          d="M4.929 4.929c-3.905 3.905-3.905 10.237 0 14.142s10.237 3.905 14.142 0s3.905-10.237 0-14.142s-10.237-3.905-14.142 0"
+          opacity=".5"></path>
+        <path fill="#38bdf8" d="M18.521 4.418L4.418 18.521a10 10 0 0 0 1.06 1.061L19.583 5.479a10 10 0 0 0-1.06-1.06-10 10 0 0 0-1.06-1.06">
+        </path>
+      </svg>
+    </div>
+    <span class="font-sans font-medium text-base tracking-tight text-white">Aura</span>
+  </div>
+
+  <!-- Links (Hidden on small screens) -->
+  <div class="hidden md:flex items-center gap-6 mr-8">
+    <a href="/features" class="hover:text-white transition-colors text-xs font-medium text-white/50">Features</a>
+    <a href="/about" class="hover:text-white transition-colors text-xs font-medium text-white/50">About</a>
+    <a href="/pricing" class="hover:text-white transition-colors text-xs font-medium text-white/50">Pricing</a>
+  </div>
+
+  <!-- Action Button -->
+  <button class="flex hover:bg-brand-sky transition-colors group flex-none text-xs font-semibold text-black bg-white rounded-full pt-2 pr-4 pb-2 pl-4 gap-x-2 gap-y-2 items-center" onclick="window.location.href='/login'" role="button">
+            Start Engine
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="solar:arrow-right-bold-duotone" class="iconify group-hover:translate-x-0.5 transition-transform"><path fill="currentColor" d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"></path></svg>
+        </button>
+</nav>
+```
+
+### CSS
+```css
+/* Requires Tailwind CSS configuration */
+```
+
+### React
+```tsx
+import React from "react"
+import Link from "next/link"
+
+export function AuraFloatingNav() {
+  return (
+    <nav
+      className="flex shadow-black/50 transition-all duration-300 hover:border-white/20 hover:shadow-sky-400/5 lg:w-fit bg-gradient-to-br from-white/10 to-white/0 w-full max-w-md rounded-full ring-white/10 ring-1 p-1.5 pl-4 items-center justify-between backdrop-blur-xl border border-transparent"
+      style={{
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25)"
+      }}
+    >
+      {/* Logo Area */}
+      <div className="flex mr-8 gap-2.5 items-center cursor-pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          className="text-sky-400"
+        >
+          <path fill="currentColor" d="M4.929 4.929c-3.905 3.905-3.905 10.237 0 14.142s10.237 3.905 14.142 0s3.905-10.237 0-14.142s-10.237-3.905-14.142 0" opacity=".5" />
+          <path fill="currentColor" d="M18.521 4.418L4.418 18.521a10 10 0 0 0 1.06 1.061L19.583 5.479a10 10 0 0 0-1.06-1.06" />
+        </svg>
+        <span className="font-sans font-medium text-base tracking-tight text-white">Aura</span>
+      </div>
+
+      {/* Links */}
+      <div className="hidden md:flex items-center gap-6 mr-8">
+        <Link href="/features" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">Features</Link>
+        <Link href="/about" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">About</Link>
+        <Link href="/pricing" className="hover:text-white transition-colors text-xs font-medium text-white/50 no-underline">Pricing</Link>
+      </div>
+
+      {/* Action Button */}
+      <button className="flex hover:bg-sky-400 transition-colors group flex-none text-xs font-semibold text-black bg-white rounded-full py-2 px-4 gap-2 items-center border-none cursor-pointer">
+        Start Engine
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" className="group-hover:translate-x-0.5 transition-transform">
+          <path fill="currentColor" d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z" />
+        </svg>
+      </button>
+    </nav>
+  )
+}
 ```

@@ -6,7 +6,7 @@ This file contains the complete, self-contained HTML, CSS, and JavaScript code s
 
 # Premium Custom Background Code Database
 
-This file contains the complete, self-contained HTML, CSS, and JavaScript code snippets for all **9 Premium Backgrounds** featured in the interactive showcase. Each background is numbered to match the UI labels in the application.
+This file contains the complete, self-contained HTML, CSS, and JavaScript code snippets for all **15 Premium Backgrounds** featured in the interactive showcase. Each background is numbered to match the UI labels in the application.
 
 ---
 
@@ -20,6 +20,12 @@ This file contains the complete, self-contained HTML, CSS, and JavaScript code s
 7. [Effect #7: Dark Linear Gradient Streaks](#effect-7-dark-linear-gradient-streaks)
 8. [Effect #8: Interactive Neural Vortex](#effect-8-interactive-neural-vortex)
 9. [Effect #9: Animated Digital Streams](#effect-9-animated-digital-streams)
+10. [Effect #10: Nexbot 3D Spline Robot](#effect-10-nexbot-3d-spline-robot)
+11. [Effect #11: Unicorn Studio Fluid Shader](#effect-11-unicorn-studio-fluid-shader)
+12. [Effect #12: Unicorn Studio Cyber Shader](#effect-12-unicorn-studio-cyber-shader)
+13. [Effect #13: WebGL Cyber Glowing Trails](#effect-13-webgl-cyber-glowing-trails)
+14. [Effect #14: Retrofuturistic Circuit Loop](#effect-14-retrofuturistic-circuit-loop)
+15. [Effect #15: Shooting Stars](#effect-15-shooting-stars)
 
 ---
 
@@ -1327,5 +1333,673 @@ function initDigitalStreams() {
     }
 }
 ```
+
+---
+
+## Effect #10: Nexbot 3D Spline Robot
+*An interactive 3D Nexbot robot concept rendered using Spline's real-time WebGL engine.*
+
+### HTML
+```html
+<div class="spline-container">
+    <iframe src="https://my.spline.design/nexbotrobotcharacterconcept-kLwr8f6hgKgaa5gmU6oB00Si" frameborder="0" width="100%" height="100%" id="aura-spline"></iframe>
+</div>
 ```
 
+### CSS
+```css
+.spline-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+```
+
+### JavaScript
+No JavaScript dependency required for iframe embed.
+
+---
+
+## Effect #11: Unicorn Studio Fluid Shader
+*A premium fluid motion shader effect powered by Unicorn Studio WebGL runtime.*
+
+### HTML
+```html
+<div class="aura-background-component top-0 w-full h-screen -z-10 fixed" data-alpha-mask="47"
+  style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 47%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 47%, transparent)">
+  <div data-us-project="3eLGLP7pmQS4ozfklmrX" class="absolute top-0 left-0 -z-10 w-full h-full"></div>
+  <script type="text/javascript">
+    !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+  </script>
+</div>
+```
+
+### CSS
+No custom CSS required; uses Tailwind utility classes and inline masking styles.
+
+### JavaScript
+No additional custom JavaScript required. Init is executed on load via the inline CDN script snippet.
+
+---
+
+## Effect #12: Unicorn Studio Cyber Shader
+*An interactive space/mesh grid shader powered by Unicorn Studio.*
+
+### HTML
+```html
+<div data-us-project="bmaMERjX2VZDtPrh4Zwx" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+<script type="text/javascript">
+  !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.34/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+</script>
+```
+
+### CSS
+No custom CSS required; uses Tailwind utility classes.
+
+### JavaScript
+Init is executed automatically on script load via the inline snippet.
+
+---
+
+## Effect #13: WebGL Cyber Glowing Trails
+*A high-performance WebGL glow shader featuring moving digital trails and neon nodes, designed with Three.js postprocessing and UnrealBloom.*
+
+### HTML
+```html
+<!-- Background Image -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9aea64b5-bfda-4948-bf88-d4e5d45762fa_3840w.jpg" alt="Background Portrait" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity scale-105 transform origin-center transition-transform duration-1000">
+    <!-- Gradients to ensure text readability -->
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/40 to-transparent md:w-3/4"></div>
+</div>
+
+<!-- Diagonal Texture Overlay -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-[0.03]"
+    style="background-image: repeating-linear-gradient(-45deg, #ffffff, #ffffff 1px, transparent 1px, transparent 12px);">
+</div>
+
+<!-- WebGL Canvas for Trail Animation -->
+<canvas id="webgl-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-70 mix-blend-screen"></canvas>
+```
+
+### CSS
+No custom CSS required; relies on Tailwind utility styles.
+
+### JavaScript
+```javascript
+// Add these CDN scripts to your head:
+// 1. Three.js: https://unpkg.com/three@0.160.0/build/three.module.js
+// 2. Addons imports via importmap or dynamic ESM imports:
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+let scene, camera, renderer, composer, bloomPass, blurPass, smaaPass, outputPass;
+let clock = new THREE.Clock();
+let globalTime = 0;
+
+let floorMesh;
+const trailObjects = [];
+const trailMaterials = [];
+
+const config = {
+    dpr: Math.min(window.devicePixelRatio, 1.5),
+    exposure: 3.6505,
+    brightness: 4.0131,
+    bloomStrength: 0.2025,
+    bloomRadius: 0.294,
+    bloomThreshold: 0.0,
+    speedMultiplier: 0.1,
+    linesCount: 100,
+    dotDensity: 70,
+    dotSize: 0.25,
+    dotSpeed: 1.5,
+    blurStrength: 3.5,
+    arcRadius: 10.0,
+    bendStartZ: -150.0,
+    floorLength: 132.75,
+    wallHeight: 200.0,
+    color0: '#0b101d',
+    color1: '#334155',
+    color2: '#429DFE',
+    color3: '#FF91E3',
+    color4: '#1f2937'
+};
+
+class CycCurve extends THREE.Curve {
+    constructor(x, zStart, zBend, radius, yEnd) {
+        super();
+        this.x = x;
+        this.zStart = zStart;
+        this.zBend = zBend;
+        this.radius = radius;
+        this.yEnd = yEnd;
+        
+        this.L_flat = Math.abs(zStart - (zBend + radius));
+        this.L_arc = (Math.PI * radius) * 0.5;
+        this.L_up = Math.max(0.1, yEnd - radius);
+        this.totalLength = this.L_flat + this.L_arc + this.L_up;
+    }
+    
+    getPoint(t, optionalTarget = new THREE.Vector3()) {
+        const d = t * this.totalLength;
+        let py = 0, pz = 0;
+
+        if (d <= this.L_flat) {
+            pz = this.zStart - d;
+        } else if (d <= this.L_flat + this.L_arc) {
+            const norm = (d - this.L_flat) / this.L_arc;
+            const eased = norm * norm * (3.0 - 2.0 * norm);
+            const angle = (norm * 0.4 + eased * 0.6) * (Math.PI * 0.5);
+            py = this.radius * (1.0 - Math.cos(angle));
+            pz = (this.zBend + this.radius) - Math.sin(angle) * this.radius;
+        } else {
+            py = this.radius + (d - (this.L_flat + this.L_arc));
+            pz = this.zBend;
+        }
+        return optionalTarget.set(this.x, py, pz);
+    }
+}
+
+function init() {
+    const canvas = document.querySelector('#webgl-canvas');
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+
+    camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 2000);
+    camera.position.set(0, 20, 140);
+
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: "high-performance" });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(config.dpr);
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = config.exposure;
+
+    camera.lookAt(0, 20, -50);
+
+    const renderTarget = new THREE.WebGLRenderTarget(
+        window.innerWidth * config.dpr,
+        window.innerHeight * config.dpr,
+        {
+            type: THREE.HalfFloatType,
+            format: THREE.RGBAFormat
+        }
+    );
+
+    const renderScene = new RenderPass(scene, camera);
+    smaaPass = new SMAAPass(window.innerWidth * config.dpr, window.innerHeight * config.dpr);
+    bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), config.bloomStrength, config.bloomRadius, config.bloomThreshold);
+
+    const foregroundBlurShader = {
+        uniforms: {
+            'tDiffuse': { value: null },
+            'resolution': { value: new THREE.Vector2(window.innerWidth * config.dpr, window.innerHeight * config.dpr) },
+            'blurStrength': { value: config.blurStrength }
+        },
+        vertexShader: `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+        fragmentShader: `
+            uniform sampler2D tDiffuse;
+            uniform vec2 resolution;
+            uniform float blurStrength;
+            varying vec2 vUv;
+            void main() {
+                float mask = 1.0 - smoothstep(0.0, 0.35, vUv.y);
+                float radius = mask * blurStrength;
+                if (radius < 0.1) {
+                    gl_FragColor = texture2D(tDiffuse, vUv);
+                } else {
+                    vec4 color = vec4(0.0);
+                    float total = 0.0;
+                    const float GA = 2.3999632;
+                    for (int i = 0; i < 32; i++) {
+                        float f = float(i);
+                        float r = sqrt(f) * radius;
+                        float theta = f * GA;
+                        vec2 offset = vec2(cos(theta), sin(theta)) * (r / resolution);
+                        color += texture2D(tDiffuse, vUv + offset);
+                        total += 1.0;
+                    }
+                    gl_FragColor = color / total;
+                }
+            }
+        `
+    };
+    blurPass = new ShaderPass(foregroundBlurShader);
+    outputPass = new OutputPass();
+
+    composer = new EffectComposer(renderer, renderTarget);
+    composer.setPixelRatio(config.dpr);
+    composer.addPass(renderScene);
+    composer.addPass(smaaPass);
+    composer.addPass(bloomPass);
+    composer.addPass(blurPass);
+    composer.addPass(outputPass);
+
+    createFloor();
+    generateTrails();
+    updateGeometries();
+
+    window.addEventListener('resize', onWindowResize);
+}
+
+function createFloor() {
+    const floorMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.85, depthWrite: false, side: THREE.DoubleSide });
+    floorMesh = new THREE.Mesh(new THREE.BufferGeometry(), floorMat);
+    floorMesh.position.set(0, -0.5, -0.5);
+    floorMesh.renderOrder = 1;
+    scene.add(floorMesh);
+}
+
+function generateTrails() {
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const vertexShader = `
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        void main() {
+            vUv = uv;
+            vNormal = normalMatrix * normal;
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            vViewPosition = -mvPosition.xyz;
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    `;
+
+    const fragmentShader = `
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        uniform float uTime;
+        uniform vec3 uColor;
+        uniform float uSpeed;
+        uniform float uOffset;
+        uniform float uTailLength;
+        uniform float uIntensityMultiplier;
+        uniform float uBendUv;
+        uniform float uIsReflection;
+        uniform float uDotDensity;
+        uniform float uDotSize;
+        uniform float uDotSpeed;
+        uniform float uBrightness;
+
+        float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+
+        void main() {
+            float t = fract(uTime * uSpeed + uOffset);
+            float dist = fract(t - vUv.x + 1.0);
+            
+            float baseAlpha = smoothstep(uTailLength, 0.0, dist);
+            baseAlpha = pow(max(0.0, baseAlpha), 1.2);
+
+            vec3 viewDir = normalize(vViewPosition);
+            float fresnel = abs(dot(normalize(vNormal), viewDir));
+            
+            float edgeSoftness = smoothstep(0.0, 0.02, fresnel);
+            baseAlpha *= edgeSoftness;
+
+            float core = pow(max(0.0, baseAlpha), 3.0) * 1.5;
+
+            float movingUV = vUv.x - (uTime * uSpeed * uDotSpeed) - uOffset;
+            float signalPos = movingUV * uDotDensity;
+            float dotId = floor(signalPos);
+            float dotLocal = fract(signalPos);
+
+            float distToCenter = length(vec2((dotLocal - 0.5) * 2.0, (fract(vUv.y + 0.5) - 0.5) * 6.0));
+            float dotShape = 1.0 - smoothstep(0.0, max(0.001, uDotSize), distToCenter);
+            float dotFinal = dotShape * step(0.6, hash(vec2(dotId, uOffset))) * (sin(uTime * 4.0 + hash(vec2(dotId)) * 6.28) * 0.3 + 0.7) * baseAlpha;
+            
+            if (uIsReflection > 0.5) {
+                float refFade = 1.0 - smoothstep(uBendUv - 0.015, uBendUv, vUv.x);
+                
+                baseAlpha *= refFade;
+                core *= refFade;
+                dotFinal *= refFade * 0.1;
+                baseAlpha = pow(max(0.0, baseAlpha), 0.5) * (0.7 + hash(vUv * 300.0 + uTime * 0.05) * 0.3);
+                core *= 0.3;
+            }
+
+            vec3 trailColor = uColor * (baseAlpha + core * 1.5) * uIntensityMultiplier * uBrightness;
+            vec3 rgb = trailColor / max(1.0 - clamp(dotFinal * 1.8, 0.0, 0.95), 0.001) + uColor * dotFinal * 2.5 * uIntensityMultiplier * uBrightness;
+
+            gl_FragColor = vec4(rgb, (baseAlpha + dotFinal) * uIntensityMultiplier);
+        }
+    `;
+
+    for (let i = 0; i < config.linesCount; i++) {
+        const normIdx = (i / (config.linesCount - 1)) * 2 - 1;
+        const linearPos = normIdx;
+        const expPos = Math.sign(normIdx) * Math.pow(Math.abs(normIdx), 1.2);
+        let startX = (linearPos * 0.5 + expPos * 0.5) * 80;
+        startX += (Math.random() - 0.5) * 2.0;
+        
+        const thickness = Math.random() * 0.2 + 0.1;
+        const colorIdx = Math.floor(Math.random() * 5);
+        
+        const uniforms = {
+            uTime: { value: 0 },
+            uColor: { value: new THREE.Color(config[`color${colorIdx}`]) },
+            uColorIndex: { value: colorIdx },
+            uSpeed: { value: Math.random() * 0.5 + 0.2 },
+            uOffset: { value: Math.random() },
+            uTailLength: { value: Math.random() * 0.4 + 0.3 },
+            uIntensityMultiplier: { value: 1.0 },
+            uBendUv: { value: 0.0 },
+            uIsReflection: { value: 0.0 },
+            uDotDensity: { value: config.dotDensity },
+            uDotSize: { value: config.dotSize },
+            uDotSpeed: { value: config.dotSpeed },
+            uBrightness: { value: config.brightness }
+        };
+
+        const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+        const mesh = new THREE.Mesh(new THREE.BufferGeometry(), material);
+        const refMaterial = material.clone();
+        refMaterial.uniforms.uIntensityMultiplier.value = 0.4;
+        refMaterial.uniforms.uIsReflection.value = 1.0;
+        const refMesh = new THREE.Mesh(new THREE.BufferGeometry(), refMaterial);
+        refMesh.scale.y = -1; refMesh.position.y = -1.0;
+
+        group.add(mesh, refMesh);
+        trailMaterials.push(material.uniforms, refMaterial.uniforms);
+        trailObjects.push({ mesh, refMesh, startX, thickness });
+    }
+}
+
+function updateGeometries() {
+    if (floorMesh.geometry) floorMesh.geometry.dispose();
+    
+    const floorGeo = new THREE.PlaneGeometry(1000, 1000, 1, 1500);
+    floorGeo.rotateX(-Math.PI * 0.5);
+    const pos = floorGeo.attributes.position.array;
+    
+    for (let i = 0; i < pos.length; i += 3) {
+        if (pos[i + 2] < config.bendStartZ) {
+            let d = config.bendStartZ - pos[i + 2];
+            let maxA = config.arcRadius * Math.PI * 0.5;
+            if (d < maxA) {
+                let n = d / maxA;
+                let a = (n * 0.4 + (n * n * (3.0 - 2.0 * n)) * 0.6) * (Math.PI * 0.5);
+                pos[i + 1] = config.arcRadius * (1.0 - Math.cos(a));
+                pos[i + 2] = (config.bendStartZ) - Math.sin(a) * config.arcRadius;
+            } else {
+                pos[i + 1] = config.arcRadius + (d - maxA);
+                pos[i + 2] = config.bendStartZ - config.arcRadius;
+            }
+        }
+    }
+    floorGeo.computeVertexNormals();
+    floorMesh.geometry = floorGeo;
+
+    const bendUv = Math.abs(config.floorLength - config.bendStartZ) / (Math.abs(config.floorLength - config.bendStartZ) + (Math.PI * config.arcRadius) * 0.5 + Math.max(0.1, config.wallHeight - config.arcRadius));
+
+    trailObjects.forEach(obj => {
+        const path = new CycCurve(obj.startX, config.floorLength, config.bendStartZ - config.arcRadius, config.arcRadius, config.wallHeight);
+        const geo = new THREE.TubeGeometry(path, 200, obj.thickness, 8, false);
+        if (obj.mesh.geometry) obj.mesh.geometry.dispose();
+        obj.mesh.geometry = obj.refMesh.geometry = geo;
+        obj.mesh.material.uniforms.uBendUv.value = obj.refMesh.material.uniforms.uBendUv.value = bendUv;
+    });
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+    if (smaaPass) smaaPass.setSize(window.innerWidth * config.dpr, window.innerHeight * config.dpr);
+    blurPass.uniforms.resolution.value.set(window.innerWidth * config.dpr, window.innerHeight * config.dpr);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    globalTime += clock.getDelta() * config.speedMultiplier;
+    trailMaterials.forEach(m => m.uTime.value = globalTime);
+    composer.render();
+}
+```
+
+---
+
+## Effect #14: Retrofuturistic Circuit Loop
+*An interactive 3D retrofuturistic circuit board loop rendered via Spline.*
+
+### HTML
+```html
+<div class="spline-container">
+    <iframe src="https://my.spline.design/retrofuturisticcircuitloop-JngSBMetOQh9Jn4XS5OxTiIc/" frameborder="0" width="100%" height="100%" id="aura-spline"></iframe>
+</div>
+```
+
+### CSS
+```css
+.spline-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+```
+
+### JavaScript
+No JavaScript dependency required for iframe embed.
+
+---
+
+## Effect #15: Shooting Stars
+*A night sky where streaks shoot across with variable length, speed, and direction over a twinkling starfield.*
+
+### HTML
+```html
+<div class="bg-effect-15" id="stars-wrap-15">
+    <div class="stars-sky absolute inset-0 z-0">
+        <div class="absolute inset-x-0 top-1/4 h-3/4 opacity-40 glow-overlay"></div>
+        <svg class="absolute inset-0 h-full w-full stars-svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="ss-white-15" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="1" />
+                </linearGradient>
+                <linearGradient id="ss-blue-15" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#9ec1ff" stop-opacity="0" />
+                    <stop offset="100%" stop-color="#cfe0ff" stop-opacity="1" />
+                </linearGradient>
+                <linearGradient id="ss-warm-15" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#ffd9a8" stop-opacity="0" />
+                    <stop offset="100%" stop-color="#ffe9cf" stop-opacity="1" />
+                </linearGradient>
+                <radialGradient id="ss-glow-15">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </radialGradient>
+            </defs>
+            <g class="dots-group"></g>
+            <g class="stars-group"></g>
+        </svg>
+    </div>
+</div>
+```
+
+### CSS
+```css
+.bg-effect-15 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05050f;
+}
+.bg-effect-15 .stars-sky {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #1e1b4b, #05050f);
+}
+.bg-effect-15 .glow-overlay {
+    position: absolute;
+    inset: 0;
+    top: 25%;
+    height: 75%;
+    opacity: 0.4;
+    background: radial-gradient(55% 50% at 50% 45%, rgba(76,82,180,0.4) 0%, rgba(20,22,60,0.22) 45%, rgba(5,5,15,0) 100%);
+}
+.bg-effect-15 svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+@keyframes ss-shoot-15 {
+    0% {
+        transform: translate(0px, 0px);
+        opacity: 0;
+    }
+    6% {
+        opacity: 1;
+    }
+    82% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy));
+        opacity: 0;
+    }
+}
+@keyframes ss-twinkle-15 {
+    0%, 100% {
+        opacity: var(--o);
+    }
+    50% {
+        opacity: calc(var(--o) * 0.25);
+    }
+}
+```
+
+### JavaScript
+```javascript
+function initShootingStars() {
+    const wrap = document.getElementById('stars-wrap-15');
+    if (!wrap) return;
+    const svg = wrap.querySelector('.stars-svg');
+    const dotsGroup = wrap.querySelector('.dots-group');
+    const starsGroup = wrap.querySelector('.stars-group');
+    if (!svg || !dotsGroup || !starsGroup) return;
+
+    const w = wrap.clientWidth;
+    const h = wrap.clientHeight;
+
+    // Generate dots (static background stars)
+    dotsGroup.innerHTML = '';
+    const dotCount = 40;
+    for (let i = 0; i < dotCount; i++) {
+        const cx = Math.random() * w;
+        const cy = Math.random() * h;
+        const r = Math.random() * 0.9 + 0.4;
+        const o = Math.random() * 0.55 + 0.15;
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', r);
+        circle.setAttribute('fill', '#fff');
+        circle.style.setProperty('--o', o);
+        circle.style.opacity = o;
+        circle.style.animation = `ss-twinkle-15 ${4 + (i % 5)}s ease-in-out ${i % 7}s infinite`;
+        dotsGroup.appendChild(circle);
+    }
+
+    // Generate shooting stars
+    starsGroup.innerHTML = '';
+    const starCount = 8;
+    const rand = (min, max) => min + Math.random() * (max - min);
+
+    function createAndAnimateStar() {
+        const angle = rand(15, 31);
+        const rad = (angle * Math.PI) / 180;
+        const len = rand(60, 150);
+        const margin = len + 48;
+        const diag = Math.hypot(w, h);
+        const travel = diag + margin * 2;
+        const fromTop = Math.random() < w / (w + h);
+        const x = fromTop ? rand(-0.15 * w, 0.85 * w) : -margin - rand(0, 0.2 * w);
+        const y = fromTop ? -margin - rand(0, 0.2 * h) : rand(-0.15 * h, 0.6 * h);
+        
+        const dx = Math.cos(rad) * travel;
+        const dy = Math.sin(rad) * travel;
+        const width = rand(1, 2.2);
+        const duration = rand(1.5, 3.5);
+        const delay = rand(0, 2);
+        
+        const grads = ['ss-white-15', 'ss-blue-15', 'ss-warm-15'];
+        const grad = Math.random() < 0.8 ? 'ss-white-15' : grads[Math.floor(Math.random() * 2) + 1];
+
+        const gContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gContainer.setAttribute('transform', `translate(${x} ${y})`);
+
+        const gMotion = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gMotion.style.setProperty('--dx', `${dx}px`);
+        gMotion.style.setProperty('--dy', `${dy}px`);
+        gMotion.style.opacity = 0;
+        gMotion.style.animation = `ss-shoot-15 ${duration}s cubic-bezier(0.4, 0, 0.7, 1) ${delay}s forwards`;
+
+        const gRot = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gRot.setAttribute('transform', `rotate(${angle})`);
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', -len);
+        rect.setAttribute('y', -width / 2);
+        rect.setAttribute('width', len);
+        rect.setAttribute('height', width);
+        rect.setAttribute('rx', width / 2);
+        rect.setAttribute('fill', `url(#${grad})`);
+
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', 0);
+        glow.setAttribute('cy', 0);
+        glow.setAttribute('r', Math.max(5, width * 3.5));
+        glow.setAttribute('fill', 'url(#ss-glow-15)');
+
+        const core = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        core.setAttribute('cx', 0);
+        core.setAttribute('cy', 0);
+        core.setAttribute('r', Math.max(1.4, width * 1.05));
+        core.setAttribute('fill', '#ffffff');
+
+        gRot.appendChild(rect);
+        gRot.appendChild(glow);
+        gRot.appendChild(core);
+        gMotion.appendChild(gRot);
+        gContainer.appendChild(gMotion);
+        starsGroup.appendChild(gContainer);
+
+        gMotion.addEventListener('animationend', () => {
+            gContainer.remove();
+            createAndAnimateStar();
+        });
+    }
+
+    for (let i = 0; i < starCount; i++) {
+        setTimeout(createAndAnimateStar, i * 400);
+    }
+}
+```

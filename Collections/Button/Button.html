@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS CDN (scoped via preflight false configuration to prevent page resets) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false
+            }
+        }
+    </script>
+    
     <style>
         /* --- CORE DESIGN SYSTEM --- */
         :root {
@@ -1109,47 +1119,48 @@
             position: relative;
             display: inline-flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 8px 24px;
+            justify-content: center;
+            padding: 12px 32px;
             overflow: hidden;
-            font-weight: 500;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            background-color: #ffffff;
-            border-radius: 4px;
-            outline: 1px solid #000000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            color: rgba(255, 255, 255, 0.85);
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-12:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .btn-12:active {
+            transform: translateY(1px);
         }
         .btn-12-slide {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 192px;
-            height: 192px;
-            background-color: #9333ea;
-            border-radius: 4px;
-            transform: rotate(-40deg) translate(-100%, 100%);
-            margin-bottom: 36px;
-            margin-left: 36px;
-            transition: all 0.5s ease-out;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            transform: skewX(-25deg) scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1;
+        }
+        .btn-12:hover .btn-12-slide {
+            transform: skewX(-25deg) scaleX(1.35);
         }
         .btn-12-text {
             position: relative;
-            width: 100%;
-            text-align: left;
-            color: #000000;
-            transition: color 0.3s ease-in-out;
             z-index: 2;
-        }
-        .btn-12:hover .btn-12-slide {
-            margin-left: 0;
-            margin-bottom: 128px;
-            transform: rotate(-40deg) translate(0, 0);
-        }
-        .btn-12:hover .btn-12-text {
-            color: #ffffff;
+            transition: color 0.3s ease;
         }
 
         /* --- 13: VALENCE CORE WEBGL --- */
@@ -1261,6 +1272,283 @@
         }
         .btn-shine-14:hover .shine-glare-14 {
             left: calc(100% + 16px);
+        }
+
+        /* --- 17: GLOW MASK START FREE BUTTON --- */
+        @keyframes transform-animation {
+            0% {
+                transform: translate(-55%);
+            }
+            100% {
+                transform: translate(55%);
+            }
+        }
+        @keyframes opacity-animation {
+            0%, 100% {
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            65% {
+                opacity: 0;
+            }
+        }
+        @keyframes loader-letter-anim {
+            0% {
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+                text-shadow: 0 0 8px #f43f5e, 0 0 12px #f43f5e;
+                transform: scale(1.1) translateY(-2px);
+            }
+            20% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* --- 18: CIRCLE EXPAND START BUILDING BUTTON --- */
+        .animated-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid;
+            border-color: transparent;
+            font-size: 16px;
+            background-color: inherit;
+            border-radius: 100px;
+            font-weight: 600;
+            color: greenyellow;
+            box-shadow: 0 0 0 2px greenyellow;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button svg {
+            position: absolute;
+            width: 24px;
+            fill: greenyellow;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button .arr-1 {
+            right: 16px;
+        }
+        .animated-button .arr-2 {
+            left: -25%;
+        }
+        .animated-button .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: greenyellow;
+            border-radius: 10%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: #212121;
+            border-radius: 12px;
+        }
+        .animated-button:hover .arr-1 {
+            right: -25%;
+        }
+        .animated-button:hover .arr-2 {
+            left: 16px;
+        }
+        .animated-button:hover .text {
+            transform: translateX(12px);
+        }
+        .animated-button:hover svg {
+            fill: #212121;
+        }
+        .animated-button:active {
+            scale: 0.95;
+            box-shadow: 0 0 0 4px greenyellow;
+        }
+        .animated-button:hover .circle {
+            width: 220px;
+            height: 220px;
+            opacity: 1;
+        }
+
+        /* --- 20: MAGICUI SHINY BUTTON --- */
+        .btn-shiny-20 {
+            position: relative;
+            cursor: pointer;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+            background-color: #0c101b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-shiny-20:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .btn-shiny-text-20 {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(-75deg, rgba(255, 255, 255, 0.9) 30%, rgba(99, 102, 241, 0.2) 50%, rgba(255, 255, 255, 0.9) 70%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine-sweep-text 3s infinite linear;
+        }
+        @keyframes shine-sweep-text {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: -200% center;
+            }
+        }
+        .btn-shiny-border-20 {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(-75deg, rgba(255, 255, 255, 0.08) 30%, rgba(99, 102, 241, 0.8) 50%, rgba(255, 255, 255, 0.08) 70%);
+            background-size: 200% auto;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: shine-sweep-text 3s infinite linear;
+        }
+
+        /* --- 21: MUI JOY UI BUTTON COLORS --- */
+        .joy-button-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 12px;
+            font-family: 'Outfit', sans-serif;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 440px;
+            box-sizing: border-box;
+        }
+        .joy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(80px, 1fr));
+            gap: 8px;
+            flex-grow: 1;
+        }
+        .joy-btn {
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            outline: none;
+        }
+        .joy-btn:active {
+            transform: scale(0.97);
+        }
+
+        .joy-btn.primary.solid { background: #0b6bcb; color: #fff; }
+        .joy-btn.neutral.solid { background: #636b74; color: #fff; }
+        .joy-btn.danger.solid { background: #c41c1c; color: #fff; }
+        .joy-btn.success.solid { background: #2a7e43; color: #fff; }
+        .joy-btn.warning.solid { background: #b85b00; color: #fff; }
+
+        .joy-btn.primary.soft { background: rgba(11, 107, 203, 0.15); color: #0b6bcb; }
+        .joy-btn.neutral.soft { background: rgba(99, 107, 116, 0.15); color: #9fa6ad; }
+        .joy-btn.danger.soft { background: rgba(196, 28, 28, 0.15); color: #c41c1c; }
+        .joy-btn.success.soft { background: rgba(42, 126, 67, 0.15); color: #2a7e43; }
+        .joy-btn.warning.soft { background: rgba(184, 91, 0, 0.15); color: #b85b00; }
+
+        .joy-btn.primary.outlined { border-color: rgba(11, 107, 203, 0.5); color: #0b6bcb; background: transparent; }
+        .joy-btn.neutral.outlined { border-color: rgba(99, 107, 116, 0.5); color: #9fa6ad; background: transparent; }
+        .joy-btn.danger.outlined { border-color: rgba(196, 28, 28, 0.5); color: #c41c1c; background: transparent; }
+        .joy-btn.success.outlined { border-color: rgba(42, 126, 67, 0.5); color: #2a7e43; background: transparent; }
+        .joy-btn.warning.outlined { border-color: rgba(184, 91, 0, 0.5); color: #b85b00; background: transparent; }
+
+        .joy-btn.primary.plain { background: transparent; color: #0b6bcb; }
+        .joy-btn.neutral.plain { background: transparent; color: #9fa6ad; }
+        .joy-btn.danger.plain { background: transparent; color: #c41c1c; }
+        .joy-btn.success.plain { background: transparent; color: #2a7e43; }
+        .joy-btn.warning.plain { background: transparent; color: #b85b00; }
+
+        .joy-sheet {
+            padding-left: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-self: stretch;
+            justify-content: center;
+        }
+        .joy-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .joy-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .joy-radio {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+        }
+        .joy-radio input {
+            accent-color: #0b6bcb;
+        }
+
+        /* --- 22: MUI JOY UI BUTTON VARIANTS --- */
+        .joy-variants-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            width: 100%;
         }
     </style>
     <!-- WebGL Button Requirements -->
@@ -2117,66 +2405,69 @@ animId = requestAnimationFrame(frame);`
                 name: "Diagonal Slide Fill",
                 html: `<a href="#" class="btn-12">
     <span class="btn-12-slide"></span>
-    <span class="btn-12-text">Animation Button</span>
+    <span class="btn-12-text">Diagonal Slide Fill</span>
 </a>`,
                 css: `.btn-12 {
     position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 8px 24px;
+    justify-content: center;
+    padding: 12px 32px;
     overflow: hidden;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.5px;
     text-decoration: none;
-    transition: all 0.3s ease;
-    background-color: #ffffff;
-    border-radius: 4px;
-    outline: 1px solid #000000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.btn-12:hover {
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+.btn-12:active {
+    transform: translateY(1px);
 }
 .btn-12-slide {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 192px;
-    height: 192px;
-    background-color: #9333ea;
-    border-radius: 4px;
-    transform: rotate(-40deg) translate(-100%, 100%);
-    margin-bottom: 36px;
-    margin-left: 36px;
-    transition: all 0.5s ease-out;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    transform: skewX(-25deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     z-index: 1;
+}
+.btn-12:hover .btn-12-slide {
+    transform: skewX(-25deg) scaleX(1.35);
 }
 .btn-12-text {
     position: relative;
-    width: 100%;
-    text-align: left;
-    color: #000000;
-    transition: color 0.3s ease-in-out;
     z-index: 2;
-}
-.btn-12:hover .btn-12-slide {
-    margin-left: 0;
-    margin-bottom: 128px;
-    transform: rotate(-40deg) translate(0, 0);
-}
-.btn-12:hover .btn-12-text {
-    color: #ffffff;
+    transition: color 0.3s ease;
 }`,
-                react: `import { cn } from "@/lib/utils";
+                react: `import React from "react";
+import { cn } from "@/lib/utils";
 
-export const Component = () => {
+export function DiagonalButton() {
   return (
-    <div className={cn("flex flex-col items-center gap-4 p-4 rounded-lg")}>
-      <a href="#" className="relative inline-flex items-center justify-start px-6 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group outline outline-1">
-        <span className="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-        <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Animation Button</span>
-      </a>
-    </div>
+    <a
+      href="#"
+      className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-semibold text-sm tracking-wide text-white/85 transition-all duration-400 ease-out bg-white/5 border border-white/10 rounded-full hover:border-purple-500/40 hover:text-white hover:scale-105 active:scale-95 group shadow-lg"
+    >
+      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-indigo-500 to-purple-600 origin-left -translate-x-full skew-x-[-25deg] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-0 group-hover:scale-x-[1.35] z-0" />
+      <span className="relative z-10">Diagonal Slide Fill</span>
+    </a>
   );
-};`
+}`,
             },
             {
                 id: 13,
@@ -2723,6 +3014,807 @@ export default function ShiningButton() {
     </button>
   );
 }`
+            },
+            {
+                id: 15,
+                name: "MagicUI Interactive Hover Button",
+                html: `<button class="group bg-white dark:bg-slate-900 text-neutral-900 dark:text-white relative w-auto cursor-pointer overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-800 p-2 px-6 text-center font-semibold transition-all duration-300 hover:scale-105 active:scale-95" style="outline: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <div class="flex items-center justify-center gap-2">
+        <div class="bg-neutral-900 dark:bg-white h-2 w-2 rounded-full transition-all duration-500 ease-out group-hover:scale-[100.8]"></div>
+        <span class="inline-block transition-all duration-500 ease-out group-hover:translate-x-12 group-hover:opacity-0">
+            Interactive Hover
+        </span>
+    </div>
+    <div class="text-white dark:text-slate-900 absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0 translate-x-12 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100">
+        <span>Interactive Hover</span>
+        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+    </div>
+</button>`,
+                css: `/* Requires Tailwind CSS classes for animations, transitions, and hover-scale transforms */`,
+                js: `// Pure CSS hover states - no JavaScript required.`,
+                react: `import React from "react"
+import { ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+export function InteractiveHoverButton({
+  children = "Interactive Hover",
+  className,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      className={cn(
+        "group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-white p-2 px-6 text-center font-semibold text-neutral-900 transition-all duration-300 hover:scale-105 active:scale-95 dark:border-neutral-800 dark:bg-slate-900 dark:text-white",
+        className
+      )}
+      {...props}
+      style={{
+        boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+      }}
+    >
+      <div className="flex items-center justify-center gap-2">
+        <div className="bg-neutral-900 dark:bg-white h-2 w-2 rounded-full transition-all duration-500 ease-out group-hover:scale-[100.8]"></div>
+        <span className="inline-block transition-all duration-500 ease-out group-hover:translate-x-12 group-hover:opacity-0">
+          {children}
+        </span>
+      </div>
+      <div className="text-white dark:text-slate-900 absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0 translate-x-12 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100">
+        <span>{children}</span>
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </div>
+    </button>
+  )
+}`
+            },
+            {
+                id: 16,
+                name: "Get Started Button",
+                html: `<div class="min-h-12 w-48 flex justify-center items-center">
+    <button class="group/start flex h-12 w-40 items-center justify-center gap-3 rounded-lg bg-amber-100 p-2 font-bold transition-colors duration-100 ease-in-out hover:bg-orange-600 border-none cursor-pointer">
+        <span class="text-orange-600 transition-colors duration-100 ease-in-out group-hover/start:text-amber-100">
+            Get started
+        </span>
+        <div class="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full transition-transform duration-100 bg-orange-600 group-hover/start:bg-amber-100">
+            <div class="absolute left-0 flex h-7 w-14 -translate-x-1/2 items-center justify-center transition-transform duration-200 ease-in-out group-hover/start:translate-x-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 transform p-1 text-orange-600 opacity-0 group-hover/start:opacity-100 transition-opacity duration-200">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 transform p-1 text-amber-100 opacity-100 transition-transform duration-300 ease-in-out group-hover/start:opacity-0">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </div>
+        </div>
+    </button>
+</div>`,
+                css: `/* Requires Tailwind CSS classes for sliding transitions */`,
+                js: `// Pure CSS hover states - no JavaScript required.`,
+                react: `import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface IGetStartedButtonProps {
+  text: string;
+  className?: string;
+}
+
+export default function GetStartedButton({
+  text = "Get started",
+  className,
+}: IGetStartedButtonProps) {
+  return (
+    <div className="min-h-12 w-48">
+      <button
+        className={cn(
+          "group/start flex h-12 w-40 items-center justify-center gap-3 rounded-lg bg-amber-100 p-2 font-bold transition-colors duration-100 ease-in-out hover:bg-orange-600",
+          className,
+        )}
+      >
+        <span
+          className={cn(
+            "text-orange-600 transition-colors duration-100 ease-in-out group-hover/start:text-amber-100",
+          )}
+        >
+          {text}
+        </span>
+        <div
+          className={cn(
+            "relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full transition-transform duration-100",
+            "bg-orange-600 group-hover/start:bg-amber-100",
+          )}
+        >
+          <div className="absolute left-0 flex h-7 w-14 -translate-x-1/2 items-center justify-center transition-transform duration-200 ease-in-out group-hover/start:translate-x-0">
+            <ArrowRight
+              size={16}
+              className={cn(
+                "size-7 transform p-1 text-orange-600 opacity-0 group-hover/start:opacity-100",
+              )}
+            />
+            <ArrowRight
+              size={16}
+              className={cn(
+                "size-7 transform p-1 text-amber-100 opacity-100 transition-transform duration-300 ease-in-out group-hover/start:opacity-0",
+              )}
+            />
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}`
+            },
+            {
+                id: 17,
+                name: "Glow Mask Start Free",
+                html: `<button class="inline-flex transition overflow-hidden group text-sm font-medium text-white rounded-full pt-3 pr-5 pb-3 pl-5 relative gap-x-2 gap-y-2 items-center cursor-pointer" style="background: linear-gradient(135deg, rgb(26, 26, 26) 0%, rgb(10, 10, 10) 100%); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 32px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(0, 0, 0, 0.5) 0px -1px 0px inset; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(0px); height: 60px; scale: 1" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.6), 0 0 0 2px rgba(244,63,94,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.5)';">
+  <div class="loader" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 1; background-color: transparent; mask: repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px); -webkit-mask: repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px)">
+    <div style="content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 50% 50%, #f43f5e 0%, transparent 50%), radial-gradient(circle at 45% 45%, #ef4444 0%, transparent 45%), radial-gradient(circle at 55% 55%, #fb7185 0%, transparent 45%), radial-gradient(circle at 45% 55%, #f87171 0%, transparent 45%), radial-gradient(circle at 55% 45%, #dc2626 0%, transparent 45%); mask: radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%); -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%); animation: transform-animation 2s infinite alternate, opacity-animation 4s infinite; animation-timing-function: cubic-bezier(0.6, 0.8, 0.5, 1); filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.6))" class=""></div>
+  </div>
+  
+  <span style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; font-size: 1em; font-weight: 600; user-select: none; color: #fff; display: flex; gap: 0.5rem" class="">
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.1s">S</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.205s;">t</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.31s;">a</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.415s;">r</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.521s;">t</span>
+    <span style="display: inline-block; width: 0.3rem;" class=""></span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.626s;">f</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.731s;">r</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.837s;">e</span>
+    <span class="loader-letter" style="display: inline-block; opacity: 0; animation: loader-letter-anim 4s infinite linear; animation-delay: 0.942s;">e</span>
+  </span>
+</button>`,
+                css: `@keyframes transform-animation {
+  0% { transform: translate(-55%); }
+  100% { transform: translate(55%); }
+}
+@keyframes opacity-animation {
+  0%, 100% { opacity: 0; }
+  15% { opacity: 1; }
+  65% { opacity: 0; }
+}
+@keyframes loader-letter-anim {
+  0% { opacity: 0; }
+  5% {
+    opacity: 1;
+    text-shadow: 0 0 8px #f43f5e, 0 0 12px #f43f5e;
+    transform: scale(1.1) translateY(-2px);
+  }
+  20% { opacity: 0.2; }
+  100% { opacity: 0; }
+}`,
+                js: `// Pure CSS/Inline JavaScript states - no custom JS required.`,
+                react: `"use client";
+import React from "react";
+
+export default function GlowMaskButton() {
+  const letters = ["S", "t", "a", "r", "t", " ", "f", "r", "e", "e"];
+  return (
+    <button 
+      className="inline-flex transition overflow-hidden group text-sm font-medium text-white rounded-full py-3 px-5 relative gap-2 items-center cursor-pointer transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        background: "linear-gradient(135deg, rgb(26, 26, 26) 0%, rgb(10, 10, 10) 100%)",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
+        boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(0, 0, 0, 0.5) 0px -1px 0px inset",
+        height: "60px"
+      }}
+    >
+      <div 
+        className="absolute inset-0 z-10 bg-transparent"
+        style={{
+          mask: "repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px)",
+          WebkitMask: "repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px)"
+        }}
+      >
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: "radial-gradient(circle at 50% 50%, #f43f5e 0%, transparent 50%), radial-gradient(circle at 45% 45%, #ef4444 0%, transparent 45%), radial-gradient(circle at 55% 55%, #fb7185 0%, transparent 45%)",
+            animation: "transform-animation 2s infinite alternate, opacity-animation 4s infinite",
+            animationTimingFunction: "cubic-bezier(0.6, 0.8, 0.5, 1)",
+            filter: "drop-shadow(0 0 8px rgba(244, 63, 94, 0.6))",
+            mask: "radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%)",
+            WebkitMask: "radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%)"
+          }}
+        />
+      </div>
+      <span className="relative z-20 font-sans font-semibold text-white flex gap-0.5">
+        {letters.map((char, index) => {
+          if (char === " ") return <span key={index} className="w-1" />;
+          return (
+            <span
+              key={index}
+              className="inline-block opacity-0"
+              style={{
+                animation: "loader-letter-anim 4s infinite linear",
+                animationDelay: \`\${0.1 + index * 0.105}s\`
+              }}
+            >
+              {char}
+            </span>
+          )
+        })}
+      </span>
+    </button>
+  );
+}`
+            },
+            {
+                id: 18,
+                name: "Circle Expand Start Building",
+                html: `<button class="animated-button" style="padding: 12px 36px;">
+    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+    </svg>
+    <span class="text">Start Building</span>
+    <span class="circle"></span>
+    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+    </svg>
+</button>`,
+                css: `.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: greenyellow;
+  box-shadow: 0 0 0 2px greenyellow;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: greenyellow;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.animated-button .arr-1 { right: 16px; }
+.animated-button .arr-2 { left: -25%; }
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: greenyellow;
+  border-radius: 10%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+.animated-button:hover .arr-1 { right: -25%; }
+.animated-button:hover .arr-2 { left: 16px; }
+.animated-button:hover .text { transform: translateX(12px); }
+.animated-button:hover svg { fill: #212121; }
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px greenyellow;
+}
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}`,
+                js: `// Pure CSS hover states - no JavaScript required.`,
+                react: `"use client";
+import React from "react";
+
+export default function CircleExpandButton() {
+  return (
+    <button className="animated-button relative flex items-center gap-1 py-4 px-9 border-4 border-transparent text-base font-semibold text-[#adff2f] bg-transparent rounded-full cursor-pointer overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-[#212121] hover:shadow-[0_0_0_12px_transparent] hover:border-radius-[12px] active:scale-95 active:shadow-[0_0_0_4px_#adff2f]">
+      <style>{\`
+        .animated-button {
+          box-shadow: 0 0 0 2px #adff2f;
+        }
+        .animated-button svg {
+          position: absolute;
+          width: 24px;
+          fill: #adff2f;
+          z-index: 9;
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button .arr-1 { right: 16px; }
+        .animated-button .arr-2 { left: -25%; }
+        .animated-button .circle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 20px;
+          background-color: #adff2f;
+          border-radius: 10%;
+          opacity: 0;
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button .text {
+          position: relative;
+          z-index: 1;
+          transform: translateX(-12px);
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .animated-button:hover .arr-1 { right: -25%; }
+        .animated-button:hover .arr-2 { left: 16px; }
+        .animated-button:hover .text { transform: translateX(12px); }
+        .animated-button:hover svg { fill: #212121; }
+        .animated-button:hover .circle {
+          width: 220px;
+          height: 220px;
+          opacity: 1;
+        }
+      \`}</style>
+      <svg viewBox="0 0 24 24" class="arr-2">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+      </svg>
+      <span class="text">Start Building</span>
+      <span class="circle"></span>
+      <svg viewBox="0 0 24 24" class="arr-1">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+      </svg>
+    </button>
+  );
+}`
+            },
+            {
+                id: 19,
+                name: "Generate Experience Sheen",
+                html: `<div class="group relative">
+    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 rounded-full blur opacity-20 group-hover:opacity-50 transition duration-500 group-hover:duration-200 will-change-transform"></div>
+    <button class="relative flex items-center justify-center gap-3 px-8 py-3.5 bg-neutral-900 rounded-full leading-none text-neutral-50 transition-all duration-300 ease-out border border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:border-white/20 hover:bg-neutral-800 hover:scale-[1.02] active:scale-[0.98] focus:outline-none overflow-hidden w-full sm:w-auto cursor-pointer">
+        <span class="absolute inset-0 w-full h-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out z-0 pointer-events-none">
+            <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 -skew-x-12 transform origin-left"></span>
+        </span>
+        <span class="relative z-10 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+                <path d="M20 2v4"></path>
+                <path d="M22 4h-4"></path>
+                <circle cx="4" cy="20" r="2"></circle>
+            </svg>
+        </span>
+        <span class="relative z-10 text-sm font-medium tracking-tight">Generate Experience</span>
+        <span class="relative z-10 text-neutral-400 group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+        </span>
+    </button>
+</div>`,
+                css: `/* Requires Tailwind CSS classes for gradient glow sheen transitions */`,
+                js: `// Pure CSS hover states - no JavaScript required.`,
+                react: `import React from "react"
+import { Sparkles, ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+export function SparklesSheenButton() {
+  return (
+    <div className="group relative">
+      <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 rounded-full blur opacity-20 group-hover:opacity-50 transition duration-500 group-hover:duration-200 will-change-transform" />
+      <button className="relative flex items-center justify-center gap-3 px-8 py-3.5 bg-neutral-900 rounded-full leading-none text-neutral-50 transition-all duration-300 ease-out border border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:border-white/20 hover:bg-neutral-800 hover:scale-[1.02] active:scale-[0.98] focus:outline-none overflow-hidden w-full sm:w-auto">
+        <span className="absolute inset-0 w-full h-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out z-0 pointer-events-none">
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 -skew-x-12 transform origin-left" />
+        </span>
+        <span className="relative z-10 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+          <Sparkles size={18} strokeWidth={1.5} />
+        </span>
+        <span className="relative z-10 text-sm font-medium tracking-tight">Generate Experience</span>
+        <span className="relative z-10 text-neutral-400 group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5">
+          <ArrowRight size={16} strokeWidth={1.5} />
+        </span>
+      </button>
+    </div>
+  )
+}`
+            },
+            {
+                id: 20,
+                name: "MagicUI Shiny Button",
+                html: `<button class="btn-shiny-20">
+    <span class="btn-shiny-text-20">Shiny Button</span>
+    <span class="btn-shiny-border-20"></span>
+</button>`,
+                css: `.btn-shiny-20 {
+    position: relative;
+    cursor: pointer;
+    background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+    background-color: #0c101b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-shiny-20:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+.btn-shiny-text-20 {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(-75deg, rgba(255, 255, 255, 0.9) 30%, rgba(99, 102, 241, 0.2) 50%, rgba(255, 255, 255, 0.9) 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine-sweep-text 3s infinite linear;
+}
+@keyframes shine-sweep-text {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+.btn-shiny-border-20 {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(-75deg, rgba(255, 255, 255, 0.08) 30%, rgba(99, 102, 241, 0.8) 50%, rgba(255, 255, 255, 0.08) 70%);
+    background-size: 200% auto;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine-sweep-text 3s infinite linear;
+}`,
+                js: `// Pure CSS hover states - no JavaScript required.`,
+                react: `"use client"
+
+import React from "react"
+import { motion, type MotionProps } from "motion/react"
+import { cn } from "@/lib/utils"
+
+const animationProps: MotionProps = {
+  initial: { "--x": "100%", scale: 0.8 },
+  animate: { "--x": "-100%", scale: 1 },
+  whileTap: { scale: 0.95 },
+  transition: {
+    repeat: Infinity,
+    repeatType: "loop",
+    repeatDelay: 1,
+    type: "spring",
+    stiffness: 20,
+    damping: 15,
+    mass: 2,
+    scale: {
+      type: "spring",
+      stiffness: 200,
+      damping: 5,
+      mass: 0.5,
+    },
+  },
+}
+
+interface ShinyButtonProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps>,
+    MotionProps {
+  children: React.ReactNode
+  className?: string
+}
+
+export const ShinyButton = React.forwardRef<
+  HTMLButtonElement,
+  ShinyButtonProps
+>(({ children = "Shiny Button", className, ...props }, ref) => {
+  return (
+    <motion.button
+      ref={ref}
+      className={cn(
+        "relative cursor-pointer rounded-lg border px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,var(--primary)/10%_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_var(--primary)/10%]",
+        className
+      )}
+      {...animationProps}
+      {...props}
+    >
+      <span
+        className="relative block size-full text-sm tracking-wide text-[rgb(0,0,0,65%)] uppercase dark:font-light dark:text-[rgb(255,255,255,90%)]"
+        style={{
+          maskImage:
+            "linear-gradient(-75deg,var(--primary) calc(var(--x) + 20%),transparent calc(var(--x) + 30%),var(--primary) calc(var(--x) + 100%))",
+        }}
+      >
+        {children}
+      </span>
+      <span
+        style={{
+          mask: "linear-gradient(rgb(0,0,0), rgb(0,0,0)) content-box exclude,linear-gradient(rgb(0,0,0), rgb(0,0,0))",
+          WebkitMask:
+            "linear-gradient(rgb(0,0,0), rgb(0,0,0)) content-box exclude,linear-gradient(rgb(0,0,0), rgb(0,0,0))",
+          backgroundImage:
+            "linear-gradient(-75deg,var(--primary)/10% calc(var(--x)+20%),var(--primary)/50% calc(var(--x)+25%),var(--primary)/10% calc(var(--x)+100%))",
+        }}
+        className="absolute inset-0 z-10 block rounded-[inherit] p-px"
+      />
+    </motion.button>
+  )
+})
+
+ShinyButton.displayName = "ShinyButton"`
+            },
+            {
+                id: 21,
+                name: "MUI Joy UI Button Colors",
+                html: `<div class="joy-button-container" id="joy-container-21">
+    <div class="joy-grid">
+        <button class="joy-btn primary solid" data-color="primary">Primary</button>
+        <button class="joy-btn neutral solid" data-color="neutral">Neutral</button>
+        <button class="joy-btn danger solid" data-color="danger">Danger</button>
+        <button class="joy-btn success solid" data-color="success">Success</button>
+        <button class="joy-btn warning solid" data-color="warning">Warning</button>
+    </div>
+    
+    <div class="joy-sheet">
+        <div class="joy-title">Variant:</div>
+        <div class="joy-radio-group">
+            <label class="joy-radio">
+                <input type="radio" name="joy-variant-21" value="solid" checked>
+                <span>Solid</span>
+            </label>
+            <label class="joy-radio">
+                <input type="radio" name="joy-variant-21" value="soft">
+                <span>Soft</span>
+            </label>
+            <label class="joy-radio">
+                <input type="radio" name="joy-variant-21" value="outlined">
+                <span>Outlined</span>
+            </label>
+            <label class="joy-radio">
+                <input type="radio" name="joy-variant-21" value="plain">
+                <span>Plain</span>
+            </label>
+        </div>
+    </div>
+</div>`,
+                css: `.joy-button-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px;
+    font-family: 'Outfit', sans-serif;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+}
+.joy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
+    gap: 8px;
+    flex-grow: 1;
+}
+.joy-btn {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    outline: none;
+}
+.joy-btn:active {
+    transform: scale(0.97);
+}
+
+.joy-btn.primary.solid { background: #0b6bcb; color: #fff; }
+.joy-btn.neutral.solid { background: #636b74; color: #fff; }
+.joy-btn.danger.solid { background: #c41c1c; color: #fff; }
+.joy-btn.success.solid { background: #2a7e43; color: #fff; }
+.joy-btn.warning.solid { background: #b85b00; color: #fff; }
+
+.joy-btn.primary.soft { background: rgba(11, 107, 203, 0.15); color: #0b6bcb; }
+.joy-btn.neutral.soft { background: rgba(99, 107, 116, 0.15); color: #9fa6ad; }
+.joy-btn.danger.soft { background: rgba(196, 28, 28, 0.15); color: #c41c1c; }
+.joy-btn.success.soft { background: rgba(42, 126, 67, 0.15); color: #2a7e43; }
+.joy-btn.warning.soft { background: rgba(184, 91, 0, 0.15); color: #b85b00; }
+
+.joy-btn.primary.outlined { border-color: rgba(11, 107, 203, 0.5); color: #0b6bcb; background: transparent; }
+.joy-btn.neutral.outlined { border-color: rgba(99, 107, 116, 0.5); color: #9fa6ad; background: transparent; }
+.joy-btn.danger.outlined { border-color: rgba(196, 28, 28, 0.5); color: #c41c1c; background: transparent; }
+.joy-btn.success.outlined { border-color: rgba(42, 126, 67, 0.5); color: #2a7e43; background: transparent; }
+.joy-btn.warning.outlined { border-color: rgba(184, 91, 0, 0.5); color: #b85b00; background: transparent; }
+
+.joy-btn.primary.plain { background: transparent; color: #0b6bcb; }
+.joy-btn.neutral.plain { background: transparent; color: #9fa6ad; }
+.joy-btn.danger.plain { background: transparent; color: #c41c1c; }
+.joy-btn.success.plain { background: transparent; color: #2a7e43; }
+.joy-btn.warning.plain { background: transparent; color: #b85b00; }
+
+.joy-sheet {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: stretch;
+    justify-content: center;
+}
+.joy-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.joy-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.joy-radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+.joy-radio input {
+    accent-color: #0b6bcb;
+}`,
+                js: `document.querySelectorAll('input[name="joy-variant-21"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        const variant = e.target.value;
+        document.querySelectorAll('#joy-container-21 .joy-btn').forEach(btn => {
+            btn.className = \`joy-btn \${btn.dataset.color} \${variant}\`;
+        });
+    });
+});`,
+                react: `import * as React from 'react';
+import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
+import Button from '@mui/joy/Button';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Radio from '@mui/joy/Radio';
+import Typography from '@mui/joy/Typography';
+
+export default function ButtonColors() {
+  const [variant, setVariant] = React.useState('solid');
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(80px, 1fr))',
+          gap: 1,
+        }}
+      >
+        <Button size="md" variant={variant} color="primary">
+          Primary
+        </Button>
+        <Button size="md" variant={variant} color="neutral">
+          Neutral
+        </Button>
+        <Button size="md" variant={variant} color="danger">
+          Danger
+        </Button>
+        <Button size="md" variant={variant} color="success">
+          Success
+        </Button>
+        <Button size="md" variant={variant} color="warning">
+          Warning
+        </Button>
+      </Box>
+      <Sheet
+        sx={{
+          background: 'transparent',
+          pl: 4,
+          borderLeft: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Typography
+          level="body-sm"
+          id="variant-label"
+          textColor="text.primary"
+          sx={{ fontWeight: 'xl', mb: 1 }}
+        >
+          Variant:
+        </Typography>
+        <RadioGroup
+          size="sm"
+          aria-labelledby="variant-label"
+          name="variant"
+          value={variant}
+          onChange={(event) => setVariant(event.target.value)}
+        >
+          <Radio label="Solid" value="solid" />
+          <Radio label="Soft" value="soft" />
+          <Radio label="Outlined" value="outlined" />
+          <Radio label="Plain" value="plain" />
+        </RadioGroup>
+      </Sheet>
+    </Box>
+  );
+}`
+            },
+            {
+                id: 22,
+                name: "MUI Joy UI Button Variants",
+                html: `<div class="joy-variants-container" id="joy-variants-container-22">
+    <button class="joy-btn primary solid">Solid</button>
+    <button class="joy-btn primary soft">Soft</button>
+    <button class="joy-btn primary outlined">Outlined</button>
+    <button class="joy-btn primary plain">Plain</button>
+</div>`,
+                css: `.joy-variants-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.joy-btn {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    outline: none;
+}
+.joy-btn:active {
+    transform: scale(0.97);
+}
+.joy-btn.primary.solid { background: #0b6bcb; color: #fff; }
+.joy-btn.primary.soft { background: rgba(11, 107, 203, 0.15); color: #0b6bcb; }
+.joy-btn.primary.outlined { border-color: rgba(11, 107, 203, 0.5); color: #0b6bcb; background: transparent; }
+.joy-btn.primary.plain { background: transparent; color: #0b6bcb; }`,
+                js: `// Pure CSS styles - no JavaScript required.`,
+                react: `import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+
+export default function ButtonVariants() {
+  return (
+    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="plain">Plain</Button>
+    </Box>
+  );
+}`
             }
         ];
 
@@ -2818,6 +3910,7 @@ export default function ShiningButton() {
         setTimeout(() => {
             initLaunchPortal();
             initValenceCore();
+            initJoyButtons();
         }, 100);
 
         // --- INTERACTIVE ACTIONS LOGIC ---
@@ -3278,6 +4371,24 @@ export default function ShiningButton() {
             const modal = document.getElementById('help-modal');
             modal.classList.remove('open');
         };
+
+        // --- 21: MUI JOY UI BUTTON COLORS INITIALIZATION ---
+        function initJoyButtons() {
+            const container = document.getElementById('joy-container-21');
+            if (!container) return;
+            const buttons = container.querySelectorAll('.joy-btn');
+            const radios = container.querySelectorAll('input[name="joy-variant-21"]');
+            
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const variant = e.target.value;
+                    buttons.forEach(btn => {
+                        btn.classList.remove('solid', 'soft', 'outlined', 'plain');
+                        btn.classList.add(variant);
+                    });
+                });
+            });
+        }
     </script>
 </body>
 </html>
