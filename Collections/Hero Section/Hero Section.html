@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Hero Section Collection Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .features-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .features-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Interactive Canvas */
+        .preview-canvas {
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #0b0f19;
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: #a7f3d0;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #182032;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+            flex-shrink: 0;
+        }
+
+        /* --- HELP MODAL --- */
+        .help-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .help-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .help-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        .help-modal-overlay.open .help-modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .modal-body strong {
+            color: var(--text-primary);
+        }
+
+        .modal-body ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+
+        .modal-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: right;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-btn {
+            background: var(--accent-primary);
+            border: none;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px var(--accent-primary-glow);
+        }
+
+        .modal-btn:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- --- HEADER --- -->
+        <header>
+            <div class="logo-badge">Neuramax System</div>
+            <h1>Hero Section Showcase</h1>
+            <p>A curated directory of futuristic cyberpunk landing grids, glassmorphism SaaS platforms, and vaporwave sunset interfaces.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                Collection Guide
+            </button>
+        </header>
+
+        <!-- --- GRID SHOWCASE --- -->
+        <div class="showcase-grid" id="grid-container"></div>
+    </div>
+
+    <!-- --- TOAST SYSTEM --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="help-modal-overlay" id="help-modal" onclick="closeHelpModal(event)">
+        <div class="help-modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Hero Section Showcase Guide</h2>
+                <button class="modal-close-btn" onclick="toggleHelpModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Welcome to the <strong>Hero Section</strong> directory. This page showcases 5 premium landing page headers built with standard CSS animations, modern typography, and clean Tailwind layout flows.</p>
+                <br>
+                <p><strong>Interactive Features:</strong></p>
+                <ul>
+                    <li><strong>Live Rendering:</strong> Each card displays the dynamic component downscaled using scoped transformation rules to prevent page styles clashing.</li>
+                    <li><strong>Copy Options:</strong> Click the "Get Code" button on any card to access the fully optimized code snippets.</li>
+                    <li><strong>Cross-Environment:</strong> Code snippets include direct drop-in layouts for HTML structure and fully typed React / TypeScript components.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="toggleHelpModal()">Acknowledge</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- HERO DATABASE ---
+        const HERO_DATABASE = [
+            {
+                id: 1,
+                dependencies: "Tailwind CSS",
+                name: "Cyberpunk Neon Particles Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="cyberpunk-hero">
+    <div class="particles">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+    </div>
+    <div class="grid-overlay"></div>
+    <div class="hero-content">
+      <div class="cyber-badge">SYSTEMS SECURED // PROTOCOL 77</div>
+      <h1 class="cyber-title" data-text="NEURAL_NET">NEURAL_NET</h1>
+      <p class="cyber-subtitle">Deconstruct reality. Program the future. A premium decentralized workspace built for the next layer of the web.</p>
+      <div class="cyber-actions">
+        <button class="cyber-btn cyber-primary">INITIALIZE CONSOLE</button>
+        <button class="cyber-btn cyber-secondary">READ PROTOCOL</button>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-1 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #020204;
+}
+#card-1 .hero-preview-wrapper .cyberpunk-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #020204;
+}
+#card-1 .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(18, 255, 120, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(18, 255, 120, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+#card-1 .particles {
+    position: absolute;
+    inset: 0;
+}
+#card-1 .particle {
+    position: absolute;
+    background: #12ff78;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(2px);
+    animation: cyberFloat infinite linear;
+}
+#card-1 .p1 { width: 6px; height: 6px; left: 10%; top: 80%; animation-duration: 8s; }
+#card-1 .p2 { width: 4px; height: 4px; left: 30%; top: 20%; animation-duration: 12s; }
+#card-1 .p3 { width: 8px; height: 8px; left: 70%; top: 60%; animation-duration: 10s; }
+#card-1 .p4 { width: 5px; height: 5px; left: 85%; top: 15%; animation-duration: 9s; }
+#card-1 .p5 { width: 7px; height: 7px; left: 50%; top: 40%; animation-duration: 14s; }
+
+@keyframes cyberFloat {
+    0% { transform: translateY(0) scale(1); opacity: 0.2; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-300px) scale(0.5); opacity: 0; }
+}
+
+#card-1 .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+#card-1 .cyber-badge {
+    color: #12ff78;
+    border: 1px solid rgba(18, 255, 120, 0.3);
+    background: rgba(18, 255, 120, 0.05);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 24px;
+    box-shadow: 0 0 10px rgba(18, 255, 120, 0.1);
+}
+#card-1 .cyber-title {
+    font-size: 80px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 20px 0;
+    letter-spacing: 4px;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+#card-1 .cyber-subtitle {
+    color: #8a99ad;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-family: sans-serif;
+}
+#card-1 .cyber-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+#card-1 .cyber-btn {
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+#card-1 .cyber-primary {
+    background: #12ff78;
+    color: #020204;
+    border: none;
+    box-shadow: 0 0 20px rgba(18, 255, 120, 0.3);
+}
+#card-1 .cyber-primary:hover {
+    box-shadow: 0 0 30px rgba(18, 255, 120, 0.6);
+    transform: scale(1.05);
+}
+#card-1 .cyber-secondary {
+    background: transparent;
+    color: #12ff78;
+    border: 1px solid #12ff78;
+}
+#card-1 .cyber-secondary:hover {
+    background: rgba(18, 255, 120, 0.1);
+    transform: scale(1.05);
+}`,
+                js: null,
+                react: `import React from 'react';
+
+export default function CyberpunkHero() {
+  return (
+    <div className="relative min-h-screen bg-[#020204] text-white flex items-center justify-center font-mono overflow-hidden">
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,255,120,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(18,255,120,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+      {/* Cyberpunk Floating Particles */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-[#12ff78] rounded-full opacity-60 filter blur-[2px]"
+            style={{
+              width: \`\${[6, 4, 8, 5, 7][i]}px\`,
+              height: \`\${[6, 4, 8, 5, 7][i]}px\`,
+              left: \`\${[10, 30, 70, 85, 50][i]}%\`,
+              top: \`\${[80, 20, 60, 15, 40][i]}%\`,
+              animation: \`cyberFloat \${[8, 12, 10, 9, 14][i]}s infinite linear\`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 text-center max-w-4xl px-6">
+        <div className="inline-block border border-emerald-500/30 bg-emerald-500/5 px-4 py-2 rounded text-emerald-400 text-sm tracking-widest mb-6 shadow-[0_0_10px_rgba(18,255,120,0.1)]">
+          SYSTEMS SECURED // PROTOCOL 77
+        </div>
+        <h1 className="text-6xl sm:text-8xl font-black tracking-wider mb-6 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+          NEURAL_NET
+        </h1>
+        <p className="text-slate-400 text-lg sm:text-xl font-sans max-w-2xl mx-auto mb-10 leading-relaxed">
+          Deconstruct reality. Program the future. A premium decentralized workspace built for the next layer of the web.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <button className="bg-[#12ff78] text-[#020204] font-bold px-8 py-4 rounded shadow-[0_0_20px_rgba(18,255,120,0.3)] hover:shadow-[0_0_30px_rgba(18,255,120,0.6)] hover:scale-105 transition-all">
+            INITIALIZE CONSOLE
+          </button>
+          <button className="border border-[#12ff78] text-[#12ff78] font-bold px-8 py-4 rounded hover:bg-emerald-500/10 hover:scale-105 transition-all">
+            READ PROTOCOL
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}`
+            },
+            {
+                id: 2,
+                dependencies: "Tailwind CSS",
+                name: "Fluid Aurora Gradient Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="aurora-hero">
+    <div class="aurora-glow glow-1"></div>
+    <div class="aurora-glow glow-2"></div>
+    <div class="aurora-glow glow-3"></div>
+    
+    <header class="aurora-nav">
+      <div class="nav-logo">AURA.AI</div>
+      <div class="nav-links">
+        <span>Features</span>
+        <span>Specs</span>
+        <span>Pricing</span>
+      </div>
+      <button class="nav-cta">GET STARTED</button>
+    </header>
+
+    <div class="hero-body">
+      <div class="hero-glass-card">
+        <h1>Intelligent design, elevated.</h1>
+        <p>Aura.ai utilizes advanced contextual intelligence to refine workflows, simplify interfaces, and deliver production-ready software systems in real time.</p>
+        <div class="hero-input-group">
+          <input type="text" placeholder="Enter your work email..." />
+          <button>TRY FREE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-2 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #05060b;
+}
+#card-2 .hero-preview-wrapper .aurora-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background: #05060b;
+}
+#card-2 .aurora-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: auroraMove infinite alternate ease-in-out;
+}
+#card-2 .glow-1 {
+    width: 500px;
+    height: 500px;
+    background: #4f46e5;
+    top: -100px;
+    left: -100px;
+    animation-duration: 20s;
+}
+#card-2 .glow-2 {
+    width: 600px;
+    height: 600px;
+    background: #ec4899;
+    bottom: -150px;
+    right: -100px;
+    animation-duration: 25s;
+}
+#card-2 .glow-3 {
+    width: 400px;
+    height: 400px;
+    background: #06b6d4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 30s;
+}
+
+@keyframes auroraMove {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, -50px) scale(1.1); }
+    100% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+#card-2 .aurora-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    position: relative;
+    z-index: 10;
+}
+#card-2 .nav-logo {
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+#card-2 .nav-links {
+    display: flex;
+    gap: 30px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+#card-2 .nav-cta {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#card-2 .nav-cta:hover {
+    background: #fff;
+    color: #05060b;
+}
+
+#card-2 .hero-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+#card-2 .hero-glass-card {
+    background: rgba(18, 24, 38, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 60px;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+#card-2 .hero-glass-card h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+#card-2 .hero-glass-card p {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+#card-2 .hero-input-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 6px;
+}
+#card-2 .hero-input-group input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 12px;
+    flex: 1;
+    font-size: 14px;
+}
+#card-2 .hero-input-group button {
+    background: #fff;
+    color: #05060b;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#card-2 .hero-input-group button:hover {
+    background: #e2e8f0;
+}`,
+                js: null,
+                react: `import React from 'react';
+
+export default function FluidAuroraHero() {
+  return (
+    <div className="relative min-h-screen bg-[#05060b] text-white flex flex-col justify-between overflow-hidden">
+      {/* Moving Fluid Aurora Spots */}
+      <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] rounded-full bg-indigo-600/15 blur-[80px] animate-pulse" style={{ animationDuration: '20s' }} />
+      <div className="absolute bottom-[-150px] right-[-100px] w-[600px] h-[600px] rounded-full bg-pink-600/15 blur-[80px] animate-pulse" style={{ animationDuration: '25s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-cyan-500/15 blur-[80px] animate-pulse" style={{ animationDuration: '30s' }} />
+
+      {/* Navigation */}
+      <header className="relative z-10 flex justify-between items-center px-12 py-8">
+        <div className="text-xl font-extrabold tracking-wider">AURA.AI</div>
+        <div className="flex gap-8 text-sm text-slate-400">
+          <span className="cursor-pointer hover:text-white transition">Features</span>
+          <span className="cursor-pointer hover:text-white transition">Specs</span>
+          <span className="cursor-pointer hover:text-white transition">Pricing</span>
+        </div>
+        <button className="bg-white/10 hover:bg-white text-white hover:text-[#05060b] border border-white/15 px-6 py-2.5 rounded-full text-sm font-semibold transition-all">
+          GET STARTED
+        </button>
+      </header>
+
+      {/* Hero Body */}
+      <div className="relative z-10 flex-grow flex items-center justify-center px-6 pb-20">
+        <div className="bg-[#121826]/45 border border-white/5 backdrop-blur-2xl rounded-3xl p-10 sm:p-14 max-w-2xl text-center shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+            Intelligent design, elevated.
+          </h1>
+          <p className="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+            Aura.ai utilizes advanced contextual intelligence to refine workflows, simplify interfaces, and deliver production-ready software systems in real time.
+          </p>
+          <div className="flex bg-white/5 border border-white/10 rounded-xl p-1.5">
+            <input
+              type="email"
+              placeholder="Enter your work email..."
+              className="bg-transparent border-none outline-none text-white px-4 py-3 flex-grow text-sm"
+            />
+            <button className="bg-white hover:bg-slate-200 text-[#05060b] font-bold px-6 py-3 rounded-lg text-sm transition">
+              TRY FREE
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}`
+            },
+            {
+                id: 3,
+                dependencies: "Tailwind CSS",
+                name: "Split-Screen Typewriter Showcase",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="split-hero">
+    <!-- Left Column -->
+    <div class="split-left">
+      <div class="badge-tag">RELOADED // SYSTEM VERSION 3.2</div>
+      <h1 class="split-title">
+        Code. Design.<br/>
+        <span class="highlight-text">Build in seconds.</span>
+      </h1>
+      <p class="split-desc">
+        A premium workflow studio for creators. Automatically generate structural markup, beautiful style tokens, and dynamic system layouts directly from user descriptions.
+      </p>
+      <div class="split-cta-group">
+        <button class="primary-cta">Get Started Free</button>
+        <button class="secondary-cta">View Templates</button>
+      </div>
+    </div>
+
+    <!-- Right Column (3D Interactive Tilt Card Mockup) -->
+    <div class="split-right">
+      <div class="hero-mockup-card">
+        <div class="mockup-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="mockup-tab">dashboard_view.js</div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-metric">
+            <span class="metric-label">System Output Status</span>
+            <span class="metric-val text-green">ONLINE // STABLE</span>
+          </div>
+          <div class="code-line"><span class="c-blue">const</span> app = <span class="c-yellow">createWorkspace</span>();</div>
+          <div class="code-line indent-1"><span class="c-purple">app</span>.<span class="c-yellow">injectStyles</span>({</div>
+          <div class="code-line indent-2">backdropBlur: <span class="c-orange">'20px'</span>,</div>
+          <div class="code-line indent-2">themeMode: <span class="c-orange">'glassmorphism_dark'</span></div>
+          <div class="code-line indent-1">});</div>
+          <div class="mockup-graph">
+            <div class="bar bar-1"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-3"></div>
+            <div class="bar bar-4"></div>
+            <div class="bar bar-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-3 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #08070d;
+}
+#card-3 .hero-preview-wrapper .split-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    display: grid;
+    grid-cols-1: 1fr;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 0 80px;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    background-color: #08070d;
+}
+#card-3 .split-left {
+    text-align: left;
+}
+#card-3 .badge-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: #818cf8;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+#card-3 .split-title {
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 20px 0;
+}
+#card-3 .highlight-text {
+    background: linear-gradient(135deg, #a5b4fc, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#card-3 .split-desc {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+#card-3 .split-cta-group {
+    display: flex;
+    gap: 15px;
+}
+#card-3 .primary-cta {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s;
+}
+#card-3 .primary-cta:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+#card-3 .secondary-cta {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#card-3 .secondary-cta:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#card-3 .split-right {
+    display: flex;
+    justify-content: center;
+}
+#card-3 .hero-mockup-card {
+    width: 440px;
+    background: #111019;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    text-align: left;
+}
+#card-3 .mockup-header {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+}
+#card-3 .dots {
+    display: flex;
+    gap: 6px;
+    margin-right: 20px;
+}
+#card-3 .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+#card-3 .red { background: #ef4444; }
+#card-3 .yellow { background: #f59e0b; }
+#card-3 .green { background: #10b981; }
+#card-3 .mockup-tab {
+    color: #64748b;
+    font-family: monospace;
+    font-size: 12px;
+}
+#card-3 .mockup-body {
+    padding: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+}
+#card-3 .mockup-metric {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+    font-family: sans-serif;
+}
+#card-3 .metric-label { color: #64748b; }
+#card-3 .metric-val { font-weight: 700; }
+#card-3 .text-green { color: #10b981; }
+#card-3 .code-line { margin-bottom: 6px; }
+#card-3 .indent-1 { padding-left: 20px; }
+#card-3 .indent-2 { padding-left: 40px; }
+#card-3 .c-blue { color: #60a5fa; }
+#card-3 .c-yellow { color: #facc15; }
+#card-3 .c-purple { color: #c084fc; }
+#card-3 .c-orange { color: #f97316; }
+#card-3 .mockup-graph {
+    margin-top: 24px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+#card-3 .bar {
+    flex: 1;
+    background: linear-gradient(to top, #6366f1, #818cf8);
+    border-radius: 4px 4px 0 0;
+}
+#card-3 .bar-1 { height: 40%; }
+#card-3 .bar-2 { height: 75%; }
+#card-3 .bar-3 { height: 50%; }
+#card-3 .bar-4 { height: 90%; }
+#card-3 .bar-5 { height: 60%; }`,
+                js: null,
+                react: `import React from 'react';
+
+export default function SplitTypewriterHero() {
+  return (
+    <div className="relative min-h-screen bg-[#08070d] text-white flex items-center justify-center overflow-hidden font-sans">
+      <div className="max-w-7xl mx-auto px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        {/* Left Typography */}
+        <div className="text-left">
+          <div className="text-indigo-400 font-semibold tracking-widest text-sm mb-4">
+            RELOADED // SYSTEM VERSION 3.2
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
+            Code. Design.<br />
+            <span className="bg-gradient-to-r from-indigo-300 to-indigo-500 bg-clip-text text-transparent">
+              Build in seconds.
+            </span>
+          </h1>
+          <p className="text-slate-400 text-lg leading-relaxed mb-8">
+            A premium workflow studio for creators. Automatically generate structural markup, beautiful style tokens, and dynamic system layouts directly from user descriptions.
+          </p>
+          <div className="flex gap-4">
+            <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-indigo-500/30 hover:translate-y-[-2px] transition-all">
+              Get Started Free
+            </button>
+            <button className="bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 px-8 py-4 rounded-xl transition-all">
+              View Templates
+            </button>
+          </div>
+        </div>
+
+        {/* Right Product Mockup Card */}
+        <div className="flex justify-center">
+          <div className="w-[440px] bg-[#111019] border border-white/5 rounded-2xl shadow-2xl overflow-hidden text-left font-mono text-sm">
+            <div className="bg-black/20 border-b border-white/5 px-6 py-4 flex items-center">
+              <div className="flex gap-1.5 mr-6">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+              </div>
+              <span className="text-slate-500">dashboard_view.js</span>
+            </div>
+            <div className="p-6">
+              <div className="flex justify-between border-b border-white/5 pb-3 mb-5 font-sans">
+                <span className="text-slate-500">System Output Status</span>
+                <span className="text-emerald-400 font-bold">ONLINE // STABLE</span>
+              </div>
+              <div className="space-y-1.5">
+                <div><span className="text-blue-400">const</span> app = <span className="text-yellow-400">createWorkspace</span>();</div>
+                <div className="pl-5"><span className="text-purple-400">app</span>.<span className="text-yellow-400">injectStyles</span>({"{"}backdropBlur: <span className="text-orange-400">'20px'</span>, themeMode: <span className="text-orange-400">'glassmorphism_dark'</span>{"}"});</div>
+              </div>
+              <div className="mt-8 h-10 flex items-end gap-2">
+                {[40, 75, 50, 90, 60].map((h, i) => (
+                  <div key={i} className="flex-grow bg-gradient-to-t from-indigo-500 to-indigo-400 rounded-t-sm" style={{ height: \`\${h}%\` }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}`
+            },
+            {
+                id: 4,
+                dependencies: "Tailwind CSS",
+                name: "Vaporwave Retro Gridwave Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="retro-hero">
+    <!-- Gridwave 3D moving plane -->
+    <div class="grid-plane"></div>
+    <div class="retro-sun"></div>
+    
+    <div class="retro-content">
+      <div class="retro-glow-text">NEON_WAVE</div>
+      <h2 class="retro-heading">RETRO FUTURE GRAPHICS</h2>
+      <p class="retro-tagline">Experience the virtual digital landscape. Built with hardware-accelerated linear gradients and perspective transform matrix pipelines.</p>
+      <button class="retro-btn">LAUNCH SIMULATOR</button>
+    </div>
+  </div>
+</div>`,
+                css: `#card-4 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0118;
+}
+#card-4 .hero-preview-wrapper .retro-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    background: radial-gradient(circle at center, #1b0a3a 0%, #0a0118 100%);
+}
+#card-4 .grid-plane {
+    position: absolute;
+    bottom: -150px;
+    width: 200%;
+    height: 450px;
+    background-image: linear-gradient(rgba(236, 72, 153, 0.25) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(236, 72, 153, 0.25) 2px, transparent 2px);
+    background-size: 50px 50px;
+    background-position: center bottom;
+    transform: perspective(250px) rotateX(65deg);
+    animation: waveGridMove 12s infinite linear;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+}
+
+@keyframes waveGridMove {
+    from { background-position: center 0; }
+    to { background-position: center 300px; }
+}
+
+#card-4 .retro-sun {
+    position: absolute;
+    top: 15%;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #facc15 0%, #ec4899 50%, #701a75 100%);
+    box-shadow: 0 0 50px rgba(236, 72, 153, 0.4);
+    mask-image: repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 14px);
+    -webkit-mask-image: repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 14px);
+    opacity: 0.85;
+}
+
+#card-4 .retro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+#card-4 .retro-glow-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+}
+#card-4 .retro-heading {
+    font-size: 60px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 20px 0;
+    letter-spacing: 2px;
+    background: linear-gradient(to bottom, #fff 40%, #ff79c6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 121, 198, 0.2);
+}
+#card-4 .retro-tagline {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+#card-4 .retro-btn {
+    background: transparent;
+    border: 2px solid #ec4899;
+    color: #fff;
+    padding: 16px 36px;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+    transition: all 0.3s;
+}
+#card-4 .retro-btn:hover {
+    background: #ec4899;
+    color: #0a0118;
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
+    transform: scale(1.05);
+}`,
+                js: null,
+                react: `import React from 'react';
+
+export default function VaporwaveHero() {
+  return (
+    <div className="relative min-h-screen bg-[#0a0118] text-white flex items-center justify-center overflow-hidden font-sans">
+      {/* Sun Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#1b0a3a_0%,#0a0118_100%)] pointer-events-none" />
+
+      {/* Moving 3D Grid Floor */}
+      <div
+        className="absolute bottom-[-150px] w-[200%] h-[450px] pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(236, 72, 153, 0.25) 2px, transparent 2px), linear-gradient(90deg, rgba(236, 72, 153, 0.25) 2px, transparent 2px)',
+          backgroundSize: '50px 50px',
+          backgroundPosition: 'center bottom',
+          transform: 'perspective(250px) rotateX(65deg)',
+          animation: 'waveGridMove 12s infinite linear',
+          maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%)',
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%)'
+        }}
+      />
+
+      {/* Vaporwave Glowing Sun */}
+      <div
+        className="absolute top-[15%] w-60 h-60 rounded-full bg-gradient-to-b from-yellow-400 via-pink-500 to-fuchsia-950 opacity-85 shadow-[0_0_50px_rgba(236,72,153,0.4)] pointer-events-none"
+        style={{
+          maskImage: 'repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 14px)',
+          WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 14px)'
+        }}
+      />
+
+      <div className="relative z-10 text-center max-w-4xl px-6">
+        <div className="text-[#38bdf8] font-black text-xl tracking-[0.5rem] mb-4 drop-shadow-[0_0_10px_rgba(56,189,248,0.6)]">
+          NEON_WAVE
+        </div>
+        <h2 className="text-5xl sm:text-7xl font-black tracking-tight mb-6 bg-gradient-to-b from-white to-pink-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,121,198,0.2)]">
+          RETRO FUTURE GRAPHICS
+        </h2>
+        <p className="text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+          Experience the virtual digital landscape. Built with hardware-accelerated linear gradients and perspective transform matrix pipelines.
+        </p>
+        <button className="border-2 border-pink-500 text-white font-bold tracking-widest px-10 py-4 rounded hover:bg-pink-500 hover:text-[#0a0118] shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_25px_rgba(236,72,153,0.8)] hover:scale-105 transition-all">
+          LAUNCH SIMULATOR
+        </button>
+      </div>
+
+      <style>{\`
+        @keyframes waveGridMove {
+          from { background-position: center 0; }
+          to { background-position: center 300px; }
+        }
+      \`}</style>
+    </div>
+  );
+}`
+            },
+            {
+                id: 5,
+                dependencies: "Tailwind CSS",
+                name: "SaaS Glassmorphic Dashboard Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="saas-hero">
+    <div class="saas-background">
+      <div class="bg-blur spot-1"></div>
+      <div class="bg-blur spot-2"></div>
+    </div>
+    
+    <div class="saas-header">
+      <div class="saas-badge">INTEGRATION HUB // NOW LIVE</div>
+      <h1>Accelerate your deployment velocity.</h1>
+      <p>A unified developer platform to connect databases, automate cloud infrastructure, and audit structural system states in a beautiful glass dashboard.</p>
+    </div>
+
+    <div class="saas-dashboard-mockup">
+      <div class="db-sidebar">
+        <div class="sb-item active"></div>
+        <div class="sb-item"></div>
+        <div class="sb-item"></div>
+      </div>
+      <div class="db-content">
+        <div class="db-grid">
+          <div class="db-widget">
+            <span class="db-label">Database Status</span>
+            <span class="db-val">99.98% OK</span>
+          </div>
+          <div class="db-widget">
+            <span class="db-label">API Latency</span>
+            <span class="db-val">24ms avg</span>
+          </div>
+          <div class="db-widget">
+            <span class="db-label">Memory Usage</span>
+            <span class="db-val">34.2%</span>
+          </div>
+        </div>
+        <div class="db-big-widget">
+          <div class="db-graph-header">Weekly Platform Ingestion Rates</div>
+          <div class="db-bar-chart">
+            <div class="db-bar h-30"></div>
+            <div class="db-bar h-50"></div>
+            <div class="db-bar h-70"></div>
+            <div class="db-bar h-40"></div>
+            <div class="db-bar h-90"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-5 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #090b11;
+}
+#card-5 .hero-preview-wrapper .saas-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px 0 40px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background-color: #090b11;
+}
+#card-5 .saas-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+#card-5 .bg-blur {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+}
+#card-5 .spot-1 {
+    width: 500px;
+    height: 500px;
+    background: #8b5cf6;
+    top: -200px;
+    left: 20%;
+}
+#card-5 .spot-2 {
+    width: 400px;
+    height: 400px;
+    background: #3b82f6;
+    bottom: -100px;
+    right: 10%;
+}
+
+#card-5 .saas-header {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+#card-5 .saas-badge {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #c084fc;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+#card-5 .saas-header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+}
+#card-5 .saas-header p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+#card-5 .saas-dashboard-mockup {
+    width: 760px;
+    height: 380px;
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    display: flex;
+    overflow: hidden;
+}
+#card-5 .db-sidebar {
+    width: 60px;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    gap: 20px;
+}
+#card-5 .sb-item {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+}
+#card-5 .sb-item.active {
+    background: #8b5cf6;
+}
+
+#card-5 .db-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+#card-5 .db-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+#card-5 .db-widget {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+#card-5 .db-label {
+    color: #64748b;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+#card-5 .db-val {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#card-5 .db-big-widget {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#card-5 .db-graph-header {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+}
+#card-5 .db-bar-chart {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+#card-5 .db-bar {
+    flex: 1;
+    background: linear-gradient(to top, #8b5cf6, #c084fc);
+    border-radius: 4px;
+}
+#card-5 .h-30 { height: 30%; }
+#card-5 .h-50 { height: 50%; }
+#card-5 .h-70 { height: 70%; }
+#card-5 .h-40 { height: 40%; }
+#card-5 .h-90 { height: 90%; }`,
+                js: null,
+                react: `import React from 'react';
+
+export default function SaasDashboardHero() {
+  return (
+    <div className="relative min-h-screen bg-[#090b11] text-white flex flex-col items-center pt-24 px-6 overflow-hidden font-sans">
+      {/* Background Glows */}
+      <div className="absolute top-[-200px] left-[20%] w-[500px] h-[500px] rounded-full bg-violet-600/10 blur-[100px]" />
+      <div className="absolute bottom-[-100px] right-[10%] w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
+
+      {/* Header Info */}
+      <div className="relative z-10 text-center max-w-4xl mb-12">
+        <div className="inline-block bg-violet-500/15 border border-violet-500/30 text-violet-400 text-xs font-semibold tracking-wider px-4 py-1.5 rounded-full mb-6">
+          INTEGRATION HUB // NOW LIVE
+        </div>
+        <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
+          Accelerate your deployment velocity.
+        </h1>
+        <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          A unified developer platform to connect databases, automate cloud infrastructure, and audit structural system states in a beautiful glass dashboard.
+        </p>
+      </div>
+
+      {/* Glass dashboard mockup */}
+      <div className="relative z-10 w-full max-w-4xl h-[420px] bg-white/[0.03] border border-white/10 backdrop-blur-2xl rounded-t-3xl shadow-2xl flex overflow-hidden">
+        <div className="w-[70px] bg-black/20 border-r border-white/5 flex flex-col items-center pt-8 gap-6">
+          <div className="w-7 h-7 rounded-lg bg-violet-500" />
+          <div className="w-7 h-7 rounded-lg bg-white/5" />
+          <div className="w-7 h-7 rounded-lg bg-white/5" />
+        </div>
+        
+        <div className="flex-grow p-8 flex flex-col gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {[
+              { label: 'Database Status', val: '99.98% OK' },
+              { label: 'API Latency', val: '24ms avg' },
+              { label: 'Memory Usage', val: '34.2%' }
+            ].map((w, i) => (
+              <div key={i} className="bg-white/[0.01] border border-white/5 rounded-xl p-5 text-left">
+                <div className="text-xs text-slate-500 uppercase font-semibold mb-2">{w.label}</div>
+                <div className="text-xl font-bold">{w.val}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex-grow bg-white/[0.01] border border-white/5 rounded-xl p-6 flex flex-col gap-6">
+            <div className="text-left font-semibold text-sm">Weekly Platform Ingestion Rates</div>
+            <div className="flex-grow flex items-end gap-3.5">
+              {[30, 50, 70, 40, 90, 65, 80].map((h, i) => (
+                <div key={i} className="flex-grow bg-gradient-to-t from-violet-600 to-fuchsia-400 rounded-lg" style={{ height: \`\${h}%\` }} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}`
+            }
+        ,
+            {
+                id: 6,
+                dependencies: "Tailwind CSS",
+                name: "Diced Warped Grid Hero Section",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="diced-hero">
+    <!-- Left Column -->
+    <div class="diced-left">
+      <span class="diced-top-text">CHRONICLE OF DESIGN</span>
+      <h1 class="diced-main-text"><span>Crafting Digital Artifacts</span></h1>
+      <hr class="diced-separator" />
+      <p class="diced-sub-text">Explore our hand-curated collections of high-end design assets and production-ready components engineered for quality.</p>
+      <div class="diced-btn-wrapper">
+        <button class="chronicle-button">DISCOVER MORE</button>
+      </div>
+    </div>
+    <!-- Right Column -->
+    <div class="diced-right">
+      <div class="diced-grid">
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=600&auto=format&fit=crop" alt="Slide 0" class="warped-image bottom-right" />
+        </div>
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=600&auto=format&fit=crop" alt="Slide 1" class="warped-image bottom-left" />
+        </div>
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?q=80&w=600&auto=format&fit=crop" alt="Slide 2" class="warped-image top-right" />
+        </div>
+        <div class="grid-item">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop" alt="Slide 3" class="warped-image top-left" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-6 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #090a0f;
+}
+#card-6 .hero-preview-wrapper .diced-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    padding: 60px 40px;
+    gap: 40px;
+}
+#card-6 .diced-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    align-items: flex-start;
+}
+#card-6 .diced-top-text {
+    font-size: 14px;
+    color: #818cf8;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+#card-6 .diced-main-text {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.15;
+}
+#card-6 .diced-separator {
+    height: 4px;
+    width: 100px;
+    background: #6366f1;
+    border: none;
+    margin: 20px 0;
+}
+#card-6 .diced-sub-text {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+#card-6 .chronicle-button {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s;
+}
+#card-6 .chronicle-button:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+#card-6 .diced-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#card-6 .diced-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+#card-6 .grid-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+#card-6 .warped-image {
+    --r: 20px;
+    --s: 40px;
+    --x: 25px;
+    --y: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#card-6 .top-right {
+    --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+    --_g: conic-gradient(at calc(100% - var(--r)) var(--r),#0000 25%,#000 0);
+    --_d: (var(--s) + var(--r));
+    mask: calc(100% - var(--_d) - var(--x)) 0 var(--_m), 100% calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 100% 0,#0000 99%,#000 calc(100% + 1px)) calc(-1*var(--r) - var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(-1*var(--_d) - var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+    mask-repeat: no-repeat;
+    -webkit-mask: calc(100% - var(--_d) - var(--x)) 0 var(--_m), 100% calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 100% 0,#0000 99%,#000 calc(100% + 1px)) calc(-1*var(--r) - var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(-1*var(--_d) - var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+    -webkit-mask-repeat: no-repeat;
+}
+#card-6 .top-left {
+    --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+    --_g: conic-gradient(at var(--r) var(--r),#000 75%,#0000 0);
+    --_d: (var(--s) + var(--r));
+    mask: calc(var(--_d) + var(--x)) 0 var(--_m), 0 calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 0 0,#0000 99%,#000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+    mask-repeat: no-repeat;
+    -webkit-mask: calc(var(--_d) + var(--x)) 0 var(--_m), 0 calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 0 0,#0000 99%,#000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+    -webkit-mask-repeat: no-repeat;
+}
+#card-6 .bottom-left {
+    --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+    --_g: conic-gradient(from 180deg at var(--r) calc(100% - var(--r)),#0000 25%,#000 0);
+    --_d: (var(--s) + var(--r));
+    mask: calc(var(--_d) + var(--x)) 100% var(--_m), 0 calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 0 100%,#0000 99%,#000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(-1*var(--r) - var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(-1*var(--_d) - var(--y));
+    mask-repeat: no-repeat;
+    -webkit-mask: calc(var(--_d) + var(--x)) 100% var(--_m), 0 calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 0 100%,#0000 99%,#000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(-1*var(--r) - var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(-1*var(--_d) - var(--y));
+    -webkit-mask-repeat: no-repeat;
+}
+#card-6 .bottom-right {
+    --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+    --_g: conic-gradient(from 90deg at calc(100% - var(--r)) calc(100% - var(--r)),#0000 25%,#000 0);
+    --_d: (var(--s) + var(--r));
+    mask: calc(100% - var(--_d) - var(--x)) 100% var(--_m), 100% calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 100% 100%,#0000 99%,#000 calc(100% + 1px)) calc(-1*var(--r) - var(--x)) calc(-1*var(--r) - var(--y)), var(--_g) calc(-1*var(--_d) - var(--x)) 0, var(--_g) 0 calc(-1*var(--_d) - var(--y));
+    mask-repeat: no-repeat;
+    -webkit-mask: calc(100% - var(--_d) - var(--x)) 100% var(--_m), 100% calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 100% 100%,#0000 99%,#000 calc(100% + 1px)) calc(-1*var(--r) - var(--x)) calc(-1*var(--r) - var(--y)), var(--_g) calc(-1*var(--_d) - var(--x)) 0, var(--_g) 0 calc(-1*var(--_d) - var(--y));
+    -webkit-mask-repeat: no-repeat;
+}`,
+                js: null,
+                react: `import React, { useState, useEffect, useRef } from 'react';
+
+interface TextStyle {
+  color?: string;
+  fontSize?: string;
+  gradient?: string;
+}
+interface ButtonStyle {
+  backgroundColor?: string;
+  color?: string;
+  borderRadius?: string;
+  hoverColor?: string;
+  hoverForeground?: string;
+}
+interface SlideContent {
+  title: string;
+  image: string;
+}
+interface DicedHeroSectionProps {
+  topText: string;
+  mainText: string;
+  subMainText: string;
+  buttonText: string;
+  slides: SlideContent[];
+  onMainButtonClick?: () => void;
+  topTextStyle?: TextStyle;
+  mainTextStyle?: TextStyle;
+  subMainTextStyle?: TextStyle;
+  buttonStyle?: ButtonStyle;
+  componentBorderRadius?: string;
+  backgroundColor?: string;
+  separatorColor?: string;
+  maxContentWidth?: string;
+}
+
+export const DicedHeroSection: React.FC<DicedHeroSectionProps> = ({
+  topText = 'CHRONICLE OF DESIGN',
+  mainText = 'Crafting Digital Artifacts',
+  subMainText = 'Explore our hand-curated collections of high-end design assets and production-ready components engineered for quality.',
+  buttonText = 'DISCOVER MORE',
+  slides = [
+    { title: 'Slide 0', image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=600&auto=format&fit=crop' },
+    { title: 'Slide 1', image: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=600&auto=format&fit=crop' },
+    { title: 'Slide 2', image: 'https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?q=80&w=600&auto=format&fit=crop' },
+    { title: 'Slide 3', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop' }
+  ],
+  onMainButtonClick,
+  topTextStyle,
+  mainTextStyle,
+  subMainTextStyle,
+  buttonStyle,
+  componentBorderRadius = '0px',
+  backgroundColor = '#090a0f',
+  separatorColor = '#6366f1',
+  maxContentWidth = '1536px',
+}) => {
+  return (
+    <main
+      style={{
+        borderRadius: componentBorderRadius,
+        backgroundColor,
+        padding: '2rem',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        width: '100%',
+        maxWidth: maxContentWidth,
+        margin: '0 auto',
+        height: 'auto',
+        position: 'relative',
+      }}
+    >
+      <div
+        style={{
+          flex: 1,
+          marginRight: '2rem',
+          textAlign: 'left',
+          alignItems: 'flex-start',
+          maxWidth: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          zIndex: 1,
+        }}
+      >
+        <div>
+          <span style={{ ...topTextStyle, display: 'block', fontSize: '14px', color: '#818cf8', fontWeight: 600, letterSpacing: '2px', marginBottom: '12px' }}>
+            {topText}
+          </span>
+          <h1 style={{ ...mainTextStyle, fontSize: '48px', fontWeight: 800, color: '#fff', margin: 0, lineHeight: 1.15 }}>
+            {mainText}
+          </h1>
+          <hr
+            style={{
+              width: '6.25rem',
+              height: '0.25rem',
+              background: separatorColor,
+              border: 'none',
+              margin: '1.125rem 0 1.875rem',
+            }}
+          />
+          <p style={{ ...subMainTextStyle, color: '#94a3b8', fontSize: '16px', lineHeight: 1.6, marginBottom: '30px' }}>
+            {subMainText}
+          </p>
+        </div>
+        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'flex-start' }}>
+          <button
+            onClick={onMainButtonClick}
+            style={{
+              background: buttonStyle?.backgroundColor || '#6366f1',
+              color: buttonStyle?.color || '#fff',
+              border: 'none',
+              padding: '14px 28px',
+              fontWeight: 600,
+              borderRadius: buttonStyle?.borderRadius || '8px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)',
+            }}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </div>
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-end',
+          position: 'relative',
+          width: '50%',
+          paddingLeft: '2rem',
+        }}
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', width: '100%', aspectRatio: '1 / 1' }}>
+          {[slides[3], slides[2], slides[1], slides[0]].map((slide, index) => (
+            <div key={index} style={{ position: 'relative', width: '100%', paddingBottom: '100%', overflow: 'hidden', borderRadius: '20px' }}>
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className={\`warped-image \${['bottom-right', 'bottom-left', 'top-right', 'top-left'][index]}\`}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+};`
+            },
+            {
+                id: 7,
+                dependencies: "Tailwind CSS",
+                name: "Shark Tank Prosthetics Video Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+  <div class="prosthetics-hero">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4" type="video/mp4" />
+    </video>
+    <div class="content-overlay">
+      <nav class="pill-nav">
+        <div class="logo-pill">
+          <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+            <path fill="rgb(84, 84, 84)" d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"></path>
+          </svg>
+        </div>
+        <div class="links-pill">
+          <a href="#">Story</a>
+          <a href="#">Products</a>
+          <a href="#">Help</a>
+          <a href="#">Support</a>
+        </div>
+      </nav>
+      
+      <div class="hero-bottom-left">
+        <div class="info-badge">
+          Seen on Shark Tank in India <span class="arrow">→</span>
+        </div>
+        <h1>Simple, smart prosthetics made for people who keep fighting.</h1>
+        <p>Reclaim your movement now.</p>
+        <a href="#" class="cta-btn">
+          Try a free fitting <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `#card-7 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0ee;
+}
+#card-7 .hero-preview-wrapper .prosthetics-hero {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f0f0ee;
+}
+#card-7 .bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+#card-7 .content-overlay {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+#card-7 .pill-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 24px;
+}
+#card-7 .logo-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    background: #EDEDED;
+}
+#card-7 .links-pill {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    border-radius: 12px;
+    padding: 12px 32px;
+    background: #EDEDED;
+}
+#card-7 .links-pill a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#card-7 .links-pill a:hover {
+    color: #111827;
+}
+#card-7 .hero-bottom-left {
+    max-width: 320px;
+    padding: 0 0 60px 80px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+}
+#card-7 .info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #3b82f6;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#card-7 .info-badge:hover {
+    color: #2563eb;
+}
+#card-7 .info-badge:hover .arrow {
+    transform: translateX(2px);
+}
+#card-7 .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+#card-7 .hero-bottom-left h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #111827;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+#card-7 .hero-bottom-left p {
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+}
+#card-7 .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b82f6;
+    border: 1px solid #93c5fd;
+    border-radius: 9999px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+#card-7 .cta-btn:hover {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+#card-7 .cta-btn:hover .arrow {
+    transform: translateX(2px);
+}`,
+                js: null,
+                react: `import React from 'react';
+
+export default function SmartProstheticsHero() {
+  return (
+    <div className="relative min-h-screen overflow-hidden bg-[#f0f0ee] text-slate-800 font-sans">
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Foreground Container */}
+      <div className="relative z-10 flex flex-col min-h-screen justify-between pb-20">
+        
+        {/* Navigation */}
+        <nav className="flex items-center justify-center pt-6 px-8 gap-3">
+          <div className="flex items-center justify-center rounded-full w-11 h-11 shrink-0 bg-[#EDEDED]">
+            <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+              <path
+                fill="rgb(84, 84, 84)"
+                d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
+              />
+            </svg>
+          </div>
+          <div className="flex items-center gap-10 rounded-xl px-8 py-3 bg-[#EDEDED]">
+            {['Story', 'Products', 'Help', 'Support'].map((link) => (
+              <a
+                key={link}
+                href="#"
+                className="text-[14px] font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200"
+              >
+                {link}
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        {/* Hero bottom aligned content */}
+        <div className="flex-1 flex items-end px-28">
+          <div className="max-w-xs text-left">
+            
+            {/* Link Badge */}
+            <a
+              href="#"
+              className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-blue-500 hover:text-blue-600 transition-colors mb-3 group"
+            >
+              Seen on Shark Tank in India{' '}
+              <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
+                →
+              </span>
+            </a>
+
+            {/* Title */}
+            <h1 className="text-[1.75rem] leading-[1.15] font-medium text-gray-900 tracking-tight mb-3">
+              Simple, smart prosthetics made for people who keep fighting.
+            </h1>
+
+            {/* Subtext */}
+            <p className="text-[13px] text-gray-400 font-normal mb-3">
+              Reclaim your movement now.
+            </p>
+
+            {/* CTA */}
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-blue-500 border border-blue-400 rounded-full px-5 py-2.5 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-200 group"
+            >
+              Try a free fitting{' '}
+              <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
+                →
+              </span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}`
+            },
+            {
+                id: 8,
+                dependencies: "Tailwind CSS, Schibsted Grotesk, Fustat",
+                name: "AI Video Input Prompt Hero",
+                html: `<div class="hero-preview-wrapper select-none">
+<div class="relative w-full overflow-hidden flex flex-col justify-between font-sans bg-white text-black" style="min-height: 750px; height: 750px;">
+  
+  <!-- Video Background Wrapper -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
+    <video id="bg-video" class="w-[115%] h-[115%] object-cover object-top opacity-0" muted playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260329_050842_be71947f-f16e-4a14-810c-06e83d23ddb5.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="relative z-10 flex items-center justify-between px-[120px] py-4 bg-transparent">
+    <!-- Logo -->
+    <div class="font-schibsted text-2xl font-semibold tracking-[-1.44px] text-black">
+      Logoipsum
+    </div>
+
+    <!-- Menu Items -->
+    <div class="flex items-center gap-6 font-schibsted text-base font-medium tracking-[-0.2px] text-black/80">
+      <a href="#" class="hover:text-black transition-colors">Platform</a>
+      <a href="#" class="hover:text-black transition-colors flex items-center gap-1">
+        Features
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </a>
+      <a href="#" class="hover:text-black transition-colors">Projects</a>
+      <a href="#" class="hover:text-black transition-colors">Community</a>
+      <a href="#" class="hover:text-black transition-colors">Contact</a>
+    </div>
+
+    <!-- Right Actions -->
+    <div class="flex items-center gap-4">
+      <button class="w-[82px] text-sm font-semibold text-black hover:text-black/85 transition-colors bg-transparent border-0 py-2.5">
+        Sign Up
+      </button>
+      <button class="w-[101px] text-sm font-semibold text-white bg-black hover:bg-black/90 rounded-lg transition-colors py-2.5">
+        Log In
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Content -->
+  <section class="relative z-10 flex-1 flex flex-col items-center justify-center -mt-[50px] px-[120px] text-center" style="gap: 44px;">
+    <!-- Headline + Subtitle + Badge container -->
+    <div class="flex flex-col items-center" style="gap: 34px;">
+      <!-- Badge -->
+      <div class="inline-flex items-center rounded-full bg-white shadow-sm border border-neutral-200 overflow-hidden font-inter text-sm" style="padding: 1px;">
+        <span class="inline-flex items-center gap-1 bg-[#0e1311] text-white px-3 py-1 rounded-full text-xs font-semibold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-yellow-400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+          New
+        </span>
+        <span class="text-neutral-700 px-3 py-1 font-normal">
+          Discover what's possible
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-fustat font-bold text-[80px] leading-none text-black tracking-[-4.8px]">
+        Transform Data Quickly
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="font-fustat font-medium text-[20px] leading-[1.3] text-[#505050] max-w-[736px]" style="width: 542px; letter-spacing: -0.4px;">
+        Upload your information and get powerful insights right away. Work smarter and achieve goals effortlessly.
+      </p>
+    </div>
+
+    <!-- Search Input Box -->
+    <div class="w-full max-w-[728px] h-[200px] bg-black/24 rounded-[18px] p-4 flex flex-col justify-between backdrop-blur-md shadow-lg border border-white/10">
+      
+      <!-- Top Row Credits -->
+      <div class="flex items-center justify-between font-schibsted text-xs font-medium text-white">
+        <div class="flex items-center gap-2">
+          <span>60/450 credits</span>
+          <button class="bg-[#5ae14c]/89 text-black px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border-0 hover:brightness-105 transition-all">
+            Upgrade
+          </button>
+        </div>
+        <div class="flex items-center gap-1.5 opacity-90">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+          <span>Powered by GPT-4o</span>
+        </div>
+      </div>
+
+      <!-- Main Input Area -->
+      <div class="relative bg-white rounded-xl shadow-sm p-1.5 flex items-center justify-between border border-neutral-100">
+        <input type="text" class="flex-1 bg-transparent border-0 outline-none px-3 py-2 text-sm text-black font-sans placeholder-black/60" placeholder="Type question...">
+        <button class="w-9 h-9 rounded-full bg-black hover:bg-neutral-900 transition-colors flex items-center justify-center text-white shrink-0 border-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+      </div>
+
+      <!-- Bottom Row Buttons -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button class="inline-flex items-center gap-1.5 bg-[#f8f8f8] hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+            Attach
+          </button>
+          <button class="inline-flex items-center gap-1.5 bg-[#f8f8f8] hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+            Voice
+          </button>
+          <button class="inline-flex items-center gap-1.5 bg-[#f8f8f8] hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Prompts
+          </button>
+        </div>
+        <div class="text-xs text-white/70 font-sans">
+          0/3,000
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script for custom video fade-in/fade-out using requestAnimationFrame -->
+  <svg width="0" height="0" style="position:absolute;" onload="(function(el){
+    setTimeout(function(){
+      const container = el.closest('.hero-preview-wrapper');
+      if (!container) return;
+      const video = container.querySelector('#bg-video');
+      if (!video) return;
+
+      let animFrameId = null;
+      let isFadingOut = false;
+      let currentOpacity = 0;
+
+      // Custom fade runner
+      function fadeTo(targetOpacity, duration, callback) {
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        const startOpacity = currentOpacity;
+        const startTime = performance.now();
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          currentOpacity = startOpacity + (targetOpacity - startOpacity) * progress;
+          video.style.opacity = currentOpacity;
+
+          if (progress < 1) {
+            animFrameId = requestAnimationFrame(step);
+          } else {
+            animFrameId = null;
+            if (callback) callback();
+          }
+        }
+        animFrameId = requestAnimationFrame(step);
+      }
+
+      // 1. Play handler -> Fade in (250ms)
+      video.addEventListener('play', () => {
+        isFadingOut = false;
+        fadeTo(1, 250);
+      });
+
+      // 2. Timeupdate handler -> Fade out (250ms) 0.55s before end
+      video.addEventListener('timeupdate', () => {
+        if (video.duration) {
+          const timeLeft = video.duration - video.currentTime;
+          if (timeLeft <= 0.55 && !isFadingOut && !video.paused) {
+            isFadingOut = true;
+            fadeTo(0, 250);
+          }
+        }
+      });
+
+      // 3. Ended handler -> Reset to 0 currentTime, play after 100ms
+      video.addEventListener('ended', () => {
+        video.style.opacity = 0;
+        currentOpacity = 0;
+        setTimeout(() => {
+          video.currentTime = 0;
+          video.play();
+        }, 100);
+      });
+
+      // Autoplay launch
+      video.play().catch(e => {
+        // Fallback for autoplay blocks
+        video.muted = true;
+        video.play();
+      });
+    }, 500);
+  })(this)"></svg>
+</div>
+</div>`,
+                css: `@import url('https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap');
+
+#card-8 .hero-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+#card-8 .hero-preview-wrapper > div {
+    transform: scale(0.64);
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+#card-8 .font-schibsted {
+    font-family: 'Schibsted Grotesk', sans-serif;
+}
+#card-8 .font-inter {
+    font-family: 'Inter', sans-serif;
+}
+#card-8 .font-fustat {
+    font-family: 'Fustat', sans-serif;
+}
+#card-8 .bg-black\\/24 {
+    background-color: rgba(0, 0, 0, 0.24);
+}`,
+                js: null,
+                react: `import React, { useRef, useEffect, useState } from 'react';
+import { ChevronDown, Send, Paperclip, Mic, Search, Star, Sparkles } from 'lucide-react';
+
+export default function VideoHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const fadeFrameRef = useRef<number | null>(null);
+  const currentOpacityRef = useRef<number>(0);
+  const fadingOutRef = useRef<boolean>(false);
+
+  const performFade = (targetOpacity: number, duration: number, callback?: () => void) => {
+    if (fadeFrameRef.current) cancelAnimationFrame(fadeFrameRef.current);
+    const startOpacity = currentOpacityRef.current;
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      currentOpacityRef.current = startOpacity + (targetOpacity - startOpacity) * progress;
+      if (videoRef.current) {
+        videoRef.current.style.opacity = String(currentOpacityRef.current);
+      }
+
+      if (progress < 1) {
+        fadeFrameRef.current = requestAnimationFrame(step);
+      } else {
+        fadeFrameRef.current = null;
+        if (callback) callback();
+      }
+    };
+    fadeFrameRef.current = requestAnimationFrame(step);
+  };
+
+  const handlePlay = () => {
+    fadingOutRef.current = false;
+    performFade(1, 250);
+  };
+
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+    if (video && video.duration) {
+      const timeLeft = video.duration - video.currentTime;
+      if (timeLeft <= 0.55 && !fadingOutRef.current && !video.paused) {
+        fadingOutRef.current = true;
+        performFade(0, 250);
+      }
+    }
+  };
+
+  const handleEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.style.opacity = '0';
+      currentOpacityRef.current = 0;
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play();
+        }
+      }, 100);
+    }
+  };
+
+  return (
+    <div className="relative w-full min-h-screen bg-white text-black overflow-hidden flex flex-col justify-between">
+      {/* Background Video */}
+      <div className="absolute inset-0 overflow-hidden z-0 flex items-center justify-center">
+        <video
+          ref={videoRef}
+          onPlay={handlePlay}
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={handleEnded}
+          className="w-[115%] h-[115%] object-cover object-top opacity-0 transition-none"
+          muted
+          playsInline
+          autoPlay
+        >
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260329_050842_be71947f-f16e-4a14-810c-06e83d23ddb5.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Nav */}
+      <nav className="relative z-10 flex items-center justify-between px-[120px] py-4">
+        <div className="text-2xl font-semibold tracking-tighter">Logoipsum</div>
+        <div className="flex gap-6 font-medium text-black/80">
+          <a href="#" className="hover:text-black">Platform</a>
+          <a href="#" className="hover:text-black flex items-center gap-1">Features <ChevronDown className="w-4 h-4" /></a>
+          <a href="#" className="hover:text-black">Projects</a>
+          <a href="#" className="hover:text-black">Community</a>
+          <a href="#" className="hover:text-black">Contact</a>
+        </div>
+      </nav>
+
+      {/* Content */}
+      <section className="relative z-10 flex-1 flex flex-col items-center justify-center -mt-[50px] px-[120px] text-center gap-11">
+        <div className="flex flex-col items-center gap-8">
+          <div className="inline-flex items-center rounded-full bg-white shadow-sm border border-neutral-200 p-0.5 text-sm">
+            <span className="bg-[#0e1311] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" /> New
+            </span>
+            <span className="text-neutral-700 px-3 py-1">Discover what's possible</span>
+          </div>
+          <h1 className="text-[80px] font-bold leading-none tracking-tighter">Transform Data Quickly</h1>
+          <p className="text-xl text-[#505050] max-w-[736px] w-[542px]">
+            Upload your information and get powerful insights right away. Work smarter and achieve goals effortlessly.
+          </p>
+        </div>
+
+        {/* Input box */}
+        <div className="w-full max-w-[728px] h-[200px] bg-black/24 rounded-[18px] p-4 flex flex-col justify-between backdrop-blur-md shadow-lg border border-white/10 text-white">
+          <div class="flex justify-between items-center text-xs font-medium">
+            <div class="flex items-center gap-2">
+              <span>60/450 credits</span>
+              <button class="bg-[#5ae14c]/89 text-black px-2 py-0.5 rounded text-[10px] font-bold border-none">Upgrade</button>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" /> Powered by GPT-4o
+            </div>
+          </div>
+          <div className="relative bg-white rounded-xl shadow-sm p-1.5 flex items-center justify-between text-black">
+            <input type="text" className="flex-1 bg-transparent border-0 outline-none px-3 py-2 text-sm placeholder-black/60" placeholder="Type question..." />
+            <button className="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center"><Send className="w-4.5 h-4.5" /></button>
+          </div>
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <button class="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 border-none"><Paperclip className="w-3.5 h-3.5" /> Attach</button>
+              <button class="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 border-none"><Mic className="w-3.5 h-3.5" /> Voice</button>
+              <button class="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 border-none"><Search className="w-3.5 h-3.5" /> Prompts</button>
+            </div>
+            <div class="text-xs text-white/70">0/3,000</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}`
+            }
+        ];
+
+        // --- RENDER DYNAMICS ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        HERO_DATABASE.forEach(btn => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${btn.id}`;
+            
+            // Build tabs HTML depending on JS/React presence
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${btn.id}" onclick="switchTab(${btn.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${btn.id}" onclick="switchTab(${btn.id}, 'css')">CSS</button>
+            `;
+            if (btn.js) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-js-${btn.id}" onclick="switchTab(${btn.id}, 'js')">JS</button>
+                `;
+            }
+            if (btn.react) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-react-${btn.id}" onclick="switchTab(${btn.id}, 'react')">React</button>
+                `;
+            }
+
+            // Build panels HTML depending on JS/React presence
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${btn.id}">
+                    <pre><code class="language-html">${escapeHtml(btn.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${btn.id}">
+                    <pre><code class="language-css">${escapeHtml(btn.css)}</code></pre>
+                </div>
+            `;
+            if (btn.js) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-js-${btn.id}">
+                        <pre><code class="language-javascript">${escapeHtml(btn.js)}</code></pre>
+                    </div>
+                `;
+            }
+            if (btn.react) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-react-${btn.id}">
+                        <pre><code class="language-tsx">${escapeHtml(btn.react)}</code></pre>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <style>${btn.css || ''}</style>
+                <div class="card-header">
+                    <span class="features-title">${btn.name}</span>
+                    <span class="features-badge">Hero #${btn.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${btn.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${btn.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${btn.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${btn.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${btn.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        const activeTabs = {}; // Tracks tab selection per card ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => d.classList.remove('open'));
+                document.querySelectorAll('.action-btn.active').forEach(b => b.classList.remove('active'));
+
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs inside Code Drawer
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const jsTab = document.getElementById(`tab-js-${id}`);
+            const reactTab = document.getElementById(`tab-react-${id}`);
+            
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+            const jsPanel = document.getElementById(`panel-js-${id}`);
+            const reactPanel = document.getElementById(`panel-react-${id}`);
+
+            if (htmlTab) htmlTab.classList.remove('active');
+            if (cssTab) cssTab.classList.remove('active');
+            if (jsTab) jsTab.classList.remove('active');
+            if (reactTab) reactTab.classList.remove('active');
+            
+            if (htmlPanel) htmlPanel.classList.remove('active');
+            if (cssPanel) cssPanel.classList.remove('active');
+            if (jsPanel) jsPanel.classList.remove('active');
+            if (reactPanel) reactPanel.classList.remove('active');
+
+            if (tabType === 'html') {
+                if (htmlTab) htmlTab.classList.add('active');
+                if (htmlPanel) htmlPanel.classList.add('active');
+            } else if (tabType === 'css') {
+                if (cssTab) cssTab.classList.add('active');
+                if (cssPanel) cssPanel.classList.add('active');
+            } else if (tabType === 'js') {
+                if (jsTab) jsTab.classList.add('active');
+                if (jsPanel) jsPanel.classList.add('active');
+            } else if (tabType === 'react') {
+                if (reactTab) reactTab.classList.add('active');
+                if (reactPanel) reactPanel.classList.add('active');
+            }
+        };
+
+        // Clipboard copy system
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const btnData = HERO_DATABASE.find(b => b.id === id);
+            if (!btnData) return;
+
+            let textToCopy = '';
+            if (selectedType === 'html') {
+                textToCopy = btnData.html;
+            } else if (selectedType === 'css') {
+                textToCopy = btnData.css;
+            } else if (selectedType === 'js') {
+                textToCopy = btnData.js;
+            } else if (selectedType === 'react') {
+                textToCopy = btnData.react;
+            }
+
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast(`Copied Hero #${id} ${selectedType.toUpperCase()} code!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                showToast("Failed to copy code. Please copy manually.");
+            });
+        };
+
+        // Global Toast Notification triggers
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Help Modal Controls
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModal = function(e) {
+            const modal = document.getElementById('help-modal');
+            modal.classList.remove('open');
+        };
+    </script>
+</body>
+</html>

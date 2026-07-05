@@ -1,0 +1,2528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Bento Grid Collection Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN (scoped via preflight false configuration to prevent page resets) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false
+            }
+        }
+    </script>
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .features-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .features-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Interactive Canvas */
+        .preview-canvas {
+            height: 270px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Grid Background Pattern */
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        /* Actions Bar */
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE VIEWER DRAWER --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #0b0f19;
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary-glow);
+        }
+
+        .code-container {
+            position: relative;
+            background-color: #05080f;
+            padding: 1.5rem;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: var(--success-color);
+        }
+
+        .code-panel {
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .code-panel pre {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .code-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        /* --- TOAST NOTIFICATIONS --- */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 9999;
+        }
+
+        .toast {
+            background: rgba(18, 24, 38, 0.95);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+
+        /* --- HELP MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(5, 8, 15, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10000;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px var(--accent-primary-glow);
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .step-text strong {
+            color: var(--text-primary);
+        }
+
+        .modal-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-btn {
+            background: var(--accent-primary);
+            border: none;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px var(--accent-primary-glow);
+        }
+
+        .modal-btn:hover {
+            background: #4f46e5;
+        }
+
+        /* --- DYNAMIC RESIZING OVERRIDES FOR PREVIEW CARDS 1-5 --- */
+        .preview-canvas .bento-scale-wrapper {
+            width: 180%;
+            height: 480px;
+            transform: scale(0.52);
+            transform-origin: center center;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- --- HEADER SECTION --- -->
+        <header>
+            <div class="logo-badge">Bento Grid</div>
+            <h1>Interactive Bento Layouts</h1>
+            <p>A collection of premium, staggered, and highly responsive Bento Grid interfaces built with native CSS Grid and styled details.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to use
+            </button>
+        </header>
+
+        <!-- --- GRID SHOWCASE --- -->
+        <div class="showcase-grid" id="grid-container"></div>
+    </div>
+
+    <!-- --- TOAST SYSTEM --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- HELP MODAL --- -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>How to get bento grid codes</h2>
+                <button class="modal-close" onclick="toggleHelpModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Explore layouts:</strong> Scroll through the showcase and hover or interact with the items in the grids to see their animations and spotlights.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Open code panel:</strong> Click the <strong>"Get Code"</strong> button at the bottom of any bento layout card.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Select code tab:</strong> Click between HTML, CSS, JS, and React tabs to view the specific source files.
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>Copy code:</strong> Click the <strong>"Copy"</strong> button in the top-right corner to copy the snippet to your clipboard instantly.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       --- DATABASE OF SNIPPETS & DATA DRIVER ---
+       ========================================================================== -->
+    <script>
+        const BENTO_DATABASE = [
+            {
+                id: 1,
+                dependencies: "No Dependency",
+                name: "Interactive Product Feature Grid",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-1">
+    <!-- Hero Card -->
+    <div class="bento-item-1 item-hero" id="bento1-card-1">
+      <div class="bento-spotlight"></div>
+      <div class="item-content">
+        <span class="badge">Performance</span>
+        <h3>Neural Sync Core</h3>
+        <p>Real-time client calculations running asynchronously inside our edge node network.</p>
+        <div class="metric-meter">
+          <div class="meter-bar" style="width: 84%"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="bento-item-1 item-secondary">
+      <div class="item-content">
+        <span class="icon-wrap">🔒</span>
+        <h4>Encrypted Vault</h4>
+        <p>Fully secure local client database nodes.</p>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="bento-item-1 item-secondary">
+      <div class="item-content">
+        <span class="icon-wrap">⚡</span>
+        <h4>Instant Replication</h4>
+        <p>State sync across browser tabs.</p>
+      </div>
+    </div>
+    <!-- Card 4 (Horizontal Span) -->
+    <div class="bento-item-1 item-span" id="bento1-card-4">
+      <div class="bento-spotlight"></div>
+      <div class="item-content flex-row">
+        <div>
+          <h4>Integrations Hub</h4>
+          <p>Instantly deploy webhooks and database connections.</p>
+        </div>
+        <div class="logo-pile">
+          <span class="pile-icon">R</span>
+          <span class="pile-icon">N</span>
+          <span class="pile-icon">T</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `/* Core grid definition */
+.bento-grid-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.bento-item-1 {
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bento-item-1:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.05);
+}
+
+.item-hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(18, 24, 38, 0.6) 100%);
+}
+
+.item-span {
+    grid-column: span 3;
+}
+
+.bento-spotlight {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
+    top: -80px;
+    right: -80px;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.bento-item-1:hover .bento-spotlight {
+    width: 220px;
+    height: 220px;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.item-content.flex-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.badge {
+    align-self: flex-start;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid #6366f1;
+    color: #a5b4fc;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.item-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.item-content h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.item-content p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.metric-meter {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.meter-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #a5b4fc);
+}
+
+.icon-wrap {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+}
+
+.logo-pile {
+    display: flex;
+    gap: -6px;
+}
+
+.pile-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #182032;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-left: -6px;
+}`,
+                js: `// Add coordinate-tracking spotlights inside Bento Layout 1
+document.querySelectorAll('.bento-item-1').forEach(item => {
+    item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const glow = item.querySelector('.bento-spotlight');
+        if (glow) {
+            glow.style.left = (x - 80) + 'px';
+            glow.style.top = (y - 80) + 'px';
+        }
+    });
+});`,
+                react: `import React from "react"
+
+export function BentoGridProduct() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-xl mx-auto p-4 text-white">
+      {/* Hero Card */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-950/20 to-slate-900 border border-white/5 p-5 md:col-span-2 md:row-span-2 flex flex-col justify-between group hover:border-indigo-500/30 transition duration-300">
+        <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition duration-500" />
+        <div>
+          <span className="inline-block bg-indigo-500/20 border border-indigo-400 text-indigo-300 text-[10px] font-bold px-2 py-0.5 rounded">Performance</span>
+          <h3 className="text-lg font-bold mt-3">Neural Sync Core</h3>
+          <p className="text-xs text-slate-400 mt-1">Real-time client calculations running asynchronously inside our edge node network.</p>
+        </div>
+        <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mt-4">
+          <div className="h-full bg-gradient-to-r from-indigo-500 to-indigo-300" style={{ width: "84%" }} />
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="rounded-2xl bg-slate-900/60 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/30 transition duration-300">
+        <span className="text-lg">🔒</span>
+        <h4 className="text-sm font-semibold mt-2">Encrypted Vault</h4>
+        <p className="text-[11px] text-slate-400">Fully secure local client database nodes.</p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="rounded-2xl bg-slate-900/60 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/30 transition duration-300">
+        <span className="text-lg">⚡</span>
+        <h4 className="text-sm font-semibold mt-2">Instant Replication</h4>
+        <p className="text-[11px] text-slate-400">State sync across browser tabs.</p>
+      </div>
+
+      {/* Card 4 */}
+      <div className="relative overflow-hidden rounded-2xl bg-slate-900/60 border border-white/5 p-5 md:col-span-3 flex justify-between items-center hover:border-indigo-500/30 transition duration-300">
+        <div>
+          <h4 className="text-sm font-semibold">Integrations Hub</h4>
+          <p className="text-xs text-slate-400 mt-0.5">Instantly deploy webhooks and database connections.</p>
+        </div>
+        <div className="flex -space-x-1">
+          <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/10 text-white text-[10px] font-bold flex items-center justify-center">R</span>
+          <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/10 text-white text-[10px] font-bold flex items-center justify-center">N</span>
+          <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/10 text-white text-[10px] font-bold flex items-center justify-center">T</span>
+        </div>
+      </div>
+    </div>
+  )
+}`
+            },
+            {
+                id: 2,
+                dependencies: "No Dependency",
+                name: "Minimalist Creative Portfolio Grid",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-2">
+    <!-- Avatar Card -->
+    <div class="bento-item-2 item-avatar">
+      <div class="profile-avatar">S</div>
+      <div>
+        <h3>Simeon Vance</h3>
+        <p class="role">Visual Designer</p>
+      </div>
+      <div class="social-row">
+        <span>𝕏</span>
+        <span>🌐</span>
+        <span>✉</span>
+      </div>
+    </div>
+    <!-- Showreel Card -->
+    <div class="bento-item-2 item-reel" id="bento2-card-2">
+      <div class="holo-spot"></div>
+      <span class="badge-white">Showreel 2026</span>
+      <h3 class="mt-4">Simplicity is dynamic.</h3>
+    </div>
+    <!-- Stack Card -->
+    <div class="bento-item-2 item-stack">
+      <h4>Toolbox</h4>
+      <div class="stack-badges">
+        <span class="badge-tech react-badge">React</span>
+        <span class="badge-tech figma-badge">Figma</span>
+        <span class="badge-tech tailwind-badge">Tailwind</span>
+        <span class="badge-tech node-badge">Node.js</span>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `/* Portfolio bento grid rules */
+.bento-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(130px, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.bento-item-2 {
+    background: #0f131a;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-item-2:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.item-avatar {
+    grid-row: span 2;
+    background: linear-gradient(180deg, #131924 0%, #0d121c 100%);
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1.25rem;
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a5b4fc, #6366f1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+}
+
+.item-avatar h3 {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.item-avatar .role {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.social-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    color: var(--text-secondary);
+}
+
+.social-row span {
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.social-row span:hover {
+    color: #fff;
+}
+
+.item-reel {
+    background: #1e1e24;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.badge-white {
+    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+}
+
+.item-reel h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.holo-spot {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    pointer-events: none;
+    transition: background-position 0.2s ease-out;
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+}
+
+.item-stack {
+    background: #0f131a;
+}
+
+.item-stack h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.stack-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.badge-tech {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+    color: #94a3b8;
+    transition: all 0.3s;
+}
+
+.badge-tech:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+}`,
+                js: `// Hologram background movement on reel card hover
+const reel = document.getElementById('bento2-card-2');
+if (reel) {
+    const spot = reel.querySelector('.holo-spot');
+    reel.addEventListener('mousemove', (e) => {
+        const rect = reel.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        if (spot) spot.style.backgroundPosition = \`\${xPercent}% \${yPercent}%\`;
+    });
+    reel.addEventListener('mouseleave', () => {
+        if (spot) spot.style.backgroundPosition = '0% 0%';
+    });
+}`,
+                react: `import React from "react"
+
+export function BentoGridPortfolio() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto p-4 text-white">
+      {/* Avatar Card */}
+      <div className="rounded-3xl bg-slate-900 border border-white/5 p-6 flex flex-col items-center text-center justify-between hover:border-white/10 transition duration-300 md:row-span-2">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-indigo-300 to-indigo-600 text-white flex items-center justify-center text-xl font-bold shadow-md shadow-indigo-500/20">
+          S
+        </div>
+        <div className="mt-4">
+          <h3 className="font-semibold text-white">Simeon Vance</h3>
+          <p className="text-xs text-slate-400 mt-0.5">Visual Designer</p>
+        </div>
+        <div className="flex gap-3 mt-6 text-slate-400">
+          <span className="hover:text-white cursor-pointer text-xs">𝕏</span>
+          <span className="hover:text-white cursor-pointer text-xs">🌐</span>
+          <span className="hover:text-white cursor-pointer text-xs">✉</span>
+        </div>
+      </div>
+
+      {/* Showreel Card */}
+      <div className="relative overflow-hidden rounded-3xl bg-neutral-900 border border-white/5 p-5 flex flex-col justify-between hover:border-white/10 transition duration-300 group">
+        <span className="self-start bg-white/5 border border-white/10 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full">Showreel 2026</span>
+        <h3 className="text-md font-semibold text-white mt-4">Simplicity is dynamic.</h3>
+      </div>
+
+      {/* Toolbox Card */}
+      <div className="rounded-3xl bg-slate-900 border border-white/5 p-5 flex flex-col justify-between hover:border-white/10 transition duration-300">
+        <h4 className="text-xs font-semibold text-slate-400 mb-2">Toolbox</h4>
+        <div className="flex flex-wrap gap-1.5">
+          <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-white/20 transition">React</span>
+          <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-white/20 transition">Figma</span>
+          <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-white/20 transition">Tailwind</span>
+          <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-white/20 transition">Node.js</span>
+        </div>
+      </div>
+    </div>
+  )
+}`
+            },
+            {
+                id: 3,
+                dependencies: "No Dependency",
+                name: "Advanced Analytics & Charts Grid",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-3">
+    <!-- Chart Card -->
+    <div class="bento-item-3 item-chart">
+      <div class="item-head">
+        <h4>Weekly Visitors</h4>
+        <span class="trend">+12.4%</span>
+      </div>
+      <!-- SVG Mock Chart -->
+      <div class="chart-container-svg">
+        <svg viewBox="0 0 200 80" class="svg-graph">
+          <path d="M 10,70 Q 40,30 70,55 T 130,20 T 190,40" fill="none" stroke="#10b981" stroke-width="2.5" class="line-path"></path>
+          <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5">
+            <path d="M 0,20 H 200 M 0,40 H 200 M 0,60 H 200"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <!-- Metrics Card -->
+    <div class="bento-item-3 item-metric">
+      <div class="metric-top">
+        <span class="pulse-indicator"></span>
+        <span class="label">SLA HEALTH</span>
+      </div>
+      <h3 class="metric-value">99.98%</h3>
+      <p class="desc">Active system monitors running</p>
+    </div>
+    <!-- List Feed Card -->
+    <div class="bento-item-3 item-feed">
+      <h4>Recent Commits</h4>
+      <div class="feed-list">
+        <div class="feed-row">
+          <span class="dot g-dot"></span>
+          <span class="msg">Fix layout alignment drawer</span>
+        </div>
+        <div class="feed-row">
+          <span class="dot p-dot"></span>
+          <span class="msg">Scale focus feature card sizing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `/* Analytics bento styles */
+.bento-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.bento-item-3 {
+    background: #0b0e14;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+}
+
+.bento-item-3:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.item-chart {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-head h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.trend {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.chart-container-svg {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.svg-graph {
+    width: 100%;
+    height: auto;
+}
+
+.line-path {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: drawLine 2.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.item-metric {
+    background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(11,14,20,0.6) 100%);
+}
+
+.metric-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulse-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulseFlash 1.5s infinite;
+}
+
+@keyframes pulseFlash {
+    50% { opacity: 0.3; }
+}
+
+.label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #64748b;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 6px;
+}
+
+.desc {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.item-feed h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.feed-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.g-dot { background-color: #10b981; }
+.p-dot { background-color: #a855f7; }
+
+.msg {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}`,
+                js: null,
+                react: `import React from "react"
+
+export function BentoGridAnalytics() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto p-4 text-white">
+      {/* Chart Card */}
+      <div className="rounded-2xl bg-slate-950 border border-white/5 p-5 md:col-span-2 hover:border-emerald-500/30 transition duration-300">
+        <div className="flex justify-between items-center">
+          <h4 className="text-xs font-semibold">Weekly Visitors</h4>
+          <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">+12.4%</span>
+        </div>
+        <div className="w-full mt-4">
+          <svg viewBox="0 0 200 80" className="w-full h-auto">
+            <path d="M 10,70 Q 40,30 70,55 T 130,20 T 190,40" fill="none" stroke="#10b981" strokeWidth="2.5" />
+            <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.5">
+              <path d="M 0,20 H 200 M 0,40 H 200 M 0,60 H 200" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      {/* Metrics Card */}
+      <div className="rounded-2xl bg-slate-950/80 border border-white/5 p-4 flex flex-col justify-between hover:border-emerald-500/30 transition duration-300">
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[9px] font-bold text-slate-500 tracking-wider">SLA HEALTH</span>
+        </div>
+        <h3 className="text-xl font-bold text-white mt-1">99.98%</h3>
+        <p className="text-[10px] text-slate-500 mt-1">Active system monitors running</p>
+      </div>
+
+      {/* Commit Feed Card */}
+      <div className="rounded-2xl bg-slate-950/80 border border-white/5 p-4 flex flex-col justify-between hover:border-emerald-500/30 transition duration-300">
+        <h4 className="text-xs font-semibold mb-2">Recent Commits</h4>
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-[10px] text-slate-400 truncate">Fix layout alignment drawer</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+            <span className="text-[10px] text-slate-400 truncate">Scale focus feature card sizing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )`
+            },
+            {
+                id: 4,
+                dependencies: "No Dependency",
+                name: "SaaS Dashboard Hub Bento",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-4">
+    <!-- Storage Gauge -->
+    <div class="bento-item-4 item-gauge">
+      <div class="gauge-head">
+        <h4>Cloud Storage</h4>
+        <span class="percent">64%</span>
+      </div>
+      <div class="circle-meter-box">
+        <svg class="radial-svg" viewBox="0 0 36 36">
+          <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"></path>
+          <path class="ring-fill" stroke-dasharray="64, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <p class="caption">12.8 GB of 20 GB used</p>
+    </div>
+    <!-- Profile Card -->
+    <div class="bento-item-4 item-profile">
+      <div class="avatar-sm">U</div>
+      <div class="meta">
+        <h3>Nova Vance</h3>
+        <p class="email">nova@edge.io</p>
+      </div>
+      <div class="toggle-btn-box">
+        <div class="interactive-switch" onclick="toggleDashboardSwitch(this)">
+          <div class="switch-ball"></div>
+        </div>
+        <span class="toggle-lbl">Pro mode</span>
+      </div>
+    </div>
+    <!-- Features Grid -->
+    <div class="bento-item-4 item-features">
+      <h4>Platform Tools</h4>
+      <div class="small-tools-grid">
+        <span class="tool-node">Webhook</span>
+        <span class="tool-node">Analytics</span>
+        <span class="tool-node">Edge Sync</span>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `/* SaaS Dashboard bento layouts */
+.bento-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(130px, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.bento-item-4 {
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.bento-item-4:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+.item-gauge {
+    grid-row: span 2;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.05) 0%, rgba(18, 24, 38, 0.6) 100%);
+}
+
+.gauge-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gauge-head h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.percent {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+.circle-meter-box {
+    width: 90px;
+    height: 90px;
+    margin: 20px 0;
+}
+
+.radial-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.caption {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.item-profile {
+    gap: 8px;
+}
+
+.avatar-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #6366f1;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.item-profile h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.email {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.toggle-btn-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.interactive-switch {
+    width: 32px;
+    height: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.interactive-switch.active {
+    background: #10b981;
+}
+
+.switch-ball {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+}
+
+.interactive-switch.active .switch-ball {
+    left: 16px;
+}
+
+.toggle-lbl {
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+
+.item-features h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.small-tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tool-node {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tool-node:hover {
+    color: #fff;
+    border-color: rgba(99,102,241,0.25);
+    background: rgba(99,102,241,0.05);
+}`,
+                js: `// Add Toggle switch interactions
+window.toggleDashboardSwitch = function(switchEl) {
+    switchEl.classList.toggle('active');
+};`,
+                react: `import React, { useState } from "react"
+
+export function BentoGridDashboard() {
+  const [isPro, setIsPro] = useState(false)
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto p-4 text-white">
+      {/* Storage Gauge */}
+      <div className="rounded-2xl bg-slate-900 border border-white/5 p-5 md:row-span-2 flex flex-col justify-between items-center text-center hover:border-indigo-500/30 transition duration-300">
+        <div className="w-full flex justify-between items-center">
+          <h4 className="text-[11px] font-semibold text-slate-400">Cloud Storage</h4>
+          <span className="text-[11px] font-bold text-indigo-400">64%</span>
+        </div>
+        <div className="w-20 h-20 my-4">
+          <svg className="w-full h-full" viewBox="0 0 36 36">
+            <path className="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
+            <path className="ring-fill" strokeDasharray="64, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#6366f1" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        </div>
+        <p className="text-[10px] text-slate-500">12.8 GB of 20 GB used</p>
+      </div>
+
+      {/* Profile Card */}
+      <div className="rounded-2xl bg-slate-900 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/30 transition duration-300 gap-2">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-indigo-500 text-white flex items-center justify-center text-sm font-bold">U</div>
+          <div>
+            <h3 className="text-xs font-semibold">Nova Vance</h3>
+            <p className="text-[10px] text-slate-500">nova@edge.io</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 mt-2">
+          <div onClick={() => setIsPro(!isPro)} className={\`w-8 h-4.5 rounded-full p-0.5 cursor-pointer transition-colors duration-200 \${isPro ? "bg-emerald-500" : "bg-slate-800"}\`}>
+            <div className={\`w-3.5 h-3.5 rounded-full bg-white transition-transform duration-200 \${isPro ? "translate-x-3.5" : "translate-x-0"}\`} />
+          </div>
+          <span className="text-[10px] text-slate-400">Pro mode</span>
+        </div>
+      </div>
+
+      {/* Tools Card */}
+      <div className="rounded-2xl bg-slate-900 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/30 transition duration-300">
+        <h4 className="text-xs font-semibold mb-2">Platform Tools</h4>
+        <div className="flex flex-wrap gap-1.5">
+          <span className="text-[9px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-indigo-500/20 hover:bg-indigo-500/5 transition">Webhook</span>
+          <span className="text-[9px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-indigo-500/20 hover:bg-indigo-500/5 transition">Analytics</span>
+          <span className="text-[9px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300 hover:border-indigo-500/20 hover:bg-indigo-500/5 transition">Edge Sync</span>
+        </div>
+      </div>
+    </div>
+  )`
+            },
+            {
+                id: 5,
+                dependencies: "Tailwind CSS",
+                name: "MagicUI Retro Grid Bento",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-5">
+    <!-- Grid Card -->
+    <div class="bento-item-5 item-retro" id="bento5-card-1">
+      <div class="retro-grid-bg"></div>
+      <div class="spotlight-layer"></div>
+      <div class="retro-content">
+        <span class="badge-retro">RETRO GRID</span>
+        <h3>Infinite Coordinates</h3>
+        <p>A classic matrix background that shifts color elements dynamically on cursor interaction.</p>
+      </div>
+    </div>
+    <!-- Node Card -->
+    <div class="bento-item-5 item-node">
+      <div class="node-content">
+        <span class="node-icon">💫</span>
+        <h4>Motion Sync</h4>
+      </div>
+      <p class="node-desc">Custom physics coordinates.</p>
+    </div>
+    <!-- Activity Card -->
+    <div class="bento-item-5 item-node">
+      <div class="node-content">
+        <span class="node-icon">🌀</span>
+        <h4>Fluid Nodes</h4>
+      </div>
+      <p class="node-desc">Vector paths tracing.</p>
+    </div>
+  </div>
+</div>`,
+                css: `/* Retro Grid bento styling */
+.bento-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.bento-item-5 {
+    background: #060a12;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+}
+
+.bento-item-5:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.item-retro {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: #03070d;
+}
+
+.retro-grid-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.25) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    transform: perspective(200px) rotateX(60deg) translateY(-20px);
+    transform-origin: top center;
+}
+
+.spotlight-layer {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.bento-item-5:hover .spotlight-layer {
+    width: 250px;
+    height: 250px;
+}
+
+.retro-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.badge-retro {
+    align-self: flex-start;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    color: #a5b4fc;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.retro-content h3 {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.retro-content p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.item-node {
+    background: #060a12;
+}
+
+.node-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.node-icon {
+    font-size: 1.15rem;
+}
+
+.node-content h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.node-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 8px;
+}`,
+                js: `// Add coordinate-tracking spotlights inside Bento Layout 5
+const retroCard = document.getElementById('bento5-card-1');
+if (retroCard) {
+    const spot = retroCard.querySelector('.spotlight-layer');
+    retroCard.addEventListener('mousemove', (e) => {
+        const rect = retroCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (spot) {
+            spot.style.left = (x - 100) + 'px';
+            spot.style.top = (y - 100) + 'px';
+        }
+    });
+}`,
+                react: `import React from "react"
+
+export function BentoGridRetro() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto p-4 text-white">
+      {/* Retro Grid Card */}
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 border border-white/5 p-5 md:col-span-2 md:row-span-2 flex flex-col justify-between hover:border-indigo-500/35 transition duration-300 group">
+        {/* Retro Grid Effect */}
+        <div className="absolute inset-0 opacity-15 bg-[linear-gradient(rgba(99,102,241,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.25)_1px,transparent_1px)] bg-[size:24px_24px] [transform:perspective(200px)_rotateX(60deg)_translateY(-20px)] origin-top pointer-events-none" />
+        <div className="absolute top-0 right-0 w-44 h-44 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition duration-500" />
+        
+        <div className="relative z-10">
+          <span className="inline-block bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-[10px] font-bold px-2 py-0.5 rounded">RETRO GRID</span>
+          <h3 className="text-md font-semibold text-white mt-4">Infinite Coordinates</h3>
+          <p className="text-xs text-slate-400 mt-1">A classic matrix background that shifts color elements dynamically on cursor interaction.</p>
+        </div>
+      </div>
+
+      {/* Node Card */}
+      <div className="rounded-2xl bg-slate-950 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/35 transition duration-300">
+        <div className="flex items-center gap-2">
+          <span className="text-md">💫</span>
+          <h4 className="text-xs font-semibold">Motion Sync</h4>
+        </div>
+        <p className="text-[10px] text-slate-500 mt-2">Custom physics coordinates.</p>
+      </div>
+
+      {/* Activity Card */}
+      <div className="rounded-2xl bg-slate-950 border border-white/5 p-4 flex flex-col justify-between hover:border-indigo-500/35 transition duration-300">
+        <div className="flex items-center gap-2">
+          <span className="text-md">🌀</span>
+          <h4 className="text-xs font-semibold">Fluid Nodes</h4>
+        </div>
+        <p className="text-[10px] text-slate-500 mt-2">Vector paths tracing.</p>
+      </div>
+    </div>
+  )`
+            },
+            {
+                id: 6,
+                dependencies: "lucide-react",
+                name: "Animata Educational Bento Grid",
+                html: `<div class="bento-scale-wrapper">
+  <div class="bento-grid-6 text-black font-sans p-2 select-none" style="width: 720px;">
+    <div class="grid w-full grid-cols-4 grid-rows-3 gap-3">
+      <!-- FeatureOne: Highly Rated -->
+      <div class="bento-card flex flex-col bg-yellow-300 p-4 rounded-2xl justify-between h-36">
+        <div class="font-bold text-yellow-800 text-xs">Highly rated</div>
+        <div class="mt-auto flex justify-end items-baseline gap-0.5">
+          <div class="text-5xl font-black text-black/75 leading-none bento-ticker" data-target="4.8">0.0</div>
+          <span class="text-xl text-yellow-800 font-bold">★</span>
+        </div>
+      </div>
+
+      <!-- FeatureTwo: Students Counter + AvatarList -->
+      <div class="bento-card flex flex-col bg-violet-500 p-4 rounded-2xl justify-between h-36 text-white col-span-2">
+        <strong class="text-2xl font-bold leading-none bento-counter" data-target="179">0k+ students</strong>
+        <div class="flex -space-x-1.5 overflow-hidden mt-auto">
+          <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-rose-400 text-white flex items-center justify-center font-bold text-[10px]">SV</div>
+          <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-indigo-400 text-white flex items-center justify-center font-bold text-[10px]">JD</div>
+          <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-emerald-400 text-white flex items-center justify-center font-bold text-[10px]">AM</div>
+          <div class="inline-block h-7 w-7 rounded-full ring-2 ring-violet-500 bg-amber-400 text-white flex items-center justify-center font-bold text-[10px]">+9k</div>
+        </div>
+      </div>
+
+      <!-- FeatureThree: Integrated AI -->
+      <div class="bento-card flex flex-col bg-orange-300 p-4 rounded-2xl justify-between h-36">
+        <svg class="h-8 w-8 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8V4H8"></path>
+          <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+          <path d="M2 14h2"></path>
+          <path d="M20 14h2"></path>
+          <path d="M15 13v2"></path>
+          <path d="M9 13v2"></path>
+        </svg>
+        <strong class="mt-1 block text-xs font-bold text-orange-950">Integrated AI</strong>
+        <div class="mt-auto">
+          <div class="text-[10px] text-orange-950/80 font-medium">What is 4 times 4?</div>
+          <div class="font-bold text-xs min-h-[16px] bento-typing" data-text="4 times 4 is 16"></div>
+        </div>
+      </div>
+
+      <!-- FeatureFour: Progress Report -->
+      <div class="bento-card flex items-center gap-4 bg-lime-300 p-4 rounded-2xl justify-between h-36 col-span-2">
+        <div class="text-lg font-black text-lime-900 leading-snug">Generate progress report</div>
+        <div class="w-32 bg-white rounded-xl p-3 border border-lime-400/30 shadow-sm shrink-0 overflow-hidden flex flex-col gap-1.5">
+          <div class="h-2.5 bg-slate-200 rounded w-3/4 animate-pulse"></div>
+          <div class="h-2 bg-slate-100 rounded w-5/6 animate-pulse"></div>
+          <div class="h-2 bg-slate-100 rounded w-1/2 animate-pulse"></div>
+          <div class="flex items-center gap-1 mt-1">
+            <div class="h-3.5 w-3.5 rounded-full bg-lime-400 shrink-0"></div>
+            <div class="h-1.5 bg-slate-100 rounded w-10"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FeatureFive: EDU Copy / BoldCopy -->
+      <div class="bento-card flex flex-col items-center justify-center bg-zinc-300 p-4 rounded-2xl h-36 col-span-2 group/bento relative overflow-hidden cursor-pointer">
+        <div class="text-7xl font-black uppercase text-zinc-400/25 transition-all duration-300 group-hover/bento:opacity-50 select-none">
+          EDU
+        </div>
+        <div class="text-2xl absolute font-black uppercase text-zinc-800 transition-all duration-300 group-hover/bento:text-6xl select-none">
+          EDU
+        </div>
+      </div>
+
+      <!-- FeatureSix: Weekly Review / BarChart -->
+      <div class="bento-card bg-green-200 p-4 rounded-2xl flex flex-col justify-between h-36">
+        <div class="flex items-end justify-between gap-1 h-16 px-1">
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 20px;"></div>
+            <span class="text-[8px] font-bold text-green-800">Jan</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 48px;"></div>
+            <span class="text-[8px] font-bold text-green-800">S</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 40px;"></div>
+            <span class="text-[8px] font-bold text-green-800">M</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 60px;"></div>
+            <span class="text-[8px] font-bold text-green-800">T</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 8px;"></div>
+            <span class="text-[8px] font-bold text-green-800">W</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 15px;"></div>
+            <span class="text-[8px] font-bold text-green-800">Th</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 20px;"></div>
+            <span class="text-[8px] font-bold text-green-800">F</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 gap-1">
+            <div class="w-full bg-green-400 rounded-t-sm transition-all duration-500 hover:bg-green-500" style="height: 60px;"></div>
+            <span class="text-[8px] font-bold text-green-800">Sa</span>
+          </div>
+        </div>
+        <div class="mt-1 text-center font-bold text-[10px] text-green-800">Weekly review</div>
+      </div>
+
+      <!-- FeatureSeven: Skills -->
+      <div class="bento-card bg-rose-300 p-4 rounded-2xl flex flex-col justify-center gap-1.5 h-36">
+        <div class="w-full -rotate-1 rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+          Javascript
+        </div>
+        <div class="w-full rotate-1 rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+          ReactJS
+        </div>
+        <div class="w-full rounded-full bg-rose-500 hover:scale-105 transition py-1 text-center text-[10px] font-bold text-white shadow-xs">
+          NextJS
+        </div>
+      </div>
+
+      <!-- FeatureEight: Daily Reminders -->
+      <div class="bento-card bg-blue-200 p-4 rounded-2xl flex flex-col justify-between h-36 col-span-2 relative overflow-hidden">
+        <div class="w-full bg-white rounded-xl p-2.5 border border-blue-300 shadow-xs flex items-center gap-2">
+          <div class="h-7 w-7 rounded bg-blue-400 flex items-center justify-center text-sm shrink-0">⏰</div>
+          <div class="flex-1 flex flex-col gap-1">
+            <div class="h-2.5 bg-slate-200 rounded w-1/3"></div>
+            <div class="h-1.5 bg-slate-100 rounded w-2/3"></div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="text-xs font-bold text-blue-900 leading-none">Daily reminders</div>
+          <p class="text-[10px] text-blue-800 mt-0.5 leading-tight">Our daily reminder helps you keep focused on your goals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+                css: `/* Core bento card resets */
+.bento-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}`,
+                js: `// Initializer for Bento Grid 6 animations
+const bento6Container = document.getElementById('card-6');
+if (bento6Container) {
+    // 1. Ticker Animation
+    const tickers = bento6Container.querySelectorAll('.bento-ticker');
+    tickers.forEach(ticker => {
+        const target = parseFloat(ticker.getAttribute('data-target'));
+        let current = 0.0;
+        const duration = 1200; 
+        const stepTime = 30;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                ticker.textContent = target.toFixed(1);
+                clearInterval(timer);
+            } else {
+                ticker.textContent = current.toFixed(1);
+            }
+        }, stepTime);
+    });
+
+    // 2. Counter Animation
+    const counters = bento6Container.querySelectorAll('.bento-counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let current = 0;
+        const duration = 1500;
+        const stepTime = 30;
+        const steps = duration / stepTime;
+        const increment = Math.ceil(target / steps);
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                counter.textContent = \`\${target}k+ students\`;
+                clearInterval(timer);
+            } else {
+                counter.textContent = \`\${current}k+ students\`;
+            }
+        }, stepTime);
+    });
+
+    // 3. Typing Animation
+    const typings = bento6Container.querySelectorAll('.bento-typing');
+    typings.forEach(el => {
+        const text = el.getAttribute('data-text');
+        let index = 0;
+        el.textContent = '';
+        function type() {
+            if (index < text.length) {
+                el.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(() => {
+                    index = 0;
+                    el.textContent = '';
+                    setTimeout(type, 1000);
+                }, 2000);
+            }
+        }
+        type();
+    });
+}`,
+                react: `import { Bot } from "lucide-react";
+
+import BarChart from "@/animata/graphs/bar-chart";
+import AvatarList from "@/animata/list/avatar-list";
+import Report from "@/animata/skeleton/report";
+import WideCard from "@/animata/skeleton/wide-card";
+import Counter from "@/animata/text/counter";
+import Ticker from "@/animata/text/ticker";
+import TypingText from "@/animata/text/typing-text";
+import { cn } from "@/lib/utils";
+
+// #region placeholder
+function BoldCopy({
+  text = "animata",
+  className,
+  textClassName,
+  backgroundTextClassName,
+}: {
+  text: string;
+  className?: string;
+  textClassName?: string;
+  backgroundTextClassName?: string;
+}) {
+  if (!text?.length) {
+    return null;
+  }
+
+  return (
+    <div
+      className={cn(
+        "group/bento relative flex items-center justify-center bg-background px-2 py-2 md:px-6 md:py-4",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "text-4xl font-black uppercase text-foreground/15 transition-all group-hover/bento:opacity-50 md:text-8xl",
+          backgroundTextClassName,
+        )}
+      >
+        {text}
+      </div>
+      <div
+        className={cn(
+          "text-md absolute font-black uppercase text-foreground transition-all group-hover/bento:text-4xl md:text-3xl group-hover/bento:md:text-8xl",
+          textClassName,
+        )}
+      >
+        {text}
+      </div>
+    </div>
+  );
+}
+
+function BentoCard({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn("relative h-full w-full overflow-hidden rounded-2xl p-4", className)}>
+      {children}
+    </div>
+  );
+}
+
+function FeatureOne() {
+  return (
+    <BentoCard className="flex flex-col bg-yellow-300">
+      <div className="font-bold text-yellow-700">Highly rated</div>
+      <div className="mt-auto flex justify-end">
+        <div className="text-4xl font-black text-black/60 md:text-7xl">
+          <Ticker value="4.8" />
+        </div>{" "}
+        <sup className="text-xl text-yellow-700">★</sup>
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureTwo() {
+  return (
+    <BentoCard className="relative flex flex-col overflow-visible bg-violet-500 sm:col-span-2">
+      <strong className="text-2xl font-semibold text-white">
+        <Counter targetValue={179} format={(v) => \`\${+Math.ceil(v)}k+ students\`} />
+      </strong>
+      <div className="ml-4 mt-auto">
+        <AvatarList size="sm" className="py-0" />
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureThree() {
+  return (
+    <BentoCard className="flex flex-col bg-orange-300">
+      <Bot className="size-8 md:size-12" />
+      <strong className="mt-1 inline-block text-sm">Integrated AI</strong>
+
+      <div className="mt-auto">
+        <div className="text-sm font-medium">What is 4 times 4?</div>
+        <div className="font-semibold">
+          <TypingText text="4 times 4 is 16" waitTime={2000} alwaysVisibleCount={0} />
+        </div>
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureFour() {
+  return (
+    <BentoCard className="flex items-center gap-4 bg-lime-300 sm:col-span-2 md:flex-row-reverse">
+      <div className="text-2xl font-black text-lime-800">Generate progress report</div>
+      <div className="relative max-h-32 shrink-0 overflow-hidden">
+        <Report className="w-40 overflow-hidden border-none shadow-none hover:shadow-none" />
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureFive() {
+  return (
+    <BentoCard className="flex flex-col items-center justify-center bg-zinc-300 sm:col-span-2">
+      <BoldCopy text="EDU" className="bg-transparent" textClassName="text-zinc-800" />
+    </BentoCard>
+  );
+}
+
+function FeatureSix() {
+  return (
+    <BentoCard className="bg-green-200">
+      <BarChart
+        items={[
+          {
+            progress: 30,
+            label: "Jan",
+            className: "rounded-xl bg-green-400",
+          },
+          { progress: 70, label: "S", className: "rounded-xl bg-green-400" },
+          { progress: 60, label: "M", className: "rounded-xl bg-green-400" },
+          { progress: 90, label: "T", className: "rounded-xl bg-green-400" },
+          { progress: 10, label: "W", className: "rounded-xl bg-green-400" },
+          { progress: 20, label: "Th", className: "rounded-xl bg-green-400" },
+          { progress: 30, label: "F", className: "rounded-xl bg-green-400" },
+          { progress: 90, label: "Sa", className: "rounded-xl bg-green-400" },
+        ]}
+        height={100}
+      />
+      <div className="mt-2 text-center font-bold">Weekly review</div>
+    </BentoCard>
+  );
+}
+
+function FeatureSeven() {
+  return (
+    <BentoCard className="flex flex-col gap-2 bg-rose-300">
+      <div className="w-full -rotate-1 rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white md:-rotate-3">
+        Javascript
+      </div>
+      <div className="w-full rotate-1 rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white md:rotate-3">
+        ReactJS
+      </div>
+      <div className="w-full rounded-full border-rose-400 bg-rose-400 py-2 text-center font-semibold text-white">
+        NextJS
+      </div>
+    </BentoCard>
+  );
+}
+
+function FeatureEight() {
+  return (
+    <BentoCard className="relative flex flex-col bg-blue-200 sm:col-span-2">
+      <WideCard />
+      <div className="mt-4">
+        <div className="text-lg font-black text-blue-800">Daily reminders</div>
+        <p className="text-sm">Our daily reminder helps you keep focused on your goals.</p>
+      </div>
+    </BentoCard>
+  );
+}
+
+// #endregion
+
+export default function Eight() {
+  return (
+    <div className="full-content w-full min-w-0">
+      <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-4 sm:grid-rows-3">
+        <FeatureOne />
+        <FeatureTwo />
+        <FeatureThree />
+        <FeatureFour />
+        <FeatureFive />
+        <FeatureSix />
+        <FeatureSeven />
+        <FeatureEight />
+      </div>
+    </div>
+  );
+}
+`
+            }
+        ];
+
+        // --- DOM RENDERER ---
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Simple character escaping for HTML representation
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Render card layouts
+        BENTO_DATABASE.forEach(btn => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${btn.id}`;
+            
+            // Build tabs HTML depending on JS/React presence
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${btn.id}" onclick="switchTab(${btn.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${btn.id}" onclick="switchTab(${btn.id}, 'css')">CSS</button>
+            `;
+            if (btn.js) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-js-${btn.id}" onclick="switchTab(${btn.id}, 'js')">JS</button>
+                `;
+            }
+            if (btn.react) {
+                tabsHtml += `
+                    <button class="tab-btn" id="tab-react-${btn.id}" onclick="switchTab(${btn.id}, 'react')">React</button>
+                `;
+            }
+
+            // Build panels HTML depending on JS/React presence
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${btn.id}">
+                    <pre><code class="language-html">${escapeHtml(btn.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${btn.id}">
+                    <pre><code class="language-css">${escapeHtml(btn.css)}</code></pre>
+                </div>
+            `;
+            if (btn.js) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-js-${btn.id}">
+                        <pre><code class="language-javascript">${escapeHtml(btn.js)}</code></pre>
+                    </div>
+                `;
+            }
+            if (btn.react) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-react-${btn.id}">
+                        <pre><code class="language-tsx">${escapeHtml(btn.react)}</code></pre>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="features-title">${btn.name}</span>
+                    <span class="features-badge">Layout #${btn.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${btn.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${btn.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${btn.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${btn.dependencies || 'No Dependency'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${btn.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+
+            // Inject CSS dynamically so the previews render correctly
+            if (btn.css) {
+                const styleElement = document.createElement('style');
+                styleElement.id = `bento-style-${btn.id}`;
+                styleElement.textContent = btn.css;
+                document.head.appendChild(styleElement);
+            }
+
+            // Execute custom JS initializer on window load if present
+            if (btn.js) {
+                try {
+                    const runScript = new Function(btn.js);
+                    runScript();
+                } catch(e) {
+                    console.error("Failed to run script for bento ID " + btn.id + ": " + e.message);
+                }
+            }
+        });
+
+        // --- INTERACTIVE ACTIONS LOGIC ---
+        
+        // Active states tracks
+        const activeTabs = {}; // Tracks 'html', 'css', 'js', or 'react' selection per bento ID
+
+        // Toggle Drawer Opening
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+            
+            // Set default tab state tracking if not existing
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                actionBtn.classList.remove('active');
+            } else {
+                // Close other drawers for cleanliness
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                drawer.classList.add('open');
+                actionBtn.classList.add('active');
+            }
+        };
+
+        // Switch Tabs inside Code Drawer
+        window.switchTab = function(id, tabType) {
+            activeTabs[id] = tabType;
+
+            const htmlTab = document.getElementById(`tab-html-${id}`);
+            const cssTab = document.getElementById(`tab-css-${id}`);
+            const jsTab = document.getElementById(`tab-js-${id}`);
+            const reactTab = document.getElementById(`tab-react-${id}`);
+            const htmlPanel = document.getElementById(`panel-html-${id}`);
+            const cssPanel = document.getElementById(`panel-css-${id}`);
+            const jsPanel = document.getElementById(`panel-js-${id}`);
+            const reactPanel = document.getElementById(`panel-react-${id}`);
+
+            if (htmlTab) htmlTab.classList.remove('active');
+            if (cssTab) cssTab.classList.remove('active');
+            if (jsTab) jsTab.classList.remove('active');
+            if (reactTab) reactTab.classList.remove('active');
+            if (htmlPanel) htmlPanel.classList.remove('active');
+            if (cssPanel) cssPanel.classList.remove('active');
+            if (jsPanel) jsPanel.classList.remove('active');
+            if (reactPanel) reactPanel.classList.remove('active');
+
+            if (tabType === 'html') {
+                if (htmlTab) htmlTab.classList.add('active');
+                if (htmlPanel) htmlPanel.classList.add('active');
+            } else if (tabType === 'css') {
+                if (cssTab) cssTab.classList.add('active');
+                if (cssPanel) cssPanel.classList.add('active');
+            } else if (tabType === 'js') {
+                if (jsTab) jsTab.classList.add('active');
+                if (jsPanel) jsPanel.classList.add('active');
+            } else if (tabType === 'react') {
+                if (reactTab) reactTab.classList.add('active');
+                if (reactPanel) reactPanel.classList.add('active');
+            }
+        };
+
+        // Clipboard copy system
+        window.copyCodeSnippet = function(id) {
+            const selectedType = activeTabs[id] || 'html';
+            const btnData = BENTO_DATABASE.find(b => b.id === id);
+            if (!btnData) return;
+
+            let textToCopy = '';
+            if (selectedType === 'html') {
+                textToCopy = btnData.html;
+            } else if (selectedType === 'css') {
+                textToCopy = btnData.css;
+            } else if (selectedType === 'js') {
+                textToCopy = btnData.js;
+            } else if (selectedType === 'react') {
+                textToCopy = btnData.react;
+            }
+
+            const copyBtn = document.querySelector(`#drawer-${id} .copy-btn`);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Temporarily style copy button as success
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                
+                showToast(`Copied Layout #${id} ${selectedType.toUpperCase()} code!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        };
+
+        // Toast trigger helper
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span class="toast-success-icon">✓</span>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            // Trigger browser animation reflow
+            toast.offsetHeight;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toastContainer.removeChild(toast);
+                }, 400);
+            }, 3000);
+        }
+
+        // --- HELP MODAL ACTIONS ---
+        window.toggleHelpModal = function() {
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('open');
+        };
+
+        window.closeHelpModal = function(e) {
+            const modal = document.getElementById('help-modal');
+            modal.classList.remove('open');
+        };
+    </script>
+</body>
+</html>
