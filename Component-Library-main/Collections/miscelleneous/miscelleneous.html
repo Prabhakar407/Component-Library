@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Miscellaneous Widgets Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARD STYLES --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .preview-canvas {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+        }
+
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE DRAWER SYSTEM --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            background-color: #0b0f19;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            z-index: 20;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .copy-btn.copied {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+        }
+
+        /* --- HELP MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.open .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        .modal-content li {
+            margin-bottom: 6px;
+        }
+
+        .modal-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .modal-btn:hover {
+            background: #4f46e5;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-left: 4px solid var(--accent-primary);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+    </style>
+
+    <!-- Injected Miscellaneous Widgets Styles -->
+    <style id="showcase-injected-styles">
+        /* --- MISC 1: GLASSMUSIC PLAYER --- */
+        .misc-player {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            text-align: left;
+        }
+        .player-art {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+        .player-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .player-info h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .player-artist {
+            color: #94a3b8;
+            font-size: 0.78rem;
+            margin-bottom: 8px;
+        }
+        .player-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .player-progress {
+            height: 100%;
+            background: #6366f1;
+            border-radius: 2px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .player-btn {
+            background: transparent;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+        .player-btn:hover {
+            color: #ffffff;
+        }
+        .player-btn-main {
+            background: #ffffff;
+            color: #0f172a;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .player-btn-main:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- MISC 2: FILE UPLOAD --- */
+        .misc-upload {
+            width: 320px;
+            background: #0f172a;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .misc-upload:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.02);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+        .upload-icon {
+            color: #94a3b8;
+            margin-bottom: 12px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .misc-upload:hover .upload-icon {
+            color: #6366f1;
+            transform: translateY(-2px);
+        }
+        .upload-text {
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+        }
+        .upload-text .highlight {
+            color: #818cf8;
+            font-weight: 600;
+        }
+        .upload-note {
+            color: #64748b;
+            font-size: 0.72rem;
+        }
+
+        /* --- MISC 3: RADIAL MENU --- */
+        .misc-menu-container {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .misc-radial-menu {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+        .radial-center-btn {
+            position: absolute;
+            inset: 0;
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+        }
+        .misc-radial-menu:hover .radial-center-btn {
+            transform: rotate(45deg);
+            background: #4f46e5;
+        }
+        .radial-item {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .misc-radial-menu:hover .radial-item {
+            opacity: 1;
+        }
+        .misc-radial-menu:hover .item-1 {
+            transform: translate(-55px, -55px);
+        }
+        .misc-radial-menu:hover .item-2 {
+            transform: translate(55px, -55px);
+        }
+        .misc-radial-menu:hover .item-3 {
+            transform: translate(0px, 70px);
+        }
+
+        /* --- MISC 4: TERMINAL --- */
+        .misc-terminal {
+            width: 320px;
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-family: 'JetBrains Mono', monospace;
+            text-align: left;
+        }
+        .terminal-header {
+            background: #0f1524;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .terminal-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .terminal-dots .dot.close { background: #ef4444; }
+        .terminal-dots .dot.minimize { background: #f59e0b; }
+        .terminal-dots .dot.expand { background: #10b981; }
+        .terminal-title {
+            color: #64748b;
+            font-size: 0.72rem;
+            margin-left: 20px;
+        }
+        .terminal-body {
+            padding: 16px;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            min-height: 110px;
+        }
+        .terminal-line {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+        .terminal-line .prompt {
+            color: #10b981;
+            margin-right: 6px;
+        }
+        .terminal-line.response {
+            color: #6366f1;
+        }
+        .terminal-line .cursor {
+            width: 6px;
+            height: 14px;
+            background: #cbd5e1;
+            animation: cursor-blink 1s step-end infinite;
+        }
+        @keyframes cursor-blink {
+            50% { opacity: 0; }
+        }
+
+        /* --- MISC 5: WEATHER --- */
+        .misc-weather {
+            width: 320px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+        .weather-main {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 14px;
+        }
+        .weather-temp {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .weather-info h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .weather-info span {
+            color: #94a3b8;
+            font-size: 0.78rem;
+        }
+        .weather-details {
+            display: flex;
+            justify-content: space-between;
+        }
+        .w-detail {
+            display: flex;
+            flex-direction: column;
+        }
+        .w-detail .label {
+            color: #64748b;
+            font-size: 0.75rem;
+            margin-bottom: 2px;
+        }
+        .w-detail .value {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- MISC 6: TIMELINE --- */
+        .misc-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 320px;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .step-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .step-label {
+            color: #64748b;
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+        .timeline-line {
+            flex: 1;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 10px;
+            transform: translateY(-8px);
+        }
+        .timeline-step.done .step-circle {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: #10b981;
+            color: #10b981;
+        }
+        .timeline-step.done .step-label {
+            color: #10b981;
+        }
+        .timeline-line.done {
+            background: #10b981;
+        }
+        .timeline-step.active .step-circle {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+            color: #a5b4fc;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
+        }
+        .timeline-step.active .step-label {
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-badge">Collection</div>
+            <h1>Miscellaneous Widgets</h1>
+            <p>A collection of premium widgets, indicators, tools and utility UI cards for dashboard dashboards and terminal simulators.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to Use
+            </button>
+        </header>
+
+        <main>
+            <div class="showcase-grid" id="grid-container">
+                <!-- Miscellaneous widgets injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Help Modal System -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModalOutside(event)">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="toggleHelpModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 class="modal-title">Widgets Guide</h2>
+            <div class="modal-content">
+                <p>Welcome to the premium miscellaneous widgets database! Follow these instructions:</p>
+                <ul>
+                    <li><strong>Live Interaction:</strong> Test upload hovering, radial options expanding, terminal simulator states and custom weather readouts.</li>
+                    <li><strong>Get Code:</strong> Instantly view isolated responsive code layers for insertion.</li>
+                    <li><strong>Copy Code:</strong> Save items securely with toast feedback mechanisms.</li>
+                </ul>
+            </div>
+            <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        const DATABASE = [
+            {
+                id: 1,
+                name: "Glassmorphic Music Player",
+                dependencies: "No Dependency",
+                html: `<div class="misc-player">
+    <div class="player-art">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+    </div>
+    <div class="player-info">
+        <h4>Synthesized Dreams</h4>
+        <span class="player-artist">Aether Wave</span>
+        <div class="player-progress-bar">
+            <div class="player-progress" style="width: 65%;"></div>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" onclick="event.preventDefault()">&#9664;&#9664;</button>
+            <button class="player-btn-main" onclick="event.preventDefault()">&#9654;</button>
+            <button class="player-btn" onclick="event.preventDefault()">&#9654;&#9654;</button>
+        </div>
+    </div>
+</div>`,
+                css: `.misc-player {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.player-art {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+.player-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.player-info h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.player-artist {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+}
+.player-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.player-progress {
+    height: 100%;
+    background: #6366f1;
+    border-radius: 2px;
+}
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.player-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+}
+.player-btn:hover {
+    color: #ffffff;
+}
+.player-btn-main {
+    background: #ffffff;
+    color: #0f172a;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.player-btn-main:hover {
+    transform: scale(1.1);
+}`
+            },
+            {
+                id: 2,
+                name: "Drag & Drop Upload",
+                dependencies: "No Dependency",
+                html: `<div class="misc-upload">
+    <div class="upload-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+    </div>
+    <p class="upload-text">Drag and drop file here, or <span class="highlight">browse</span></p>
+    <span class="upload-note">Support PDF, PNG, JPEG (Max 10MB)</span>
+</div>`,
+                css: `.misc-upload {
+    width: 320px;
+    background: #0f172a;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.misc-upload:hover {
+    border-color: #6366f1;
+    background: rgba(99, 102, 241, 0.02);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+}
+.upload-icon {
+    color: #94a3b8;
+    margin-bottom: 12px;
+    transition: color 0.3s, transform 0.3s;
+}
+.misc-upload:hover .upload-icon {
+    color: #6366f1;
+    transform: translateY(-2px);
+}
+.upload-text {
+    color: #cbd5e1;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+}
+.upload-text .highlight {
+    color: #818cf8;
+    font-weight: 600;
+}
+.upload-note {
+    color: #64748b;
+    font-size: 0.72rem;
+}`
+            },
+            {
+                id: 3,
+                name: "Expanding Radial Menu",
+                dependencies: "No Dependency",
+                html: `<div class="misc-menu-container">
+    <div class="misc-radial-menu">
+        <button class="radial-center-btn" onclick="event.preventDefault()">+</button>
+        <button class="radial-item item-1" onclick="event.preventDefault()">&#127968;</button>
+        <button class="radial-item item-2" onclick="event.preventDefault()">&#9881;</button>
+        <button class="radial-item item-3" onclick="event.preventDefault()">&#128100;</button>
+    </div>
+</div>`,
+                css: `.misc-menu-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.misc-radial-menu {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+.radial-center-btn {
+    position: absolute;
+    inset: 0;
+    width: 50px;
+    height: 50px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s;
+}
+.misc-radial-menu:hover .radial-center-btn {
+    transform: rotate(45deg);
+    background: #4f46e5;
+}
+.radial-item {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.misc-radial-menu:hover .radial-item {
+    opacity: 1;
+}
+.misc-radial-menu:hover .item-1 {
+    transform: translate(-55px, -55px);
+}
+.misc-radial-menu:hover .item-2 {
+    transform: translate(55px, -55px);
+}
+.misc-radial-menu:hover .item-3 {
+    transform: translate(0px, 70px);
+}`
+            },
+            {
+                id: 4,
+                name: "Futuristic Terminal",
+                dependencies: "No Dependency",
+                html: `<div class="misc-terminal">
+    <div class="terminal-header">
+        <div class="terminal-dots">
+            <span class="dot close"></span>
+            <span class="dot minimize"></span>
+            <span class="dot expand"></span>
+        </div>
+        <span class="terminal-title">antigravity.sh</span>
+    </div>
+    <div class="terminal-body">
+        <div class="terminal-line"><span class="prompt">guest@ag:~$</span> agy system --status</div>
+        <div class="terminal-line response">System running with 0 failures. 6 premium modules configured.</div>
+        <div class="terminal-line"><span class="prompt">guest@ag:~$</span> <span class="cursor"></span></div>
+    </div>
+</div>`,
+                css: `.misc-terminal {
+    width: 320px;
+    background: #090d16;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: left;
+}
+.terminal-header {
+    background: #0f1524;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+.terminal-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.terminal-dots .dot.close { background: #ef4444; }
+.terminal-dots .dot.minimize { background: #f59e0b; }
+.terminal-dots .dot.expand { background: #10b981; }
+.terminal-title {
+    color: #64748b;
+    font-size: 0.72rem;
+    margin-left: 20px;
+}
+.terminal-body {
+    padding: 16px;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    min-height: 110px;
+}
+.terminal-line {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+.terminal-line .prompt {
+    color: #10b981;
+    margin-right: 6px;
+}
+.terminal-line.response {
+    color: #6366f1;
+}
+.terminal-line .cursor {
+    width: 6px;
+    height: 14px;
+    background: #cbd5e1;
+    animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+    50% { opacity: 0; }
+}`
+            },
+            {
+                id: 5,
+                name: "Glass Weather widget",
+                dependencies: "No Dependency",
+                html: `<div class="misc-weather">
+    <div class="weather-main">
+        <span class="weather-temp">72&deg;</span>
+        <div class="weather-info">
+            <h4>Sunnyvale</h4>
+            <span>Clear Skies</span>
+        </div>
+    </div>
+    <div class="weather-details">
+        <div class="w-detail">
+            <span class="label">Wind</span>
+            <span class="value">8 mph</span>
+        </div>
+        <div class="w-detail">
+            <span class="label">Humid</span>
+            <span class="value">45%</span>
+        </div>
+    </div>
+</div>`,
+                css: `.misc-weather {
+    width: 320px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 14px;
+}
+.weather-temp {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+.weather-info h4 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.weather-info span {
+    color: #94a3b8;
+    font-size: 0.78rem;
+}
+.weather-details {
+    display: flex;
+    justify-content: space-between;
+}
+.w-detail {
+    display: flex;
+    flex-direction: column;
+}
+.w-detail .label {
+    color: #64748b;
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+}
+.w-detail .value {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    font-weight: 600;
+}`
+            },
+            {
+                id: 6,
+                name: "Progress Steps Timeline",
+                dependencies: "No Dependency",
+                html: `<div class="misc-timeline">
+    <div class="timeline-step done">
+        <span class="step-circle">&#10003;</span>
+        <span class="step-label">Account</span>
+    </div>
+    <div class="timeline-line done"></div>
+    <div class="timeline-step active">
+        <span class="step-circle">2</span>
+        <span class="step-label">Profile</span>
+    </div>
+    <div class="timeline-line"></div>
+    <div class="timeline-step">
+        <span class="step-circle">3</span>
+        <span class="step-label">Billing</span>
+    </div>
+</div>`,
+                css: `.misc-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 320px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.step-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.step-label {
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+.timeline-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 10px;
+    transform: translateY(-8px);
+}
+.timeline-step.done .step-circle {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: #10b981;
+    color: #10b981;
+}
+.timeline-step.done .step-label {
+    color: #10b981;
+}
+.timeline-line.done {
+    background: #10b981;
+}
+.timeline-step.active .step-circle {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: #6366f1;
+    color: #a5b4fc;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
+}
+.timeline-step.active .step-label {
+    color: #a5b4fc;
+    font-weight: 600;
+}`
+            },
+            {
+                id: 7,
+                name: "Backlight Video Box",
+                dependencies: "No Dependency",
+                html: `<div class="backlight-container">
+  <div class="backlight-glow"></div>
+  <div class="backlight-glow-secondary"></div>
+  <iframe
+    class="video-frame"
+    src="https://www.youtube.com/embed/9CJLtzzUphU"
+    title="Gradient Loop Background"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>`,
+                css: `.backlight-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 16/9;
+  border-radius: 16px;
+  overflow: visible;
+  margin: 0 auto;
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+.backlight-container:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+.backlight-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(236,72,153,0.3) 50%, transparent 80%);
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 20px;
+  animation: pulse-glow 6s infinite alternate ease-in-out;
+  transition: opacity 0.5s;
+}
+.backlight-glow-secondary {
+  position: absolute;
+  inset: -25px;
+  background: radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+  animation: float-glow 8s infinite alternate ease-in-out;
+}
+@keyframes pulse-glow {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.05); opacity: 1.0; }
+}
+@keyframes float-glow {
+  0% { transform: translate(-10px, -10px) scale(0.9); }
+  100% { transform: translate(10px, 10px) scale(1.1); }
+}
+.video-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  z-index: 2;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+}`,
+            },
+            {
+                id: 8,
+                name: "Interactive Application Dock",
+                dependencies: "Lucide Icons, Tailwind CSS",
+                html: `<div class="dock-container">
+  <div class="dock">
+    <div class="dock-item active" data-label="Home" onclick="triggerDockBounce(this)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      <span class="dock-indicator"></span>
+    </div>
+    <div class="dock-item" data-label="Blog" onclick="triggerDockBounce(this)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      <span class="dock-indicator"></span>
+    </div>
+    <div class="dock-separator"></div>
+    <div class="dock-item" data-label="GitHub" onclick="triggerDockBounce(this)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
+      <span class="dock-indicator"></span>
+    </div>
+    <div class="dock-item" data-label="Email" onclick="triggerDockBounce(this)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <span class="dock-indicator"></span>
+    </div>
+  </div>
+</div>`,
+                css: `.dock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  position: relative;
+}
+.dock {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 18px;
+  border-radius: 24px;
+  gap: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  align-items: flex-end;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dock-item {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.dock-item:hover {
+  transform: scale(1.35) translateY(-10px);
+  color: #6366f1;
+  border-color: rgba(99,102,241,0.4);
+  box-shadow: 0 10px 20px rgba(99,102,241,0.25);
+  background: rgba(255,255,255,0.15);
+}
+.dock-item::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -36px;
+  background: rgba(15, 23, 42, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8) translateY(10px);
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.dock-item:hover::before {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.dock-separator {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.15);
+  align-self: center;
+}
+.dock-indicator {
+  position: absolute;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  background: #6366f1;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s;
+  box-shadow: 0 0 6px #6366f1;
+}
+.dock-item.active .dock-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+.dock-item.bounce {
+  animation: bounce 0.6s cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-24px) scaleY(1.1) scaleX(0.9); }
+  50% { transform: translateY(0) scaleY(0.9) scaleX(1.05); }
+  70% { transform: translateY(-8px) scaleY(1.02) scaleX(0.98); }
+  90% { transform: translateY(0) scaleY(0.98) scaleX(1.01); }
+}`,
+                js: `(() => {
+  window.triggerDockBounce = function(el) {
+    el.classList.add("bounce");
+    el.parentNode.querySelectorAll(".dock-item").forEach(item => item.classList.remove("active"));
+    el.classList.add("active");
+    setTimeout(() => {
+      el.classList.remove("bounce");
+    }, 600);
+  };
+})();`
+            },
+            {
+                id: 9,
+                name: "Magic UI Typing Animation",
+                dependencies: "Framer Motion",
+                html: `<div class="typing-animation-container">
+  <span class="typing-animation-text" id="typing-text-9"></span>
+</div>`,
+                css: `.typing-animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  font-family: var(--font-main);
+  padding: 10px;
+}
+.typing-animation-text {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(168, 85, 247, 0.25));
+}
+.typing-animation-text::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 10%;
+  height: 80%;
+  width: 3px;
+  background: linear-gradient(to bottom, #a855f7, #06b6d4);
+  animation: blink-caret 0.8s infinite step-end;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+}
+@keyframes blink-caret {
+  from, to { background: transparent; box-shadow: none; }
+  50% { background: linear-gradient(to bottom, #a855f7, #06b6d4); box-shadow: 0 0 8px rgba(6, 182, 212, 0.8); }
+}`,
+                js: `(() => {
+  const textElement = document.getElementById("typing-text-9");
+  if (textElement) {
+    const text = "Hello World! 👋";
+    let i = 0;
+    textElement.textContent = "";
+    const typing = setInterval(() => {
+      if (i < text.length) {
+        textElement.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, 100);
+  }
+})();`
+            },
+        ];
+
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+        const activeTabs = {};
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        DATABASE.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${item.id}`;
+
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${item.id}" onclick="switchTab(${item.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${item.id}" onclick="switchTab(${item.id}, 'css')">CSS</button>
+            `;
+            if (item.js) {
+                tabsHtml += `<button class="tab-btn" id="tab-js-${item.id}" onclick="switchTab(${item.id}, 'js')">JS</button>`;
+            }
+            if (item.react) {
+                tabsHtml += `<button class="tab-btn" id="tab-react-${item.id}" onclick="switchTab(${item.id}, 'react')">React</button>`;
+            }
+
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${item.id}">
+                    <pre><code class="language-html">${escapeHtml(item.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${item.id}">
+                    <pre><code class="language-css">${escapeHtml(item.css)}</code></pre>
+                </div>
+            `;
+            if (item.js) {
+                panelsHtml += `
+                <div class="code-panel" id="panel-js-${item.id}">
+                    <pre><code class="language-javascript">${escapeHtml(item.js)}</code></pre>
+                </div>`;
+            }
+            if (item.react) {
+                panelsHtml += `
+                <div class="code-panel" id="panel-react-${item.id}">
+                    <pre><code class="language-jsx">${escapeHtml(item.react)}</code></pre>
+                </div>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="card-title">${item.name}</span>
+                    <span class="card-badge">Widget #${item.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${item.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${item.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${item.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${(item.dependencies && item.dependencies !== 'No Dependency') ? item.dependencies : 'No dependencies present'}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${item.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+            if (item.js) {
+                try {
+                    eval(item.js);
+                } catch (e) {
+                    console.error("Error executing JS for widget " + item.id, e);
+                }
+            }
+        });
+
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                drawer.style.maxHeight = '0px';
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                    d.style.maxHeight = '0px';
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+                drawer.classList.add('open');
+                drawer.style.maxHeight = '450px';
+                actionBtn.classList.add('active');
+            }
+        };
+
+        window.switchTab = function(id, tabName) {
+            activeTabs[id] = tabName;
+            const drawer = document.getElementById(`drawer-${id}`);
+            drawer.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const selectedBtn = document.getElementById(`tab-${tabName}-${id}`);
+            if (selectedBtn) selectedBtn.classList.add('active');
+
+            drawer.querySelectorAll('.code-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            const selectedPanel = drawer.querySelector(`#panel-${tabName}-${id}`);
+            if (selectedPanel) selectedPanel.classList.add('active');
+        };
+
+        window.copyCodeSnippet = function(id) {
+            const activeTab = activeTabs[id] || 'html';
+            const drawer = document.getElementById(`drawer-${id}`);
+            const codePanel = drawer.querySelector(`#panel-${activeTab}-${id} pre code`);
+
+            if (!codePanel) return;
+
+            navigator.clipboard.writeText(codePanel.textContent).then(() => {
+                const copyBtn = drawer.querySelector('.copy-btn');
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                showToast(`Widget #${id} ${activeTab.toUpperCase()} code copied!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy code: ", err);
+                showToast("Failed to copy code.");
+            });
+        };
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 8 12 12 16 14"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        window.toggleHelpModal = function() {
+            document.getElementById('help-modal').classList.toggle('open');
+        };
+
+        window.closeHelpModalOutside = function(e) {
+            if (e.target.id === 'help-modal') {
+                toggleHelpModal();
+            }
+        };
+    </script>
+</body>
+</html>

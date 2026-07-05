@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Landing Page Sections Showcase</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://agyfonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121826;
+            --bg-card: #182032;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-glow: rgba(99, 102, 241, 0.35);
+            --success-color: #10b981;
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            padding: 2rem 1rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid var(--accent-primary);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-trigger-btn {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-trigger-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- CARD STYLES --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .preview-canvas {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d131f;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+        }
+
+        .preview-canvas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            pointer-events: none;
+        }
+
+        .card-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(24, 32, 50, 0.4);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border-color: var(--accent-primary);
+        }
+
+        /* --- CODE DRAWER SYSTEM --- */
+        .code-drawer {
+            max-height: 0;
+            overflow: hidden;
+            background-color: #0b0f19;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 0px solid var(--border-color);
+        }
+
+        .code-drawer.open {
+            max-height: 450px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .drawer-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .drawer-meta {
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-meta-title {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .drawer-meta-value {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+        }
+
+        .code-container {
+            position: relative;
+            padding: 1rem 1.5rem;
+        }
+
+        pre {
+            margin: 0;
+            overflow-x: auto;
+            max-height: 280px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .code-panel {
+            display: none;
+        }
+
+        .code-panel.active {
+            display: block;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            z-index: 20;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .copy-btn.copied {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+        }
+
+        /* --- HELP MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.open .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        .modal-content li {
+            margin-bottom: 6px;
+        }
+
+        .modal-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .modal-btn:hover {
+            background: #4f46e5;
+        }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-left: 4px solid var(--accent-primary);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-success-icon {
+            color: var(--success-color);
+        }
+    </style>
+
+    <!-- Injected Landing Page Showcase Styles -->
+    <style id="showcase-injected-styles">
+        /* --- LP 1: CYBERPUNK HERO --- */
+        .lp-hero {
+            position: relative;
+            width: 100%;
+            min-height: 380px;
+            background: #070a13;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        .lp-hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 25px 25px;
+            z-index: 1;
+        }
+        .lp-hero-radial {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .lp-hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 550px;
+        }
+        .lp-hero-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #818cf8;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            padding: 4px 10px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+        }
+        .lp-hero-content h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .lp-hero-content p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .lp-hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .lp-hero-btn-primary {
+            background: #6366f1;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lp-hero-btn-primary:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        }
+        .lp-hero-btn-secondary {
+            background: transparent;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lp-hero-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        /* --- LP 2: HEADER NAVBAR --- */
+        .lp-navbar-wrapper {
+            width: 100%;
+            padding: 8px;
+        }
+        .lp-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 8px 16px;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .lp-navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .lp-logo-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+        .lp-navbar-links {
+            display: flex;
+            gap: 12px;
+        }
+        .lp-navbar-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 2px 0;
+        }
+        .lp-navbar-links a:hover, 
+        .lp-navbar-links a.active {
+            color: #ffffff;
+        }
+        .lp-navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1.5px;
+            background: #10b981;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .lp-navbar-links a:hover::after, 
+        .lp-navbar-links a.active::after {
+            width: 100%;
+            left: 0;
+        }
+        .lp-navbar-cta {
+            background: #ffffff;
+            color: #0f172a;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lp-navbar-cta:hover {
+            background: #e2e8f0;
+        }
+
+        /* --- LP 3: BENTO FEATURES --- */
+        .lp-bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .bento-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .bento-wide {
+            grid-column: span 2;
+        }
+        .bento-icon {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        .bento-card h3 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .bento-card p {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        /* --- LP 4: TESTIMONIAL SLIDER --- */
+        .lp-testimonial {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .testimonial-quote {
+            color: #e5e7eb;
+            font-size: 0.88rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .testimonial-author img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .author-name {
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .author-title {
+            color: #9ca3af;
+            font-size: 0.7rem;
+        }
+
+        /* --- LP 5: PRICING --- */
+        .lp-pricing {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+        }
+        .pricing-card {
+            position: relative;
+            width: 280px;
+            background: #0f172a;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6366f1;
+            color: white;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+        .pricing-plan {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .pricing-price {
+            margin: 8px 0 16px 0;
+            display: flex;
+            align-items: baseline;
+        }
+        .price-val {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .price-period {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .pricing-features li {
+            color: #cbd5e1;
+            font-size: 0.78rem;
+        }
+        .pricing-btn {
+            width: 100%;
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .pricing-btn:hover {
+            background: #4f46e5;
+        }
+
+        /* --- LP 6: GRADIENT CTA --- */
+        .lp-cta {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(135deg, #1e1b4b, #030712);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 32px 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .lp-cta-glow {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .lp-cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .lp-cta-content h2 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .lp-cta-content p {
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .lp-cta-input-group {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 3px;
+            width: 100%;
+        }
+        .lp-cta-input-group input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0 10px;
+            font-size: 0.75rem;
+            width: 60%;
+        }
+        .lp-cta-input-group input::placeholder {
+            color: #64748b;
+        }
+        .lp-cta-btn {
+            background: #ec4899;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lp-cta-btn:hover {
+            background: #db2777;
+        }
+
+        /* --- LP 7: SCROLL VIDEO & CARDS --- */
+        .veldara-scroll-showcase {
+            position: relative;
+            width: 100%;
+            background: #010101;
+            color: #fff;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 250px;
+            cursor: ns-resize;
+        }
+        .video-fallback-mock {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, #1e3a8a 0%, #020617 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+        }
+        .video-text {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .fixed-cards-preview {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            z-index: 5;
+        }
+        .fixed-card-item {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .fixed-card-item h3 {
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .fixed-card-item p {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+
+        /* --- LP 8: LIQUID GLASS CAPABILITIES --- */
+        .liquid-glass-showcase {
+            width: 100%;
+            background: #000;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .liquid-glass-headline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+        .liquid-glass-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .lg-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .lg-card h4 {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .lg-card p {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        /* --- LP 9: FLEXIBLE PRICING SCALE --- */
+        .pricing-scale-showcase {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .pricing-badge-accent {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .pricing-pulse-dot {
+            width: 5px;
+            height: 5px;
+            background: #34d399;
+            border-radius: 50%;
+            animation: pulse-glow 1.5s infinite;
+        }
+        .pricing-scale-showcase h2 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .pricing-scale-showcase p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .price-box {
+            background: linear-gradient(to bottom, #0f1419, #0a0f14);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .price-box:hover {
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+        .price-box.featured {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        .price-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .setup-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.55rem;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .setup-badge.active {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+        .price-box h3 {
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .price-box .desc {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+        .price-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+        .price-value span {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.4);
+        }
+        .pricing-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .pricing-btn.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+        }
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 0;
+        }
+        .pricing-features li {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.7);
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- LP 10: COLLABORATE CONTACT --- */
+        .collaborate-section {
+            width: 100%;
+            background: #050505;
+            border-radius: 12px;
+            padding: 20px 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .collab-header {
+            margin-bottom: 16px;
+        }
+        .badge-collab {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            margin-bottom: 8px;
+        }
+        .collab-header h2 {
+            font-size: 1.3rem;
+            color: white;
+        }
+        .collab-header .highlight {
+            font-family: serif;
+            font-style: italic;
+            color: #ccc;
+        }
+        .collab-header p {
+            color: #888;
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            text-align: left;
+        }
+        .form-container {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .form-container h3 {
+            font-size: 0.85rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            padding: 6px;
+            color: white;
+            font-size: 0.65rem;
+            outline: none;
+            width: 100%;
+        }
+        .submit-btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        .info-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .info-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .info-card h4 {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .info-card p {
+            font-size: 0.85rem;
+            color: white;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-badge">Collection</div>
+            <h1>Premium Landing Page Sections</h1>
+            <p>Clean structures, ambient lighting, and modern bento matrices optimized for web deployments.</p>
+            <button class="info-trigger-btn" onclick="toggleHelpModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How to Use
+            </button>
+        </header>
+
+        <main>
+            <div class="showcase-grid" id="grid-container">
+                <!-- Landing page widgets injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Help Modal System -->
+    <div class="modal-overlay" id="help-modal" onclick="closeHelpModalOutside(event)">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="toggleHelpModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 class="modal-title">Landing Page Guide</h2>
+            <div class="modal-content">
+                <p>Welcome to the premium landing page widgets database! Learn how to use these sections:</p>
+                <ul>
+                    <li><strong>Integration:</strong> All templates are responsive. Copy the combined styles and inject them into your layout structure.</li>
+                    <li><strong>Get Code:</strong> Select "Get Code" to open files with preconfigured responsive containers.</li>
+                    <li><strong>Copy Code:</strong> Save codes with simple click-to-clipboard toast confirmation.</li>
+                </ul>
+            </div>
+            <button class="modal-btn" onclick="toggleHelpModal()">Got it!</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        const DATABASE = [
+            {
+                id: 1,
+                name: "Ambient Cyberpunk Hero",
+                dependencies: "No Dependency",
+                html: `<section class="lp-hero">
+    <div class="lp-hero-grid"></div>
+    <div class="lp-hero-radial"></div>
+    <div class="lp-hero-content">
+        <div class="lp-hero-tag">ANTIGRAVITY v2.0 LAUNCH</div>
+        <h1>Build Next-Gen Web Interfaces</h1>
+        <p>A curated directory of highly-interactive CSS animations, premium layouts, and modular UI templates ready for modern web apps.</p>
+        <div class="lp-hero-actions">
+            <button class="lp-hero-btn-primary">Explore Showcases</button>
+            <button class="lp-hero-btn-secondary">Read Docs</button>
+        </div>
+    </div>
+</section>`,
+                css: `.lp-hero {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    background: #070a13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+.lp-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 25px 25px;
+    z-index: 1;
+}
+.lp-hero-radial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    z-index: 2;
+    pointer-events: none;
+}
+.lp-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 550px;
+}
+.lp-hero-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    padding: 4px 10px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+.lp-hero-content h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+.lp-hero-content p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+.lp-hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.lp-hero-btn-primary {
+    background: #6366f1;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.lp-hero-btn-primary:hover {
+    background: #4f46e5;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+.lp-hero-btn-secondary {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.lp-hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}`
+            },
+            {
+                id: 2,
+                name: "Glassmorphic Navbar",
+                dependencies: "No Dependency",
+                html: `<header class="lp-navbar-wrapper">
+    <div class="lp-navbar">
+        <div class="lp-navbar-logo">
+            <span class="lp-logo-dot"></span>
+            <span>AETHER</span>
+        </div>
+        <nav class="lp-navbar-links">
+            <a href="#" class="active" onclick="event.preventDefault()">Features</a>
+            <a href="#" onclick="event.preventDefault()">Showcase</a>
+            <a href="#" onclick="event.preventDefault()">Pricing</a>
+        </nav>
+        <button class="lp-navbar-cta">Get Started</button>
+    </div>
+</header>`,
+                css: `.lp-navbar-wrapper {
+    width: 100%;
+    padding: 8px;
+}
+.lp-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.lp-navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.lp-logo-dot {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+.lp-navbar-links {
+    display: flex;
+    gap: 12px;
+}
+.lp-navbar-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    padding: 2px 0;
+}
+.lp-navbar-links a:hover, 
+.lp-navbar-links a.active {
+    color: #ffffff;
+}
+.lp-navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1.5px;
+    background: #10b981;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+.lp-navbar-links a:hover::after, 
+.lp-navbar-links a.active::after {
+    width: 100%;
+    left: 0;
+}
+.lp-navbar-cta {
+    background: #ffffff;
+    color: #0f172a;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.lp-navbar-cta:hover {
+    background: #e2e8f0;
+}`
+            },
+            {
+                id: 3,
+                name: "Bento Features Grid",
+                dependencies: "No Dependency",
+                html: `<div class="lp-bento-grid">
+    <div class="bento-card bento-wide">
+        <div class="bento-icon">&#9889;</div>
+        <h3>Ultra High Performance</h3>
+        <p>Optimized with pre-compiled templates, fast-loading stylesheets, and zero initial bundle overhead.</p>
+    </div>
+    <div class="bento-card">
+        <div class="bento-icon">&#128274;</div>
+        <h3>Secure Sandbox</h3>
+        <p>Built with safe standards.</p>
+    </div>
+    <div class="bento-card">
+        <div class="bento-icon">&#128173;</div>
+        <h3>AI Integration</h3>
+        <p>Automate custom generation.</p>
+    </div>
+</div>`,
+                css: `.lp-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: left;
+}
+.bento-card {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s;
+}
+.bento-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+.bento-wide {
+    grid-column: span 2;
+}
+.bento-icon {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+.bento-card h3 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.bento-card p {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}`
+            },
+            {
+                id: 4,
+                name: "Testimonial Card Showcase",
+                dependencies: "No Dependency",
+                html: `<div class="lp-testimonial">
+    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <p class="testimonial-quote">"This component library saved us dozens of development hours. The animations are clean, fluid, and optimized right out of the box."</p>
+    <div class="testimonial-author">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80" alt="Avatar">
+        <div class="author-info">
+            <span class="author-name">Marcus Vance</span>
+            <span class="author-title">VP of Product at Aetheric</span>
+        </div>
+    </div>
+</div>`,
+                css: `.lp-testimonial {
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.testimonial-stars {
+    color: #fbbf24;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+.testimonial-quote {
+    color: #e5e7eb;
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.testimonial-author img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+.author-name {
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.author-title {
+    color: #9ca3af;
+    font-size: 0.7rem;
+}`
+            },
+            {
+                id: 5,
+                name: "Tiered Pricing Table",
+                dependencies: "No Dependency",
+                html: `<div class="lp-pricing">
+    <div class="pricing-card">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <span class="pricing-plan">Pro Tier</span>
+        <div class="pricing-price">
+            <span class="price-val">$49</span>
+            <span class="price-period">/ month</span>
+        </div>
+        <ul class="pricing-features">
+            <li>&#10003; Access to all 100+ components</li>
+            <li>&#10003; Lifetime free updates</li>
+            <li>&#10003; Advanced JS widgets</li>
+            <li>&#10003; Priority support</li>
+        </ul>
+        <button class="pricing-btn">Upgrade Plan</button>
+    </div>
+</div>`,
+                css: `.lp-pricing {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.pricing-card {
+    position: relative;
+    width: 280px;
+    background: #0f172a;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+}
+.pricing-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #6366f1;
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+.pricing-plan {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.pricing-price {
+    margin: 8px 0 16px 0;
+    display: flex;
+    align-items: baseline;
+}
+.price-val {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+}
+.price-period {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-left: 4px;
+}
+.pricing-features {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.pricing-features li {
+    color: #cbd5e1;
+    font-size: 0.78rem;
+}
+.pricing-btn {
+    width: 100%;
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 8px 0;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.pricing-btn:hover {
+    background: #4f46e5;
+}`
+            },
+            {
+                id: 6,
+                name: "Geometric Gradient CTA",
+                dependencies: "No Dependency",
+                html: `<section class="lp-cta">
+    <div class="lp-cta-glow"></div>
+    <div class="lp-cta-content">
+        <h2>Unleash Premium Designs Today</h2>
+        <p>Integrate modern responsive visual effects and component packages directly into your codebase in seconds.</p>
+        <div class="lp-cta-input-group">
+            <input type="email" placeholder="Enter your email" aria-label="Subscription email">
+            <button class="lp-cta-btn">Join Now</button>
+        </div>
+    </div>
+</section>`,
+                css: `.lp-cta {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #1e1b4b, #030712);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 32px 16px;
+    overflow: hidden;
+    text-align: center;
+}
+.lp-cta-glow {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+.lp-cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 320px;
+    margin: 0 auto;
+}
+.lp-cta-content h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.lp-cta-content p {
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+.lp-cta-input-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 3px;
+    width: 100%;
+}
+.lp-cta-input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 0 10px;
+    font-size: 0.75rem;
+    width: 60%;
+}
+.lp-cta-input-group input::placeholder {
+    color: #64748b;
+}
+.lp-cta-btn {
+    background: #ec4899;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.lp-cta-btn:hover {
+    background: #db2777;
+}`
+            },
+            {
+                id: 7,
+                name: "Scroll Video Card Reveal",
+                dependencies: "Vanilla JS, Canvas API",
+                html: `<div class="veldara-scroll-showcase">
+  <div class="video-fallback-mock">
+    <div class="video-text">Interactive Video Canvas Mock</div>
+  </div>
+  <div class="fixed-cards-preview">
+    <div class="fixed-card-item">
+      <h3>Explore Veldara</h3>
+      <p>Seamless composability for Svelte 5 and Three.js.</p>
+    </div>
+    <div class="fixed-card-item">
+      <h3>Unlock Three.js</h3>
+      <p>Declarative performant 3D canvas layouts.</p>
+    </div>
+    <div class="fixed-card-item">
+      <h3>Connect APIs</h3>
+      <p>Built-in physics engines and asset pre-loaders.</p>
+    </div>
+  </div>
+</div>`,
+                css: `.veldara-scroll-showcase {
+  position: relative;
+  width: 100%;
+  background: #010101;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 250px;
+}
+.video-fallback-mock {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #1e3a8a 0%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+.video-text {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.fixed-cards-preview {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  z-index: 5;
+}
+.fixed-card-item {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 8px;
+  backdrop-filter: blur(8px);
+}
+.fixed-card-item h3 {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.fixed-card-item p {
+  font-size: 0.6rem;
+  color: #94a3b8;
+  line-height: 1.3;
+}`
+            },
+            {
+                id: 8,
+                name: "Liquid Glass Capabilities",
+                dependencies: "Framer Motion, Instrument Serif Google Font",
+                html: `<div class="liquid-glass-showcase">
+  <div class="liquid-glass-headline">Studio craft, end to end</div>
+  <div class="liquid-glass-grid">
+    <div class="lg-card">
+      <h4>Design</h4>
+      <p>Art direction, visual identity, typography systems and motion details.</p>
+    </div>
+    <div class="lg-card">
+      <h4>Engineering</h4>
+      <p>Production front-ends, edge-ready frameworks and headless integration.</p>
+    </div>
+    <div class="lg-card">
+      <h4>Growth</h4>
+      <p>A/B testing, organic search alignment and conversion iterations.</p>
+    </div>
+  </div>
+</div>`,
+                css: `.liquid-glass-showcase {
+  width: 100%;
+  background: #000;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+.liquid-glass-headline {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.liquid-glass-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.lg-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+}
+.lg-card h4 {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: white;
+  margin-bottom: 4px;
+}
+.lg-card p {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}`
+            },
+            {
+                id: 9,
+                name: "Pricing Scale",
+                dependencies: "No Dependency",
+                html: `<div class="pricing-scale-showcase">
+  <div class="pricing-badge-accent">
+    <div class="pricing-pulse-dot"></div>
+    <span>Pricing</span>
+  </div>
+  <h2>Scale with flexible pricing</h2>
+  <p>Choose a plan that grows with your data needs.</p>
+  <div class="pricing-grid">
+    <article class="price-box">
+      <div class="price-box-header">
+        <span>01</span>
+        <div class="setup-badge">2 weeks setup</div>
+      </div>
+      <h3>Starter</h3>
+      <p class="desc">Perfect for small teams getting started.</p>
+      <div class="price-value">$299<span>/mo</span></div>
+      <button class="pricing-btn">Get Started &rarr;</button>
+    </article>
+    <article class="price-box featured">
+      <div class="price-box-header">
+        <span class="setup-badge active">02</span>
+        <div class="setup-badge active">1 week setup</div>
+      </div>
+      <h3>Professional</h3>
+      <p class="desc">Advanced analytics for growing teams.</p>
+      <div class="price-value">$799<span>/mo</span></div>
+      <button class="pricing-btn active">Start Professional &rarr;</button>
+    </article>
+  </div>
+</div>`,
+                css: `.pricing-scale-showcase {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
+}
+.pricing-badge-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.pricing-pulse-dot {
+  width: 5px;
+  height: 5px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse-glow 1.5s infinite;
+}
+.pricing-scale-showcase h2 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.pricing-scale-showcase p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.price-box {
+  background: linear-gradient(to bottom, #0f1419, #0a0f14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+}
+.price-box.featured {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.price-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.setup-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.55rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.setup-badge.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+.price-box h3 {
+  font-size: 0.95rem;
+  color: white;
+  margin-bottom: 4px;
+}
+.price-box .desc {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+}
+.price-value {
+  font-size: 1.3rem;
+  color: white;
+}
+.pricing-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 0.7rem;
+}
+.pricing-btn.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+}`
+            },
+            {
+                id: 10,
+                name: "Collaborate Contact Form",
+                dependencies: "No Dependency",
+                html: `<section class="collaborate-section">
+  <div class="inner-wrap">
+    <div class="collab-header">
+      <span class="badge-collab">Let's Work Together</span>
+      <h2>Ready to <span class="highlight">collaborate?</span></h2>
+    </div>
+    <div class="collab-grid">
+      <div class="form-container">
+        <h3>Send a Message</h3>
+        <form onsubmit="event.preventDefault()">
+          <input type="text" placeholder="Your name">
+          <input type="email" placeholder="your@email.com">
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="info-stack">
+        <div class="info-card">
+          <h4>Email</h4>
+          <p>hello@designer.com</p>
+        </div>
+        <div class="info-card">
+          <h4>Schedule call</h4>
+          <p>Book free consultation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`,
+                css: `.collaborate-section {
+  width: 100%;
+  background: #050505;
+  border-radius: 12px;
+  padding: 20px 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.collab-header h2 {
+  font-size: 1.3rem;
+  color: white;
+}
+.collab-header .highlight {
+  font-family: serif;
+  font-style: italic;
+  color: #ccc;
+}
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.form-container {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 10px;
+}
+.form-container h3 {
+  font-size: 0.85rem;
+  color: white;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-container input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 6px;
+  color: white;
+}
+.submit-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 8px;
+}
+.info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.info-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 12px;
+}
+.info-card h4 {
+  font-size: 0.7rem;
+  color: #888;
+}
+.info-card p {
+  font-size: 0.85rem;
+  color: white;
+}`
+            }
+        ];
+
+        const gridContainer = document.getElementById('grid-container');
+        const toastContainer = document.getElementById('toast-container');
+        const activeTabs = {};
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        DATABASE.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${item.id}`;
+
+            let tabsHtml = `
+                <button class="tab-btn active" id="tab-html-${item.id}" onclick="switchTab(${item.id}, 'html')">HTML</button>
+                <button class="tab-btn" id="tab-css-${item.id}" onclick="switchTab(${item.id}, 'css')">CSS</button>
+            `;
+            if (item.react) {
+                tabsHtml += `<button class="tab-btn" id="tab-react-${item.id}" onclick="switchTab(${item.id}, 'react')">React</button>`;
+            }
+
+            let panelsHtml = `
+                <div class="code-panel active" id="panel-html-${item.id}">
+                    <pre><code class="language-html">${escapeHtml(item.html)}</code></pre>
+                </div>
+                <div class="code-panel" id="panel-css-${item.id}">
+                    <pre><code class="language-css">${escapeHtml(item.css)}</code></pre>
+                </div>
+            `;
+            if (item.react) {
+                panelsHtml += `
+                    <div class="code-panel" id="panel-react-${item.id}">
+                        <pre><code class="language-jsx">${escapeHtml(item.react)}</code></pre>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="card-title">${item.name}</span>
+                    <span class="card-badge">Widget #${item.id}</span>
+                </div>
+                <div class="preview-canvas">
+                    ${item.html}
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn" onclick="toggleCodeDrawer(${item.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Get Code
+                    </button>
+                </div>
+                <div class="code-drawer" id="drawer-${item.id}">
+                    <div class="drawer-tabs">
+                        ${tabsHtml}
+                    </div>
+                    <div class="drawer-meta">
+                        <span class="drawer-meta-title">Dependencies:</span>
+                        <span class="drawer-meta-value">${item.dependencies}</span>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCodeSnippet(${item.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                        ${panelsHtml}
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+
+        window.toggleCodeDrawer = function(id) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            const actionBtn = document.querySelector(`#card-${id} .action-btn`);
+
+            if (!activeTabs[id]) activeTabs[id] = 'html';
+
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                drawer.style.maxHeight = '0px';
+                actionBtn.classList.remove('active');
+            } else {
+                document.querySelectorAll('.code-drawer.open').forEach(d => {
+                    d.classList.remove('open');
+                    d.style.maxHeight = '0px';
+                });
+                document.querySelectorAll('.action-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                });
+                drawer.classList.add('open');
+                drawer.style.maxHeight = '450px';
+                actionBtn.classList.add('active');
+            }
+        };
+
+        window.switchTab = function(id, tabName) {
+            activeTabs[id] = tabName;
+            const drawer = document.getElementById(`drawer-${id}`);
+            drawer.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const selectedBtn = document.getElementById(`tab-${tabName}-${id}`);
+            if (selectedBtn) selectedBtn.classList.add('active');
+
+            drawer.querySelectorAll('.code-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            const selectedPanel = drawer.querySelector(`#panel-${tabName}-${id}`);
+            if (selectedPanel) selectedPanel.classList.add('active');
+        };
+
+        window.copyCodeSnippet = function(id) {
+            const activeTab = activeTabs[id] || 'html';
+            const drawer = document.getElementById(`drawer-${id}`);
+            const codePanel = drawer.querySelector(`#panel-${activeTab}-${id} pre code`);
+
+            if (!codePanel) return;
+
+            navigator.clipboard.writeText(codePanel.textContent).then(() => {
+                const copyBtn = drawer.querySelector('.copy-btn');
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                showToast(`Widget #${id} ${activeTab.toUpperCase()} code copied!`);
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy code: ", err);
+                showToast("Failed to copy code.");
+            });
+        };
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <svg class="toast-success-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 8 12 12 16 14"></polyline>
+                </svg>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        window.toggleHelpModal = function() {
+            document.getElementById('help-modal').classList.toggle('open');
+        };
+
+        window.closeHelpModalOutside = function(e) {
+            if (e.target.id === 'help-modal') {
+                toggleHelpModal();
+            }
+        };
+    </script>
+</body>
+</html>
